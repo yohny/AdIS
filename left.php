@@ -103,9 +103,9 @@ schéma:
 <div class="top_right corner"></div>
 <div class="bottom_left corner"></div>
 <div class="bottom_right corner"></div>
-<?php if($_SESSION['flash']):?>
+<?php if(isset($_SESSION['flash'])): ?>
 <div class="flash">
-
+    <?php echo $_SESSION['flash']; ?>
 </div>
 <?php endif ?>
 <h3><?php echo (isset($nadpis)?$nadpis:$title); ?></h3>

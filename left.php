@@ -105,7 +105,7 @@ schéma:
 <div class="bottom_right corner"></div>
 <?php if(isset($_SESSION['flash'])): ?>
 <div class="flash">
-    <?php echo $_SESSION['flash']; ?>
+    <?php echo $_SESSION['flash']; session_unregister('flash'); ?>
 </div>
 <?php endif ?>
 <h3><?php echo (isset($nadpis)?$nadpis:$title); ?></h3>

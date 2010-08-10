@@ -1,13 +1,13 @@
-<?php 
+<?php
 session_start();
 
-if($_POST['action']=="Odhlásiť")
+if ($_POST['action'] == "Odhlásiť")
 {
-  session_destroy();
-  $message = "Boli ste odhlásený.";
+    session_unset();
+    $message = "Boli ste odhlásený.";
 }
 else
-  $message = "Chybná požiadavka";
+    $message = "Chybná požiadavka";
 
 $_SESSION['flash'] = $message;
 

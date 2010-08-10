@@ -1,0 +1,22 @@
+<?php
+$nadpis = "Chyba";
+require 'left.php';
+
+$h4 = $msg = 'Došlo k chybe na serveri alebo stránka na ktorej ste klikli na
+    relamný banner má chybný kód banneru a preto Vás nie je možné presmerovať
+    do cieľa reklamy. Ospravedlňujeme sa spôsobené nepríjemnosti';
+$msq = 'unknown';
+
+if(isset ($_GET['msg']))
+    $msg = $_GET['msg'];
+
+echo '<h4>'.$h4.'</h4>';
+echo $msg;
+
+?>
+<hr>
+</div>
+
+</div>
+</body>
+</html>

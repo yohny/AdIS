@@ -1,152 +1,152 @@
 body {
-	color: white;
-	font-family: Arial, Helvetica, "Sans-serif";
-	font-size: 12px;
+    color: white;
+    font-family: Arial, Helvetica, "Sans-serif";
+    font-size: 12px;
     counter-reset: faq;
 }
 #container {
     background-color: white;
 }
 #container, #top, #menu, #nove, #main {
-  position:relative;
-  border-width: 2px;
-  border-style: solid;
-  padding: 20px;
-  margin: 5px;
+    position:relative;
+    border-width: 2px;
+    border-style: solid;
+    padding: 20px;
+    margin: 5px;
 }
 #container { /*celkova sirka stranky 1000px -> 1000-2x2border-2x20padding = 956 */
-  width: 956px;
-  margin: 20px auto;
+             width: 956px;
+             margin: 20px auto;
 }
 .r {
-	color: red;
+    color: red;
 }
 p {
-	font-weight: bold;
+    font-weight: bold;
 }
 img {
-  border-style: none;
+    border-style: none;
 }
 #img1, #img2, #img3 {
-  cursor: pointer;
+    cursor: pointer;
 }
 h3 {       /* vsetky nazvy divov  */
-	margin: 0px;
-	text-decoration: none;
-	text-align: right;
-	border-bottom-width: 2px;
-	border-bottom-style: solid;
-	font-size: 14px;
+           margin: 0px;
+           text-decoration: none;
+           text-align: right;
+           border-bottom-width: 2px;
+           border-bottom-style: solid;
+           font-size: 14px;
 }
 ul {
-  list-style-type: square;
+    list-style-type: square;
 }
 #ja {
-  position: relative;
-  left: 5px;
-  text-decoration: none;
-  font-variant: small-caps;
+    position: relative;
+    left: 5px;
+    text-decoration: none;
+    font-variant: small-caps;
 }
 #ja:hover {
-  font-size: 14px;
-  text-decoration: underline;
-  font-weight: bold;
+    font-size: 14px;
+    text-decoration: underline;
+    font-weight: bold;
 }
 #container .errbox, #container .okbox {
-  border: 2px solid black;
-  background-color: white;
-  display: none;
-  padding: 10px;
+    border: 2px solid black;
+    background-color: white;
+    display: none;
+    padding: 10px;
 }
 #container .errbox {
-  border-color: red;
-  color: red;
+    border-color: red;
+    color: red;
 }
 #container .okbox {
-  border-color: green;
-  color: green;
+    border-color: green;
+    color: green;
 }
 input, textarea, select {
-  border-width: 1px;
-  border-style: solid;
-  background-color: white;
+    border-width: 1px;
+    border-style: solid;
+    background-color: white;
 }
 input[type='text'],input[type='password'],select {
     width: 100%;
 }
 /*------------------------------------ top ------------------------------------*/
 #top{
-  /*background-image: url('../images/top.jpg');
-  background-repeat: no-repeat;*/
+    /*background-image: url('../images/top.jpg');
+    background-repeat: no-repeat;*/
 }
 #top h2 {
-  padding: 40px 20px 20px;
-  /*opacity: 0.5;               /* correct W3C DOM */
-  /*filter: alpha(opacity=50);  /* IE only */
-  font-size: 25px;
-  margin: auto -20px;
+    padding: 40px 20px 20px;
+    /*opacity: 0.5;               /* correct W3C DOM */
+    /*filter: alpha(opacity=50);  /* IE only */
+    font-size: 25px;
+    margin: auto -20px;
 }
 /*----------------------------------- left (menu+nove) ------------------------*/
 #left{
-  width: 184px; /* 130(menu/nove)+40(2x20-padding)+4(2x2-border)+10(2x5-margin)*/
-  float: left;
+    width: 184px; /* 130(menu/nove)+40(2x20-padding)+4(2x2-border)+10(2x5-margin)*/
+    float: left;
 }
 /*------------------------------------ menu -----------------------------------*/
 #menu a {
-	text-decoration: none;
-	display: block;
-	padding: 1px 10px;
-	margin: 1px 0px;
-	color: white;
+    text-decoration: none;
+    display: block;
+    padding: 1px 10px;
+    margin: 1px 0px;
+    color: white;
 }
 #menu a:hover {
-	background-image: url('../img/button.png');
+    background-image: url('../img/button.png');
 }
 #menu fieldset {
-  padding: 0px;
-  margin: 0px;
-  border-width: 1px;
-  border-style: solid;
-  border-left-style: none;
-  border-right-style: none;
+    padding: 0px;
+    margin: 0px;
+    border-width: 1px;
+    border-style: solid;
+    border-left-style: none;
+    border-right-style: none;
 }
 #menu legend {
-	font-size: 11px;
+    font-size: 11px;
 }
 /*------------------------------------ nove -----------------------------------*/
 #nove {
-  margin-top: 10px; /* normalne 5 ale pri float sa neprelinaju */
+    margin-top: 10px; /* normalne 5 ale pri float sa neprelinaju */
 }
 /*------------------------------------ main -----------------------------------*/
 #main {
-  margin: 10px 5px 10px 189px;/*top right bottom left*/
+    margin: 10px 5px 10px 189px;/*top right bottom left*/
 }
 #main h3 { /* vacsi font ako ostatne divy */
-	font-size: 18px;
-	margin-bottom: 30px;
+    font-size: 18px;
+    margin-bottom: 30px;
 }
 #main h4 {
-	margin: 10px;
-	font-size: 12px;
+    margin: 10px;
+    font-size: 12px;
 }
 #main h4 + p {
-	margin-top: -5px;
+    margin-top: -5px;
 }
 #main h4.faq:before {
-	counter-increment: faq;
+    counter-increment: faq;
     content: "FAQ " counter(faq) ". ";
 }
 #main hr {
-  border-width: 1px;
-  border-style: solid;
-  margin-top: 10px;
-  margin-bottom: 10px;
+    border-width: 1px;
+    border-style: solid;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 #main a {
-	text-decoration: underline;
+    text-decoration: underline;
 }
 #main a:hover {
-	color: red;
+    color: red;
 }
 #main table.data {
     width: 100%;
@@ -159,13 +159,13 @@ input[type='text'],input[type='password'],select {
 }
 #main table.data tbody td
 {
-	border-width: 1px;
+    border-width: 1px;
     border-style: solid;
-	padding: 10px
+    padding: 10px
 }
 #main table.data tbody tr:hover td
 {
-	background-color: white;
+    background-color: white;
     color: black;
 }
 #main table.pager
@@ -191,35 +191,42 @@ input[type='text'],input[type='password'],select {
 {
     width: auto;
 }
+#main div.flash
+{
+    border: 1px solid white;
+    background: #FFFFCC url('../img/flash.png') no-repeat left center;
+    margin: 10px 0px;
+    padding: 5px 5px 5px 20px;
+}
 /*-------------------------------- oble rohy ----------------------------------*/
 div.corner, div.contcorner
 {
-  background-color: white;
-  width:16px;
-  height:16px;
-  position:absolute;
+    background-color: white;
+    width:16px;
+    height:16px;
+    position:absolute;
 }
 div.top_left
 {
-  top:-2px;
-  left:-2px;
-  background-position: 0px 0px;
+    top:-2px;
+    left:-2px;
+    background-position: 0px 0px;
 }
 div.top_right
 {
-  top:-2px;
-  right:-2px;
-  background-position: -16px 0px;
+    top:-2px;
+    right:-2px;
+    background-position: -16px 0px;
 }
 div.bottom_left
 {
-  bottom:-2px;
-  left:-2px;
-  background-position: 0px -16px;
+    bottom:-2px;
+    left:-2px;
+    background-position: 0px -16px;
 }
 div.bottom_right
 {
-  bottom:-2px;
-  right:-2px;
-  background-position: -16px -16px;
+    bottom:-2px;
+    right:-2px;
+    background-position: -16px -16px;
 }

@@ -1,23 +1,16 @@
 <?php 
-$nadpis = "Odhlásenie";
 session_start();
 
-$message = "";
 if($_POST['action']=="Odhlásiť")
 {
   session_destroy();
-  $message = "<h4>Boli ste odhlásený.</h4>";
+  $message = "Boli ste odhlásený.";
 }
 else
-  $message = "<span class=\"r\">Chybná požiadavka.</span>";
+  $message = "Chybná požiadavka";
 
-require 'left.php';
+$_SESSION['flash'] = $message;
+
+$referer = $_SERVER['HTTP_REFERER'];
+header("Location: $referer");
 ?>
-
-<?php echo $message; ?>
-<hr>
-</div>
-
-</div>
-</body>
-</html>

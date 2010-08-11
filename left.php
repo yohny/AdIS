@@ -89,9 +89,9 @@ include "user.php";
 </p>
 <p>
 schéma:
-&nbsp;&nbsp;<img id="img1" src="sch1.png" onClick="set_scheme(1)" alt="s1">
-&nbsp;&nbsp;<img id="img2" src="sch2.png" onClick="set_scheme(2)" alt="s2">
-&nbsp;&nbsp;<img id="img3" src="sch3.png" onClick="set_scheme(3)" alt="s3">
+&nbsp;&nbsp;<img id="img1" src="img/sch1.png" onClick="set_scheme(1)" alt="s1">
+&nbsp;&nbsp;<img id="img2" src="img/sch2.png" onClick="set_scheme(2)" alt="s2">
+&nbsp;&nbsp;<img id="img3" src="img/sch3.png" onClick="set_scheme(3)" alt="s3">
 </p>
 <script language="javascript" type="text/javascript">set_scheme(schema);</script>
 </div>

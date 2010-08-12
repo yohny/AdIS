@@ -66,10 +66,15 @@ ul {
     border-color: green;
     color: green;
 }
-input, textarea, select {
+input, textarea, select, pre {
     border-width: 1px;
     border-style: solid;
     background-color: white;
+}
+pre
+{
+    white-space: normal;
+    padding: 10px;
 }
 input[type='text'],input[type='password'],select {
     width: 100%;

@@ -22,9 +22,9 @@ if(!isset($_COOKIE['voted']))
     setcookie("voted","voted", time()+30);  //platnost cookie 30 sek
 
     require 'datab_con.php';
-    $query = "INSERT INTO kliky VALUES(NULL, NOW(), $zobr_id, $inze_id, $rekl_id, $bann_id)";
-    mysql_query($query); //bez osetrenia chyby aby aj pri errore redirectlo
-    mysql_close($conn);
+    /* @var $conn mysqli */
+    $conn->query("INSERT INTO kliky VALUES(NULL, NOW(), $zobr_id, $inze_id, $rekl_id, $bann_id)");
+    $conn->close();
 }
 header("Location: $web");
 ?>

@@ -18,7 +18,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Database: `stkpo`
 --
-CREATE DATABASE `stkpo` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE DATABASE `adis` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `stkpo`;
 
 -- --------------------------------------------------------

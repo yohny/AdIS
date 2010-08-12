@@ -1,6 +1,6 @@
 <?php
 if(!isset ($_POST['web']))
-    exit();
+    exit('Nekompletne data');
 
 session_start();
 require '../secure.php';
@@ -11,14 +11,15 @@ $web = $_POST['web'];
 if(!filter_var($web, FILTER_VALIDATE_URL))
 {
     $resp = array('success' => false,'message' => 'Neplatná webová adresa!');
-    echo json_encode($resp);
-    exit();
+    exit(json_encode($resp));
 }
 
 require '../datab_con.php';
+/* @var $conn mysqli */
+
 $query = "UPDATE users SET web='$web' WHERE login='$user'";
-mysql_query($query) or die('Zlyhalo query!');
-mysql_close($conn);
+$conn->query($query);
+$conn->close();
 
 $resp = array('success' => true,'message' => 'WWW adresa zmenená.!');
 echo json_encode($resp);

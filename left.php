@@ -1,5 +1,4 @@
 <?php
-//if(session_id()=="") //overenie ci uz nebola startnuta session - kvoli odhlaseniu a prihlaseniu
   session_start();   //na kazdej stranke, kt pouziva $_SESSION musi byt..
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

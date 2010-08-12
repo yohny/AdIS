@@ -6,30 +6,36 @@ require 'secure.php';
 $login = $_SESSION['user'];
 
 require 'datab_con.php';
+/* @var $conn mysqli */
 
 if(isset ($_GET['zmaz']))  //mazanie
 {
     $query = "SELECT * FROM reklamy WHERE user=(SELECT id FROM users WHERE login='$login') AND id={$_GET['zmaz']}";
-    $result = mysql_query($query) or die('Zlyhalo query!');
-    if(mysql_num_rows($result)==1)
+    /* @var $result mysqli_result */
+    $result = $conn->query($query);
+    if($result->num_rows==1)
     {
-        $query = "DELETE FROM reklamy WHERE id={$_GET['zmaz']}";
-        mysql_query($query) or die('Zlyhalo query!');
-        $query = "DELETE FROM kategoria_reklama WHERE reklama={$_GET['zmaz']}";
-        mysql_query($query) or die('Zlyhalo query!');
+        $conn->autocommit(FALSE);
+        $conn->query("DELETE FROM reklamy WHERE id={$_GET['zmaz']}");
+        $conn->query("DELETE FROM kategoria_reklama WHERE reklama={$_GET['zmaz']}");
+        $conn->commit();
     }
 }
+$conn->autocommit(TRUE);
 
 $query = "SELECT reklamy.*, velkosti.sirka, velkosti.vyska, velkosti.nazov FROM reklamy JOIN velkosti ON (reklamy.velkost=velkosti.id) WHERE user=(SELECT id FROM users WHERE login='$login') ORDER BY nazov";
-$reklamy = mysql_query($query) or die('Zlyhalo query!');
+/* @var $reklamy mysqli_result */
+$reklamy = $conn->query($query) or die('Zlyhalo query!');
 
 $query = "SELECT * FROM velkosti ORDER BY nazov ASC";     //ziskanie typov bannerov
-$velkosti = mysql_query($query) or die('Zlyhalo query!');
+/* @var $velkosti mysqli_result */
+$velkosti = $conn->query($query) or die('Zlyhalo query!');
 
 $query = "SELECT * FROM kategorie ORDER BY nazov ASC";     //ziskanie kategorii
-$kategorie = mysql_query($query) or die('Zlyhalo query!');
+/* @var $kategorie mysqli_result */
+$kategorie = $conn->query($query) or die('Zlyhalo query!');
 
-if(mysql_num_rows($reklamy)>0)
+if($reklamy->num_rows>0)
   {$i=0;?>
     <table style="text-align:left;" class="data">
         <thead>
@@ -52,38 +58,38 @@ if(mysql_num_rows($reklamy)>0)
         </tr>
         </thead>
         <tbody>
-    <?php while($row=mysql_fetch_array($reklamy)): $i++; ?>
+    <?php while($row=$reklamy->fetch_object()): $i++; ?>
         <tr <?php if($i%2==0) echo "class=\"dark\""; ?>>
             <td>
-                <?php echo $row['nazov'];?>
+                <?php echo $row->nazov;?>
             </td>
             <td>
-                <?php echo $row['sirka']." x ".$row['vyska']; ?>
+                <?php echo $row->sirka." x ".$row->vyska; ?>
             </td>
             <td>
                 <?php
-                $query = "SELECT kategorie.nazov FROM kategoria_reklama JOIN kategorie ON (kategoria_reklama.kategoria=kategorie.id) WHERE reklama={$row['id']} ORDER BY kategorie.nazov ASC";
-                $kateg = mysql_query($query) or die('Zlyhalo query!');
-                while ($kat = mysql_fetch_array($kateg))
-                    echo $kat['nazov']."<BR>";
+                $query = "SELECT kategorie.nazov FROM kategoria_reklama JOIN kategorie ON (kategoria_reklama.kategoria=kategorie.id) WHERE reklama=$row->id ORDER BY kategorie.nazov ASC";
+                $kateg = $conn->query($query);
+                while ($kat = $kateg->fetch_object())
+                    echo $kat->nazov."<BR>";
                 ?>
             </td>
             <td>
-                <a href="javascript: show2('tr<?php echo $row['id']; ?>')"><?php echo $row['meno']; ?></a>
+                <a href="javascript: show2('tr<?php echo $row->id; ?>')"><?php echo $row->meno; ?></a>
             </td>
             <td>
-               <a href="javascript: if(confirm('Naozaj odstrániť?')) window.location.search='?zmaz=<?php echo $row['id'];?>'"><span class="r"><b>X</b></span></a>
+               <a href="javascript: if(confirm('Naozaj odstrániť?')) window.location.search='?zmaz=<?php echo $row->id;?>'"><span class="r"><b>X</b></span></a>
             </td>
         </tr>
-        <tr <?php if($i%2==0) echo "class=\"dark\"";?> style="display:none;" id="tr<?php echo $row['id']; ?>">
+        <tr <?php if($i%2==0) echo "class=\"dark\"";?> style="display:none;" id="tr<?php echo $row->id; ?>">
             <td colspan="5">
                 <p>Nasledujúci HTML kód vložte do vašej stránky (na miesto kde chcete mať reklamu):</p>
-                <textarea cols="60" rows="4">
-&lt;script language="javascript" type="text/javascript" src="http://localhost/adis/script.php?rekl=<?php echo $row['id']; ?>"&gt;&lt;/script&gt;
-                </textarea>
+                <pre>
+&lt;script language="javascript" type="text/javascript" src="http://localhost/AdIS/script.php?rekl=<?php echo $row->id; ?>"&gt;&lt;/script&gt;
+                </pre>
             </td>
         </tr>
-    <?php endwhile; mysql_close($conn);?>
+    <?php endwhile; $conn->close();?>
         </tbody>
     </table>
   <?php
@@ -101,8 +107,8 @@ if(mysql_num_rows($reklamy)>0)
         </td>
         <td>
             <select name="velkost">
-                <?php while($row=mysql_fetch_array($velkosti)): ?>
-                <option value="<?php echo $row['id']; ?>"><?php echo $row['sirka']."x".$row['vyska']." - ".$row['nazov']; ?></option>
+                <?php while($row=$velkosti->fetch_object()): ?>
+                <option value="<?php echo $row->id; ?>"><?php echo $row->sirka."x".$row->vyska." - ".$row->nazov; ?></option>
                 <?php endwhile; ?>
             </select>
         </td>
@@ -121,8 +127,8 @@ if(mysql_num_rows($reklamy)>0)
         </td>
         <td>
             <select name="kategorie[]" multiple="multiple" size="5">
-                <?php while($row=mysql_fetch_array($kategorie)): ?>
-                <option value="<?php echo $row['id']; ?>"><?php echo $row['nazov']; ?></option>
+                <?php while($row=$kategorie->fetch_object()): ?>
+                <option value="<?php echo $row->id; ?>"><?php echo $row->nazov; ?></option>
                 <?php endwhile; ?>
             </select>
         </td>

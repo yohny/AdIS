@@ -21,7 +21,7 @@ require 'left.php';
     </tr>
     <tr title="Vaša webová adresa vrátane protokolu (http://) napr.: 'http://www.vasafirma.sk'.">
       <td><label for="web">WWW adresa:</label></td>
-      <td><input id="web" type="text" name="web" maxlength="20"></td>
+      <td><input id="web" type="text" name="web" maxlength="100"></td>
     </tr>
     <tr title="Zvoľte 'Inzerent' ak chcete pridať svoje reklamy, ktoré bolú zobrazované inými používateľmi na ich stránkach.">
       <td><label for="inzer">Inzerent</label></td>

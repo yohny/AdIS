@@ -9,15 +9,17 @@ $group = $_SESSION['group'];
 if($group != "admin")
 {
   include "datab_con.php";
-  
+  /* @var $conn mysqli */
+
   $query = "SELECT web FROM users WHERE login='$user'";
-  $result = mysql_query($query) or die('Zlyhalo query!');
-  mysql_close($conn); 
-  $row = mysql_fetch_array($result);
+  /* @var $result mysqli_result */
+  $result = $conn->query($query) or die('Zlyhalo query!');
+  $row = $result->fetch_object();
+  $conn->close();
 }
 ?>
 <center>
-<table cellspacing="5" style="text-align:left;">
+<table cellspacing="5" style="text-align:left;width:300px;">
   <tr>
     <td width="80">Heslo:</td><td width="110"><span class="g">**********</span></td><td width="30"><a href="javascript: show('pas',this)">zmeň</a></td>
   </tr>
@@ -36,13 +38,13 @@ if($group != "admin")
   </tr>
 <?php if($group != "admin"): ?>
   <tr>
-    <td>WWW adresa:</td><td><span class="g"><?php echo $row['web']; ?></span></td><td><a href="javascript: show('web',this)">zmeň</a></td>
+    <td>WWW adresa:</td><td><span class="g" id="webTd"><?php echo $row->web; ?></span></td><td><a href="javascript: show('web',this)">zmeň</a></td>
   </tr>
   <tr id="web" style="display:none;">
     <td colspan="3">
       <form name="chweb_form">
       <table>
-      <tr><td>Nová adresa:</td><td><input type="text" name="web" maxlength="20"></td></tr>
+      <tr><td>Nová adresa:</td><td><input type="text" name="web" maxlength="100"></td></tr>
       <tr><td colspan="2"><input type="button" value="OK" onClick="spracuj_chweb()"></td></tr>
       <tr><td colspan="2"><div id="chweb_errbox" class="errbox"></div><div id="chweb_okbox" class="okbox"></div></td></tr>
       </table>

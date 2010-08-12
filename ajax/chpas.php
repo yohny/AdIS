@@ -1,6 +1,6 @@
 <?php
 if(!isset($_POST['old']) || !isset($_POST['new']))
-    exit();
+    exit('Nekompletne data');
 
 session_start();
 require '../secure.php';
@@ -10,22 +10,23 @@ $old = $_POST['old'];
 $new = $_POST['new'];
 
 require '../datab_con.php';
+/* @var $conn mysqli */
 
-$query = "SELECT * FROM users WHERE login='$user' AND heslo=MD5('$old')";
-$result = mysql_query($query) or die('Zlyhalo query!');
+$query = "SELECT COUNT(*) AS count FROM users WHERE login='$user' AND heslo=MD5('$old')";
+/* @var $result mysqli_result */
+$result = $conn->query($query);
 
-if (mysql_numrows($result)==1)
+if ($result->fetch_object()->count==1)
 {
     $query = "UPDATE users SET heslo=MD5('$new') WHERE login='$user'";
-    mysql_query($query) or die('Zlyhalo query!');
+    $conn->query($query);
     $resp = array('success' => true,'message' => 'Heslo zmenené.');
-    echo json_encode($resp);
 }
 else
-{
     $resp = array('success' => false,'message' => 'Neplatné staré heslo!');
-    echo json_encode($resp);
-}
-mysql_close($conn);
+
+echo json_encode($resp);
+
+$conn->close();
 ?>
 

@@ -1,18 +1,18 @@
 <?php
 $nadpis = "Upload banneru";
-require 'left.php';
-require 'secure.php';
+require '../base/left.php';
+require '../base/secure.php';
 
 if(!isset ($_FILES['userfile']) || !isset ($_POST['velkost']) || !isset ($_POST['kategorie']))
     exit("Nekompletne data");
 
-$uploaddir = 'upload/';   // Relative path under webroot
+$uploaddir = '../upload/';   // Relative path from this file
 $userfile = $_FILES['userfile'];
 $velkost = $_POST['velkost'];
 $kategorie = $_POST['kategorie'];
 $message = "";
 
-require 'datab_con.php';
+require '../base/datab_con.php';
 /* @var $conn mysqli */
 
 $query = "SELECT * FROM velkosti WHERE id=$velkost";     //ziskanie rozmerov
@@ -27,7 +27,7 @@ $sirka = $row->sirka;
 $vyska = $row->vyska;
 $typ = $row->nazov;
 
-//vytvorime cele meno aj s cestou pre upload suboru
+//vytvorime meno bez cesty pre upload suboru
 $uploadname = basename($userfile['name']);       //len meno bez cesty -od verzie x.x uz netreba basename() lebo ['name'] uz obsahuje nazov bez cesty
 $uploadname = stripslashes($uploadname);        //odstrani lomitka 
 $uploadname = preg_replace('/[\s+\'+]/', '_', $uploadname);       //nahradi medzery a ine nepovolene symboly podtrznikmi
@@ -37,8 +37,8 @@ $notallowed = array("ľ","š","č","ť","ž","ý","á","í","é","ú","ä","ó",
 $allowed = array("l","s","c","t","z","y","a","i","e","u","a","o","o","n","l","r","r");
 $uploadname = str_replace($notallowed, $allowed, $uploadname);
 $uploadname = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $uploadname);
-$uploadname = $uploaddir.$_SESSION['user']."_".$sirka."x".$vyska."_".$uploadname;  //spoji, dostaneme cele meno uploadnuteho suboru s cestou
-$maxlength = 50 - strlen($_SESSION['user']) - 2 - strlen($uploaddir) - strlen($sirka."x".$vyska); //max dlzka nazvu suboru (cely path moze mat max. 50 xnakov)
+$uploadname = $_SESSION['user']."_".$sirka."x".$vyska."_".$uploadname;  //spoji, dostaneme cele meno uploadnuteho suboru s cestou
+$maxlength = 50 - strlen($_SESSION['user']) - 1 - strlen($sirka."x".$vyska); //max dlzka nazvu suboru (cely path moze mat max. 50 xnakov)
 
 if($userfile['size']==0)
     $message .= "<span class=\"r\">Prázdny súbor!</span><br>";
@@ -60,7 +60,7 @@ if($message=="") //subor je OK
 {
     $user = $_SESSION['user'];
 
-    if (move_uploaded_file($userfile['tmp_name'], $uploadname))
+    if (move_uploaded_file($userfile['tmp_name'], $uploaddir.$uploadname))
     {
         $query = "SELECT id FROM bannery WHERE user=(SELECT id FROM users WHERE login='$user') AND velkost=$velkost";
         $result = $conn->query($query);

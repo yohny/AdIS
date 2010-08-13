@@ -3,7 +3,7 @@ if(!isset ($_GET['login']))
     exit();
 
 $login = $_GET['login'];
-require '../datab_con.php';
+require '../base/datab_con.php';
 /* @var $conn mysqli */
 
 $query = "SELECT COUNT(*) AS count FROM users WHERE login='$login'";

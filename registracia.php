@@ -1,9 +1,9 @@
 <?php 
 $nadpis = "Registrácia";
-require 'left.php';
+require 'base/left.php';
 ?>
 
-<form name="reg_form" action="registruj.php" method="POST">
+<form name="reg_form" action="actions/registruj.php" method="POST">
   <center>
   <table cellspacing="5" style="text-align:left">
     <tr title="Login slúžiaci na prihlásenie do systému. Musí byť jedinečný.">

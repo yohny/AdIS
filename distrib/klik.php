@@ -2,7 +2,7 @@
 //error handler function
 function customError($errno, $errstr)
 {
-    header("Location: http://localhost/adis/klikerror.php?msg=$errstr");
+    header("Location: http://localhost/AdIS/klikerror.php?msg=$errstr");
     exit();
 }
 set_error_handler("customError"); //druhy optional param je error level, default je E_ALL|E_STRICT, tj vsetky chyby
@@ -21,7 +21,7 @@ if(!isset($_COOKIE['voted']))
 {
     setcookie("voted","voted", time()+30);  //platnost cookie 30 sek
 
-    require 'datab_con.php';
+    require '../base/datab_con.php';
     /* @var $conn mysqli */
     $conn->query("INSERT INTO kliky VALUES(NULL, NOW(), $zobr_id, $inze_id, $rekl_id, $bann_id)");
     $conn->close();

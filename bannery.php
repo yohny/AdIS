@@ -1,11 +1,11 @@
 <?php
 $nadpis = "Bannery";
-require 'left.php';
-require 'secure.php';
+require 'base/left.php';
+require 'base/secure.php';
 
 $login = $_SESSION['user'];
 
-require 'datab_con.php';
+require 'base/datab_con.php';
 /* @var $conn mysqli */
 
 if(isset ($_GET['zmaz']))  //mazanie
@@ -15,13 +15,16 @@ if(isset ($_GET['zmaz']))  //mazanie
     $result = $conn->query($query);
     if($conn->affected_rows==1)
     {
-        $row = $result->fetch_object();
-        unlink($row->path);
+        $bannername = $result->fetch_object()->path;
+        unlink('upload/'.$bannername);
         $conn->autocommit(FALSE);
         $conn->query("DELETE FROM bannery WHERE id={$_GET['zmaz']}");
         $conn->query("DELETE FROM kategoria_banner WHERE banner={$_GET['zmaz']}");
         $conn->commit();
+        echo '<span class="g">Banner \''.$bannername.'\' zmazaný!</span>';
     }
+    else
+        echo'<span class="r">Nemôžete zmazať tento banner!</span>';
 }
 $conn->autocommit(TRUE);
 
@@ -77,7 +80,7 @@ if($bannery->num_rows>0)
                 ?>
             </td>
             <td>
-                <a href="javascript: show2('tr<?php echo $row->id; ?>')"><?php echo substr(basename($row->path),strlen($login.$row->sirka.$row->vyska)+3); ?></a>
+                <a href="javascript: show2('tr<?php echo $row->id; ?>')"><?php echo substr($row->path,strlen($login.$row->sirka.$row->vyska)+3); ?></a>
             </td>
             <td>
                <a href="javascript: if(confirm('Naozaj odstrániť?')) window.location.search='?zmaz=<?php echo $row->id; ?>'"><span class="r"><b>X</b></span></a>
@@ -86,7 +89,7 @@ if($bannery->num_rows>0)
         <tr <?php if($i%2==0) echo "class=\"dark\"";?>  style="display:none;" id="tr<?php echo $row->id; ?>">
             <td colspan="5">
                 <div style="max-height:200px;overflow: auto;">
-                <img alt="banner" src="<?php echo $row->path; ?>">
+                <img alt="banner" src="<?php echo 'upload/'.$row->path; ?>">
                 </div>
             </td>
         </tr>
@@ -100,7 +103,7 @@ if($bannery->num_rows>0)
   ?>
 <hr>
 <center>
-<form name="upl_form" action="uploadni.php" method="POST" enctype="multipart/form-data">
+<form name="upl_form" action="actions/uploadni.php" method="POST" enctype="multipart/form-data">
 <table cellspacing="5" style="text-align:left;">
     <tr title="Zvoľte rozmerový typ reklamného banneru.">
         <td>

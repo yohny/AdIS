@@ -1,6 +1,6 @@
 <?php
 $nadpis = 'O systéme';
-require 'left.php';
+require 'base/left.php';
 ?>
 
 <p>IS umožňuje zaregistrovaným používateľom spravovať internetovú reklamu a prístup k hodnoteniu efektivity ich reklamnej kampane. </p>

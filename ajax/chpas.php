@@ -3,13 +3,13 @@ if(!isset($_POST['old']) || !isset($_POST['new']))
     exit('Nekompletne data');
 
 session_start();
-require '../secure.php';
+require '../base/secure.php';
 
 $user = $_SESSION['user'];
 $old = $_POST['old'];
 $new = $_POST['new'];
 
-require '../datab_con.php';
+require '../base/datab_con.php';
 /* @var $conn mysqli */
 
 $query = "SELECT COUNT(*) AS count FROM users WHERE login='$user' AND heslo=MD5('$old')";

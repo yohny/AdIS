@@ -12,6 +12,7 @@ if(isset($nadpis))
   $title .= " &gt; ".$nadpis;
 echo "<title>".$title."</title>\n";  //pridanie nadpisu
 ?>
+<base href="http://localhost/AdIS/" />
 <meta name="generator" content="Netbean, www.netbeans.org">
 <meta name="description" content="IS pre spravu reklamy">
 <meta name="keywords" content="internetova reklama, online reklama, adis, banner, ppc">
@@ -66,7 +67,7 @@ if(isset($added))
 <br>
 <h3>používateľ</h3>
 <?php
-include "user.php"; 
+require 'user.php'; 
 ?>
 </div>
 

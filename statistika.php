@@ -1,7 +1,7 @@
 <?php 
 $nadpis = "Štatistika";
-require 'left.php';
-require 'secure.php';
+require 'base/left.php';
+require 'base/secure.php';
 
 $maxPageRows = 10;
 
@@ -41,7 +41,7 @@ if($aktBann!='all')
 if($aktRekl!='all')
     $query .= " AND reklamy.id=$aktRekl";
 
-require 'datab_con.php';
+require 'base/datab_con.php';
 /* @var $conn mysqli */
 
 
@@ -180,7 +180,7 @@ $conn->close();
 if($result->num_rows==0)
     echo "<h4>Žiadne dáta!</h4>";
 else
-{ $i=0; include 'pager.php'; ?>
+{ $i=0; include 'base/pager.php'; ?>
     <table class="data">
         <thead>
             <tr>
@@ -221,7 +221,7 @@ else
         <?php endwhile; ?>
         </tbody>
     </table>
-<?php include 'pager.php'; } ?>
+<?php include 'base/pager.php'; } ?>
 <hr>
 </div>
 

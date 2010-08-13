@@ -3,7 +3,7 @@ if(!isset ($_POST['web']))
     exit('Nekompletne data');
 
 session_start();
-require '../secure.php';
+require '../base/secure.php';
 
 $user = $_SESSION['user'];
 $web = $_POST['web'];
@@ -14,7 +14,7 @@ if(!filter_var($web, FILTER_VALIDATE_URL))
     exit(json_encode($resp));
 }
 
-require '../datab_con.php';
+require '../base/datab_con.php';
 /* @var $conn mysqli */
 
 $query = "UPDATE users SET web='$web' WHERE login='$user'";

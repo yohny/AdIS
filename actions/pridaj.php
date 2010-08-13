@@ -1,7 +1,7 @@
 <?php
 $nadpis = "Upload banneru";
-require 'left.php';
-require 'secure.php';
+require '../base/left.php';
+require '../base/secure.php';
 
 if(!isset ($_POST['meno']) || !isset ($_POST['velkost']) || !isset ($_POST['kategorie']))
     exit("Nekompletne data");
@@ -11,7 +11,7 @@ $velkost = $_POST['velkost'];
 $kategorie = $_POST['kategorie'];
 $message = "";
 
-require 'datab_con.php';
+require '../base/datab_con.php';
 /* @var $conn mysqli */
 
 $query = "SELECT * FROM velkosti WHERE id=$velkost";    //ziskanie rozmerov

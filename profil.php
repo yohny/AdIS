@@ -1,19 +1,19 @@
 <?php
 $nadpis = "Profil";
-require 'left.php';
-require 'secure.php';
+require 'base/left.php';
+require 'base/secure.php';
 
 $user = $_SESSION['user'];
 $group = $_SESSION['group'];
 
 if($group != "admin")
 {
-  include "datab_con.php";
+  include "base/datab_con.php";
   /* @var $conn mysqli */
 
   $query = "SELECT web FROM users WHERE login='$user'";
   /* @var $result mysqli_result */
-  $result = $conn->query($query) or die('Zlyhalo query!');
+  $result = $conn->query($query);
   $row = $result->fetch_object();
   $conn->close();
 }

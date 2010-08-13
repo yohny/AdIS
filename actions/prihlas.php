@@ -4,7 +4,7 @@ session_start();
 $login = $_POST['login'];
 $heslo = $_POST['heslo'];
 
-require 'datab_con.php';
+require '../base/datab_con.php';
 /* @var $conn mysqli */
 
 $query = "SELECT * FROM users WHERE login='$login' AND heslo=MD5('$heslo')";

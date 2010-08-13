@@ -6,7 +6,7 @@ if( isset($_SESSION['user']) && isset($_SESSION['group']) )
 <table style="text-align:center;">
 <tr>
 <td width="60" valign="top"><span class="g" style="font-weight:bold;"><?php echo $_SESSION['user']; ?></span></td>
-<td><form name="out_form" method="POST" action="odhlas.php"><input type="submit" name="action" value="Odhlásiť"></form></td>
+<td><form name="out_form" method="POST" action="actions/odhlas.php"><input type="submit" name="action" value="Odhlásiť"></form></td>
 </tr>
 </table>
 
@@ -20,7 +20,7 @@ if($_SESSION['group']=="inzer")
 elseif($_SESSION['group']=="zobra")
   echo "<a href=\"reklamy.php\">Reklamy</a>";
 elseif($_SESSION['group']=="admin")
-  echo "<a href=\"javascript:;\"><span class=\"r\">ADMIN</span></a>";
+  echo "<a href=\"javascript: void(0);\"><span class=\"r\">ADMIN</span></a>";
 ?>
 </fieldset>
 <?php
@@ -28,7 +28,7 @@ elseif($_SESSION['group']=="admin")
 else
 {
 ?>
-<form name="log_form" action="prihlas.php" method="POST">
+<form name="log_form" action="actions/prihlas.php" method="POST">
   <table>
   <tr><td>Login<br><input type="text" name="login" maxlength="10"></td></tr>
   <tr><td>Heslo<br><input type="password" name="heslo" maxlength="10"></td></tr>

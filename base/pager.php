@@ -1,4 +1,12 @@
-<?php if($pages>1):?>
+<?php
+/**
+ * pager potrebuje predtzm ako je pouzity mat nastavene tieto premenne:
+ *
+ * @param $pages celkovy pocet stran
+ * @param $aktPage aktualna strana
+ */
+
+if( isset($pages) && isset($aktPage) && $pages>1 ):?>
 <table class="pager">
     <tr>
         <?php if($aktPage!=1): ?>

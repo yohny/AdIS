@@ -7,7 +7,7 @@ if (!preg_match('/[1-9][0-9]*/', $_GET['rekl']))
 
 $rekl_id = $_GET['rekl'];
 
-require 'datab_con.php';
+require '../base/datab_con.php';
 /* @var $conn mysqli */
 
 //zisti parametre pozadovanej reklamy
@@ -39,7 +39,9 @@ echo "var redir = \"$banner->web\";\n";
 //<a href=”http://www.bbc.co.uk” onclick=”x=new XMLHttpRequest();x.open(’POST’,’track.py’,false);x.onreadystatechange=function() { if (x.readyState>1)location=this.href };x.send(’’);”>BBC</a>
 
 //<a href="..." ping="...">   - PING not supported by browsers (Firefox only?)
+
+// TODO skusit prerobit pomocou $_SERVER["HTTP_HOST"] abz bolo lahko portovatelne (aj reklamy.php)
 ?>
-document.write("<a href=\"http://localhost/AdIS/klik.php?zobra="+zobr_id+"&rekla="+rekl_id+"&inzer="+inze_id+"&banne="+bann_id+"&redir="+redir+"\">");
-document.write("<img height=\""+vyska+"\" width=\""+sirka+"\" alt=\"banner\" src=\"http://localhost/AdIS/obrazok.php?id="+bann_id+"\">");
+document.write("<a href=\"http://localhost/AdIS/distrib/klik.php?zobra="+zobr_id+"&rekla="+rekl_id+"&inzer="+inze_id+"&banne="+bann_id+"&redir="+redir+"\">");
+document.write("<img height=\""+vyska+"\" width=\""+sirka+"\" alt=\"banner\" src=\"http://localhost/AdIS/distrib/obrazok.php?id="+bann_id+"\">");
 document.write("</a>");

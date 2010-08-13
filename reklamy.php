@@ -1,16 +1,16 @@
 <?php
 $nadpis = "Reklamy";
-require 'left.php';
-require 'secure.php';
+require 'base/left.php';
+require 'base/secure.php';
 
 $login = $_SESSION['user'];
 
-require 'datab_con.php';
+require 'base/datab_con.php';
 /* @var $conn mysqli */
 
 if(isset ($_GET['zmaz']))  //mazanie
 {
-    $query = "SELECT * FROM reklamy WHERE user=(SELECT id FROM users WHERE login='$login') AND id={$_GET['zmaz']}";
+    $query = "SELECT meno FROM reklamy WHERE user=(SELECT id FROM users WHERE login='$login') AND id={$_GET['zmaz']}";
     /* @var $result mysqli_result */
     $result = $conn->query($query);
     if($result->num_rows==1)
@@ -19,7 +19,10 @@ if(isset ($_GET['zmaz']))  //mazanie
         $conn->query("DELETE FROM reklamy WHERE id={$_GET['zmaz']}");
         $conn->query("DELETE FROM kategoria_reklama WHERE reklama={$_GET['zmaz']}");
         $conn->commit();
+        echo '<span class="g">Reklama \''.$result->fetch_object()->meno.'\' zmazaná!</span>';
     }
+    else
+        echo'<span class="r">Nemôžete zmazať túto reklamu!</span>';
 }
 $conn->autocommit(TRUE);
 
@@ -85,7 +88,8 @@ if($reklamy->num_rows>0)
             <td colspan="5">
                 <p>Nasledujúci HTML kód vložte do vašej stránky (na miesto kde chcete mať reklamu):</p>
                 <pre>
-&lt;script language="javascript" type="text/javascript" src="http://localhost/AdIS/script.php?rekl=<?php echo $row->id; ?>"&gt;&lt;/script&gt;
+<!-- TODO skusit prerobit pomocou napr $_SERVER["HTTP_HOST"] aby bolo lahko portovatelne (aj script.php) -->
+&lt;script language="javascript" type="text/javascript" src="http://localhost/AdIS/distrib/script.php?rekl=<?php echo $row->id; ?>"&gt;&lt;/script&gt;
                 </pre>
             </td>
         </tr>
@@ -99,7 +103,7 @@ if($reklamy->num_rows>0)
   ?>
 <hr>
 <center>
-<form name="add_form" action="pridaj.php" method="POST" enctype="multipart/form-data">
+<form name="add_form" action="actions/pridaj.php" method="POST" enctype="multipart/form-data">
 <table cellspacing="5" style="text-align:left;">
     <tr>
         <td title="Zvoľte rozmerový typ reklamnej jednotky.">

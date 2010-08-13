@@ -1,6 +1,6 @@
 <?php
 $nadpis = "Registrácia";
-require 'left.php';
+require '../base/left.php';
 
 if(!isset ($_POST['login']) || !isset ($_POST['heslo']) || !isset($_POST['skupina']) || !isset ($_POST['web']))
     exit("Nekompletne data");
@@ -18,7 +18,7 @@ $message = "";
 if(!filter_var($web, FILTER_VALIDATE_URL))
     $message .= "<span class=\"r\"|>Neplatná webová adresa!</span><br>";
 
-require 'datab_con.php';
+require '../base/datab_con.php';
 /* @var $conn mysqli */
 
 $query = "SELECT * FROM users WHERE login='$login'";

@@ -40,18 +40,18 @@ CREATE TABLE IF NOT EXISTS `bannery` (
 --
 
 INSERT INTO `bannery` (`id`, `user`, `velkost`, `path`) VALUES
-(5, 3, 19, 'upload/kkkk_200x200_banner.png'),
-(2, 2, 4, 'upload/jjjj_336x280_largerect.jpg'),
-(3, 2, 11, 'upload/jjjj_120x90_button1.jpg'),
-(4, 2, 13, 'upload/jjjj_120x240_verticalbanner.jpg'),
-(6, 3, 14, 'upload/kkkk_125x125_squarebutt.jpg'),
-(13, 3, 13, 'upload/kkkk_120x240_verticalbanner2.png'),
-(8, 2, 19, 'upload/jjjj_200x200_obrazocok.gif'),
-(9, 5, 19, 'upload/llll_200x200_picturozo.png'),
-(10, 6, 19, 'upload/mmmm_200x200_untitled.gif'),
-(11, 7, 19, 'upload/nnnn_200x200_obrazok.jpeg'),
-(12, 7, 11, 'upload/nnnn_120x90_button1.jpg'),
-(14, 5, 13, 'upload/llll_120x240_verticalbanner2.jpg');
+(5, 3, 19, 'kkkk_200x200_banner.png'),
+(2, 2, 4, 'jjjj_336x280_largerect.jpg'),
+(3, 2, 11, 'jjjj_120x90_button1.jpg'),
+(4, 2, 13, 'jjjj_120x240_verticalbanner.jpg'),
+(6, 3, 14, 'kkkk_125x125_squarebutt.jpg'),
+(13, 3, 13, 'kkkk_120x240_verticalbanner2.png'),
+(8, 2, 19, 'jjjj_200x200_obrazocok.gif'),
+(9, 5, 19, 'llll_200x200_picturozo.png'),
+(10, 6, 19, 'mmmm_200x200_untitled.gif'),
+(11, 7, 19, 'nnnn_200x200_obrazok.jpeg'),
+(12, 7, 11, 'nnnn_120x90_button1.jpg'),
+(14, 5, 13, 'llll_120x240_verticalbanner2.jpg');
 
 -- --------------------------------------------------------
 

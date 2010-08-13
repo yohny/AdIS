@@ -2,7 +2,7 @@
 if(!isset ($_GET['id']))
     exit();
  
-require 'datab_con.php';
+require '../base/datab_con.php';
 /* @var $conn mysqli */
 
 /* @var $result mysqli_result */
@@ -19,7 +19,7 @@ switch($info[2])
   case 3: $img = imagecreatefrompng("$image");
           break;
 }*/
-$img = imagecreatefromstring(file_get_contents($image->path));
+$img = imagecreatefromstring(file_get_contents('../upload/'.$image->path));
 
 //zobrazenie
 header("Content-type: image/png");

@@ -1,9 +1,11 @@
 <?php
+header('Content-type: text/javascript; charset=utf-8');
+
 if(!isset ($_GET['rekl']))
-    exit("//no rekl");
+    exit("//no 'rekl' parameter");
 
 if (!preg_match('/[1-9][0-9]*/', $_GET['rekl']))
-    exit("//invalid rekl");
+    exit("//invalid 'rekl' parameter (must be integer)");
 
 $rekl_id = $_GET['rekl'];
 
@@ -13,6 +15,9 @@ require '../base/datab_con.php';
 //zisti parametre pozadovanej reklamy
 /* @var $result mysqli_result */
 $result = $conn->query("SELECT velkost,user,sirka,vyska FROM reklamy JOIN velkosti ON (reklamy.velkost=velkosti.id) WHERE reklamy.id=$rekl_id");
+if($conn->affected_rows==0)
+    exit("//requested ad was deleted, get new code from AdIS");
+
 $reklama = $result->fetch_object();
 
 //vytiahne nahodny banner s tymito parametrami

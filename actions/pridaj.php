@@ -64,15 +64,10 @@ if($message=="")
 
     $conn->close();
 
-    $message = "<h4>Reklama bola úspešne pridaná.</h4>";
+    $message = "Reklama bola úspešne pridaná.";
 }
-$message .= "<br>Späť na pridanie - <a href=\"reklamy.php\">TU</a>";
+
+$_SESSION['flash'] = $message;
+$referer = $_SERVER['HTTP_REFERER'];
+header("Location: $referer");
 ?>
-
-<?php echo $message; ?>
-<hr>
-</div>
-
-</div>
-</body>
-</html>

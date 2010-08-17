@@ -8,35 +8,17 @@ $login = $_SESSION['user'];
 require 'base/datab_con.php';
 /* @var $conn mysqli */
 
-if(isset ($_GET['zmaz']))  //mazanie
-{
-    $query = "SELECT meno FROM reklamy WHERE user=(SELECT id FROM users WHERE login='$login') AND id={$_GET['zmaz']}";
-    /* @var $result mysqli_result */
-    $result = $conn->query($query);
-    if($result->num_rows==1)
-    {
-        $conn->autocommit(FALSE);
-        $conn->query("DELETE FROM reklamy WHERE id={$_GET['zmaz']}");
-        $conn->query("DELETE FROM kategoria_reklama WHERE reklama={$_GET['zmaz']}");
-        $conn->commit();
-        echo '<span class="g">Reklama \''.$result->fetch_object()->meno.'\' zmazaná!</span>';
-    }
-    else
-        echo'<span class="r">Nemôžete zmazať túto reklamu!</span>';
-}
-$conn->autocommit(TRUE);
-
 $query = "SELECT reklamy.*, velkosti.sirka, velkosti.vyska, velkosti.nazov FROM reklamy JOIN velkosti ON (reklamy.velkost=velkosti.id) WHERE user=(SELECT id FROM users WHERE login='$login') ORDER BY nazov";
 /* @var $reklamy mysqli_result */
-$reklamy = $conn->query($query) or die('Zlyhalo query!');
+$reklamy = $conn->query($query);
 
 $query = "SELECT * FROM velkosti ORDER BY nazov ASC";     //ziskanie typov bannerov
 /* @var $velkosti mysqli_result */
-$velkosti = $conn->query($query) or die('Zlyhalo query!');
+$velkosti = $conn->query($query);
 
 $query = "SELECT * FROM kategorie ORDER BY nazov ASC";     //ziskanie kategorii
 /* @var $kategorie mysqli_result */
-$kategorie = $conn->query($query) or die('Zlyhalo query!');
+$kategorie = $conn->query($query);
 
 if($reklamy->num_rows>0)
   {$i=0;?>
@@ -56,7 +38,7 @@ if($reklamy->num_rows>0)
                 Zobraziť HTML kód
             </th>
             <th>
-                Zmazať
+                Akcia
             </th>
         </tr>
         </thead>
@@ -81,7 +63,10 @@ if($reklamy->num_rows>0)
                 <a href="javascript: show2('tr<?php echo $row->id; ?>')"><?php echo $row->meno; ?></a>
             </td>
             <td>
-               <a href="javascript: if(confirm('Naozaj odstrániť?')) window.location.search='?zmaz=<?php echo $row->id;?>'"><span class="r"><b>X</b></span></a>
+                <form method="POST" action="actions/zmaz.php">
+                    <input type="hidden" name="zmaz" value="<?php echo $row->id;?>">
+                    <input type="button" value="Zmaž" onclick="if(confirm('Naozaj odstrániť?')) this.parentNode.submit();">
+                </form>
             </td>
         </tr>
         <tr <?php if($i%2==0) echo "class=\"dark\"";?> style="display:none;" id="tr<?php echo $row->id; ?>">

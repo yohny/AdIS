@@ -35,21 +35,12 @@ if($message == "")
   $_SESSION['user'] = $login;
   $_SESSION['group'] = $kategoria;
 
-  $message="<h4>Registrácia úspešná.</h4>";
-  if($kategoria=="inzer")
-    $message .= "Správa Vaších bannerov - <a href=\"bannery.php\">TU</a>";
-  if($kategoria=="zobra")
-    $message .= "Správa Vaších reklám - <a href=\"reklamy.php\">TU</a>";
+  $message="Registrácia úspešná.";
+
 }
-else
-    $message .= "<br>Späť na registráciu - <a href=\"registracia.php\">TU</a>";
 $conn->close();
+
+$_SESSION['flash'] = $message;
+$referer = $_SERVER['HTTP_REFERER'];
+header("Location: $referer");
 ?>
-
-<?php echo $message; ?>
-<hr>
-</div>
-
-</div>
-</body>
-</html>

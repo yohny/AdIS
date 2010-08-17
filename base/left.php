@@ -12,14 +12,14 @@ if(isset($nadpis))
   $title .= " &gt; ".$nadpis;
 echo "<title>".$title."</title>\n";  //pridanie nadpisu
 ?>
-<base href="http://localhost/AdIS/" />
+<base href="http://localhost/AdIS/">
 <meta name="generator" content="Netbean, www.netbeans.org">
-<meta name="description" content="IS pre spravu reklamy">
-<meta name="keywords" content="internetova reklama, online reklama, adis, banner, ppc">
+<meta name="description" content="IS pre správu reklamy">
+<meta name="keywords" content="internetova reklama, online reklama, adis, banner, ppc, is">
 <meta name="copyright" content="Copyright (c) Jan Nescivera">
-<meta name="author" content="Designed by Yohny, jan.nescivara8@student.tuke.sk">
+<meta name="author" content="Designed by Yohny, jan.nescivera8@student.tuke.sk">
 <meta name="content-language" content="sk">
-<link rel="SHORTCUT ICON" href="img/favicon.ico">
+<link rel="shortcut icon" href="img/favicon.ico">
 <link rel="stylesheet" type="text/css" href="css/style_basic.css">
 <link rel="stylesheet" type="text/css" href="css/style_green.css">
 <link rel="stylesheet" type="text/css" href="css/style_orange.css">

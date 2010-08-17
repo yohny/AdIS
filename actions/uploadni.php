@@ -62,7 +62,7 @@ if($message=="") //subor je OK
 
     if (move_uploaded_file($userfile['tmp_name'], $uploaddir.$uploadname))
     {
-        $query = "SELECT id FROM bannery WHERE user=(SELECT id FROM users WHERE login='$user') AND velkost=$velkost";
+        $query = "SELECT id,path FROM bannery WHERE user=(SELECT id FROM users WHERE login='$user') AND velkost=$velkost";
         $result = $conn->query($query);
 
 
@@ -77,7 +77,7 @@ if($message=="") //subor je OK
             $conn->query($query);
 
             if($row->path!=$uploadname) //ak uploadol novy banner s inym menom
-                unlink($row->path);  //tak ten stary zmazem (ak by upoval s tym istym menom tak netreba mazat lebo ho prepisalo)
+                unlink($uploaddir.$row->path);  //tak ten stary zmazem (ak by upoval s tym istym menom tak netreba mazat lebo ho prepisalo)
         }
         else //ak este nema banner danych rozmerov
         {
@@ -96,18 +96,13 @@ if($message=="") //subor je OK
 
         $conn->close();
 
-        $message = "<h4>Súbor bol úspešne uploadnutý.</h4>";
+        $message = "Súbor bol úspešne uploadnutý.";
     }
     else
-        $message = "<h4>Zlyhalo uploadovanie súboru!</h4>";
+        $message = "Zlyhalo uploadovanie súboru!";
 }
-$message .= "<br>Späť na upload - <a href=\"bannery.php\">TU</a>";
+
+$_SESSION['flash'] = $message;
+$referer = $_SERVER['HTTP_REFERER'];
+header("Location: $referer");
 ?>
-
-<?php echo $message; ?>
-<hr>
-</div>
-
-</div>
-</body>
-</html>

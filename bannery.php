@@ -8,26 +8,6 @@ $login = $_SESSION['user'];
 require 'base/datab_con.php';
 /* @var $conn mysqli */
 
-if(isset ($_GET['zmaz']))  //mazanie
-{
-    $query = "SELECT path FROM bannery WHERE user=(SELECT id FROM users WHERE login='$login') AND id={$_GET['zmaz']}";
-    /* @var $result mysqli_result */
-    $result = $conn->query($query);
-    if($conn->affected_rows==1)
-    {
-        $bannername = $result->fetch_object()->path;
-        unlink('upload/'.$bannername);
-        $conn->autocommit(FALSE);
-        $conn->query("DELETE FROM bannery WHERE id={$_GET['zmaz']}");
-        $conn->query("DELETE FROM kategoria_banner WHERE banner={$_GET['zmaz']}");
-        $conn->commit();
-        echo '<span class="g">Banner \''.$bannername.'\' zmazaný!</span>';
-    }
-    else
-        echo'<span class="r">Nemôžete zmazať tento banner!</span>';
-}
-$conn->autocommit(TRUE);
-
 $query = "SELECT bannery.*, velkosti.sirka, velkosti.vyska, velkosti.nazov FROM bannery JOIN velkosti ON (bannery.velkost=velkosti.id) WHERE user=(SELECT id FROM users WHERE login='$login') ORDER BY nazov";
 /* @var $bannery mysqli_result */
 $bannery = $conn->query($query);
@@ -58,7 +38,7 @@ if($bannery->num_rows>0)
                 Zobraziť banner
             </th>
             <th>
-                Zmazať
+                Akcia
             </th>
         </tr>
         </thead>
@@ -83,7 +63,10 @@ if($bannery->num_rows>0)
                 <a href="javascript: show2('tr<?php echo $row->id; ?>')"><?php echo substr($row->path,strlen($login.$row->sirka.$row->vyska)+3); ?></a>
             </td>
             <td>
-               <a href="javascript: if(confirm('Naozaj odstrániť?')) window.location.search='?zmaz=<?php echo $row->id; ?>'"><span class="r"><b>X</b></span></a>
+                <form method="POST" action="actions/zmaz.php">
+                    <input type="hidden" name="zmaz" value="<?php echo $row->id;?>">
+                    <input type="button" value="Zmaž" onclick="if(confirm('Naozaj odstrániť?')) this.parentNode.submit();">
+                </form>
             </td>
         </tr>
         <tr <?php if($i%2==0) echo "class=\"dark\"";?>  style="display:none;" id="tr<?php echo $row->id; ?>">

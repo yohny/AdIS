@@ -11,6 +11,7 @@ else
 
 $_SESSION['flash'] = $message;
 
+//$referer = $_SERVER['HTTP_HOST']; //po odhlaseni presmeruje na hlavnu stranku
 $referer = $_SERVER['HTTP_REFERER'];
 header("Location: $referer");
 ?>

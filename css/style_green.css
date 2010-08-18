@@ -25,6 +25,9 @@ input, textarea, select, pre {
     border-color: green;
 }
 /*------------------------------------ top ------------------------------------*/
+#top h1.above {
+    color: green;
+}
 #top h2 {
     background-color: green;
 }

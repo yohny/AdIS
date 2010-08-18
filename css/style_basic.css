@@ -81,11 +81,24 @@ input[type='text'],input[type='password'],select {
 }
 /*------------------------------------ top ------------------------------------*/
 #top{
-    /*background-image: url('../images/top.jpg');
+    /*background-image: url('../img/top.jpg');
     background-repeat: no-repeat;*/
+}
+#top h1 {
+    letter-spacing: 10px;
+    padding: 0;
+    margin: 0;
+    font-size: 85px;
+    position: absolute;
+    left: 40px;
+    top: -40px;
+}
+#top h1.below {
+    clip: rect(38px, auto, auto,auto); /*nie 40px odstrihnut zhora lebo chcem aby aj cez border(2px) islo */
 }
 #top h2 {
     padding: 40px 20px 20px;
+    text-align: right;
     /*opacity: 0.5;               /* correct W3C DOM */
     /*filter: alpha(opacity=50);  /* IE only */
     font-size: 25px;

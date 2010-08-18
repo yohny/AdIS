@@ -1,5 +1,5 @@
-poz = document.cookie.indexOf("schema");                      
-if(poz==-1)  
+poz = document.cookie.indexOf("schema");
+if(poz==-1)
     schema = 1;
 else
     schema = document.cookie.charAt(poz+7) * 1;    //*1  -prevod char na cislo
@@ -25,16 +25,16 @@ function set_scheme(c)
         }
     }
 }
-  
-function box_show(box,message) 
+
+function box_show(box,message)
 {
-  box.style.display="block"; 
+  box.style.display="block";
   box.innerHTML=message;
   setContainerHeight(); //nastavi vysku kontainera po zobrazeni errorboxu
 }
 
 function spracuj_reg()
-{ 
+{
     var login = document.forms['reg_form'].login.value;
     var heslo = document.forms['reg_form'].heslo.value;
     var heslo2 = document.forms['reg_form'].heslo2.value;
@@ -133,34 +133,6 @@ function spracuj_upl()
     document.forms['upl_form'].submit();
 }
 
-function show(co,a)
-{
-    var tr = document.getElementById(co);
-
-    if(tr.style.display=="none")
-    {
-        tr.style.display="table-row";
-        a.innerHTML = "skry";
-    }
-    else
-    {
-        tr.style.display="none";
-        a.innerHTML = "zmeň";
-    }
-    setContainerHeight(); //nastavi vysku kontainera po zobrazeni errorboxu
-}
-
-function show2(co)
-{
-    var tr = document.getElementById(co);
-
-    if(tr.style.display=="none")
-        tr.style.display="table-row";
-    else
-        tr.style.display="none";
-    setContainerHeight(); //nastavi vysku kontainera po zobrazeni errorboxu
-}
-
 //AJAX ---------------------------------------------------------------------------------------------
 
 function spracuj_chweb()
@@ -170,7 +142,7 @@ function spracuj_chweb()
     var okbox = document.getElementById("chweb_okbox");
     errorbox.style.display = 'none';
     okbox.style.display = 'none';
-    
+
     if(web=="")
     {
         box_show(errorbox,"Zadajte adresu!");
@@ -293,6 +265,34 @@ function GetXmlHttpObject()
 }
 
 //LAYOUT --------------------------------------------------------------------------------------------
+
+function show(co,a)
+{
+    var tr = document.getElementById(co);
+
+    if(tr.style.display=="none")
+    {
+        tr.style.display="table-row";
+        a.innerHTML = "skry";
+    }
+    else
+    {
+        tr.style.display="none";
+        a.innerHTML = "zmeň";
+    }
+    setContainerHeight(); //nastavi vysku kontainera po zobrazeni errorboxu
+}
+
+function show2(co)
+{
+    var tr = document.getElementById(co);
+
+    if(tr.style.display=="none")
+        tr.style.display="table-row";
+    else
+        tr.style.display="none";
+    setContainerHeight(); //nastavi vysku kontainera po zobrazeni errorboxu
+}
 
 function setContainerHeight()
 {

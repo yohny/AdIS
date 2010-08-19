@@ -86,7 +86,9 @@ require 'user.php';
 </a>
 </p>
 <p>
+<a href="http://jigsaw.w3.org/css-validator/check/referer">
 <img SRC="img/vcss.gif" alt="val_css">
+</a>
 </p>
 <p>
 schéma:

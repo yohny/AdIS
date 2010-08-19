@@ -12,7 +12,7 @@ if(isset($nadpis))
   $title .= " &gt; ".$nadpis;
 echo "<title>".$title."</title>\n";  //pridanie nadpisu
 ?>
-<meta name="generator" content="Netbean, www.netbeans.org">
+<meta name="generator" content="Netbeans IDE, www.netbeans.org">
 <meta name="description" content="IS pre správu reklamy">
 <meta name="keywords" content="internetova reklama, online reklama, adis, banner, ppc, is">
 <meta name="copyright" content="Copyright (c) Jan Nescivera">

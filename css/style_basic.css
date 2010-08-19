@@ -213,7 +213,7 @@ input[type='text'],input[type='password'],select {
 {
     border: 1px solid black;
     color: black;
-    background: burlywood url('../img/flash.png') no-repeat 5px center;
+    background: white url('../img/flash.png') no-repeat 5px;
     margin: 10px 0px;
     padding: 10px 10px 10px 40px;
 }

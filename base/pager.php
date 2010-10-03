@@ -1,6 +1,6 @@
 <?php
 /**
- * pager potrebuje predtzm ako je pouzity mat nastavene tieto premenne:
+ * pager potrebuje predtym ako je pouzity mat nastavene tieto premenne:
  *
  * @param $pages celkovy pocet stran
  * @param $aktPage aktualna strana

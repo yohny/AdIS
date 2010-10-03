@@ -5,22 +5,14 @@ require 'base/secure.php';
 
 $login = $_SESSION['user'];
 
-require 'base/datab_con.php';
-/* @var $conn mysqli */
+require_once 'base/model/Database.php';
+$db = new Database();
 
-$query = "SELECT bannery.*, velkosti.sirka, velkosti.vyska, velkosti.nazov FROM bannery JOIN velkosti ON (bannery.velkost=velkosti.id) WHERE user=(SELECT id FROM users WHERE login='$login') ORDER BY nazov";
-/* @var $bannery mysqli_result */
-$bannery = $conn->query($query);
+$bannery = $db->getBanneryByUser($login);
+$velkosti = $db->getAllFromVelkosti();      //ziskanie typov bannerov
+$kategorie = $db->getAllFromKategorie();    //ziskanie kategorii
 
-$query = "SELECT * FROM velkosti ORDER BY nazov ASC";     //ziskanie typov bannerov
-/* @var $velkosti mysqli_result */
-$velkosti = $conn->query($query);
-
-$query = "SELECT * FROM kategorie ORDER BY nazov ASC";     //ziskanie kategorii
-/* @var $kategorie mysqli_result */
-$kategorie = $conn->query($query);
-
-if($bannery->num_rows>0)
+if(count($bannery)>0)
   {$i=0;?>
     <table style="text-align:left;" class="data">
         <thead>
@@ -43,40 +35,39 @@ if($bannery->num_rows>0)
         </tr>
         </thead>
         <tbody>
-    <?php while($row=$bannery->fetch_object()): $i++; ?>
+    <?php foreach($bannery as $banner): $i++; ?>
         <tr <?php if($i%2==0) echo "class=\"dark\""; ?>>
             <td>
-                <?php echo $row->nazov;?>
+                <?php echo $banner->velkost->nazov;?>
             </td>
             <td>
-                <?php echo $row->sirka." x ".$row->vyska; ?>
+                <?php echo $banner->velkost->sirka." x ".$banner->velkost->vyska; ?>
             </td>
             <td>
                 <?php
-                $query = "SELECT kategorie.nazov FROM kategoria_banner JOIN kategorie ON (kategoria_banner.kategoria=kategorie.id) WHERE banner=$row->id ORDER BY kategorie.nazov ASC";
-                $kateg = $conn->query($query);
-                while ($kat = $kateg->fetch_object())
-                    echo $kat->nazov."<BR>";
+                $kateg = $banner->getKategorie($db->conn);
+                foreach($kateg as $kat)
+                    echo $kat."<BR>";
                 ?>
             </td>
             <td>
-                <a href="javascript: show2('tr<?php echo $row->id; ?>')"><?php echo substr($row->path,strlen($login.$row->sirka.$row->vyska)+3); ?></a>
+                <a href="javascript: show2('tr<?php echo $banner->id; ?>')"><?php echo substr($banner->filename,strlen($login.$banner->velkost->sirka.$banner->velkost->vyska)+3); ?></a>
             </td>
             <td>
                 <form method="POST" action="actions/zmaz.php">
-                    <input type="hidden" name="zmaz" value="<?php echo $row->id;?>">
+                    <input type="hidden" name="zmaz" value="<?php echo $banner->id;?>">
                     <input type="button" value="Zmaž" onclick="if(confirm('Naozaj odstrániť?')) this.parentNode.submit();">
                 </form>
             </td>
         </tr>
-        <tr <?php if($i%2==0) echo "class=\"dark\"";?>  style="display:none;" id="tr<?php echo $row->id; ?>">
+        <tr <?php if($i%2==0) echo "class=\"dark\"";?>  style="display:none;" id="tr<?php echo $banner->id; ?>">
             <td colspan="5">
                 <div style="max-height:200px;overflow: auto;">
-                <img alt="banner" src="<?php echo 'upload/'.$row->path; ?>">
+                <img alt="banner" src="<?php echo 'upload/'.$banner->filename; ?>">
                 </div>
             </td>
         </tr>
-    <?php endwhile;$conn->close();?>
+    <?php endforeach; ?>
         </tbody>
     </table>
   <?php
@@ -94,9 +85,9 @@ if($bannery->num_rows>0)
         </td>
         <td>
             <select name="velkost">
-                <?php while($row=$velkosti->fetch_object()): ?>
-                <option value="<?php echo $row->id; ?>"><?php echo $row->sirka."x".$row->vyska." - ".$row->nazov; ?></option>
-                <?php endwhile; ?>
+                <?php foreach($velkosti as $velkost): ?>
+                <option value="<?php echo $velkost->id; ?>"><?php echo $velkost->sirka."x".$velkost->vyska." - ".$velkost; ?></option>
+                <?php endforeach; ?>
             </select>
         </td>
     </tr>
@@ -114,9 +105,9 @@ if($bannery->num_rows>0)
         </td>
         <td>
             <select name="kategorie[]" multiple="multiple" size="5">
-                <?php while($row=$kategorie->fetch_object()): ?>
-                <option value="<?php echo $row->id; ?>"><?php echo $row->nazov; ?></option>
-                <?php endwhile; ?>
+                <?php foreach($kategorie as $kategoria): ?>
+                <option value="<?php echo $kategoria->id; ?>"><?php echo $kategoria; ?></option>
+                <?php endforeach; ?>
             </select>
         </td>
     </tr>

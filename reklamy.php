@@ -3,24 +3,14 @@ $nadpis = "Reklamy";
 require 'base/left.php';
 require 'base/secure.php';
 
-$login = $_SESSION['user'];
+require_once 'base/Database.php';
+$db = new Database();
 
-require 'base/datab_con.php';
-/* @var $conn mysqli */
+$reklamy = $db->getReklamyByUser($_SESSION['user']);   //ziskanie reklam pouzivatela
+$velkosti = $db->getAllFromVelkosti();      //ziskanie typov bannerov
+$kategorie = $db->getAllFromKategorie();    //ziskanie kategorii
 
-$query = "SELECT reklamy.*, velkosti.sirka, velkosti.vyska, velkosti.nazov FROM reklamy JOIN velkosti ON (reklamy.velkost=velkosti.id) WHERE user=(SELECT id FROM users WHERE login='$login') ORDER BY nazov";
-/* @var $reklamy mysqli_result */
-$reklamy = $conn->query($query);
-
-$query = "SELECT * FROM velkosti ORDER BY nazov ASC";     //ziskanie typov bannerov
-/* @var $velkosti mysqli_result */
-$velkosti = $conn->query($query);
-
-$query = "SELECT * FROM kategorie ORDER BY nazov ASC";     //ziskanie kategorii
-/* @var $kategorie mysqli_result */
-$kategorie = $conn->query($query);
-
-if($reklamy->num_rows>0)
+if(count($reklamy)>0)
   {$i=0;?>
     <table style="text-align:left;" class="data">
         <thead>
@@ -35,7 +25,7 @@ if($reklamy->num_rows>0)
                 Kategórie
             </th>
             <th>
-                Zobraziť HTML kód
+                Zobraziť kód
             </th>
             <th>
                 Akcia
@@ -43,33 +33,28 @@ if($reklamy->num_rows>0)
         </tr>
         </thead>
         <tbody>
-    <?php while($row=$reklamy->fetch_object()): $i++; ?>
+    <?php foreach($reklamy as $reklama): $i++; ?>
         <tr <?php if($i%2==0) echo "class=\"dark\""; ?>>
             <td>
-                <?php echo $row->nazov;?>
+                <?php echo $reklama->velkost->nazov;?>
             </td>
             <td>
-                <?php echo $row->sirka." x ".$row->vyska; ?>
+                <?php echo $reklama->velkost->sirka." x ".$reklama->velkost->vyska; ?>
             </td>
             <td>
-                <?php
-                $query = "SELECT kategorie.nazov FROM kategoria_reklama JOIN kategorie ON (kategoria_reklama.kategoria=kategorie.id) WHERE reklama=$row->id ORDER BY kategorie.nazov ASC";
-                $kateg = $conn->query($query);
-                while ($kat = $kateg->fetch_object())
-                    echo $kat->nazov."<BR>";
-                ?>
+                <?php echo implode(', ', $reklama->getKategorie($db->conn)); ?>
             </td>
             <td>
-                <a href="javascript: show2('tr<?php echo $row->id; ?>')"><?php echo $row->meno; ?></a>
+                <a href="javascript: show2('tr<?php echo $reklama->id; ?>')"><?php echo $reklama; ?></a>
             </td>
             <td>
                 <form method="POST" action="actions/zmaz.php">
-                    <input type="hidden" name="zmaz" value="<?php echo $row->id;?>">
+                    <input type="hidden" name="zmaz" value="<?php echo $reklama->id;?>">
                     <input type="button" value="Zmaž" onclick="if(confirm('Naozaj odstrániť?')) this.parentNode.submit();">
                 </form>
             </td>
         </tr>
-        <tr <?php if($i%2==0) echo "class=\"dark\"";?> style="display:none;" id="tr<?php echo $row->id; ?>">
+        <tr <?php if($i%2==0) echo "class=\"dark\"";?> style="display:none;" id="tr<?php echo $reklama->id; ?>">
             <td colspan="5">
                 <p>Nasledujúci HTML kód vložte do vašej stránky (na miesto kde chcete mať reklamu):</p>
                 <pre>
@@ -78,7 +63,7 @@ if($reklamy->num_rows>0)
                 </pre>
             </td>
         </tr>
-    <?php endwhile; $conn->close();?>
+    <?php endforeach; ?>
         </tbody>
     </table>
   <?php
@@ -96,9 +81,9 @@ if($reklamy->num_rows>0)
         </td>
         <td>
             <select name="velkost">
-                <?php while($row=$velkosti->fetch_object()): ?>
-                <option value="<?php echo $row->id; ?>"><?php echo $row->sirka."x".$row->vyska." - ".$row->nazov; ?></option>
-                <?php endwhile; ?>
+                <?php foreach($velkosti as $velkost): ?>
+                <option value="<?php echo $velkost->id; ?>"><?php echo $velkost->sirka."x".$velkost->vyska." - ".$velkost; ?></option>
+                <?php endforeach; ?>
             </select>
         </td>
     </tr>
@@ -116,9 +101,9 @@ if($reklamy->num_rows>0)
         </td>
         <td>
             <select name="kategorie[]" multiple="multiple" size="5">
-                <?php while($row=$kategorie->fetch_object()): ?>
-                <option value="<?php echo $row->id; ?>"><?php echo $row->nazov; ?></option>
-                <?php endwhile; ?>
+                <?php foreach($kategorie as $kategoria): ?>
+                <option value="<?php echo $kategoria->id; ?>"><?php echo $kategoria; ?></option>
+                <?php endforeach; ?>
             </select>
         </td>
     </tr>

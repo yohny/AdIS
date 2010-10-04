@@ -65,7 +65,8 @@ if($message=="") //subor je OK
         $query = "SELECT id,path FROM bannery WHERE user=(SELECT id FROM users WHERE login='$user') AND velkost=$velkost";
         $result = $conn->query($query);
 
-
+        // TODO prrobit aby sa meno suboru yacinalo prdradenim jeho ID v tabulke bannery
+        // poriesi problem s viacerymi bannermi tej istej velkosti - upravit nasledny vyber banneru
         if($conn->affected_rows==1)   //ak uz ma taky typ banneru
         {
             $row = $result->fetch_object();

@@ -3,12 +3,10 @@ $nadpis = "Bannery";
 require 'base/left.php';
 require 'base/secure.php';
 
-$login = $_SESSION['user'];
-
-require_once 'base/model/Database.php';
+require_once 'base/Database.php';
 $db = new Database();
 
-$bannery = $db->getBanneryByUser($login);
+$bannery = $db->getBanneryByUser($_SESSION['user']);   //ziskanie bannerov pouzivatela
 $velkosti = $db->getAllFromVelkosti();      //ziskanie typov bannerov
 $kategorie = $db->getAllFromKategorie();    //ziskanie kategorii
 
@@ -44,18 +42,14 @@ if(count($bannery)>0)
                 <?php echo $banner->velkost->sirka." x ".$banner->velkost->vyska; ?>
             </td>
             <td>
-                <?php
-                $kateg = $banner->getKategorie($db->conn);
-                foreach($kateg as $kat)
-                    echo $kat."<BR>";
-                ?>
+                <?php echo implode(', ', $banner->getKategorie($db->conn)); ?>
             </td>
             <td>
-                <a href="javascript: show2('tr<?php echo $banner->id; ?>')"><?php echo substr($banner->filename,strlen($login.$banner->velkost->sirka.$banner->velkost->vyska)+3); ?></a>
+                <a href="javascript: show2('tr<?php echo $banner->id; ?>')"><?php echo substr($banner,strlen($_SESSION['user'].$banner->velkost->sirka.$banner->velkost->vyska)+3); ?></a>
             </td>
             <td>
                 <form method="POST" action="actions/zmaz.php">
-                    <input type="hidden" name="zmaz" value="<?php echo $banner->id;?>">
+                    <input type="hidden" name="zmaz" value="<?php echo $banner->id; ?>">
                     <input type="button" value="Zmaž" onclick="if(confirm('Naozaj odstrániť?')) this.parentNode.submit();">
                 </form>
             </td>
@@ -63,7 +57,7 @@ if(count($bannery)>0)
         <tr <?php if($i%2==0) echo "class=\"dark\"";?>  style="display:none;" id="tr<?php echo $banner->id; ?>">
             <td colspan="5">
                 <div style="max-height:200px;overflow: auto;">
-                <img alt="banner" src="<?php echo 'upload/'.$banner->filename; ?>">
+                <img alt="banner" src="<?php echo 'upload/'.$banner; ?>">
                 </div>
             </td>
         </tr>

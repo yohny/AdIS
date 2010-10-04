@@ -1,7 +1,8 @@
 <?php
-if( isset($_SESSION['user']) && isset($_SESSION['group']) )
+if(isset($_SESSION['user']))
 {
 ?>
+
 <br>
 <table style="text-align:center;">
 <tr>
@@ -15,11 +16,11 @@ if( isset($_SESSION['user']) && isset($_SESSION['group']) )
 <a href="profil.php">Profil</a>
 <a href="statistika.php">Štatistika</a>
 <?php
-if($_SESSION['group']=="inzer")
+if($_SESSION['user']->kategoria=="inzer")
   echo "<a href=\"bannery.php\">Bannery</a>";
-elseif($_SESSION['group']=="zobra")
+elseif($_SESSION['user']->kategoria=="zobra")
   echo "<a href=\"reklamy.php\">Reklamy</a>";
-elseif($_SESSION['group']=="admin")
+elseif($_SESSION['user']->kategoria=="admin")
   echo "<a href=\"javascript: void(0);\"><span class=\"r\">ADMIN</span></a>";
 ?>
 </fieldset>

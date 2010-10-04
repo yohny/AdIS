@@ -1,28 +1,28 @@
 <?php
 /**
- * trieda reprezentujuca jeden zaznam z tabulky BANNERY
+ * trieda reprezentujuca jeden zaznam z tabulky REKLAMY
  *
  * @author yohny
  */
-class Banner
+class Reklama
 {
     public $id;
     public $userId;
     public $velkost;
-    public $filename; //path in table
+    public $name; //meno in table
 
-    public function __construct($id, $userId, Velkost $velkost, $filename)
+    public function __construct($id, $userId, Velkost $velkost, $name)
     {
         $this->id = $id;
         $this->userId = $userId;
         $this->velkost = $velkost;
-        $this->filename = $filename;
+        $this->name = $name;
     }
 
     public function getKategorie(mysqli $conn)
     {
-        $query = "SELECT kategorie.* FROM kategoria_banner JOIN kategorie ON (kategoria_banner.kategoria=kategorie.id)
-            WHERE banner=$this->id ORDER BY kategorie.nazov ASC";
+        $query = "SELECT kategorie.* FROM kategoria_reklama JOIN kategorie ON (kategoria_reklama.kategoria=kategorie.id)
+            WHERE reklama=$this->id ORDER BY kategorie.nazov ASC";
         /* @var $result mysqli_result */
         $results = $conn->query($query);
         $objects = array();
@@ -36,7 +36,7 @@ class Banner
 
     public function __toString()
     {
-        return $this->filename;
+        return $this->name;
     }
 }
 ?>

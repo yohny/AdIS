@@ -4,24 +4,17 @@ session_start();
 $login = $_POST['login'];
 $heslo = $_POST['heslo'];
 
-require '../base/datab_con.php';
-/* @var $conn mysqli */
+require '../base/Database.php';
+$db = new Database();
+$user = $db->getUserByCredentials($login, $heslo);
 
-$query = "SELECT * FROM users WHERE login='$login' AND heslo=MD5('$heslo')";
-/* @var $result mysqli_result */
-$result = $conn->query($query);
-
-if ($conn->affected_rows == 1)
+if($user!=null)
 {
-  $row = $result->fetch_object();
-  $_SESSION['user'] = $row->login;
-  $_SESSION['group'] = $row->kategoria;
+  $_SESSION['user'] = $user;
   $message = "Úspešne ste sa prihlásili!";
 }
 else
   $message = "Chyba pri prihlasovaní. / Neplatné prihlasovacie údaje!";
-
-$conn->close();
 
 $_SESSION['flash'] = $message;
 

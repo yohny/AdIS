@@ -1,5 +1,5 @@
 <?php
-if(!isset($_SESSION['user']) || !isset($_SESSION['group']))
+if(!isset($_SESSION['user']))
 {
 ?>
 <h4>Pre prístup musíte byť prihlásený</h4>

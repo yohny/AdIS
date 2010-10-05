@@ -10,10 +10,10 @@ if( isset($pages) && isset($aktPage) && $pages>1 ):?>
 <table class="pager">
     <tr>
         <?php if($aktPage!=1): ?>
-        <td onclick="page(1);" title="Prvá strana" style="cursor:pointer;font-size:16px;">
+        <td onclick="setPage(1);" title="Prvá strana" style="cursor:pointer;font-size:16px;">
             &lt;&lt;
         </td>
-        <td onclick="page(<?php echo $aktPage-1; ?>);" title="Predchádzajúca strana" style="cursor:pointer;font-size:16px;" class="dark">
+        <td onclick="setPage(<?php echo $aktPage-1; ?>);" title="Predchádzajúca strana" style="cursor:pointer;font-size:16px;" class="dark">
             &lt;
         </td>
         <?php endif; ?>
@@ -25,10 +25,10 @@ if( isset($pages) && isset($aktPage) && $pages>1 ):?>
             </select> / <?php echo $pages; ?>
         </td>
         <?php if($aktPage!=$pages): ?>
-        <td onclick="page(<?php echo $aktPage+1; ?>);" title="Nasledujúca strana" style="cursor:pointer;font-size:16px;" class="dark">
+        <td onclick="setPage(<?php echo $aktPage+1; ?>);" title="Nasledujúca strana" style="cursor:pointer;font-size:16px;" class="dark">
             &gt;
         </td>
-        <td onclick="page(<?php echo $pages; ?>);" title="Posledná strana" style="cursor:pointer;font-size:16px;">
+        <td onclick="setPage(<?php echo $pages; ?>);" title="Posledná strana" style="cursor:pointer;font-size:16px;">
             &gt;&gt;
         </td>
         <?php endif; ?>

@@ -133,6 +133,27 @@ function spracuj_upl()
     document.forms['upl_form'].submit();
 }
 
+function spracuj_filter()
+{
+    var odDatum = new Date();
+    odDatum.setFullYear(document.forms['filter'].odYear.value, document.forms['filter'].odMonth.value, document.forms['filter'].odDay.value);
+    var doDatum = new Date();
+    doDatum.setFullYear(document.forms['filter'].doYear.value, document.forms['filter'].doMonth.value, document.forms['filter'].doDay.value);
+    if(odDatum>doDatum && document.forms['filter'].date.value=='custom')
+    {
+        box_show(document.getElementById('filter_errbox'),"Začiatok obdobia je neskôr ako koniec!")
+        return
+    }
+    document.forms['filter'].page.value = 1;
+    document.forms['filter'].submit();
+}
+
+function setPage(p)
+{
+    document.forms['filter'].page.value = p;
+    document.forms['filter'].submit();
+}
+
 //AJAX ---------------------------------------------------------------------------------------------
 
 function spracuj_chweb()
@@ -301,21 +322,4 @@ function setContainerHeight()
     var main = document.getElementById('main');
     container.style.height = (left.offsetHeight>main.offsetHeight ? left.offsetHeight : main.offsetHeight+10) + 10 + document.getElementById('top').offsetHeight + 'px';
     //main je +10 lebo left uz v sebe ma aj 2x5 margin
-}
-
-function filter()
-{
-    var date = document.getElementById('dateSelect').value;
-    var bann = document.getElementById('bannSelect')?document.getElementById('bannSelect').value:null;
-    var rekl = document.getElementById('reklSelect')?document.getElementById('reklSelect').value:null;
-    //window.location = window.location.protocol+window.location.hostname+window.location.pathname+window.location.search;
-    window.location.search = '?date='+date+(bann?'&bann='+bann:'')+(rekl?'&rekl='+rekl:'');
-}
-
-function page(i)
-{
-    if(window.location.search!='')
-        window.location.search = window.location.search.replace(/&?page=\d+/, '')+"&page="+i;
-    else
-        window.location.search = "?page="+i;
 }

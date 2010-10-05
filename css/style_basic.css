@@ -76,7 +76,8 @@ pre
     white-space: normal;
     padding: 10px;
 }
-input[type='text'],input[type='password'],select {
+input[type='text'],input[type='password']
+{
     width: 100%;
 }
 /*------------------------------------ top ------------------------------------*/

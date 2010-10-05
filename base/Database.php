@@ -114,7 +114,13 @@ class Database
             $query .= " WHERE 1";
         //filter
         if($filter->date!='all')
+        {
+//            switch ($filter->date)
+//            {
+//                case 'today':
+//            }
             $query .= " AND DATE(cas)='$filter->date'";
+        }
         if($filter->banner!='all')
             $query .= " AND bannery.id=$filter->banner";
         if($filter->reklama!='all')

@@ -3,20 +3,12 @@ $nadpis = "Profil";
 require 'base/left.php';
 require 'base/secure.php';
 
+require 'base/Database.php';
+$db = new Database();
+
+/* @var $user User */
 $user = $_SESSION['user'];
-$group = $_SESSION['group'];
 
-if($group != "admin")
-{
-  include "base/datab_con.php";
-  /* @var $conn mysqli */
-
-  $query = "SELECT web FROM users WHERE login='$user'";
-  /* @var $result mysqli_result */
-  $result = $conn->query($query);
-  $row = $result->fetch_object();
-  $conn->close();
-}
 ?>
 <center>
 <table cellspacing="5" style="text-align:left;width:300px;">
@@ -36,9 +28,9 @@ if($group != "admin")
       </form>
     </td>
   </tr>
-<?php if($group != "admin"): ?>
+<?php if($user->kategoria != 'admin'): ?>
   <tr>
-    <td>WWW adresa:</td><td><span class="g" id="webTd"><?php echo $row->web; ?></span></td><td><a href="javascript: show('web',this)">zmeň</a></td>
+      <td>WWW adresa:</td><td><span class="g" id="webTd"><?php echo $user->getWeb($db->conn); ?></span></td><td><a href="javascript: show('web',this)">zmeň</a></td>
   </tr>
   <tr id="web" style="display:none;">
     <td colspan="3">

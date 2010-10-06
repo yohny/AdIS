@@ -16,7 +16,7 @@ class Database
 
     public function __construct()
     {
-        $this->conn = new mysqli('localhost','root','Neslira11','adis'); //@ potlaci warning pri neuspechu lebo mame vlastne osetrenie
+        $this->conn = new mysqli('localhost','root','Neslira11','adis');
         $this->conn->set_charset('utf8');
     }
 
@@ -115,11 +115,30 @@ class Database
         //filter
         if($filter->date!='all')
         {
-//            switch ($filter->date)
-//            {
-//                case 'today':
-//            }
-            $query .= " AND DATE(cas)='$filter->date'";
+            //FIXME datetime OOP requires php 5.3.0+, not owrking on olders versions
+            $date = new DateTime();
+            switch ($filter->date)
+            {
+                case 'today':
+                    break;
+                case 'week':
+                    $date->sub(new DateInterval('P7D'));
+                    break;
+                case 'month':
+                    $date->sub(new DateInterval('P1M'));
+                    break;
+                case 'year':
+                    $date->sub(new DateInterval('P1Y'));
+                    break;
+            }
+            if($filter->date!='custom')
+                $query .= " AND DATE(cas)>='{$date->format('Y-m-d')}'";
+            else //custom
+            {
+                $from = new DateTime($filter->odYear.'-'.$filter->odMonth.'-'.$filter->odDay);
+                $to = new DateTime($filter->doYear.'-'.$filter->doMonth.'-'.$filter->doDay);
+                $query .= " AND DATE(cas) BETWEEN '{$from->format('Y-m-d')}' AND '{$to->format('Y-m-d')}'";
+            }
         }
         if($filter->banner!='all')
             $query .= " AND bannery.id=$filter->banner";
@@ -146,6 +165,5 @@ class Database
         }
         return $objects;
     }
-
 }
 ?>

@@ -43,7 +43,7 @@ $datumy = array(
     'today' =>  'dnes',
     'week'  =>  'posledný týždeň',
     'month' =>  'posledný mesiac',
-    'year'  =>  'posledn7 rok',
+    'year'  =>  'posledný rok',
     'all'   =>  'komplet',
     'custom'=>  'vlastné obdobie');
 

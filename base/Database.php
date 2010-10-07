@@ -17,12 +17,36 @@ class Database
     public function __construct()
     {
         $this->conn = new mysqli('localhost','root','Neslira11','adis');
+        //mysql_query("SET CHARACTER SET utf8");
+        //mysql_query("SET NAMES 'utf8'")
+        //bool mysql_set_charset( string $charset [, resource $link_identifier]) is the preferred way 
+        //to change the charset. Using mysql_query() to execute SET NAMES .. (SET CHARACTER SET ..) is not recommended.
         $this->conn->set_charset('utf8');
     }
 
     public function __destruct()
     {
         $this->conn->close();
+    }
+
+    public function isLoginUnique($login)
+    {
+        $query = "SELECT COUNT(*) AS count FROM users WHERE login='$login'";
+        /* @var $result mysqli_result */
+        $result = $this->conn->query($query);
+        if($result->fetch_object()->count>0)
+          return false;
+        else
+          return true;
+    }
+
+    public function addUser($login, $password, $web, $group)
+    {
+        $query = "INSERT INTO users VALUES(NULL, '$login', MD5('$heslo'), '$web' , '$kategoria')";
+        if($this->conn->query($query))
+            return true;
+        else
+            return false;
     }
 
     public function getUserByCredentials($login, $password)
@@ -36,7 +60,7 @@ class Database
             return new User($result->id, $result->login, $result->kategoria);
         }
         else
-            return null;;
+            return null;
     }
 
     public function getAllFromVelkosti()

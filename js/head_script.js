@@ -35,10 +35,10 @@ function box_show(box,message)
 
 function spracuj_reg()
 {
-    var login = document.forms['reg_form'].login.value;
-    var heslo = document.forms['reg_form'].heslo.value;
-    var heslo2 = document.forms['reg_form'].heslo2.value;
-    var web = document.forms['reg_form'].web.value;
+    var login = document.forms['reg_form']['user[login]'].value;
+    var heslo = document.forms['reg_form']['user[heslo]'].value;
+    var heslo2 = document.forms['reg_form']['user[heslo2]'].value;
+    var web = document.forms['reg_form']['user[web]'].value;
     var errorbox = document.getElementById("reg_errbox");
 
     if(login=="" || heslo=="" || heslo2=="" || web=="")

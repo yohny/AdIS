@@ -1,46 +1,40 @@
 <?php
-require '../base/left.php';
+if(!isset($_POST['zmaz']))
+    exit('Nekompletne data');
+
+require '../base/model/User.php'; //pred session_start
+session_start();
 require '../base/secure.php';
+$user = $_SESSION['user']; /* @var $user User */
+require '../base/Database.php';
+$db = new Database();
 
-$login = $_SESSION['user'];
-$group = $_SESSION['group'];
 
-require '../base/datab_con.php';
-/* @var $conn mysqli */
-
-if($group=='inzer')
+if($user->kategoria=='inzer') //maze banner
 {
-    $query = "SELECT path FROM bannery WHERE user=(SELECT id FROM users WHERE login='$login') AND id={$_POST['zmaz']}";
-    /* @var $result mysqli_result */
-    $result = $conn->query($query);
-    if($conn->affected_rows==1)
-    {
-        $bannername = $result->fetch_object()->path;
-        unlink('../upload/'.$bannername);
-        $conn->autocommit(FALSE);
-        $conn->query("DELETE FROM bannery WHERE id={$_POST['zmaz']}");
-        $conn->query("DELETE FROM kategoria_banner WHERE banner={$_POST['zmaz']}");
-        $conn->commit();
-        $message = 'Banner \''.$bannername.'\' zmazaný!';
-    }
-    else
+    $banner = $db->getBannerById($_POST['zmaz']);
+    if(!$banner || $banner->userId!=$user->id)
         $message = 'Nemôžete zmazať tento banner!';
-}
-if($group=='zobra')
-{
-    $query = "SELECT meno FROM reklamy WHERE user=(SELECT id FROM users WHERE login='$login') AND id={$_POST['zmaz']}";
-    /* @var $result mysqli_result */
-    $result = $conn->query($query);
-    if($result->num_rows==1)
-    {
-        $conn->autocommit(FALSE);
-        $conn->query("DELETE FROM reklamy WHERE id={$_POST['zmaz']}");
-        $conn->query("DELETE FROM kategoria_reklama WHERE reklama={$_POST['zmaz']}");
-        $conn->commit();
-        $message = '<span class="g">Reklama \''.$result->fetch_object()->meno.'\' zmazaná!</span>';
-    }
     else
-        $message = '<span class="r">Nemôžete zmazať túto reklamu!</span>';
+    {
+        if($db->deleteBanner($banner))
+            $message = "Banner '$banner->filename' zmazaný!";
+        else
+            $message = "Banner '$banner->filename' sa nepodarilo zmazať!";
+    }        
+}
+if($user->kategoria=='zobra') //maze reklamu
+{
+    $reklama = $db->getReklamaById($_POST['zmaz']);
+    if(!$reklama || $reklama->userId!=$user->id)
+        $message = 'Nemôžete zmazať túto reklamu!';
+    else
+    {
+        if($db->deleteReklama($reklama))
+            $message = "Relama '$reklama->name' zmazaná!";
+        else
+            $message = "Reklamu '$reklama->name' sa nepodarilo zmazať!";
+    }
 }
 
 

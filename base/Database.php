@@ -43,10 +43,7 @@ class Database
     public function addUser($login, $password, $web, $group)
     {
         $query = "INSERT INTO users VALUES(NULL, '$login', MD5('$heslo'), '$web' , '$kategoria')";
-        if($this->conn->query($query))
-            return true;
-        else
-            return false;
+        return $this->conn->query($query);
     }
 
     public function getUserByCredentials($login, $password)
@@ -61,6 +58,17 @@ class Database
         }
         else
             return null;
+    }
+
+    public function getWebById($id)
+    {
+        $query = "SELECT web FROM users WHERE id=$id";
+        /* @var $result mysqli_result */
+        $result = $this->conn->query($query);
+        if(!$result)
+          return false;
+        else
+          return $result->fetch_object()->web;
     }
 
     public function getAllFromVelkosti()
@@ -108,6 +116,44 @@ class Database
         return $objects;
     }
 
+    public function getBannerById($id)
+    {
+        $query = "SELECT bannery.*, velkosti.sirka, velkosti.vyska, velkosti.nazov FROM bannery JOIN velkosti ON (bannery.velkost=velkosti.id) WHERE bannery.id=$id";
+        /* @var $result mysqli_result */
+        $result = $this->conn->query($query);
+        if(!$result || $result->num_rows!=1)
+            return null;
+        $object = $result->fetch_object();
+        return new Banner($object->id, $object->user, new Velkost($object->velkost, $object->sirka, $object->vyska, $object->nazov), $object->path);
+    }
+
+    public function getBannerForReklama(Reklama $reklama)
+    {
+        $query ="SELECT DISTINCT bannery.*, velkosti.sirka, velkosti.vyska, velkosti.nazov
+            FROM bannery
+            JOIN velkosti ON (bannery.velkost=velkosti.id)
+            JOIN kategoria_banner ON (bannery.id=kategoria_banner.banner)
+            WHERE bannery.velkost={$reklama->velkost->id}
+            AND kategoria_banner.kategoria IN (SELECT kategoria FROM kategoria_reklama WHERE reklama=$reklama->id)
+            ORDER BY RAND() LIMIT 1";
+        /* @var $result mysqli_result */
+        $result = $this->conn->query($query);
+        if(!$result || $result->num_rows!=1)
+            return null;
+        $object = $result->fetch_object();
+        return new Banner($object->id, $object->user, new Velkost($object->velkost, $object->sirka, $object->vyska, $object->nazov), $object->path);
+    }
+
+    public function deleteBanner(Banner $banner)
+    {
+        unlink('../upload/'.$banner->filename);
+        $this->conn->autocommit(false);
+        $this->conn->query("DELETE FROM bannery WHERE id=$banner->id");
+        $this->conn->query("DELETE FROM kategoria_banner WHERE banner=$banner->id");
+        $this->conn->autocommit(true);
+        return $this->conn->commit();
+    }
+
     public function getReklamyByUser(User $user)
     {
         $query = "SELECT reklamy.*, velkosti.sirka, velkosti.vyska, velkosti.nazov FROM reklamy JOIN velkosti ON (reklamy.velkost=velkosti.id)";
@@ -123,6 +169,26 @@ class Database
             $objects[] = $object;
         }
         return $objects;
+    }
+
+    public function getReklamaById($id)
+    {
+        $query = "SELECT reklamy.*, velkosti.sirka, velkosti.vyska, velkosti.nazov FROM reklamy JOIN velkosti ON (reklamy.velkost=velkosti.id) WHERE reklamy.id=$id";
+        /* @var $result mysqli_result */
+        $result = $this->conn->query($query);
+        if(!$result || $result->num_rows!=1)
+            return null;
+        $object = $result->fetch_object();
+        return new Reklama($object->id, $object->user, new Velkost($object->velkost, $object->sirka, $object->vyska, $object->nazov), $object->meno);
+    }
+
+    public function deleteReklama(Reklama $reklama)
+    {
+        $this->conn->autocommit(false);
+        $this->conn->query("DELETE FROM reklamy WHERE id=$reklama->id");
+        $this->conn->query("DELETE FROM kategoria_reklama WHERE reklama=$reklama->id");
+        $this->conn->autocommit(true);
+        return $this->conn->commit();
     }
 
     public function  getKlikyByUser(User $user, Filter $filter, $countOnly = false)
@@ -184,10 +250,22 @@ class Database
         $objects = array();
         while ($result = $results->fetch_object())
         {
-            $object = new Klik($result->id, $result->cas, $result->zobra, $result->zobra_login, $result->reklama, $result->meno, $result->inzer, $result->inzer_login, $result->banner, $result->path);
+            $object = new Klik($result->zobra, $result->reklama, $result->inzer, $result->banner);
+            $object->id = $result->id;
+            $object->cas = $result->cas;
+            $object->zobraLogin = $result->zobra_login;
+            $object->reklamaName = $result->meno;
+            $object->inzerLogin = $result->inzer_login;
+            $object->bannerFilename = $result->path;
             $objects[] = $object;
         }
         return $objects;
+    }
+
+    public function saveKlik(Klik $klik)
+    {
+        $query = "INSERT INTO kliky VALUES(NULL, NOW(), $klik->zobraId, $klik->inzerId, $klik->reklamaId, $klik->bannerId)";
+        return $this->conn->query($query);
     }
 }
 ?>

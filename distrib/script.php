@@ -9,35 +9,30 @@ if (!preg_match('/[1-9][0-9]*/', $_GET['rekl']))
 
 $rekl_id = $_GET['rekl'];
 
-require '../base/datab_con.php';
-/* @var $conn mysqli */
+require '../base/Database.php';
+$db = new Database();
 
 //zisti parametre pozadovanej reklamy
-/* @var $result mysqli_result */
-$result = $conn->query("SELECT velkost,user,sirka,vyska FROM reklamy JOIN velkosti ON (reklamy.velkost=velkosti.id) WHERE reklamy.id=$rekl_id");
-if($conn->affected_rows==0)
+$reklama = $db->getReklamaById($_GET['rekl']);
+if(!$reklama)
     exit("//requested ad was deleted, get new code from AdIS");
 
-$reklama = $result->fetch_object();
+//vytiahne nahodny banner pre danu reklamu
+$banner = $db->getBannerForReklama($reklama);
+if(!$banner)
+    exit("//could not retrieve banner from AdIS server");
 
-//vytiahne nahodny banner s tymito parametrami
-$result = $conn->query("SELECT DISTINCT bannery.id, bannery.user, web
-    FROM bannery
-    JOIN kategoria_banner ON (bannery.id=kategoria_banner.banner)
-    JOIN users ON (bannery.user=users.id)
-    WHERE bannery.velkost=$reklama->velkost
-    AND kategoria_banner.kategoria IN (SELECT kategoria FROM kategoria_reklama WHERE reklama=$rekl_id)
-    ORDER BY RAND() LIMIT 1");
-$banner = $result->fetch_object();
-$conn->close();
+$web = $db->getWebById($banner->userId);
+if(!$web)
+    exit("//could not retrieve web address for banner");
 
-echo "var zobr_id = $reklama->user;\n";
-echo "var rekl_id = $rekl_id;\n";
-echo "var inze_id = $banner->user;\n";
+echo "var zobr_id = $reklama->userId;\n";
+echo "var rekl_id = $reklama->id;\n";
+echo "var inze_id = $banner->userId;\n";
 echo "var bann_id = $banner->id;\n";
-echo "var sirka = $reklama->sirka;\n";
-echo "var vyska = $reklama->vyska;\n";
-echo "var redir = \"$banner->web\";\n";
+echo "var sirka = {$reklama->velkost->sirka};\n";
+echo "var vyska = {$reklama->velkost->vyska};\n";
+echo "var redir = \"$web\";\n";
 
 //<a href=”http://www.bbc.co.uk” onclick=”x=new Image();x.src=’track.py’;setTimeout(’location=\’’+this.href+’\’’,100);return false;”>BBC</a>
 //or

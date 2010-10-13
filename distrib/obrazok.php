@@ -1,14 +1,14 @@
 <?php
 if(!isset ($_GET['id']))
     exit();
- 
-require '../base/datab_con.php';
-/* @var $conn mysqli */
 
-/* @var $result mysqli_result */
-$result = $conn->query("SELECT path FROM bannery WHERE id={$_GET['id']}");
-$image = $result->fetch_object();
-$conn->close();
+if (!preg_match('/[1-9][0-9]*/', $_GET['id']))
+    exit();
+ 
+require '../base/Database.php';
+$db = new Database();
+$banner = $db->getBannerById($_GET['id']);
+
 /*$info = getimagesize($image); //[0]-width,[1]-height,[2]-type,[3]-height+width from img tags
 switch($info[2]) 
 {
@@ -19,7 +19,7 @@ switch($info[2])
   case 3: $img = imagecreatefrompng("$image");
           break;
 }*/
-$img = imagecreatefromstring(file_get_contents('../upload/'.$image->path));
+$img = imagecreatefromstring(file_get_contents('../upload/'.$banner->filename));
 
 //zobrazenie
 header("Content-type: image/png");

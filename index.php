@@ -13,8 +13,8 @@ Používatelia sú rodelený na dve skupiny.<br>
 <p>Systém umožňje meranie efektivity reklamných kampaní používateľov. Využíva pritom metódu PPC (Pay Per Click). To znamená, že úspešnosť reklamy je hodnotená počtom klikniknutí na danú reklamu.</p>
 Navrhovaný IS je postavený na technológii PHP v spolupráci s databázovým systémom MySQL. Vyvíjaný bol na localhoste, na ktorom bol nainštalovaný WampServer 2 v tejto konfigurácii:<br>
 <ul>
-<li>Apache 2.2.14</li>
-<li>PHP 5.3.2</li>
+<li>Apache 2.2.16</li>
+<li>PHP 5.3.3</li>
 <li>MySQL 5.1.41</li>
 </ul>
 

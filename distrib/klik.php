@@ -19,12 +19,11 @@ $web = $_GET['redir'];
 
 if(!isset($_COOKIE['voted']))
 {
-    setcookie("voted","voted", time()+30);  //platnost cookie 30 sek
+    setcookie("voted","voted", time()+60);  //platnost cookie 60 sek
 
-    require '../base/datab_con.php';
-    /* @var $conn mysqli */
-    $conn->query("INSERT INTO kliky VALUES(NULL, NOW(), $zobr_id, $inze_id, $rekl_id, $bann_id)");
-    $conn->close();
+    require '../base/Database.php';
+    $db = new Database();
+    $db->saveKlik(new Klik($zobr_id, $rekl_id, $inze_id, $bann_id));
 }
 header("Location: $web");
 ?>

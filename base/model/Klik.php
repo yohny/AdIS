@@ -17,18 +17,12 @@ class Klik
     public $bannerId;
     public $bannerFilename;
 
-    public function __construct($id, $cas, $zobraId, $zobraLogin, $reklamaId, $reklamaName, $inzerId, $inzerLogin, $bannerId, $bannerFilename)
+    public function __construct($zobraId, $reklamaId, $inzerId, $bannerId)
     {
-        $this->id = $id;
-        $this->cas = $cas;
         $this->zobraId = $zobraId;
-        $this->zobraLogin = $zobraLogin;
         $this->reklamaId = $reklamaId;
-        $this->reklamaName = $reklamaName;
         $this->inzerId = $inzerId;
-        $this->inzerLogin = $inzerLogin;
         $this->bannerId = $bannerId;
-        $this->bannerFilename = $bannerFilename;
     }
 
     public function __toString()

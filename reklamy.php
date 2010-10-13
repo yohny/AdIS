@@ -59,7 +59,7 @@ if(count($reklamy)>0)
                 <p>Nasledujúci HTML kód vložte do vašej stránky (na miesto kde chcete mať reklamu):</p>
                 <pre>
 <!-- TODO skusit prerobit pomocou napr $_SERVER["HTTP_HOST"] aby bolo lahko portovatelne (aj script.php) -->
-&lt;script language="javascript" type="text/javascript" src="http://localhost/AdIS/distrib/script.php?rekl=<?php echo $row->id; ?>"&gt;&lt;/script&gt;
+&lt;script language="javascript" type="text/javascript" src="http://localhost/AdIS/distrib/script.php?rekl=<?php echo $reklama->id; ?>"&gt;&lt;/script&gt;
                 </pre>
             </td>
         </tr>

@@ -18,7 +18,7 @@ if( isset($pages) && isset($aktPage) && $pages>1 ):?>
         </td>
         <?php endif; ?>
         <td>
-            <select onchange="page(this.value)">
+            <select onchange="setPage(this.value)">
                 <?php for($p=1;$p<=$pages;$p++): ?>
                 <option value="<?php echo $p; ?>" <?php if($aktPage==$p) echo 'selected="selected"'; ?>><?php echo $p; ?></option>
                 <?php endfor; ?>

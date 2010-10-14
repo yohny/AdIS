@@ -73,7 +73,7 @@ if(count($reklamy)>0)
   ?>
 <hr>
 <center>
-<form name="add_form" action="actions/pridaj.php" method="POST" enctype="multipart/form-data">
+<form name="add_form" action="actions/pridajReklamu.php" method="POST" enctype="multipart/form-data">
 <table cellspacing="5" style="text-align:left;">
     <tr>
         <td title="Zvoľte rozmerový typ reklamnej jednotky.">

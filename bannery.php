@@ -71,7 +71,7 @@ if(count($bannery)>0)
   ?>
 <hr>
 <center>
-<form name="upl_form" action="actions/uploadni.php" method="POST" enctype="multipart/form-data">
+<form name="upl_form" action="actions/pridajBanner.php" method="POST" enctype="multipart/form-data">
 <table cellspacing="5" style="text-align:left;">
     <tr title="Zvoľte rozmerový typ reklamného banneru.">
         <td>

@@ -40,7 +40,7 @@ class Database
           return true;
     }
 
-    public function addUser($login, $password, $web, $group)
+    public function saveUser($login, $password, $web, $group)
     {
         $query = "INSERT INTO users VALUES(NULL, '$login', MD5('$heslo'), '$web' , '$kategoria')";
         return $this->conn->query($query);
@@ -83,6 +83,17 @@ class Database
             $objects[] = $object;
         }
         return $objects;
+    }
+
+    public function getVelkostById($id)
+    {
+        $query = "SELECT * FROM velkosti WHERE id=$id";
+        /* @var $result mysqli_result */
+        $result = $this->conn->query($query);
+        if(!$result || $result->num_rows!=1)
+            return null;
+        $object = $result->fetch_object();
+        return new Velkost($object->id, $object->sirka, $object->vyska, $object->nazov);
     }
 
     public function getAllFromKategorie()
@@ -154,6 +165,30 @@ class Database
         return $this->conn->commit();
     }
 
+    public function bannerExists($userId, $velkostId)
+    {
+        $query = "SELECT COUNT(*) AS count FROM bannery WHERE user=$userId AND velkost=$velkostId";
+        /* @var $result mysqli_result */
+        $result = $this->conn->query($query);
+        if($result->fetch_object()->count>0)
+          return true;
+        else
+          return false;
+    }
+
+    public function saveBanner(Banner $banner, $kategorie)
+    {
+        $query = "INSERT INTO bannery VALUES(NULL, $banner->userId, {$banner->velkost->id}, '$banner->filename')";
+        if(!$this->conn->query($query))
+            return false;
+        $banner->id = $this->conn->insert_id;
+        $this->conn->autocommit(false);
+        foreach ($kategorie as $kat)
+            $this->conn->query("INSERT INTO kategoria_banner VALUES (NULL, $kat, $banner->id)");
+        $this->conn->autocommit(true);
+        return $this->conn->commit();
+    }
+
     public function getReklamyByUser(User $user)
     {
         $query = "SELECT reklamy.*, velkosti.sirka, velkosti.vyska, velkosti.nazov FROM reklamy JOIN velkosti ON (reklamy.velkost=velkosti.id)";
@@ -187,6 +222,30 @@ class Database
         $this->conn->autocommit(false);
         $this->conn->query("DELETE FROM reklamy WHERE id=$reklama->id");
         $this->conn->query("DELETE FROM kategoria_reklama WHERE reklama=$reklama->id");
+        $this->conn->autocommit(true);
+        return $this->conn->commit();
+    }
+
+    public function reklamaExists($userId, $velkostId)
+    {
+        $query = "SELECT COUNT(*) AS count FROM reklamy WHERE user=$userId AND velkost=$velkostId";
+        /* @var $result mysqli_result */
+        $result = $this->conn->query($query);
+        if($result->fetch_object()->count>0)
+          return true;
+        else
+          return false;
+    }
+
+    public function saveReklama(Reklama $reklama, $kategorie)
+    {
+        $query = "INSERT INTO reklamy VALUES(NULL, $reklama->userId, {$reklama->velkost->id}, '$reklama->name')";
+        if(!$this->conn->query($query))
+            return false;
+        $reklama->id = $this->conn->insert_id;
+        $this->conn->autocommit(false);
+        foreach ($kategorie as $kat)
+            $this->conn->query("INSERT INTO kategoria_reklama VALUES (NULL, $kat, $reklama->id)");
         $this->conn->autocommit(true);
         return $this->conn->commit();
     }

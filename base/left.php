@@ -83,12 +83,12 @@ require 'user.php';
 <p class="r">important message</p>
 <p>
 <a href="http://validator.w3.org/check?uri=referer">
-<img SRC="img/valid-html401.png" alt="val_html">
+<img src="img/valid-html401.png" alt="val_html">
 </a>
 </p>
 <p>
 <a href="http://jigsaw.w3.org/css-validator/check/referer">
-<img SRC="img/vcss.gif" alt="val_css">
+<img src="img/vcss.gif" alt="val_css">
 </a>
 </p>
 <p>

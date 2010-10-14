@@ -37,7 +37,6 @@ if($user->kategoria=='zobra') //maze reklamu
     }
 }
 
-
 $_SESSION['flash'] = $message;
 $referer = $_SERVER['HTTP_REFERER'];
 header("Location: $referer");

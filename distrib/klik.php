@@ -9,9 +9,9 @@ set_error_handler("customError"); //druhy optional param je error level, default
 
 
 $zobr_id = $_GET['zobra'];
-$rekl_id = $_GET['rekla'];
+$rekl_id = $_GET['rekl'];
 $inze_id = $_GET['inzer'];
-$bann_id = $_GET['banne'];
+$bann_id = $_GET['bann'];
 $web = $_GET['redir'];
 //kvoli rychlejsiemu redirectu sa adresa posiela ako argument a netaha z DB
 //$result = mysql_query("SELECT web FROM users WHERE id=$inze_id") or die('Zlyhalo query!');

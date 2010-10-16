@@ -44,6 +44,6 @@ echo "var redir = \"$web\";\n";
 // nepouzitelne na podpriecinok localhostu lebo vrati len 'localhost'
 // avsak na adis.stkpo.sk bude lebo vrati 'adis.stkpo.sk'
 ?>
-document.write("<a href=\"http://localhost/AdIS/distrib/klik.php?zobra="+zobr_id+"&rekla="+rekl_id+"&inzer="+inze_id+"&banne="+bann_id+"&redir="+redir+"\">");
-document.write("<img height=\""+vyska+"\" width=\""+sirka+"\" alt=\"banner\" src=\"http://localhost/AdIS/distrib/obrazok.php?id="+bann_id+"\">");
+document.write("<a href=\"http://localhost/AdIS/distrib/klik.php?zobra="+zobr_id+"&rekl="+rekl_id+"&inzer="+inze_id+"&bann="+bann_id+"&redir="+redir+"\">");
+document.write("<img height=\""+vyska+"\" width=\""+sirka+"\" alt=\"banner\" src=\"http://localhost/AdIS/distrib/banner.php?id="+bann_id+"\">");
 document.write("</a>");

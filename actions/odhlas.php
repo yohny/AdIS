@@ -12,7 +12,6 @@ else
 $_SESSION['flash'] = $message;
 
 $referer = $_SERVER['HTTP_REFERER'];
-//$referer = http_build_url($referer, array("path" => "/fero"), HTTP_URL_STRIP_PATH | HTTP_URL_STRIP_QUERY); //not default part of PHP
-//$referer = preg_replace('/^.*\/([\w^\/]+\.php)$/', 'index.php', $referer);
+$referer = str_replace(basename($referer), 'index.php', $referer);
 header("Location: $referer");
 ?>

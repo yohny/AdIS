@@ -2,15 +2,7 @@
 if(isset($_SESSION['user']))
 {
 ?>
-
-<br>
-<table style="text-align:center;">
-<tr>
-<td width="60" valign="top"><span class="g" style="font-weight:bold;"><?php echo $_SESSION['user']; ?></span></td>
-<td><form name="out_form" method="POST" action="actions/odhlas.php"><input type="submit" name="action" value="Odhlásiť"></form></td>
-</tr>
-</table>
-
+Prihlásený: <span class="g" style="font-weight:bold;"><?php echo $_SESSION['user']; ?></span>
 <fieldset>
 <legend>konto</legend>
 <a href="profil.php">Profil</a>
@@ -24,6 +16,7 @@ elseif($_SESSION['user']->kategoria=="admin")
   echo "<a href=\"javascript: void(0);\"><span class=\"r\">ADMIN</span></a>";
 ?>
 </fieldset>
+<form name="out_form" method="POST" action="actions/odhlas.php"><input type="submit" name="action" value="Odhlásiť"></form>
 <?php
 }
 else

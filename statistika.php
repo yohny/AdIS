@@ -31,7 +31,6 @@ if(isset($_POST['rekl']))
 /* @var $user User */ //aktualne prihlaseny pouzivatel
 $user = $_SESSION['user'];
 
-
 require_once 'base/Database.php';
 $db = new Database();
 
@@ -46,7 +45,6 @@ $datumy = array(
     'year'  =>  'posledný rok',
     'all'   =>  'komplet',
     'custom'=>  'vlastné obdobie');
-
 
 if($user->kategoria=='inzer' || $user->kategoria=='admin')
    $bannery = $db->getBanneryByUser($user);

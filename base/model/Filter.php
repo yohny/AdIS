@@ -1,6 +1,6 @@
 <?php
 /**
- * Description of Filter
+ * filtovacie kriteria pre zobrazenie statistiky
  *
  * @author yohny
  */

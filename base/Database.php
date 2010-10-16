@@ -264,7 +264,7 @@ class Database
         //filter
         if($filter->date!='all')
         {
-            //FIXME datetime OOP requires php 5.3.0+, not owrking on olders versions
+            //FIXME datetime OOP requires php 5.3.0+, not working on olders versions
             $date = new DateTime();
             switch ($filter->date)
             {

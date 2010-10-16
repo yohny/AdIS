@@ -40,7 +40,9 @@ echo "var redir = \"$web\";\n";
 
 //<a href="..." ping="...">   - PING not supported by browsers (Firefox only?)
 
-// TODO skusit prerobit pomocou $_SERVER["HTTP_HOST"] abz bolo lahko portovatelne (aj reklamy.php)
+// TODO skusit prerobit pomocou $_SERVER["HTTP_HOST"] aby bolo lahko portovatelne (aj reklamy.php)
+// nepouzitelne na podpriecinok localhostu lebo vrati len 'localhost'
+// avsak na adis.stkpo.sk bude lebo vrati 'adis.stkpo.sk'
 ?>
 document.write("<a href=\"http://localhost/AdIS/distrib/klik.php?zobra="+zobr_id+"&rekla="+rekl_id+"&inzer="+inze_id+"&banne="+bann_id+"&redir="+redir+"\">");
 document.write("<img height=\""+vyska+"\" width=\""+sirka+"\" alt=\"banner\" src=\"http://localhost/AdIS/distrib/obrazok.php?id="+bann_id+"\">");

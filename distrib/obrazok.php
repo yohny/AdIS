@@ -21,6 +21,14 @@ switch($info[2])
 }*/
 $img = imagecreatefromstring(file_get_contents('../upload/'.$banner->filename));
 
+$watermark = imagecreate(imagesx($img), 20);
+$black = imagecolorallocate($watermark,0,0,0); //first color becames background
+$white = imagecolorallocate($watermark,255,255,255);
+imagettftext($watermark, 12, 0, imagesx($watermark)-50, 15, $white, '../img/Ubuntu-B.ttf', 'AdIS');
+
+
+imagecopymerge($img, $watermark, 0, imagesy($img)-imagesy($watermark), 0, 0, imagesx($watermark), imagesy($watermark),40);
+
 //zobrazenie
 header("Content-type: image/png");
 imagepng($img); 

@@ -10,11 +10,16 @@ if(isset($_SESSION['registrator']))
 
 <form name="reg_form" action="actions/registruj.php" method="POST" autocomplete="off">
   <center>
-  <table cellspacing="5" style="text-align:left">
+  <table>
     <tr title="Login slúžiaci na prihlásenie do systému. Musí byť jedinečný.">
       <td><label for="user_login">Login:</label></td>
-      <td><input type="text" name="user[login]" id="user_login" maxlength="10" onKeyUp="overLogin(this.value);" <?php if(isset($user)) echo 'value="'.$user['login'].'"'; ?>><br>
-      <span id="loginStatus"></span></td>
+      <td><input type="text" name="user[login]" id="user_login" maxlength="10" onBlur="overLogin(this.value);" <?php if(isset($user)) echo 'value="'.$user['login'].'"'; ?>>
+    </tr>
+    <tr>
+        <td></td>
+        <td style="font-weight: bold;width:200px;">
+            <span id="loginStatus">Zadajte unikátny login.</span>
+        </td>
     </tr>
     <tr title="Heslo pre prístup do systému.">
       <td><label for="user_heslo">Heslo:</label></td>

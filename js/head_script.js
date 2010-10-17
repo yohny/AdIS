@@ -46,19 +46,24 @@ function spracuj_reg()
         box_show(errorbox,"Vyplňte všetky údaje!");
         return;
     }
+    if (!(/^[a-zA-Z0-9]{4,10}$/).test(login))
+    {
+        box_show(errorbox, "Login má nesprávny formát! (4-10 znakov: a-z, A-Z, 0-9)");
+        return;
+    }
     if(heslo != heslo2)
     {
-        box_show(errorbox,"Heslo sa nezhoduje!");
+        box_show(errorbox,"Heslá sa nezhodujú!");
         return;
     }
     if(heslo.length<4 || login.length<4)
     {
-        box_show(errorbox,"Heslo aj login musia mať aspoň 4 znaky!");
+        box_show(errorbox,"Heslo musí mať aspoň 4 znaky!");
         return;
     }
-    if(heslo.indexOf("\"")>=0 || heslo.indexOf("\'")>=0 || heslo.indexOf("\\")>=0 || login.indexOf("\"")>=0 || login.indexOf("\'")>=0 || login.indexOf("\\")>=0)
+    if(heslo.indexOf("\"")>=0 || heslo.indexOf("\'")>=0 || heslo.indexOf("\\")>=0)
     {
-        box_show(errorbox,"Heslo ani login nesmú obsahovať: \", \', \\");
+        box_show(errorbox,"Heslo nesmie obsahovať: \", \', \\");
         return;
     }
     document.forms['reg_form'].submit();
@@ -249,14 +254,9 @@ function overLogin(str)
 {
     document.getElementById("loginStatus").innerHTML="Overujem..."
 
-    if (str.length==0)
+    if (!(/^[a-zA-Z0-9]{4,10}$/).test(str))
     {
-        document.getElementById("loginStatus").innerHTML="<span class='r'>Zadajte login!</span>";
-        return;
-    }
-    if (str.length<4)
-    {
-        document.getElementById("loginStatus").innerHTML="<span class='r'>Min. 4 znaky!</span>";
+        document.getElementById("loginStatus").innerHTML="<span class='r'>Nesprávny formát! (aspoň 4 znaky: a-z, A-Z, 0-9)</span>";
         return;
     }
     var xmlhttp = GetXmlHttpObject();

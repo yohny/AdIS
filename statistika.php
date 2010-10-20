@@ -34,8 +34,8 @@ $user = $_SESSION['user'];
 require_once 'base/Database.php';
 $db = new Database();
 
-$pocetKlikov = $db->getKlikyByUser($user, $filter, true);
-$kliky = $db->getKlikyByUser($user, $filter);
+$counts = $db->getStatisticsByUser($user, $filter, true);
+$stats = $db->getStatisticsByUser($user, $filter);
 
 //udaje pre filter
 $datumy = array(
@@ -46,14 +46,14 @@ $datumy = array(
     'all'   =>  'komplet',
     'custom'=>  'vlastné obdobie');
 
-if($user->kategoria=='inzer' || $user->kategoria=='admin')
+if($user->kategoria=='inzer')
    $bannery = $db->getBanneryByUser($user);
-if($user->kategoria=='zobra' || $user->kategoria=='admin')
+if($user->kategoria=='zobra')
    $reklamy = $db->getReklamyByUser($user);
 
 //pre PAGER
 $aktPage = $filter->page;
-$pages = ceil($pocetKlikov/ROWS_PER_PAGE);
+$pages = ceil($counts['count']/ROWS_PER_PAGE);
 ?>
 <h4>Filter</h4>
 <form name="filter" action="" method="POST">
@@ -112,7 +112,7 @@ $pages = ceil($pocetKlikov/ROWS_PER_PAGE);
                 </select>
             </td>
         </tr>
-        <?php if($user->kategoria=="inzer" || $user->kategoria=="admin"): ?>
+        <?php if($user->kategoria=="inzer"): ?>
         <tr>
             <td>Banner</td>
             <td>
@@ -120,18 +120,13 @@ $pages = ceil($pocetKlikov/ROWS_PER_PAGE);
                     <option value="all">všetky</option>
                     <?php foreach($bannery as $banner): ?>
                     <option value="<?php echo $banner->id; ?>" <?php if($filter->banner==$banner->id) echo 'selected="selected"'; ?>>
-                        <?php
-                        if($user->kategoria!="admin")
-                            echo substr($banner,strlen($user.$banner->velkost->sirka.$banner->velkost->vyska)+3).' ('.$banner->velkost->sirka.'x'.$banner->velkost->vyska.')';
-                        else
-                            echo "$banner ({$banner->velkost->sirka}x{$banner->velkost->vyska}) :$banner->id";
-                        ?>
+                        <?php echo substr($banner,strlen($user.$banner->velkost->sirka.$banner->velkost->vyska)+3).' ('.$banner->velkost->sirka.'x'.$banner->velkost->vyska.')';?>
                     </option>
                     <?php endforeach; ?>
                 </select>
             </td>
         </tr>
-        <?php endif; if($user->kategoria=="zobra" || $user->kategoria=="admin"): ?>
+        <?php endif; if($user->kategoria=="zobra"): ?>
         <tr>
             <td>Reklama</td>
             <td>
@@ -139,12 +134,7 @@ $pages = ceil($pocetKlikov/ROWS_PER_PAGE);
                     <option value="all">všetky</option>
                     <?php foreach($reklamy as $reklama): ?>
                     <option value="<?php echo $reklama->id; ?>" <?php if($filter->reklama==$reklama->id) echo 'selected="selected"'; ?>>
-                        <?php
-                        if($user->kategoria!="admin")
-                            echo $reklama.' ('.$reklama->velkost->sirka.'x'.$reklama->velkost->vyska.')';
-                        else
-                            echo "$reklama ({$reklama->velkost->sirka}x{$reklama->velkost->vyska}) :$reklama->id"
-                        ?>
+                        <?php echo $reklama.' ('.$reklama->velkost->sirka.'x'.$reklama->velkost->vyska.')'; ?>
                     </option>
                     <?php endforeach; ?>
                 </select>
@@ -164,9 +154,12 @@ $pages = ceil($pocetKlikov/ROWS_PER_PAGE);
     </table>
 </form>
 <hr>
-<h4>Kliknutí: <span class="g" style="font-size:16px;"><?php echo $pocetKlikov; ?></span></h4>
+<h4>
+    Zobrazení: <span class="g" style="font-size:16px;"><?php echo $counts['views']?$counts['views']:'0'; ?></span>
+    Kliknutí: <span class="g" style="font-size:16px;"><?php echo $counts['clicks']?$counts['clicks']:'0'; ?></span>
+</h4>
 <?php
-if(count($kliky)==0)
+if(count($stats)==0)
     echo "<h4>Žiadne dáta!</h4>";
 else
 { $i=0; include 'base/pager.php'; ?>
@@ -174,38 +167,40 @@ else
         <thead>
             <tr>
             <th>Por.</th>
-            <th>Čas</th>
-            <?php if($user->kategoria=="admin"): ?>
-            <th>Zobrazovateľ</th>
-            <th>Reklama</th>
-            <th>Inzerent</th>
-            <th>Banner</th>
-            <?php endif; if($user->kategoria=="inzer"): ?>
+            <th>Dátum</th>
+            <?php if($user->kategoria=="inzer"): ?>
             <th>Banner</th>
             <?php endif; if($user->kategoria=="zobra"): ?>
             <th>Reklama</th>
             <?php endif; ?>
+            <th>Zobr.</th>
+            <th>Kliky</th>
             </tr>
         </thead>
         <tbody>
-        <?php foreach($kliky as $klik): $i++; ?>
+        <?php foreach($stats as $stat): $i++; ?>
             <tr <?php if($i%2==0) echo "class=\"dark\""; ?>>
                 <td>
                     <?php echo ($filter->page-1)*ROWS_PER_PAGE+$i; ?>.
                 </td>
                 <td>
-                    <?php echo $klik; ?>
+                    <?php echo $stat; ?>
                 </td>
-                <?php if($user->kategoria=="admin"): ?>
-                <td><?php echo ($klik->zobraLogin==''?"#zmazaný":$klik->zobraLogin)." ($klik->zobraId)"; ?></td>
-                <td><?php echo ($klik->reklamaName==''?"#zmazaná":$klik->reklamaName)." ($klik->reklamaId)"; ?></td>
-                <td><?php echo ($klik->inzerLogin==''?"#zmazaný":$klik->inzerLogin)." ($klik->inzerId)"; ?></td>
-                <td><?php echo ($klik->bannerFilename==''?"#zmazaný":$klik->bannerFilename)." ($klik->bannerId)"; ?></td>
-                <?php endif; if($user->kategoria=="inzer"): ?>
-                <td><?php echo $klik->bannerFilename==''?"#zmazaný":substr($klik->bannerFilename,strlen($klik->inzerLogin)+1); ?></td>
+                <?php if($user->kategoria=="inzer"): ?>
+                <td>
+                    <?php echo $stat->meno==''?"#zmazaný":substr($stat->meno,strlen($user.'_')); ?>
+                </td>
                 <?php endif; if($user->kategoria=="zobra"): ?>
-                <td><?php echo $klik->reklamaName==''?"#zmazaná":$klik->reklamaName; ?></td>
+                <td>
+                    <?php echo $stat->meno==''?"#zmazaná":$stat->meno; ?>
+                </td>
                 <?php endif; ?>
+                <td>
+                    <?php echo $stat->zobrazenia==''?"0":$stat->zobrazenia; ?>
+                </td>
+                <td>
+                    <?php echo $stat->kliky==''?"0":$stat->kliky; ?>
+                </td>
             </tr>
         <?php endforeach; ?>
         </tbody>

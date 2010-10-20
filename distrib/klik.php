@@ -19,11 +19,11 @@ $web = $_GET['redir'];
 
 if(!isset($_COOKIE['voted']))
 {
-    setcookie("voted","voted", time()+60);  //platnost cookie 60 sek
+    setcookie("voted","voted", time()+10);  //platnost cookie 60 sek
 
     require '../base/Database.php';
     $db = new Database();
-    $db->saveKlik(new Klik($zobr_id, $rekl_id, $inze_id, $bann_id));
+    $db->saveKlik(new Klik(null, $zobr_id, $rekl_id, $inze_id, $bann_id));
 }
 header("Location: $web");
 ?>

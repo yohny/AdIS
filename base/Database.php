@@ -250,16 +250,103 @@ class Database
         return $this->conn->commit();
     }
 
-    public function  getKlikyByUser(User $user, Filter $filter, $countOnly = false)
+    public function  getStatisticsByUser(User $user, Filter $filter, $countOnly = false)
+    {
+        if($user->kategoria == 'inzer') //urcenie sekundarneho GROUP BY
+        {
+            $groupBy = "banner";
+            $join = "bannery";
+            $colname = "path";
+        }
+        else //zobra
+        {
+            $groupBy = "reklama";
+            $join = "reklamy";
+            $colname = "meno";
+        }
+
+        $clicksSubQuery = "SELECT DATE(cas) AS cdate, COUNT(*) AS ccount, $groupBy AS cbanrek 
+            FROM kliky
+            WHERE $user->kategoria = $user->id
+            GROUP BY cdate,cbanrek";
+        $viewsSubQuery = "SELECT DATE(cas) AS vdate, COUNT(*) AS vcount, $groupBy AS vbanrek 
+            FROM zobrazenia
+            WHERE $user->kategoria = $user->id
+            GROUP BY vdate,vbanrek";
+
+        if($countOnly)
+            $selectPart = "COUNT(*) AS count, SUM(vcount) AS vsum, SUM(ccount) AS csum";
+        else
+            $selectPart = "vdate AS cas, vbanrek AS banrek, $join.$colname AS meno, vcount, ccount";
+
+        $query = " SELECT $selectPart FROM
+            ($viewsSubQuery) AS wiews
+            LEFT JOIN
+            ($clicksSubQuery) AS clicks
+            ON (cdate=vdate AND cbanrek=vbanrek)
+            JOIN $join ON ($join.id = vbanrek)";
+
+        if($filter->date!='all')
+        {
+            $date = new DateTime();// FIXME datetime OOP = phph 5.3.0+ only (konkretne sub nepojde)
+            switch ($filter->date)
+            {
+                case 'today':
+                    break;
+                case 'week':
+                    $date->sub(new DateInterval('P7D'));
+                    break;
+                case 'month':
+                    $date->sub(new DateInterval('P1M'));
+                    break;
+                case 'year':
+                    $date->sub(new DateInterval('P1Y'));
+                    break;
+            }
+            if($filter->date!='custom')
+                $query .= " WHERE vdate>='{$date->format('Y-m-d')}'";
+            else //custom
+            {
+                $from = new DateTime($filter->odYear.'-'.$filter->odMonth.'-'.$filter->odDay);
+                $to = new DateTime($filter->doYear.'-'.$filter->doMonth.'-'.$filter->doDay);
+                $query .= " WHERE vdate BETWEEN '{$from->format('Y-m-d')}' AND '{$to->format('Y-m-d')}'";
+            }
+        }
+        else
+            $query .= " WHERE 1";
+
+        if($user->kategoria=='inzer' && $filter->banner!='all')
+            $query .= " AND vbanrek=$filter->banner";
+        if($user->kategoria=='zobra' && $filter->reklama!='all')
+            $query .= " AND vbanrek=$filter->reklama";
+
+        if($countOnly) //len pocet zaznamov
+        {
+            $result = $this->conn->query($query);  /* @var $result mysqli_result */
+            $object = $result->fetch_object();
+            return array('count'=>$object->count, 'views'=>$object->vsum,'clicks'=>$object->csum);
+        }       
+
+        $query .= " ORDER BY cas DESC,meno";
+        $query .= " LIMIT ".($filter->page-1)*$filter->rowsPerPage.", $filter->rowsPerPage";
+
+        $results = $this->conn->query($query);
+        $objects = array();
+        while ($result = $results->fetch_object())
+        {
+            $object = new Statistika($result->cas, $result->banrek, $result->meno, $result->vcount, $result->ccount);
+            $objects[] = $object;
+        }
+        return $objects;
+    }
+
+    public function getKliky(Filter $filter, $countOnly = false)
     {
         $query = "SELECT kliky.*, reklamy.meno, bannery.path, u1.login AS zobra_login, u2.login AS inzer_login FROM kliky
             LEFT JOIN reklamy ON (kliky.reklama=reklamy.id)
             LEFT JOIN bannery ON (kliky.banner=bannery.id)
             LEFT JOIN users  AS u1 ON (kliky.zobra=u1.id)
             LEFT JOIN users AS u2 ON (kliky.inzer=u2.id)";
-        if($user->kategoria != "admin")  //ak sa nejedna o admina - kliky len pre daneho usera
-            $query .= " WHERE $user->kategoria=$user->id"; //$user->kategoria je zaroven nazov stlpca
-        else // admin - vsetky kliky
             $query .= " WHERE 1";
         //filter
         if($filter->date!='all')
@@ -300,7 +387,7 @@ class Database
             /* @var $result mysqli_result */
             $result = $this->conn->query($countQuery);
             return $result->fetch_object()->count;
-        }       
+        }
 
         $query .= " ORDER BY cas DESC";
         $query .= " LIMIT ".($filter->page-1)*$filter->rowsPerPage.", $filter->rowsPerPage";
@@ -309,8 +396,7 @@ class Database
         $objects = array();
         while ($result = $results->fetch_object())
         {
-            $object = new Klik($result->zobra, $result->reklama, $result->inzer, $result->banner);
-            $object->id = $result->id;
+            $object = new Klik($result->id, $result->zobra, $result->reklama, $result->inzer, $result->banner);
             $object->cas = $result->cas;
             $object->zobraLogin = $result->zobra_login;
             $object->reklamaName = $result->meno;
@@ -324,6 +410,12 @@ class Database
     public function saveKlik(Klik $klik)
     {
         $query = "INSERT INTO kliky VALUES(NULL, NOW(), $klik->zobraId, $klik->inzerId, $klik->reklamaId, $klik->bannerId)";
+        return $this->conn->query($query);
+    }
+
+    public function saveZobrazenie(Zobrazenie $zobr)
+    {
+        $query = "INSERT INTO zobrazenia VALUES(NULL, NOW(), $zobr->zobraId, $zobr->inzerId, $zobr->reklamaId, $zobr->bannerId)";
         return $this->conn->query($query);
     }
 }

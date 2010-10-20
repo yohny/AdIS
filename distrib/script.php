@@ -7,8 +7,6 @@ if(!isset ($_GET['rekl']))
 if (!preg_match('/[1-9][0-9]*/', $_GET['rekl']))
     exit("//invalid 'rekl' parameter (must be integer)");
 
-$rekl_id = $_GET['rekl'];
-
 require '../base/Database.php';
 $db = new Database();
 
@@ -25,6 +23,9 @@ if(!$banner)
 $web = $db->getWebById($banner->userId);
 if(!$web)
     exit("//could not retrieve web address for banner");
+
+$zobr = new Zobrazenie(null, $reklama->userId, $reklama->id, $banner->userId, $banner->id);
+$db->saveZobrazenie($zobr); //prida zobrazenie do DB
 
 echo "var zobr_id = $reklama->userId;\n";
 echo "var rekl_id = $reklama->id;\n";

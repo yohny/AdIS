@@ -4,7 +4,7 @@
  *
  * @author yohny
  */
-class Klik
+class Zobrazenie
 {
     public $id;
     public $cas;

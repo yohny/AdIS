@@ -6,14 +6,16 @@ Prihlásený: <span class="g" style="font-weight:bold;"><?php echo $_SESSION['us
 <fieldset>
 <legend>konto</legend>
 <a href="profil.php">Profil</a>
-<a href="statistika.php">Štatistika</a>
 <?php
 if($_SESSION['user']->kategoria=="inzer")
-  echo "<a href=\"bannery.php\">Bannery</a>";
+  echo "<a href=\"bannery.php\">Bannery</a>
+      <a href=\"statistika.php\">Štatistika</a>";
 elseif($_SESSION['user']->kategoria=="zobra")
-  echo "<a href=\"reklamy.php\">Reklamy</a>";
+  echo "<a href=\"reklamy.php\">Reklamy</a>
+      <a href=\"statistika.php\">Štatistika</a>";
 elseif($_SESSION['user']->kategoria=="admin")
-  echo "<a href=\"javascript: void(0);\"><span class=\"r\">ADMIN</span></a>";
+  echo "<a href=\"statistika_admin.php\">Štatistika</a>
+      <a href=\"javascript: void(0);\"><span class=\"r\">ADMIN</span></a>";
 ?>
 </fieldset>
 <form name="out_form" method="POST" action="actions/odhlas.php"><input type="submit" name="action" value="Odhlásiť"></form>

@@ -73,7 +73,7 @@ input, textarea, select, pre {
 }
 pre
 {
-    white-space: normal;
+    white-space: pre-wrap;
     padding: 10px;
 }
 input[type='text'],input[type='password']

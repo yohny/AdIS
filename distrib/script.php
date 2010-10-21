@@ -34,6 +34,7 @@ echo "var bann_id = $banner->id;\n";
 echo "var sirka = {$reklama->velkost->sirka};\n";
 echo "var vyska = {$reklama->velkost->vyska};\n";
 echo "var redir = \"$web\";\n";
+echo "var rand = Math.random();\n";//random number (prevents caching)
 
 //<a href=”http://www.bbc.co.uk” onclick=”x=new Image();x.src=’track.py’;setTimeout(’location=\’’+this.href+’\’’,100);return false;”>BBC</a>
 //or
@@ -46,5 +47,5 @@ echo "var redir = \"$web\";\n";
 // avsak na adis.stkpo.sk bude lebo vrati 'adis.stkpo.sk'
 ?>
 document.write("<a href=\"http://localhost/AdIS/distrib/klik.php?zobra="+zobr_id+"&rekl="+rekl_id+"&inzer="+inze_id+"&bann="+bann_id+"&redir="+redir+"\">");
-document.write("<img height=\""+vyska+"\" width=\""+sirka+"\" alt=\"banner\" src=\"http://localhost/AdIS/distrib/banner.php?id="+bann_id+"\">");
+document.write("<img height=\""+vyska+"\" width=\""+sirka+"\" alt=\"banner\" src=\"http://localhost/AdIS/distrib/banner.php?id="+bann_id+"&rand="+rand+"\">");
 document.write("</a>");

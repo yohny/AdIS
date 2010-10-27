@@ -7,7 +7,16 @@ session_start();
 require '../base/secure.php';
 $user = $_SESSION['user']; /* @var $user User */
 require '../base/Database.php';
-$db = new Database();
+try
+{
+    $db = new Database();
+}
+catch (Exception $ex)
+{
+    $_SESSION['flash'] = $ex->getMessage();
+    $referer = $_SERVER['HTTP_REFERER'];
+    header("Location: $referer");
+}
 
 
 if($user->kategoria=='inzer') //maze banner

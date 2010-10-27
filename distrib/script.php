@@ -8,7 +8,14 @@ if (!preg_match('/[1-9][0-9]*/', $_GET['rekl']))
     exit("//invalid 'rekl' parameter (must be integer)");
 
 require '../base/Database.php';
-$db = new Database();
+try
+{
+    $db = new Database();
+}
+catch (Exception $ex)
+{
+    exit("//".$ex->getMessage());
+}
 
 //zisti parametre pozadovanej reklamy
 $reklama = $db->getReklamaById($_GET['rekl']);

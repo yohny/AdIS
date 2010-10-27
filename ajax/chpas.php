@@ -8,7 +8,14 @@ require '../base/model/User.php'; //pred session_start
 session_start();
 require '../base/secure.php';
 require '../base/Database.php';
-$db = new Database();
+try
+{
+    $db = new Database();
+}
+catch (Exception $ex)
+{
+    exit(json_encode(array('success' => false,'message' => $ex->getMessage())));
+}
 
 /* @var $user User */
 $user = $_SESSION['user'];

@@ -13,7 +13,16 @@ elseif ($user['heslo']!=$user['heslo2'])
 else
 {
     require '../base/Database.php';
-    $db = new Database();
+    try
+    {
+        $db = new Database();
+    }
+    catch (Exception $ex)
+    {
+        $_SESSION['flash'] = $ex->getMessage();
+        $referer = $_SERVER['HTTP_REFERER'];
+        header("Location: $referer");
+    }
     if($db->isLoginUnique($user['login']))
     {
         if($db->saveUser($user['login'],$user['heslo'],$user['web'],$user['skupina']))

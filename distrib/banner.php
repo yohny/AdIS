@@ -5,7 +5,14 @@ if (!preg_match('/[1-9][0-9]*/', $_GET['id']))
     exit();
  
 require '../base/Database.php';
-$db = new Database();
+try
+{
+    $db = new Database();
+}
+catch (Exception $ex)
+{
+    exit();
+}
 $banner = $db->getBannerById($_GET['id']);
 if(!$banner)
     exit();

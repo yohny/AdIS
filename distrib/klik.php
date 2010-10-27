@@ -22,7 +22,14 @@ if(!isset($_COOKIE['voted']))
     setcookie("voted","voted", time()+10);  //platnost cookie 60 sek
 
     require '../base/Database.php';
-    $db = new Database();
+    try
+    {
+        $db = new Database();
+    }
+    catch (Exception $ex)
+    {
+        header("Location: $web");
+    }
     $db->saveKlik(new Klik(null, $zobr_id, $rekl_id, $inze_id, $bann_id));
 }
 header("Location: $web");

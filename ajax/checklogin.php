@@ -4,7 +4,14 @@ if(!isset ($_GET['login']))
 
 $login = $_GET['login'];
 require '../base/Database.php';
-$db = new Database();
+try
+{
+    $db = new Database();
+}
+catch (Exception $ex)
+{
+    exit($ex->getMessage());
+}
 
 if($db->isLoginUnique($login))
     echo "<span class='g'>Váš login je vporiadku.</span>";

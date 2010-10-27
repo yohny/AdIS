@@ -7,7 +7,16 @@ session_start();
 require '../base/secure.php';
 $user = $_SESSION['user']; /* @var $user User */
 require '../base/Database.php';
-$db = new Database();
+try
+{
+    $db = new Database();
+}
+catch (Exception $ex)
+{
+    $_SESSION['flash'] = $ex->getMessage();
+    $referer = $_SERVER['HTTP_REFERER'];
+    header("Location: $referer");
+}
 
 $userfile = $_FILES['userfile'];
 $kategorie = $_POST['kategorie'];
@@ -43,6 +52,8 @@ if ($info[0] != $velkost->sirka || $info[1] != $velkost->vyska) //[0]-sirka,[1]-
     $message .= "Nesprávne rozmery banneru! ($velkost->nazov je $velkost->sirka x $velkost->vyska)<br>";
 if($db->bannerExists($user->id, $velkost->id))
     $message .= "Už máte banner typu $velkost->nazov!<br>";
+
+//TODO bannerov aj viac jedneho typu - unikatne meno pomocou timestamp, osetrit vyber banneru do reklamy (eliminovat viacero kandidatov od jedneho usera)
 
 if($message=="") //banner je OK
 {

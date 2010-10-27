@@ -4,7 +4,19 @@ require 'base/left.php';
 require 'base/secure.php';
 
 require_once 'base/Database.php';
-$db = new Database();
+try
+{
+    $db = new Database();
+}
+catch(Exception $ex)
+{
+    exit("<h4>{$ex->getMessage()}</h4>
+        <hr>
+        </div>
+        </div>
+        </body>
+        </html>");
+}
 
 $bannery = $db->getBanneryByUser($_SESSION['user']);   //ziskanie bannerov pouzivatela
 $velkosti = $db->getAllFromVelkosti();      //ziskanie typov bannerov

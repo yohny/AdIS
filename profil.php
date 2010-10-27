@@ -4,7 +4,19 @@ require 'base/left.php';
 require 'base/secure.php';
 
 require 'base/Database.php';
-$db = new Database();
+try
+{
+    $db = new Database();
+}
+catch(Exception $ex)
+{
+    exit("<h4>{$ex->getMessage()}</h4>
+        <hr>
+        </div>
+        </div>
+        </body>
+        </html>");
+}
 
 /* @var $user User */
 $user = $_SESSION['user'];

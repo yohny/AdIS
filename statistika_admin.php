@@ -34,10 +34,24 @@ if(isset($_POST['rekl']))
     $filter->reklama = $_POST['rekl'];
 
 require_once 'base/Database.php';
-$db = new Database();
+try
+{
+    $db = new Database();
+}
+catch(Exception $ex)
+{
+    exit("<h4>{$ex->getMessage()}</h4>
+        <hr>
+        </div>
+        </div>
+        </body>
+        </html>");
+}
 
-$pocet = $db->getKliky( $filter, true);
-$kliky = $db->getKliky($filter);
+//TODO pridat dalsi parameter a form radio na vyber statistiky (kliky alebo zobrazenia)
+//yatial len kliky
+$pocet = $db->getStatisticsForAdmin($filter, true);
+$kliky = $db->getStatisticsForAdmin($filter);
 
 //udaje pre filter
 $datumy = array(

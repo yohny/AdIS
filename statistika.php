@@ -32,7 +32,19 @@ if(isset($_POST['rekl']))
 $user = $_SESSION['user'];
 
 require_once 'base/Database.php';
-$db = new Database();
+try
+{
+    $db = new Database();
+}
+catch(Exception $ex)
+{
+    exit("<h4>{$ex->getMessage()}</h4>
+        <hr>
+        </div>
+        </div>
+        </body>
+        </html>");
+}
 
 $counts = $db->getStatisticsByUser($user, $filter, true);
 $stats = $db->getStatisticsByUser($user, $filter);

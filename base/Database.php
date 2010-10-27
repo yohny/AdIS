@@ -16,7 +16,9 @@ class Database
 
     public function __construct()
     {
-        $this->conn = new mysqli('localhost','root','Neslira11','adis');
+        $this->conn = @new mysqli('localhost','root','Neslira11','adis');
+        if(mysqli_connect_errno ())
+            throw new Exception('Nepodarilo sa pripojiť na databázu!');
         //mysql_query("SET CHARACTER SET utf8");
         //mysql_query("SET NAMES 'utf8'")
         //bool mysql_set_charset( string $charset [, resource $link_identifier]) is the preferred way 
@@ -26,7 +28,7 @@ class Database
 
     public function __destruct()
     {
-        $this->conn->close();
+         $this->conn->close();
     }
 
     public function isLoginUnique($login)
@@ -115,7 +117,7 @@ class Database
         $query = "SELECT bannery.*, velkosti.sirka, velkosti.vyska, velkosti.nazov FROM bannery JOIN velkosti ON (bannery.velkost=velkosti.id)";
         if($user->kategoria!='admin')
                 $query.= " WHERE user=$user->id";
-        $query.= " ORDER BY velkosti.nazov";
+        $query.= " ORDER BY user,velkosti.nazov";
         /* @var $results mysqli_result */
         $results = $this->conn->query($query);
         $objects = array();
@@ -194,7 +196,7 @@ class Database
         $query = "SELECT reklamy.*, velkosti.sirka, velkosti.vyska, velkosti.nazov FROM reklamy JOIN velkosti ON (reklamy.velkost=velkosti.id)";
         if($user->kategoria!='admin')
                 $query.= " WHERE user=$user->id";
-        $query.= " ORDER BY velkosti.nazov";
+        $query.= " ORDER BY user,velkosti.nazov";
         /* @var $results mysqli_result */
         $results = $this->conn->query($query);
         $objects = array();
@@ -252,7 +254,7 @@ class Database
 
     public function  getStatisticsByUser(User $user, Filter $filter, $countOnly = false)
     {
-        if($user->kategoria == 'inzer') //urcenie sekundarneho GROUP BY
+        if($user->kategoria == 'inzer')
         {
             $groupBy = "banner";
             $join = "bannery";
@@ -340,7 +342,7 @@ class Database
         return $objects;
     }
 
-    public function getKliky(Filter $filter, $countOnly = false)
+    public function getStatisticsForAdmin(Filter $filter, $countOnly = false)
     {
         $query = "SELECT kliky.*, reklamy.meno, bannery.path, u1.login AS zobra_login, u2.login AS inzer_login FROM kliky
             LEFT JOIN reklamy ON (kliky.reklama=reklamy.id)

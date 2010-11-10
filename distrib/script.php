@@ -20,12 +20,12 @@ catch (Exception $ex)
 //zisti parametre pozadovanej reklamy
 $reklama = $db->getReklamaById($_GET['rekl']);
 if(!$reklama)
-    exit("//requested ad was deleted, get new code from AdIS");
+    exit("//requested ad was deleted, get new code from Ad-IS");
 
 //vytiahne nahodny banner pre danu reklamu
 $banner = $db->getBannerForReklama($reklama);
 if(!$banner)
-    exit("//could not retrieve banner from AdIS server");
+    exit("//could not retrieve banner from Ad-IS server");
 
 $web = $db->getWebById($banner->userId);
 if(!$web)
@@ -41,7 +41,6 @@ echo "var bann_id = $banner->id;\n";
 echo "var sirka = {$reklama->velkost->sirka};\n";
 echo "var vyska = {$reklama->velkost->vyska};\n";
 echo "var redir = \"$web\";\n";
-echo "var rand = Math.random();\n";//random number (prevents caching)
 
 //<a href=”http://www.bbc.co.uk” onclick=”x=new Image();x.src=’track.py’;setTimeout(’location=\’’+this.href+’\’’,100);return false;”>BBC</a>
 //or

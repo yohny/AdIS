@@ -43,8 +43,8 @@ if(isset($added))
 <div class="top_right corner"></div>
 <div class="bottom_left corner"></div>
 <div class="bottom_right corner"></div>
-<h1 class="above">AdIS</h1>
-<h1 class="below">AdIS</h1>
+<h1 class="above">Ad-IS</h1>
+<h1 class="below">Ad-IS</h1>
 <h2>IS pre správu internetovej reklamy</h2>
 </div>
 

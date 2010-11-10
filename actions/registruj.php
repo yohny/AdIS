@@ -22,6 +22,7 @@ else
         $_SESSION['flash'] = $ex->getMessage();
         $referer = $_SERVER['HTTP_REFERER'];
         header("Location: $referer");
+        exit();
     }
     if($db->isLoginUnique($user['login']))
     {

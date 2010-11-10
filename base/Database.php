@@ -286,7 +286,7 @@ class Database
             LEFT JOIN
             ($clicksSubQuery) AS clicks
             ON (cdate=vdate AND cbanrek=vbanrek)
-            JOIN $join ON ($join.id = vbanrek)";
+            LEFT JOIN $join ON ($join.id = vbanrek)";
 
         if($filter->date!='all')
         {
@@ -344,11 +344,16 @@ class Database
 
     public function getStatisticsForAdmin(Filter $filter, $countOnly = false)
     {
-        $query = "SELECT kliky.*, reklamy.meno, bannery.path, u1.login AS zobra_login, u2.login AS inzer_login FROM kliky
-            LEFT JOIN reklamy ON (kliky.reklama=reklamy.id)
-            LEFT JOIN bannery ON (kliky.banner=bannery.id)
-            LEFT JOIN users  AS u1 ON (kliky.zobra=u1.id)
-            LEFT JOIN users AS u2 ON (kliky.inzer=u2.id)";
+        if($filter->type=='click')
+            $table = 'kliky';
+        else //view
+            $table = 'zobrazenia';
+
+        $query = "SELECT $table.*, reklamy.meno, bannery.path, u1.login AS zobra_login, u2.login AS inzer_login FROM $table
+            LEFT JOIN reklamy ON ($table.reklama=reklamy.id)
+            LEFT JOIN bannery ON ($table.banner=bannery.id)
+            LEFT JOIN users  AS u1 ON ($table.zobra=u1.id)
+            LEFT JOIN users AS u2 ON ($table.inzer=u2.id)";
             $query .= " WHERE 1";
         //filter
         if($filter->date!='all')
@@ -385,7 +390,7 @@ class Database
 
         if($countOnly) //len pocet zaznamov
         {
-            $countQuery = preg_replace('/(select) (.*) (from kliky)/i', '$1 COUNT(*) AS count $3', $query);  //non-case-sensitive /i, 'from kliky' aby nenahradilo aj v subquery
+            $countQuery = preg_replace("/(select) (.*) (from $table)/i", "$1 COUNT(*) AS count $3", $query);  //non-case-sensitive /i, 'from kliky' aby nenahradilo aj v subquery
             /* @var $result mysqli_result */
             $result = $this->conn->query($countQuery);
             return $result->fetch_object()->count;

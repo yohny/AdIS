@@ -24,6 +24,7 @@ $kategorie = $db->getAllFromKategorie();    //ziskanie kategorii
 
 if(count($reklamy)>0)
   {$i=0;?>
+    <h4>Vaše reklamy:</h4>
     <table style="text-align:left;" class="data">
         <thead>
         <tr>
@@ -88,6 +89,7 @@ document.write(unescape("%3Cscript language=\"javascript\" type=\"text/javascrip
     echo "<h4>Nemáte ešte žiadnu reklamu.</h4>";
   ?>
 <hr>
+<h4>Pridanie novej reklamy:</h4>
 <center>
 <form name="add_form" action="actions/pridajReklamu.php" method="POST" enctype="multipart/form-data">
 <table cellspacing="5" style="text-align:left;">

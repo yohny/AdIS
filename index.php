@@ -15,7 +15,7 @@ Navrhovaný IS je postavený na technológii PHP v spolupráci s databázovým s
 <ul>
 <li>Apache 2.2.16</li>
 <li>PHP 5.3.3</li>
-<li>MySQL 5.1.41</li>
+<li>MySQL 5.1.49</li>
 </ul>
 
 

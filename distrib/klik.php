@@ -14,8 +14,6 @@ $inze_id = $_GET['inzer'];
 $bann_id = $_GET['bann'];
 $web = $_GET['redir'];
 //kvoli rychlejsiemu redirectu sa adresa posiela ako argument a netaha z DB
-//$result = mysql_query("SELECT web FROM users WHERE id=$inze_id") or die('Zlyhalo query!');
-//$row = mysql_fetch_array($result);
 
 if(!isset($_COOKIE['voted']))
 {

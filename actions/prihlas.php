@@ -14,6 +14,7 @@ catch (Exception $ex)
     $_SESSION['flash'] = $ex->getMessage();
     $referer = $_SERVER['HTTP_REFERER'];
     header("Location: $referer");
+    exit();
 }
 
 $user = $db->getUserByCredentials($login, $heslo);

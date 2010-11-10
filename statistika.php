@@ -49,6 +49,7 @@ catch(Exception $ex)
 $counts = $db->getStatisticsByUser($user, $filter, true);
 $stats = $db->getStatisticsByUser($user, $filter);
 
+
 //udaje pre filter
 $datumy = array(
     'today' =>  'dnes',
@@ -185,7 +186,7 @@ else
             <?php endif; if($user->kategoria=="zobra"): ?>
             <th>Reklama</th>
             <?php endif; ?>
-            <th>Zobr.</th>
+            <th>Zobrazenia</th>
             <th>Kliky</th>
             </tr>
         </thead>

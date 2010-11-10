@@ -24,6 +24,7 @@ $kategorie = $db->getAllFromKategorie();    //ziskanie kategorii
 
 if(count($bannery)>0)
   {$i=0;?>
+    <h4>Vaše bannery:</h4>
     <table style="text-align:left;" class="data">
         <thead>
         <tr>
@@ -82,6 +83,7 @@ if(count($bannery)>0)
     echo "<h4>Nemáte ešte žiaden banner.</h4>";
   ?>
 <hr>
+<h4>Pridanie nového banneru:</h4>
 <center>
 <form name="upl_form" action="actions/pridajBanner.php" method="POST" enctype="multipart/form-data">
 <table cellspacing="5" style="text-align:left;">

@@ -17,20 +17,22 @@ class Filter
     public $doDay;
     public $doMonth;
     public $doYear;
+    public $type;
 
     public function __construct($rowsPerPage)
     {
-        $this->date = date('Y-m-d', time());
+        $this->date = 'today';
         $this->page = 1;
         $this->banner = 'all';
         $this->reklama = 'all';
         $this->rowsPerPage = $rowsPerPage;
-        $odDay = 0;
-        $odMonth = 0;
-        $odYear = 0;
-        $doDay = 0;
-        $doMonth = 0;
-        $doYear = 0;
+        $this->odDay = 0;
+        $this->odMonth = 0;
+        $this->odYear = 0;
+        $this->doDay = 0;
+        $this->doMonth = 0;
+        $this->doYear = 0;
+        $this->type = 'click';
     }
 }
 ?>

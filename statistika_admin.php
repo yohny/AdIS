@@ -32,6 +32,8 @@ if(isset($_POST['bann']))
     $filter->banner = $_POST['bann'];
 if(isset($_POST['rekl']))
     $filter->reklama = $_POST['rekl'];
+if(isset($_POST['type']))
+    $filter->type = $_POST['type'];
 
 require_once 'base/Database.php';
 try
@@ -48,8 +50,6 @@ catch(Exception $ex)
         </html>");
 }
 
-//TODO pridat dalsi parameter a form radio na vyber statistiky (kliky alebo zobrazenia)
-//yatial len kliky
 $pocet = $db->getStatisticsForAdmin($filter, true);
 $kliky = $db->getStatisticsForAdmin($filter);
 
@@ -153,9 +153,15 @@ $pages = ceil($pocet/ROWS_PER_PAGE);
             </td>
         </tr>
         <tr>
+            <td colspan="2">
+                <input type="radio" name="type" value="click" id="click" checked="checked" /><label for="click">Kliky</label>
+                <input type="radio" name="type" value="view" id ="view" <?php if($filter->type=='view') echo 'checked="checked"'; ?>/><label for="view">Zobrazenia</label>
+            </td>
+        </tr>
+        <tr>
             <td></td>
             <td>
-                <input type="button" onclick="spracuj_filter()" value="Filtruj">
+                <input type="button" onclick="spracuj_filter()" value="Filtruj" />
             </td>
         </tr>
         <tr>

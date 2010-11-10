@@ -75,7 +75,7 @@ if(count($reklamy)>0)
 &lt;script language="javascript" type="text/javascript"&gt;
 var reklamaId = <?php echo $reklama->id; ?>;
 var rand = Math.random();
-document.write(unescape("%3Cscript language=\"javascript\" type=\"text/javascript\" src=\"http://localhost/AdIS/distrib/script.php?rekl="+reklamaId+"&rand="+rand+"\"%3E%3C/script%3E"));
+document.write(unescape("%3Cscript language=\"javascript\" type=\"text/javascript\" src=\"http://<?php echo $_SERVER["HTTP_HOST"]; ?>/distrib/script.php?rekl="+reklamaId+"&rand="+rand+"\"%3E%3C/script%3E"));
 &lt;/script&gt;
                 </pre>
             </td>

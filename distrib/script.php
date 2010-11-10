@@ -47,11 +47,7 @@ echo "var redir = \"$web\";\n";
 //<a href=”http://www.bbc.co.uk” onclick=”x=new XMLHttpRequest();x.open(’POST’,’track.py’,false);x.onreadystatechange=function() { if (x.readyState>1)location=this.href };x.send(’’);”>BBC</a>
 
 //<a href="..." ping="...">   - PING not supported by browsers (Firefox only?)
-
-// TODO skusit prerobit pomocou $_SERVER["HTTP_HOST"] aby bolo lahko portovatelne (aj reklamy.php)
-// nepouzitelne na podpriecinok localhostu lebo vrati len 'localhost'
-// avsak na adis.stkpo.sk bude lebo vrati 'adis.stkpo.sk'
 ?>
-document.write("<a href=\"http://localhost/AdIS/distrib/klik.php?zobra="+zobr_id+"&rekl="+rekl_id+"&inzer="+inze_id+"&bann="+bann_id+"&redir="+redir+"\">");
-document.write("<img height=\""+vyska+"\" width=\""+sirka+"\" alt=\"banner\" src=\"http://localhost/AdIS/distrib/banner.php?id="+bann_id+"&rand="+rand+"\">");
+document.write("<a href=\"http://<?php echo $_SERVER["HTTP_HOST"]; ?>/distrib/klik.php?zobra="+zobr_id+"&rekl="+rekl_id+"&inzer="+inze_id+"&bann="+bann_id+"&redir="+redir+"\">");
+document.write("<img height=\""+vyska+"\" width=\""+sirka+"\" alt=\"banner\" src=\"http://<?php echo $_SERVER["HTTP_HOST"]; ?>/distrib/banner.php?id="+bann_id+"&rand="+rand+"\">");
 document.write("</a>");

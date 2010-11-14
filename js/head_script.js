@@ -295,6 +295,7 @@ function show(co,a)
     {
         tr.style.display="table-row";
         a.innerHTML = "skry";
+        
     }
     else
     {

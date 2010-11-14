@@ -58,7 +58,7 @@ if(count($reklamy)>0)
                 <?php echo implode(', ', $reklama->getKategorie($db->conn)); ?>
             </td>
             <td>
-                <a href="javascript: show2('tr<?php echo $reklama->id; ?>')"><?php echo $reklama; ?></a>
+                <a onclick="show2('tr<?php echo $reklama->id; ?>')"><?php echo $reklama; ?></a>
             </td>
             <td>
                 <form method="POST" action="actions/zmaz.php">
@@ -70,12 +70,11 @@ if(count($reklamy)>0)
         <tr <?php if($i%2==0) echo "class=\"dark\"";?> style="display:none;" id="tr<?php echo $reklama->id; ?>">
             <td colspan="5">
                 <p>Nasledujúci HTML kód vložte do vašej stránky (na miesto kde chcete mať reklamu):</p>
-                <!-- TODO skusit prerobit pomocou napr $_SERVER["HTTP_HOST"] aby bolo lahko portovatelne (aj script.php) -->
                 <pre>
 &lt;script language="javascript" type="text/javascript"&gt;
 var reklamaId = <?php echo $reklama->id; ?>;
 var rand = Math.random();
-document.write(unescape("%3Cscript language=\"javascript\" type=\"text/javascript\" src=\"http://<?php echo $_SERVER["HTTP_HOST"]; ?>/distrib/script.php?rekl="+reklamaId+"&rand="+rand+"\"%3E%3C/script%3E"));
+document.write(unescape("%3Cscript language=\"javascript\" type=\"text/javascript\" src=\"http://<?php echo $_SERVER["HTTP_HOST"]; ?>/distrib/script.php?rekl="+reklamaId+"&amp;rand="+rand+"\"%3E%3C/script%3E"));
 &lt;/script&gt;
                 </pre>
             </td>

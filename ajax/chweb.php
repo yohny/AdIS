@@ -1,5 +1,5 @@
 <?php
-header('Content-type: application/json');
+header('Content-type: application/json; charset=UTF-8');
 
 if(!isset ($_POST['web']))
     exit('Nekompletne data');

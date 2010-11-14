@@ -58,7 +58,7 @@ if(count($bannery)>0)
                 <?php echo implode(', ', $banner->getKategorie($db->conn)); ?>
             </td>
             <td>
-                <a href="javascript: show2('tr<?php echo $banner->id; ?>')"><?php echo substr($banner,strlen($_SESSION['user'].$banner->velkost->sirka.$banner->velkost->vyska)+3); ?></a>
+                <a onclick="show2('tr<?php echo $banner->id; ?>')"><?php echo substr($banner,strlen($_SESSION['user'].$banner->velkost->sirka.$banner->velkost->vyska)+3); ?></a>
             </td>
             <td>
                 <form method="POST" action="actions/zmaz.php">

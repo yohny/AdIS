@@ -6,10 +6,26 @@
  */
 class Reklama
 {
+    /**
+     * primarny kluc
+     * @var int
+     */
     public $id;
+    /**
+     * FK na pouzivatela vlastniaceho reklamu
+     * @var int
+     */
     public $userId;
+    /**
+     * objekt velkosti reklamy
+     * @var Velkost
+     */
     public $velkost;
-    public $name; //meno in table
+    /**
+     * meno reklamy (stlpec v tabulke sa vola 'meno')
+     * @var string
+     */
+    public $name;
 
     public function __construct($id, $userId, Velkost $velkost, $name)
     {
@@ -32,6 +48,28 @@ class Reklama
             $objects[] = $object;
         }
         return $objects;
+    }
+
+    public function save($kategorie, Database $db)
+    {
+        $query = "INSERT INTO reklamy VALUES(NULL, $this->userId, {$this->velkost->id}, '$this->name')";
+        if(!$db->conn->query($query))
+            return false;
+        $this->id = $db->conn->insert_id;
+        $db->conn->autocommit(false);
+        foreach ($kategorie as $kat)
+            $db->conn->query("INSERT INTO kategoria_reklama VALUES (NULL, $kat, $this->id)");
+        $db->conn->autocommit(true);
+        return $db->conn->commit();
+    }
+
+    public function delete(Database $db)
+    {
+        $db->conn->autocommit(false);
+        $db->conn->query("DELETE FROM reklamy WHERE id=$this->id");
+        $db->conn->query("DELETE FROM kategoria_reklama WHERE reklama=$this->id");
+        $db->conn->autocommit(true);
+        return $db->conn->commit();
     }
 
     public function __toString()

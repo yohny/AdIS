@@ -51,7 +51,7 @@ catch(Exception $ex)
 }
 
 $pocet = $db->getStatisticsForAdmin($filter, true);
-$kliky = $db->getStatisticsForAdmin($filter);
+$events = $db->getStatisticsForAdmin($filter);
 
 //udaje pre filter
 $datumy = array(
@@ -173,7 +173,7 @@ $pages = ceil($pocet/ROWS_PER_PAGE);
 <hr>
 <h4>Počet: <span class="g" style="font-size:16px;"><?php echo $pocet; ?></span></h4>
 <?php
-if(count($kliky)==0)
+if(count($events)==0)
     echo "<h4>Žiadne dáta!</h4>";
 else
 { $i=0; include 'base/pager.php'; ?>
@@ -189,25 +189,25 @@ else
             </tr>
         </thead>
         <tbody>
-        <?php foreach($kliky as $klik): $i++; ?>
+        <?php foreach($events as $event): $i++; ?>
             <tr <?php if($i%2==0) echo "class=\"dark\""; ?>>
                 <td>
                     <?php echo ($filter->page-1)*ROWS_PER_PAGE+$i; ?>.
                 </td>
                 <td>
-                    <?php echo $klik; ?>
+                    <?php echo $event; ?>
                 </td>
                 <td>
-                    <?php echo ($klik->zobraLogin==''?"#zmazaný":$klik->zobraLogin)." ($klik->zobraId)"; ?>
+                    <?php echo ($event->zobraLogin==''?"#zmazaný":$event->zobraLogin)." ($event->zobraId)"; ?>
                 </td>
                 <td>
-                    <?php echo ($klik->reklamaName==''?"#zmazaná":$klik->reklamaName)." ($klik->reklamaId)"; ?>
+                    <?php echo ($event->reklamaName==''?"#zmazaná":$event->reklamaName)." ($event->reklamaId)"; ?>
                 </td>
                 <td>
-                    <?php echo ($klik->inzerLogin==''?"#zmazaný":$klik->inzerLogin)." ($klik->inzerId)"; ?>
+                    <?php echo ($event->inzerLogin==''?"#zmazaný":$event->inzerLogin)." ($event->inzerId)"; ?>
                 </td>
                 <td>
-                    <?php echo ($klik->bannerFilename==''?"#zmazaný":$klik->bannerFilename)." ($klik->bannerId)"; ?>
+                    <?php echo ($event->bannerFilename==''?"#zmazaný":$event->bannerFilename)." ($event->bannerId)"; ?>
                 </td>
             </tr>
         <?php endforeach; ?>

@@ -23,12 +23,14 @@ if(!isset($_COOKIE['voted']))
     try
     {
         $db = new Database();
+        $klik = new Klik(null, $zobr_id, $rekl_id, $inze_id, $bann_id);
+        $klik->save($db);
     }
     catch (Exception $ex)
     {
         header("Location: $web");
+        exit();
     }
-    $db->saveKlik(new Klik(null, $zobr_id, $rekl_id, $inze_id, $bann_id));
 }
 header("Location: $web");
 ?>

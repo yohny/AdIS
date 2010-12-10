@@ -11,9 +11,25 @@
  */
 class Velkost
 {
+    /**
+     * primarny kluc
+     * @var int
+     */
     public $id;
+    /**
+     * sirka reklamy/banneru
+     * @var int
+     */
     public $sirka;
+    /**
+     * vyska reklamy/banneru
+     * @var int
+     */
     public $vyska;
+    /**
+     * nazov typu reklamy/banneru
+     * @var string
+     */
     public $nazov;
 
     public function __construct($id, $sirka, $vyska, $nazov)

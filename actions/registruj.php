@@ -26,7 +26,7 @@ else
     }
     if($db->isLoginUnique($user['login']))
     {
-        if($db->saveUser($user['login'],$user['heslo'],$user['web'],$user['skupina']))
+        if($db->addUser($user['login'],$user['heslo'],$user['web'],$user['skupina']))
             $message = "Registrácia úspešná.";
         else
             $message = "Registrácia neúspešná.";

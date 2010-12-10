@@ -13,7 +13,7 @@ catch (Exception $ex)
 {
     exit();
 }
-$banner = $db->getBannerById($_GET['id']);
+$banner = $db->getBannerByPK($_GET['id']);
 if(!$banner)
     exit();
 

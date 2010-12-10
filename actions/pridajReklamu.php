@@ -23,19 +23,19 @@ $meno = $_POST['meno'];
 $kategorie = $_POST['kategorie'];
 $message = "";
 
-$velkost = $db->getVelkostById($_POST['velkost']);
+$velkost = $db->getVelkostByPK($_POST['velkost']);
 if(!$velkost)
     exit ("Nepodarilo sa ziskat velkost");
 
 if(strlen($meno)>50)
     $message .= "Príliš dlhý názov! (max. 50 znakov)<br>";
-if($db->reklamaExists($user->id, $velkost->id))
+if($user->hasReklamaOfSize($velkost, $db))
     $message .= "Už máte reklamu typu $velkost->nazov!<br>";
 
 if($message=="")
 {
     $reklama = new Reklama(null, $user->id, $velkost, $meno);
-    if($db->saveReklama($reklama, $kategorie))
+    if($reklama->save($kategorie, $db))
         $message = "Reklama bola úspešne uložená.";
     else
         $message = "Nepodarilo sa uložiť reklamu.";

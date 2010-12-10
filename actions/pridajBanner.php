@@ -23,7 +23,7 @@ $userfile = $_FILES['userfile'];
 $kategorie = $_POST['kategorie'];
 $message = "";
 
-$velkost = $db->getVelkostById($_POST['velkost']);
+$velkost = $db->getVelkostByPK($_POST['velkost']);
 if(!$velkost)
     exit ("Nepodarilo sa ziskat velkost");
 
@@ -51,17 +51,17 @@ if ($info[2] != 1 && $info[2] != 2 && $info[2] != 3) //1=gif,2=jpg,3=png
     $message .= "Nepodporovaný súbor! (iba .gif, .jpg, .png)<br>";
 if ($info[0] != $velkost->sirka || $info[1] != $velkost->vyska) //[0]-sirka,[1]-vyska
     $message .= "Nesprávne rozmery banneru! ($velkost->nazov je $velkost->sirka x $velkost->vyska)<br>";
-if($db->bannerExists($user->id, $velkost->id))
+if($user->hasBannerOfSize($velkost, $db))
     $message .= "Už máte banner typu $velkost->nazov!<br>";
 
-//TODO bannerov aj viac jedneho typu - unikatne meno pomocou timestamp, osetrit vyber banneru do reklamy (eliminovat viacero kandidatov od jedneho usera)
+//TODO bannerov aj viac jedneho typu? ma zmysel? - unikatne filemeno potom pomocou timestamp, osetrit potom vyber banneru do reklamy (eliminovat viacero kandidatov od jedneho usera)
 
 if($message=="") //banner je OK
 {
     if (move_uploaded_file($userfile['tmp_name'], '../upload/'.$uploadname))
     {
         $banner = new Banner(null, $user->id, $velkost, $uploadname);
-        if($db->saveBanner($banner, $kategorie))
+        if($banner->save($kategorie, $db))
             $message = "Banner bol úspešne uložený.";
         else
             $message = "Nepodarilo sa uložiť banner.";

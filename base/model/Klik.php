@@ -4,31 +4,12 @@
  *
  * @author yohny
  */
-class Klik
+class Klik extends Event
 {
-    public $id;
-    public $cas;
-    public $zobraId;
-    public $zobraLogin;
-    public $reklamaId;
-    public $reklamaName;
-    public $inzerId;
-    public $inzerLogin;
-    public $bannerId;
-    public $bannerFilename;
-
-    public function __construct($id, $zobraId, $reklamaId, $inzerId, $bannerId)
+    public function save(Database $db)
     {
-        $this->id = $id;
-        $this->zobraId = $zobraId;
-        $this->reklamaId = $reklamaId;
-        $this->inzerId = $inzerId;
-        $this->bannerId = $bannerId;
-    }
-
-    public function __toString()
-    {
-        return date_format(new DateTime($this->cas), 'd.m.Y H:i:s');
+        $query = "INSERT INTO kliky VALUES(NULL, NOW(), $this->zobraId, $this->inzerId, $this->reklamaId, $this->bannerId)";
+        return $db->conn->query($query);
     }
 }
 ?>

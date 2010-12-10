@@ -22,12 +22,12 @@ catch (Exception $ex)
 
 if($user->kategoria=='inzer') //maze banner
 {
-    $banner = $db->getBannerById($_POST['zmaz']);
+    $banner = $db->getBannerByPK($_POST['zmaz']);
     if(!$banner || $banner->userId!=$user->id)
         $message = 'Nemôžete zmazať tento banner!';
     else
     {
-        if($db->deleteBanner($banner))
+        if($banner->delete($db))
             $message = "Banner '$banner->filename' zmazaný!";
         else
             $message = "Banner '$banner->filename' sa nepodarilo zmazať!";
@@ -35,12 +35,12 @@ if($user->kategoria=='inzer') //maze banner
 }
 if($user->kategoria=='zobra') //maze reklamu
 {
-    $reklama = $db->getReklamaById($_POST['zmaz']);
+    $reklama = $db->getReklamaByPK($_POST['zmaz']);
     if(!$reklama || $reklama->userId!=$user->id)
         $message = 'Nemôžete zmazať túto reklamu!';
     else
     {
-        if($db->deleteReklama($reklama))
+        if($reklama->delete($db))
             $message = "Relama '$reklama->name' zmazaná!";
         else
             $message = "Reklamu '$reklama->name' sa nepodarilo zmazať!";

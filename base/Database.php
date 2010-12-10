@@ -11,13 +11,16 @@ function  __autoload($classname)
  */
 class Database
 {
-    /* @var $conn mysqli */
+    /**
+     * actual mysqli connection object
+     * @var mysqli
+     */
     public $conn;
 
     public function __construct()
     {
         $this->conn = @new mysqli('localhost','root','Neslira11','adis');
-        if(mysqli_connect_errno ())
+        if(mysqli_connect_errno())
             throw new Exception('Nepodarilo sa pripojiť na databázu!');
         //mysql_query("SET CHARACTER SET utf8");
         //mysql_query("SET NAMES 'utf8'")
@@ -42,7 +45,7 @@ class Database
           return true;
     }
 
-    public function saveUser($login, $password, $web, $group)
+    public function addUser($login, $password, $web, $group)
     {
         $query = "INSERT INTO users VALUES(NULL, '$login', MD5('$heslo'), '$web' , '$kategoria')";
         return $this->conn->query($query);
@@ -62,7 +65,7 @@ class Database
             return null;
     }
 
-    public function getWebById($id)
+    public function getWebByUserId($id)
     {
         $query = "SELECT web FROM users WHERE id=$id";
         /* @var $result mysqli_result */
@@ -87,7 +90,7 @@ class Database
         return $objects;
     }
 
-    public function getVelkostById($id)
+    public function getVelkostByPK($id)
     {
         $query = "SELECT * FROM velkosti WHERE id=$id";
         /* @var $result mysqli_result */
@@ -129,7 +132,7 @@ class Database
         return $objects;
     }
 
-    public function getBannerById($id)
+    public function getBannerByPK($id)
     {
         $query = "SELECT bannery.*, velkosti.sirka, velkosti.vyska, velkosti.nazov FROM bannery JOIN velkosti ON (bannery.velkost=velkosti.id) WHERE bannery.id=$id";
         /* @var $result mysqli_result */
@@ -157,40 +160,6 @@ class Database
         return new Banner($object->id, $object->user, new Velkost($object->velkost, $object->sirka, $object->vyska, $object->nazov), $object->path);
     }
 
-    public function deleteBanner(Banner $banner)
-    {
-        unlink('../upload/'.$banner->filename);
-        $this->conn->autocommit(false);
-        $this->conn->query("DELETE FROM bannery WHERE id=$banner->id");
-        $this->conn->query("DELETE FROM kategoria_banner WHERE banner=$banner->id");
-        $this->conn->autocommit(true);
-        return $this->conn->commit();
-    }
-
-    public function bannerExists($userId, $velkostId)
-    {
-        $query = "SELECT COUNT(*) AS count FROM bannery WHERE user=$userId AND velkost=$velkostId";
-        /* @var $result mysqli_result */
-        $result = $this->conn->query($query);
-        if($result->fetch_object()->count>0)
-          return true;
-        else
-          return false;
-    }
-
-    public function saveBanner(Banner $banner, $kategorie)
-    {
-        $query = "INSERT INTO bannery VALUES(NULL, $banner->userId, {$banner->velkost->id}, '$banner->filename')";
-        if(!$this->conn->query($query))
-            return false;
-        $banner->id = $this->conn->insert_id;
-        $this->conn->autocommit(false);
-        foreach ($kategorie as $kat)
-            $this->conn->query("INSERT INTO kategoria_banner VALUES (NULL, $kat, $banner->id)");
-        $this->conn->autocommit(true);
-        return $this->conn->commit();
-    }
-
     public function getReklamyByUser(User $user)
     {
         $query = "SELECT reklamy.*, velkosti.sirka, velkosti.vyska, velkosti.nazov FROM reklamy JOIN velkosti ON (reklamy.velkost=velkosti.id)";
@@ -208,7 +177,7 @@ class Database
         return $objects;
     }
 
-    public function getReklamaById($id)
+    public function getReklamaByPK($id)
     {
         $query = "SELECT reklamy.*, velkosti.sirka, velkosti.vyska, velkosti.nazov FROM reklamy JOIN velkosti ON (reklamy.velkost=velkosti.id) WHERE reklamy.id=$id";
         /* @var $result mysqli_result */
@@ -219,40 +188,7 @@ class Database
         return new Reklama($object->id, $object->user, new Velkost($object->velkost, $object->sirka, $object->vyska, $object->nazov), $object->meno);
     }
 
-    public function deleteReklama(Reklama $reklama)
-    {
-        $this->conn->autocommit(false);
-        $this->conn->query("DELETE FROM reklamy WHERE id=$reklama->id");
-        $this->conn->query("DELETE FROM kategoria_reklama WHERE reklama=$reklama->id");
-        $this->conn->autocommit(true);
-        return $this->conn->commit();
-    }
-
-    public function reklamaExists($userId, $velkostId)
-    {
-        $query = "SELECT COUNT(*) AS count FROM reklamy WHERE user=$userId AND velkost=$velkostId";
-        /* @var $result mysqli_result */
-        $result = $this->conn->query($query);
-        if($result->fetch_object()->count>0)
-          return true;
-        else
-          return false;
-    }
-
-    public function saveReklama(Reklama $reklama, $kategorie)
-    {
-        $query = "INSERT INTO reklamy VALUES(NULL, $reklama->userId, {$reklama->velkost->id}, '$reklama->name')";
-        if(!$this->conn->query($query))
-            return false;
-        $reklama->id = $this->conn->insert_id;
-        $this->conn->autocommit(false);
-        foreach ($kategorie as $kat)
-            $this->conn->query("INSERT INTO kategoria_reklama VALUES (NULL, $kat, $reklama->id)");
-        $this->conn->autocommit(true);
-        return $this->conn->commit();
-    }
-
-    public function  getStatisticsByUser(User $user, Filter $filter, $countOnly = false)
+    public function  getStatisticsForUser(User $user, Filter $filter, $countOnly = false)
     {
         if($user->kategoria == 'inzer')
         {
@@ -403,7 +339,7 @@ class Database
         $objects = array();
         while ($result = $results->fetch_object())
         {
-            $object = new Klik($result->id, $result->zobra, $result->reklama, $result->inzer, $result->banner);
+            $object = new Event($result->id, $result->zobra, $result->reklama, $result->inzer, $result->banner);
             $object->cas = $result->cas;
             $object->zobraLogin = $result->zobra_login;
             $object->reklamaName = $result->meno;
@@ -414,16 +350,5 @@ class Database
         return $objects;
     }
 
-    public function saveKlik(Klik $klik)
-    {
-        $query = "INSERT INTO kliky VALUES(NULL, NOW(), $klik->zobraId, $klik->inzerId, $klik->reklamaId, $klik->bannerId)";
-        return $this->conn->query($query);
-    }
-
-    public function saveZobrazenie(Zobrazenie $zobr)
-    {
-        $query = "INSERT INTO zobrazenia VALUES(NULL, NOW(), $zobr->zobraId, $zobr->inzerId, $zobr->reklamaId, $zobr->bannerId)";
-        return $this->conn->query($query);
-    }
 }
 ?>

@@ -15,8 +15,8 @@ body {
     margin: 5px;
 }
 #container { /*celkova sirka stranky 1000px -> 1000-2x2border-2x20padding = 956 */
-             width: 956px;
-             margin: 20px auto;
+    width: 956px;
+    margin: 20px auto;
 }
 .r {
     color: red;
@@ -31,12 +31,12 @@ img {
     cursor: pointer;
 }
 h3 {       /* vsetky nazvy divov  */
-           margin: 0 0 15px;
-           text-decoration: none;
-           text-align: right;
-           border-bottom-width: 2px;
-           border-bottom-style: solid;
-           font-size: 14px;
+    margin: 0 0 15px;
+    text-decoration: none;
+    text-align: right;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    font-size: 14px;
 }
 ul {
     list-style-type: square;
@@ -67,6 +67,7 @@ ul {
     color: green;
 }
 input, textarea, select, pre {
+    font-size: 12px; /* firefox a ... ignoruje font-size pre input nastaveny v predchodcovi (body) */
     border-width: 1px;
     border-style: solid;
     background-color: white;
@@ -100,8 +101,6 @@ input[type='text'],input[type='password']
 #top h2 {
     padding: 40px 20px 20px;
     text-align: right;
-    /*opacity: 0.5;               /* correct W3C DOM */
-    /*filter: alpha(opacity=50);  /* IE only */
     font-size: 25px;
     margin: auto -20px;
 }
@@ -114,6 +113,7 @@ input[type='text'],input[type='password']
 #menu a {
     text-decoration: none;
     display: block;
+    height: 15px;
     padding: 1px 10px;
     margin: 1px 0px;
     color: white;

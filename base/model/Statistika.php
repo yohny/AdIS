@@ -1,6 +1,7 @@
 <?php
 /**
- * repreyentuje jeden statistickz zaznam
+ * reprezentuje jeden statisticky zaznam zobrazovany beznemu pouzivatelovi
+ * ! nie 'admin', tym sa zobrazuju kliky resp zobrazenia !
  *
  * @author yohny
  */

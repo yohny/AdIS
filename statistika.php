@@ -46,8 +46,8 @@ catch(Exception $ex)
         </html>");
 }
 
-$counts = $db->getStatisticsByUser($user, $filter, true);
-$stats = $db->getStatisticsByUser($user, $filter);
+$counts = $db->getStatisticsForUser($user, $filter, true);
+$stats = $db->getStatisticsForUser($user, $filter);
 
 
 //udaje pre filter

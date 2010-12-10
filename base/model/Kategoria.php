@@ -11,7 +11,15 @@
  */
 class Kategoria
 {
+    /**
+     * primarny kluc
+     * @var int
+     */
     public $id;
+    /**
+     * nazov kategorie reklam/bannerov
+     * @var string
+     */
     public $nazov;
 
     public function __construct($id, $nazov)

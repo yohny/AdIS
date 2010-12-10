@@ -18,7 +18,7 @@ catch (Exception $ex)
 }
 
 //zisti parametre pozadovanej reklamy
-$reklama = $db->getReklamaById($_GET['rekl']);
+$reklama = $db->getReklamaByPK($_GET['rekl']);
 if(!$reklama)
     exit("//requested ad was deleted, get new code from Ad-IS");
 
@@ -27,12 +27,12 @@ $banner = $db->getBannerForReklama($reklama);
 if(!$banner)
     exit("//could not retrieve banner from Ad-IS server");
 
-$web = $db->getWebById($banner->userId);
+$web = $db->getWebByUserId($banner->userId);
 if(!$web)
     exit("//could not retrieve web address for banner");
 
 $zobr = new Zobrazenie(null, $reklama->userId, $reklama->id, $banner->userId, $banner->id);
-$db->saveZobrazenie($zobr); //prida zobrazenie do DB
+$zobr->save($db); //prida zobrazenie do DB
 
 echo "var zobr_id = $reklama->userId;\n";
 echo "var rekl_id = $reklama->id;\n";

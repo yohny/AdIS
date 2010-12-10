@@ -7,10 +7,22 @@
  */
 class User
 {
+    /**
+     * primarny kluc
+     * @var int
+     */
     public $id;
+    /**
+     * jedinecne prihlasovacie meno
+     * @var string
+     */
     public $login;
     //public $password;
     //public $web;
+    /**
+     * kategoria pouzivatela: 'zobra' alebo 'inzer'
+     * @var string
+     */
     public $kategoria;
 
     public function __construct($id, $login, $kategoria)
@@ -51,6 +63,28 @@ class User
         $query = "UPDATE users SET web='$web' WHERE id=$this->id";
         $conn->query($query);
         return true;
+    }
+
+    public function hasReklamaOfSize(Velkost $velkost, Database $db)
+    {
+        $query = "SELECT COUNT(*) AS count FROM reklamy WHERE user=$this->id AND velkost=$velkost->id";
+        /* @var $result mysqli_result */
+        $result = $db->conn->query($query);
+        if($result->fetch_object()->count>0)
+          return true;
+        else
+          return false;
+    }
+
+    public function hasBannerOfSize(Velkost $velkost, Database $db)
+    {
+        $query = "SELECT COUNT(*) AS count FROM bannery WHERE user=$this->id AND velkost=$velkost->id";
+        /* @var $result mysqli_result */
+        $result = $db->conn->query($query);
+        if($result->fetch_object()->count>0)
+          return true;
+        else
+          return false;
     }
 
     public function __toString()

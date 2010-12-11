@@ -34,13 +34,13 @@ if(!$web)
 $zobr = new Zobrazenie(null, $reklama->userId, $reklama->id, $banner->userId, $banner->id);
 $zobr->save($db); //prida zobrazenie do DB
 
-echo "var zobr_id = $reklama->userId;\n";
-echo "var rekl_id = $reklama->id;\n";
-echo "var inze_id = $banner->userId;\n";
-echo "var bann_id = $banner->id;\n";
-echo "var sirka = {$reklama->velkost->sirka};\n";
-echo "var vyska = {$reklama->velkost->vyska};\n";
-echo "var redir = \"$web\";\n";
+echo "var adisZobrId = $reklama->userId;\n";
+echo "var adisReklId = $reklama->id;\n";
+echo "var adisInzeId = $banner->userId;\n";
+echo "var adisBannId = $banner->id;\n";
+echo "var adisSirka = {$reklama->velkost->sirka};\n";
+echo "var adisVyska = {$reklama->velkost->vyska};\n";
+echo "var adisRedir = \"$web\";\n";
 
 //<a href=”http://www.bbc.co.uk” onclick=”x=new Image();x.src=’track.py’;setTimeout(’location=\’’+this.href+’\’’,100);return false;”>BBC</a>
 //or
@@ -48,6 +48,6 @@ echo "var redir = \"$web\";\n";
 
 //<a href="..." ping="...">   - PING not supported by browsers (Firefox only?)
 ?>
-document.write("<a href=\"http://<?php echo $_SERVER["HTTP_HOST"]; ?>/distrib/klik.php?zobra="+zobr_id+"&rekl="+rekl_id+"&inzer="+inze_id+"&bann="+bann_id+"&redir="+redir+"\">");
-document.write("<img height=\""+vyska+"\" width=\""+sirka+"\" alt=\"banner\" src=\"http://<?php echo $_SERVER["HTTP_HOST"]; ?>/distrib/banner.php?id="+bann_id+"&rand="+rand+"\">");
+document.write("<a href=\"http://<?php echo $_SERVER["HTTP_HOST"]; ?>/distrib/klik.php?zobra="+adisZobrId+"&rekl="+adisReklId+"&inzer="+adisInzeId+"&bann="+adisBannId+"&redir="+adisRedir+"\">");
+document.write("<img height=\""+adisVyska+"\" width=\""+adisSirka+"\" alt=\"banner\" src=\"http://<?php echo $_SERVER["HTTP_HOST"]; ?>/distrib/banner.php?id="+adisBannId+"&rand="+adisRand+"\">");
 document.write("</a>");

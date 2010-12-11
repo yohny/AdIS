@@ -1,7 +1,8 @@
 <?php
-function  __autoload($classname)
+
+function __autoload($classname)
 {
-    require_once 'model/'.$classname.'.php';
+    require_once 'model/' . $classname . '.php';
 }
 
 /**
@@ -11,6 +12,7 @@ function  __autoload($classname)
  */
 class Database
 {
+
     /**
      * actual mysqli connection object
      * @var mysqli
@@ -19,8 +21,8 @@ class Database
 
     public function __construct()
     {
-        $this->conn = @new mysqli('localhost','root','Neslira11','adis');
-        if(mysqli_connect_errno())
+        $this->conn = @new mysqli('localhost', 'root', 'Neslira11', 'adis');
+        if (mysqli_connect_errno ())
             throw new Exception('Nepodarilo sa pripojiť na databázu!');
         //mysql_query("SET CHARACTER SET utf8");
         //mysql_query("SET NAMES 'utf8'")
@@ -31,7 +33,7 @@ class Database
 
     public function __destruct()
     {
-         $this->conn->close();
+        $this->conn->close();
     }
 
     public function isLoginUnique($login)
@@ -39,10 +41,10 @@ class Database
         $query = "SELECT COUNT(*) AS count FROM users WHERE login='$login'";
         /* @var $result mysqli_result */
         $result = $this->conn->query($query);
-        if($result->fetch_object()->count>0)
-          return false;
+        if ($result->fetch_object()->count > 0)
+            return false;
         else
-          return true;
+            return true;
     }
 
     public function addUser($login, $password, $web, $group)
@@ -70,10 +72,10 @@ class Database
         $query = "SELECT web FROM users WHERE id=$id";
         /* @var $result mysqli_result */
         $result = $this->conn->query($query);
-        if(!$result)
-          return false;
+        if (!$result)
+            return false;
         else
-          return $result->fetch_object()->web;
+            return $result->fetch_object()->web;
     }
 
     public function getAllFromVelkosti()
@@ -95,7 +97,7 @@ class Database
         $query = "SELECT * FROM velkosti WHERE id=$id";
         /* @var $result mysqli_result */
         $result = $this->conn->query($query);
-        if(!$result || $result->num_rows!=1)
+        if (!$result || $result->num_rows != 1)
             return null;
         $object = $result->fetch_object();
         return new Velkost($object->id, $object->sirka, $object->vyska, $object->nazov);
@@ -118,8 +120,8 @@ class Database
     public function getBanneryByUser(User $user)
     {
         $query = "SELECT bannery.*, velkosti.sirka, velkosti.vyska, velkosti.nazov FROM bannery JOIN velkosti ON (bannery.velkost=velkosti.id)";
-        if($user->kategoria!='admin')
-                $query.= " WHERE user=$user->id";
+        if ($user->kategoria != 'admin')
+            $query.= " WHERE user=$user->id";
         $query.= " ORDER BY user,velkosti.nazov";
         /* @var $results mysqli_result */
         $results = $this->conn->query($query);
@@ -137,7 +139,7 @@ class Database
         $query = "SELECT bannery.*, velkosti.sirka, velkosti.vyska, velkosti.nazov FROM bannery JOIN velkosti ON (bannery.velkost=velkosti.id) WHERE bannery.id=$id";
         /* @var $result mysqli_result */
         $result = $this->conn->query($query);
-        if(!$result || $result->num_rows!=1)
+        if (!$result || $result->num_rows != 1)
             return null;
         $object = $result->fetch_object();
         return new Banner($object->id, $object->user, new Velkost($object->velkost, $object->sirka, $object->vyska, $object->nazov), $object->path);
@@ -145,7 +147,7 @@ class Database
 
     public function getBannerForReklama(Reklama $reklama)
     {
-        $query ="SELECT DISTINCT bannery.*, velkosti.sirka, velkosti.vyska, velkosti.nazov
+        $query = "SELECT DISTINCT bannery.*, velkosti.sirka, velkosti.vyska, velkosti.nazov
             FROM bannery
             JOIN velkosti ON (bannery.velkost=velkosti.id)
             JOIN kategoria_banner ON (bannery.id=kategoria_banner.banner)
@@ -154,7 +156,7 @@ class Database
             ORDER BY RAND() LIMIT 1";
         /* @var $result mysqli_result */
         $result = $this->conn->query($query);
-        if(!$result || $result->num_rows!=1)
+        if (!$result || $result->num_rows != 1)
             return null;
         $object = $result->fetch_object();
         return new Banner($object->id, $object->user, new Velkost($object->velkost, $object->sirka, $object->vyska, $object->nazov), $object->path);
@@ -163,8 +165,8 @@ class Database
     public function getReklamyByUser(User $user)
     {
         $query = "SELECT reklamy.*, velkosti.sirka, velkosti.vyska, velkosti.nazov FROM reklamy JOIN velkosti ON (reklamy.velkost=velkosti.id)";
-        if($user->kategoria!='admin')
-                $query.= " WHERE user=$user->id";
+        if ($user->kategoria != 'admin')
+            $query.= " WHERE user=$user->id";
         $query.= " ORDER BY user,velkosti.nazov";
         /* @var $results mysqli_result */
         $results = $this->conn->query($query);
@@ -182,15 +184,15 @@ class Database
         $query = "SELECT reklamy.*, velkosti.sirka, velkosti.vyska, velkosti.nazov FROM reklamy JOIN velkosti ON (reklamy.velkost=velkosti.id) WHERE reklamy.id=$id";
         /* @var $result mysqli_result */
         $result = $this->conn->query($query);
-        if(!$result || $result->num_rows!=1)
+        if (!$result || $result->num_rows != 1)
             return null;
         $object = $result->fetch_object();
         return new Reklama($object->id, $object->user, new Velkost($object->velkost, $object->sirka, $object->vyska, $object->nazov), $object->meno);
     }
 
-    public function  getStatisticsForUser(User $user, Filter $filter, $countOnly = false)
+    public function getStatisticsForUser(User $user, Filter $filter, $countOnly = false)
     {
-        if($user->kategoria == 'inzer')
+        if ($user->kategoria == 'inzer')
         {
             $groupBy = "banner";
             $join = "bannery";
@@ -212,7 +214,7 @@ class Database
             WHERE $user->kategoria = $user->id
             GROUP BY vdate,vbanrek";
 
-        if($countOnly)
+        if ($countOnly)
             $selectPart = "COUNT(*) AS count, SUM(vcount) AS vsum, SUM(ccount) AS csum";
         else
             $selectPart = "vdate AS cas, vbanrek AS banrek, $join.$colname AS meno, vcount, ccount";
@@ -224,9 +226,9 @@ class Database
             ON (cdate=vdate AND cbanrek=vbanrek)
             LEFT JOIN $join ON ($join.id = vbanrek)";
 
-        if($filter->date!='all')
+        if ($filter->date != 'all')
         {
-            $date = new DateTime();// FIXME datetime OOP = phph 5.3.0+ only (konkretne sub nepojde)
+            $date = new DateTime(); // FIXME datetime OOP = phph 5.3.0+ only (konkretne sub nepojde)
             switch ($filter->date)
             {
                 case 'today':
@@ -241,32 +243,32 @@ class Database
                     $date->sub(new DateInterval('P1Y'));
                     break;
             }
-            if($filter->date!='custom')
+            if ($filter->date != 'custom')
                 $query .= " WHERE vdate>='{$date->format('Y-m-d')}'";
             else //custom
             {
-                $from = new DateTime($filter->odYear.'-'.$filter->odMonth.'-'.$filter->odDay);
-                $to = new DateTime($filter->doYear.'-'.$filter->doMonth.'-'.$filter->doDay);
+                $from = new DateTime($filter->odYear . '-' . $filter->odMonth . '-' . $filter->odDay);
+                $to = new DateTime($filter->doYear . '-' . $filter->doMonth . '-' . $filter->doDay);
                 $query .= " WHERE vdate BETWEEN '{$from->format('Y-m-d')}' AND '{$to->format('Y-m-d')}'";
             }
         }
         else
             $query .= " WHERE 1";
 
-        if($user->kategoria=='inzer' && $filter->banner!='all')
+        if ($user->kategoria == 'inzer' && $filter->banner != 'all')
             $query .= " AND vbanrek=$filter->banner";
-        if($user->kategoria=='zobra' && $filter->reklama!='all')
+        if ($user->kategoria == 'zobra' && $filter->reklama != 'all')
             $query .= " AND vbanrek=$filter->reklama";
 
-        if($countOnly) //len pocet zaznamov
+        if ($countOnly) //len pocet zaznamov
         {
             $result = $this->conn->query($query);  /* @var $result mysqli_result */
             $object = $result->fetch_object();
-            return array('count'=>$object->count, 'views'=>$object->vsum,'clicks'=>$object->csum);
-        }       
+            return array('count' => $object->count, 'views' => $object->vsum, 'clicks' => $object->csum);
+        }
 
         $query .= " ORDER BY cas DESC,meno";
-        $query .= " LIMIT ".($filter->page-1)*$filter->rowsPerPage.", $filter->rowsPerPage";
+        $query .= " LIMIT " . ($filter->page - 1) * $filter->rowsPerPage . ", $filter->rowsPerPage";
 
         $results = $this->conn->query($query);
         $objects = array();
@@ -280,7 +282,7 @@ class Database
 
     public function getStatisticsForAdmin(Filter $filter, $countOnly = false)
     {
-        if($filter->type=='click')
+        if ($filter->type == 'click')
             $table = 'kliky';
         else //view
             $table = 'zobrazenia';
@@ -290,9 +292,9 @@ class Database
             LEFT JOIN bannery ON ($table.banner=bannery.id)
             LEFT JOIN users  AS u1 ON ($table.zobra=u1.id)
             LEFT JOIN users AS u2 ON ($table.inzer=u2.id)";
-            $query .= " WHERE 1";
+        $query .= " WHERE 1";
         //filter
-        if($filter->date!='all')
+        if ($filter->date != 'all')
         {
             //FIXME datetime OOP requires php 5.3.0+, not working on olders versions
             $date = new DateTime();
@@ -310,21 +312,21 @@ class Database
                     $date->sub(new DateInterval('P1Y'));
                     break;
             }
-            if($filter->date!='custom')
+            if ($filter->date != 'custom')
                 $query .= " AND DATE(cas)>='{$date->format('Y-m-d')}'";
             else //custom
             {
-                $from = new DateTime($filter->odYear.'-'.$filter->odMonth.'-'.$filter->odDay);
-                $to = new DateTime($filter->doYear.'-'.$filter->doMonth.'-'.$filter->doDay);
+                $from = new DateTime($filter->odYear . '-' . $filter->odMonth . '-' . $filter->odDay);
+                $to = new DateTime($filter->doYear . '-' . $filter->doMonth . '-' . $filter->doDay);
                 $query .= " AND DATE(cas) BETWEEN '{$from->format('Y-m-d')}' AND '{$to->format('Y-m-d')}'";
             }
         }
-        if($filter->banner!='all')
+        if ($filter->banner != 'all')
             $query .= " AND bannery.id=$filter->banner";
-        if($filter->reklama!='all')
+        if ($filter->reklama != 'all')
             $query .= " AND reklamy.id=$filter->reklama";
 
-        if($countOnly) //len pocet zaznamov
+        if ($countOnly) //len pocet zaznamov
         {
             $countQuery = preg_replace("/(select) (.*) (from $table)/i", "$1 COUNT(*) AS count $3", $query);  //non-case-sensitive /i, 'from kliky' aby nenahradilo aj v subquery
             /* @var $result mysqli_result */
@@ -333,7 +335,7 @@ class Database
         }
 
         $query .= " ORDER BY cas DESC";
-        $query .= " LIMIT ".($filter->page-1)*$filter->rowsPerPage.", $filter->rowsPerPage";
+        $query .= " LIMIT " . ($filter->page - 1) * $filter->rowsPerPage . ", $filter->rowsPerPage";
 
         $results = $this->conn->query($query);
         $objects = array();
@@ -350,5 +352,8 @@ class Database
         return $objects;
     }
 
+    //TODO: prehodit na prepared statementy, for security reasons
+
 }
+
 ?>

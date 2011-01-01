@@ -50,7 +50,7 @@ if(isset($_SESSION['registrator']))
   </table>
   </center>
 </form>
-
+<!-- //TODO remove CENTER tags - causing alignment problems at least in IE-->
 <hr>
 </div>
 

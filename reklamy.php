@@ -71,10 +71,10 @@ if(count($reklamy)>0)
             <td colspan="5">
                 <p>Nasledujúci HTML kód vložte do vašej stránky (na miesto kde chcete mať reklamu):</p>
                 <pre>
-&lt;script language="javascript" type="text/javascript"&gt;
+&lt;script language="javascript" type="text/javascript" charset="utf-8"&gt;
 var adisRekl = <?php echo $reklama->id; ?>;
 var adisRand = Math.random();
-document.write(unescape("%3Cscript language=\"javascript\" type=\"text/javascript\" src=\"http://<?php echo $_SERVER["HTTP_HOST"]; ?>/distrib/script.php?rekl="+adisRekl+"&amp;rand="+adisRand+"\"%3E%3C/script%3E"));
+document.write(unescape("%3Cscript type=\"text/javascript\" language=\"javascript\" charset=\"utf-8\" src=\"http://<?php echo $_SERVER["HTTP_HOST"]; ?>/distrib/script.php?rekl="+adisRekl+"&amp;rand="+adisRand+"\"%3E%3C/script%3E"));
 &lt;/script&gt;
                 </pre>
             </td>

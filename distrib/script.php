@@ -1,11 +1,11 @@
 <?php
-header('Content-type: text/javascript; charset=utf-8');
+header('Content-type: application/javascript; charset=UTF-8');
 
 if(!isset ($_GET['rekl']))
-    exit("//no 'rekl' parameter");
+    exit("//chýba parameter 'rekl'");
 
 if (!preg_match('/[1-9][0-9]*/', $_GET['rekl']))
-    exit("//invalid 'rekl' parameter (must be integer)");
+    exit("//neplatný parameter 'rekl'");
 
 require '../base/Database.php';
 try
@@ -20,16 +20,16 @@ catch (Exception $ex)
 //zisti parametre pozadovanej reklamy
 $reklama = $db->getReklamaByPK($_GET['rekl']);
 if(!$reklama)
-    exit("//requested ad was deleted, get new code from Ad-IS");
+    exit("//požadovaná reklama bola zmazaná, nový HTML kód ziskate z Ad-IS servra");
 
 //vytiahne nahodny banner pre danu reklamu
 $banner = $db->getBannerForReklama($reklama);
 if(!$banner)
-    exit("//could not retrieve banner from Ad-IS server");
+    exit("//chyba získavania banneru");
 
 $web = $db->getWebByUserId($banner->userId);
 if(!$web)
-    exit("//could not retrieve web address for banner");
+    exit("//chyba získavania webovej adresy (url) náležiacej banneru");
 
 $zobr = new Zobrazenie(null, $reklama->userId, $reklama->id, $banner->userId, $banner->id);
 $zobr->save($db); //prida zobrazenie do DB

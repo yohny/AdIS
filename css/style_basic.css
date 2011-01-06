@@ -77,7 +77,7 @@ pre
     white-space: pre-wrap;
     padding: 10px;
 }
-input[type='text'],input[type='password']
+input[type='text'],input[type='password'], textarea, select
 {
     width: 100%;
 }
@@ -166,6 +166,12 @@ input[type='text'],input[type='password']
 }
 #main a:hover {
     color: red;
+}
+#main > form
+{
+    width: 300px;
+    position: relative;
+    margin: 0 auto;
 }
 #main table.data {
     width: 100%;

@@ -353,7 +353,6 @@ class Database
     }
 
     //TODO: prehodit na prepared statementy, for security reasons
-
 }
 
 ?>

@@ -7,9 +7,7 @@ if(isset($_SESSION['registrator']))
     session_unregister('registrator');
 }
 ?>
-
 <form name="reg_form" action="actions/registruj.php" method="POST" autocomplete="off">
-  <center>
   <table>
     <tr title="Login slúžiaci na prihlásenie do systému. Musí byť jedinečný.">
       <td><label for="user_login">Login:</label></td>
@@ -48,9 +46,7 @@ if(isset($_SESSION['registrator']))
       <td colspan="2"><div id="reg_errbox" class="errbox"></div></td>
     </tr>
   </table>
-  </center>
 </form>
-<!-- //TODO remove CENTER tags - causing alignment problems at least in IE-->
 <hr>
 </div>
 

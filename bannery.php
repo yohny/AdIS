@@ -84,7 +84,6 @@ if(count($bannery)>0)
   ?>
 <hr>
 <h4>Pridanie nového banneru:</h4>
-<center>
 <form name="upl_form" action="actions/pridajBanner.php" method="POST" enctype="multipart/form-data">
 <table cellspacing="5" style="text-align:left;">
     <tr title="Zvoľte rozmerový typ reklamného banneru.">
@@ -131,7 +130,6 @@ if(count($bannery)>0)
     </tr>
 </table>
 </form>
-</center>
 
 <hr>
 </div>

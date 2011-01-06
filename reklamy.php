@@ -89,7 +89,6 @@ document.write(unescape("%3Cscript type=\"text/javascript\" language=\"javascrip
   ?>
 <hr>
 <h4>Pridanie novej reklamy:</h4>
-<center>
 <form name="add_form" action="actions/pridajReklamu.php" method="POST" enctype="multipart/form-data">
 <table cellspacing="5" style="text-align:left;">
     <tr>
@@ -136,7 +135,6 @@ document.write(unescape("%3Cscript type=\"text/javascript\" language=\"javascrip
     </tr>
 </table>
 </form>
-</center>
 
 <hr>
 </div>

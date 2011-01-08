@@ -53,15 +53,6 @@ catch(Exception $ex)
 $pocet = $db->getStatisticsForAdmin($filter, true);
 $events = $db->getStatisticsForAdmin($filter);
 
-//udaje pre filter
-$datumy = array(
-    'today' =>  'dnes',
-    'week'  =>  'posledný týždeň',
-    'month' =>  'posledný mesiac',
-    'year'  =>  'posledný rok',
-    'all'   =>  'komplet',
-    'custom'=>  'vlastné obdobie');
-
 $bannery = $db->getBanneryByUser($user);
 $reklamy = $db->getReklamyByUser($user);
 
@@ -77,7 +68,7 @@ $pages = ceil($pocet/ROWS_PER_PAGE);
             <td>Obdobie:</td>
             <td>
                 <select name="date" onchange="if(this.value=='custom') document.getElementById('customRow').style.display='table-row'; else document.getElementById('customRow').style.display='none'">
-                    <?php foreach($datumy as $key => $value): ?>
+                    <?php foreach(Filter::$options as $key => $value): ?>
                     <option value="<?php echo $key; ?>" <?php if($filter->date==$key) echo 'selected="selected"'; ?>><?php echo $value; ?></option>
                     <?php endforeach; ?>
                 </select>
@@ -163,16 +154,16 @@ else
                     <?php echo $event; ?>
                 </td>
                 <td>
-                    <?php echo ($event->zobraLogin==''?"#zmazaný":$event->zobraLogin)." ($event->zobraId)"; ?>
+                    <?php echo ($event->zobraLogin?$event->zobraLogin:"#zmazaný")." ($event->zobraId)"; ?>
                 </td>
                 <td>
-                    <?php echo ($event->reklamaName==''?"#zmazaná":$event->reklamaName)." ($event->reklamaId)"; ?>
+                    <?php echo ($event->reklamaName?$event->reklamaName:"#zmazaná")." ($event->reklamaId)"; ?>
                 </td>
                 <td>
-                    <?php echo ($event->inzerLogin==''?"#zmazaný":$event->inzerLogin)." ($event->inzerId)"; ?>
+                    <?php echo ($event->inzerLogin?$event->inzerLogin:"#zmazaný")." ($event->inzerId)"; ?>
                 </td>
                 <td>
-                    <?php echo ($event->bannerFilename==''?"#zmazaný":$event->bannerFilename)." ($event->bannerId)"; ?>
+                    <?php echo ($event->bannerFilename?$event->bannerFilename:"#zmazaný")." ($event->bannerId)"; ?>
                 </td>
             </tr>
         <?php endforeach; ?>

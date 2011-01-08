@@ -1,4 +1,5 @@
 <?php
+
 /**
  * filtovacie kriteria pre zobrazenie statistiky
  *
@@ -6,6 +7,7 @@
  */
 class Filter
 {
+
     public $date;
     public $page;
     public $banner;
@@ -18,6 +20,13 @@ class Filter
     public $doMonth;
     public $doYear;
     public $type;
+    public static $options = array(
+        'today' => 'dnes',
+        'week' => 'posledný týždeň',
+        'month' => 'posledný mesiac',
+        'year' => 'posledný rok',
+        'all' => 'komplet',
+        'custom' => 'vlastné obdobie');
 
     public function __construct($rowsPerPage)
     {
@@ -34,5 +43,7 @@ class Filter
         $this->doYear = 0;
         $this->type = 'click';
     }
+
 }
+
 ?>

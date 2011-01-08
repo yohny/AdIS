@@ -1,6 +1,6 @@
 <?php
 $nadpis = "Profil";
-require 'base/left.php';
+require 'base/layout.php';
 require 'base/secure.php';
 
 require 'base/Database.php';

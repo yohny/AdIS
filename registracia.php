@@ -1,6 +1,6 @@
 <?php 
 $nadpis = "Registrácia";
-require 'base/left.php';
+require 'base/layout.php';
 if(isset($_SESSION['registrator']))
 {
     $tmpuser = $_SESSION['registrator'];

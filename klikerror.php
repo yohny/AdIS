@@ -1,6 +1,6 @@
 <?php
 $nadpis = "Chyba";
-require 'base/left.php';
+require 'base/layout.php';
 
 $h4 = 'Došlo k chybe na serveri alebo stránka na ktorej ste klikli na
     relamný banner má chybný kód banneru a preto Vás nie je možné presmerovať

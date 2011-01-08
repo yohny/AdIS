@@ -1,6 +1,6 @@
 <?php
 $nadpis = "Bannery";
-require 'base/left.php';
+require 'base/layout.php';
 require 'base/secure.php';
 
 require_once 'base/Database.php';
@@ -119,8 +119,9 @@ if(count($bannery)>0)
         </td>
     </tr>
     <tr>
-        <td colspan="2">
-            <input type="button" value="Upload" onClick="spracuj_upl()">
+        <td></td>
+        <td>
+            <input type="button" value="Uložiť" onClick="spracuj_upl()">
         </td>
     </tr>
     <tr>

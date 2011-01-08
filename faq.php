@@ -1,6 +1,6 @@
 <?php
 $nadpis = "FAQ";
-require 'base/left.php';
+require 'base/layout.php';
 ?>
 
 <h4 class="faq">Čo to je?</h4>

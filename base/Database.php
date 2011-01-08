@@ -26,7 +26,7 @@ class Database
             throw new Exception('Nepodarilo sa pripojiť na databázu!');
         //mysql_query("SET CHARACTER SET utf8");
         //mysql_query("SET NAMES 'utf8'")
-        //bool mysql_set_charset( string $charset [, resource $link_identifier]) is the preferred way 
+        //bool mysql_set_charset( string $charset [, resource $link_identifier]) - preferred way
         //to change the charset. Using mysql_query() to execute SET NAMES .. (SET CHARACTER SET ..) is not recommended.
         $this->conn->set_charset('utf8');
     }
@@ -194,22 +194,22 @@ class Database
     {
         if ($user->kategoria == 'inzer')
         {
-            $groupBy = "banner";
-            $join = "bannery";
+            $banrek = "banner";
+            $table = "bannery";
             $colname = "path";
         }
         else //zobra
         {
-            $groupBy = "reklama";
-            $join = "reklamy";
+            $banrek = "reklama";
+            $table = "reklamy";
             $colname = "meno";
         }
 
-        $clicksSubQuery = "SELECT DATE(cas) AS cdate, COUNT(*) AS ccount, $groupBy AS cbanrek 
+        $clicksSubQuery = "SELECT DATE(cas) AS cdate, COUNT(*) AS ccount, $banrek AS cbanrek
             FROM kliky
             WHERE $user->kategoria = $user->id
             GROUP BY cdate,cbanrek";
-        $viewsSubQuery = "SELECT DATE(cas) AS vdate, COUNT(*) AS vcount, $groupBy AS vbanrek 
+        $viewsSubQuery = "SELECT DATE(cas) AS vdate, COUNT(*) AS vcount, $banrek AS vbanrek
             FROM zobrazenia
             WHERE $user->kategoria = $user->id
             GROUP BY vdate,vbanrek";
@@ -217,14 +217,14 @@ class Database
         if ($countOnly)
             $selectPart = "COUNT(*) AS count, SUM(vcount) AS vsum, SUM(ccount) AS csum";
         else
-            $selectPart = "vdate AS cas, vbanrek AS banrek, $join.$colname AS meno, vcount, ccount";
+            $selectPart = "vdate AS cas, vbanrek AS banrek, $table.$colname AS meno, vcount, ccount";
 
         $query = " SELECT $selectPart FROM
             ($viewsSubQuery) AS wiews
             LEFT JOIN
             ($clicksSubQuery) AS clicks
             ON (cdate=vdate AND cbanrek=vbanrek)
-            LEFT JOIN $join ON ($join.id = vbanrek)";
+            LEFT JOIN $table ON ($table.id = vbanrek)";
 
         if ($filter->date != 'all')
         {
@@ -255,10 +255,10 @@ class Database
         else
             $query .= " WHERE 1";
 
-        if ($user->kategoria == 'inzer' && $filter->banner != 'all')
-            $query .= " AND vbanrek=$filter->banner";
-        if ($user->kategoria == 'zobra' && $filter->reklama != 'all')
-            $query .= " AND vbanrek=$filter->reklama";
+        if($filter->banner == 'del' || $filter->reklama == 'del') //zmazane reklamy/bannery
+            $query .= " AND vbanrek NOT IN (SELECT id FROM $table WHERE user=$user->id)";
+        elseif($filter->banner != 'all' || $filter->reklama != 'all') //zvolena reklama/banner
+            $query .= " AND vbanrek=".($user->kategoria=='inzer'?$filter->banner:$filter->reklama);
 
         if ($countOnly) //len pocet zaznamov
         {
@@ -321,16 +321,21 @@ class Database
                 $query .= " AND DATE(cas) BETWEEN '{$from->format('Y-m-d')}' AND '{$to->format('Y-m-d')}'";
             }
         }
-        if ($filter->banner != 'all')
-            $query .= " AND bannery.id=$filter->banner";
-        if ($filter->reklama != 'all')
-            $query .= " AND reklamy.id=$filter->reklama";
+
+        if($filter->banner == 'del')
+            $query .= " AND banner NOT IN (SELECT id FROM bannery)";
+        elseif ($filter->banner != 'all')
+            $query .= " AND banner=$filter->banner";
+
+        if($filter->reklama == 'del')
+            $query .= " AND reklama NOT IN (SELECT id FROM reklamy)";
+        elseif ($filter->reklama != 'all')
+            $query .= " AND reklama=$filter->reklama";
 
         if ($countOnly) //len pocet zaznamov
         {
-            $countQuery = preg_replace("/(select) (.*) (from $table)/i", "$1 COUNT(*) AS count $3", $query);  //non-case-sensitive /i, 'from kliky' aby nenahradilo aj v subquery
-            /* @var $result mysqli_result */
-            $result = $this->conn->query($countQuery);
+            $countQuery = preg_replace("/(select) (.*) (from $table)/i", "$1 COUNT(*) AS count $3", $query);  //non-case-sensitive /i, 'from kliky/zobrazenia' aby nenahradilo aj v subquery
+            $result = $this->conn->query($countQuery); /* @var $result mysqli_result */
             return $result->fetch_object()->count;
         }
 

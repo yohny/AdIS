@@ -1,6 +1,6 @@
 <?php
 $nadpis = "Reklamy";
-require 'base/left.php';
+require 'base/layout.php';
 require 'base/secure.php';
 
 require_once 'base/Database.php';
@@ -124,8 +124,9 @@ document.write(unescape("%3Cscript type=\"text/javascript\" language=\"javascrip
         </td>
     </tr>
     <tr>
-        <td colspan="2">
-            <input type="button" value="Pridaj" onClick="spracuj_add()">
+        <td></td>
+        <td>
+            <input type="button" value="Uložiť" onClick="spracuj_add()">
         </td>
     </tr>
     <tr>

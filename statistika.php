@@ -1,6 +1,6 @@
 <?php
 $nadpis = "Štatistika";
-require 'base/left.php';
+require 'base/layout.php';
 require 'base/secure.php';
 
 define('ROWS_PER_PAGE', 10);
@@ -85,44 +85,7 @@ $pages = ceil($counts['count']/ROWS_PER_PAGE);
         <tr id="customRow" <?php if($filter->date!='custom') echo 'style="display: none;"'; ?>>
             <td></td>
             <td>
-                 od: 
-                <select name="odDay">
-                    <?php
-                    for($i=1;$i<32;$i++)
-                        echo '<option value="'.$i.'"'.($i==$filter->odDay?' selected="selected"':'').'>'.$i.'</option>';
-                    ?>
-                </select>
-                <select name="odMonth">
-                    <?php
-                    for($i=1;$i<13;$i++)
-                        echo '<option value="'.$i.'"'.($i==$filter->odMonth?' selected="selected"':'').'>'.$i.'</option>';
-                    ?>
-                </select>
-                <select name="odYear">
-                    <?php
-                    for($i=1995;$i<2026;$i++)
-                        echo '<option value="'.$i.'"'.($i==$filter->odYear?' selected="selected"':'').'>'.$i.'</option>';
-                    ?>
-                </select>
-                 do:
-                <select name="doDay">
-                    <?php
-                    for($i=1;$i<32;$i++)
-                        echo '<option value="'.$i.'"'.($i==$filter->doDay?' selected="selected"':'').'>'.$i.'</option>';
-                    ?>
-                </select>
-                <select name="doMonth">
-                    <?php
-                    for($i=1;$i<13;$i++)
-                        echo '<option value="'.$i.'"'.($i==$filter->doMonth?' selected="selected"':'').'>'.$i.'</option>';
-                    ?>
-                </select>
-                <select name="doYear">
-                    <?php
-                    for($i=1995;$i<2026;$i++)
-                        echo '<option value="'.$i.'"'.($i==$filter->doYear?' selected="selected"':'').'>'.$i.'</option>';
-                    ?>
-                </select>
+                <?php require_once 'base/partials/dateInterval.php'; ?>
             </td>
         </tr>
         <?php if($user->kategoria=="inzer"): ?>
@@ -136,6 +99,7 @@ $pages = ceil($counts['count']/ROWS_PER_PAGE);
                         <?php echo substr($banner,strlen($user.$banner->velkost->sirka.$banner->velkost->vyska)+3).' ('.$banner->velkost->sirka.'x'.$banner->velkost->vyska.')';?>
                     </option>
                     <?php endforeach; ?>
+                    <option value="del" <?php if($filter->banner=='del') echo 'selected="selected"'; ?>>zmazané</option>
                 </select>
             </td>
         </tr>
@@ -150,6 +114,7 @@ $pages = ceil($counts['count']/ROWS_PER_PAGE);
                         <?php echo $reklama.' ('.$reklama->velkost->sirka.'x'.$reklama->velkost->vyska.')'; ?>
                     </option>
                     <?php endforeach; ?>
+                    <option value="del" <?php if($filter->reklama=='del') echo 'selected="selected"'; ?>>zmazané</option>
                 </select>
             </td>
         </tr>
@@ -175,7 +140,7 @@ $pages = ceil($counts['count']/ROWS_PER_PAGE);
 if(count($stats)==0)
     echo "<h4>Žiadne dáta!</h4>";
 else
-{ $i=0; include 'base/pager.php'; ?>
+{ $i=0; include 'base/partials/pager.php'; ?>
     <table class="data">
         <thead>
             <tr>
@@ -218,7 +183,7 @@ else
         <?php endforeach; ?>
         </tbody>
     </table>
-<?php include 'base/pager.php'; } ?>
+<?php include 'base/partials/pager.php'; } ?>
 <hr>
 </div>
 

@@ -69,7 +69,7 @@ if(isset($added))
 
 <h3>používateľ</h3>
 <?php
-require 'user.php'; 
+require_once 'partials/userSection.php';
 ?>
 </div>
 
@@ -79,7 +79,7 @@ require 'user.php';
 <div class="bottom_left corner"></div>
 <div class="bottom_right corner"></div>
 <h3>info</h3>
-<p class="g">nornal message</p>
+<p class="g">common message</p>
 <p class="r">important message</p>
 <p>
 <a href="http://validator.w3.org/check?uri=referer">

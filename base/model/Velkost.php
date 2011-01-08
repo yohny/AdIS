@@ -1,9 +1,4 @@
 <?php
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * trieda reprezentuje jeden zaznam z tabulky VELKOSTI
  *

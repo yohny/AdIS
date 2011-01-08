@@ -1,6 +1,6 @@
 <?php
 /**
- * triedda reprezentujuca jeden zaznam y tabulky USERS (ciastocne),
+ * triedda reprezentujuca jeden zaznam z tabulky USERS (ciastocne),
  * v session reprezentuje aktualne prihlaseneho pouzivatela
  *
  * @author yohny

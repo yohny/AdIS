@@ -1,4 +1,4 @@
-<table>
+<table style="width:100%">
     <tr>
         <td>
             od:
@@ -22,7 +22,7 @@
         <td>
             <select name="odYear">
                 <?php
-                for ($i = 2010; $i < 2020; $i++)
+                for ($i = 2010; $i < date('Y')+1; $i++)
                     echo '<option value="' . $i . '"' . ($i == $filter->odYear ? ' selected="selected"' : '') . '>' . $i . '</option>';
                 ?>
             </select>
@@ -51,7 +51,7 @@
         <td>
             <select name="doYear">
                 <?php
-                for ($i = 1995; $i < 2026; $i++)
+                for ($i = 2010; $i < date('Y')+1; $i++)
                     echo '<option value="' . $i . '"' . ($i == $filter->doYear ? ' selected="selected"' : '') . '>' . $i . '</option>';
                 ?>
             </select>

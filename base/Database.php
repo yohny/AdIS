@@ -1,5 +1,4 @@
 <?php
-
 function __autoload($classname)
 {
     require_once 'model/' . $classname . '.php';
@@ -12,7 +11,6 @@ function __autoload($classname)
  */
 class Database
 {
-
     /**
      * actual mysqli connection object
      * @var mysqli
@@ -36,15 +34,33 @@ class Database
         $this->conn->close();
     }
 
-    public function isLoginUnique($login)
+    public function isLoginUnique($login) //FIXME: prehodit na prepared statementy, for security reasons
     {
-        $query = "SELECT COUNT(*) AS count FROM users WHERE login='$login'";
-        /* @var $result mysqli_result */
-        $result = $this->conn->query($query);
-        if ($result->fetch_object()->count > 0)
-            return false;
+
+        if($stm = $this->conn->prepare("SELECT COUNT(*) FROM users WHERE login=?"))
+        {
+            $stm->bind_param('s', $login);
+            //aj tu je mozne nastavit hodnotu $login, k samotnemu bindu dojde az v execute
+            //$login='fero';
+            $stm->execute();
+            //tu je mozne zmenit hodnotu $login a nanovo vykonat - vhodne pri viacnasobnych INSERToch
+            $stm->bind_result($count);//musi byt po execute a pred fetch, da sa rebindnut ale treba potom refetchnut
+            $stm->fetch();
+            $stm->close();
+            if($count==0)
+                return true;
+            else
+                return false;
+        }
         else
-            return true;
+            throw new Exception ('statement failed');
+
+//        $query = "SELECT COUNT(*) AS count FROM users WHERE login=$login";
+//        $result = $this->conn->query($query); /* @var $result mysqli_result */
+//        if ($result->fetch_object()->count > 0)
+//            return false;
+//        else
+//            return true;
     }
 
     public function addUser($login, $password, $web, $group)
@@ -356,8 +372,5 @@ class Database
         }
         return $objects;
     }
-
-    //TODO: prehodit na prepared statementy, for security reasons
 }
-
 ?>

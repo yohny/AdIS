@@ -125,7 +125,7 @@ $pages = ceil($counts['count']/ROWS_PER_PAGE);
 <h4>
     Zobrazení: <span class="g" style="font-size:16px;margin-right: 10px;"><?php echo $counts['views']?$counts['views']:'0'; ?></span>
     Kliknutí: <span class="g" style="font-size:16px;margin-right: 10px;"><?php echo $counts['clicks']?$counts['clicks']:'0'; ?></span>
-    CTR: <span class="g" style="font-size:16px;margin-right: 10px;"><?php echo $counts['views']?number_format($counts['clicks']/$counts['views'], 3):'0.000'; ?>%</span>
+    CTR: <span class="g" style="font-size:16px;margin-right: 10px;"><?php echo $counts['views']?number_format($counts['clicks']/$counts['views']*100, 2):'0.00'; ?>%</span>
 </h4>
 <?php
 if(count($stats)==0)
@@ -167,7 +167,7 @@ else
                     <?php echo $stat->kliky?$stat->kliky:"0"; ?>
                 </td>
                 <td>
-                    <?php echo $stat->zobrazenia?number_format($stat->kliky/$stat->zobrazenia, 3):'0.000'; ?>%
+                    <?php echo $stat->zobrazenia?number_format($stat->kliky/$stat->zobrazenia*100, 2):'0.00'; ?>%
                 </td>
             </tr>
         <?php endforeach; ?>

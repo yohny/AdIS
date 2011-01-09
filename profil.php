@@ -44,7 +44,7 @@ $user = $_SESSION['user'];
 <form name="chweb_form" action="">
     <table cellspacing="5" style="text-align:left;width:300px;">
         <tr>
-            <td width="80">WWW adresa:</td><td width="110"><span class="g" id="webTd"><?php echo $user->getWeb($db->conn); ?></span></td><td width="30"><a onclick="show('web',this)">zmeň</a></td>
+            <td width="80">WWW adresa:</td><td width="110"><span class="g" id="webTd"><?php echo $user->getWeb($db); ?></span></td><td width="30"><a onclick="show('web',this)">zmeň</a></td>
         </tr>
         <tr id="web" style="display:none;">
             <td colspan="3">

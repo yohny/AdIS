@@ -14,7 +14,7 @@ try
 }
 catch (Exception $ex)
 {
-    exit(json_encode(array('success' => false,'message' => $ex->getMessage())));
+    exit(json_encode(array('success' => false,'message' => 'Nepodarilo sa napojiť na DB.')));
 }
 
 /* @var $user User */
@@ -25,7 +25,7 @@ $new = $_POST['new'];
 if ($user->setPassword($old, $new, $db))
     $resp = array('success' => true,'message' => 'Heslo zmenené.');
 else
-    $resp = array('success' => false,'message' => 'Neplatné staré heslo!');
+    $resp = array('success' => false,'message' => 'Neporarilo sa zmeniť heslo!(nesprávne?)');
 
 echo json_encode($resp);
 ?>

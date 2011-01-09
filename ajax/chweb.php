@@ -1,7 +1,7 @@
 <?php
 header('Content-type: application/json; charset=UTF-8');
 
-if(!isset ($_POST['web']))
+if (!isset($_POST['web']))
     exit('Nekompletne data');
 
 require '../base/model/User.php'; //pred session_start
@@ -14,17 +14,19 @@ try
 }
 catch (Exception $ex)
 {
-    exit(json_encode(array('success' => false,'message' => $ex->getMessage())));
+    exit(json_encode(array('success' => false, 'message' => 'Nepodarilo sa napojiť na DB.')));
 }
 
 /* @var $user User */
 $user = $_SESSION['user'];
 $web = $_POST['web'];
 
-if($user->setWeb($db->conn, $web))
-    $resp = array('success' => true,'message' => 'WWW adresa zmenená.!');
+if (!filter_var($web, FILTER_VALIDATE_URL))
+    $resp = array('success' => false, 'message' => 'Neplatná webová adresa!');
+elseif ($user->setWeb($web, $db))
+    $resp = array('success' => true, 'message' => 'WWW adresa zmenená.');
 else
-    $resp = array('success' => false,'message' => 'Neplatná webová adresa!');
+    $resp = array('success' => false, 'message' => 'Nepodarilo sa zmeniť web!');
 
 echo json_encode($resp);
 ?>

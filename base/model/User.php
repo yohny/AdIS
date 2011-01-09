@@ -35,42 +35,35 @@ class User
     public function setPassword($old, $new, Database $db)
     {
         $query = "SELECT COUNT(*) AS count FROM users WHERE id=$this->id AND heslo=MD5('$old')";
-        /* @var $result mysqli_result */
-        $result = $db->conn->query($query);
-        if ($result->fetch_object()->count==1)
+        if ($db->conn->query($query)->fetch_object()->count==1)
         {
             $query = "UPDATE users SET heslo=MD5('$new') WHERE id=$this->id";
-            $db->conn->query($query);
-            return true;
+            return $db->conn->query($query);
         }
         else
             return false;
     }
 
-    public function getWeb(mysqli $conn)
+    public function getWeb(Database $db)
     {
         $query = "SELECT web FROM users WHERE id=$this->id";
-        /* @var $result mysqli_result */
-        $result = $conn->query($query);
-        return $result->fetch_object()->web;
+        return $db->conn->query($query)->fetch_object()->web;
     }
 
-    public function setWeb(mysqli $conn, $web)
+    public function setWeb($web, Database $db)
     {
-        if(!filter_var($web, FILTER_VALIDATE_URL))
-            return false;
-
-        $query = "UPDATE users SET web='$web' WHERE id=$this->id";
-        $conn->query($query);
-        return true;
+        if(!$stm = $db->conn->prepare("UPDATE users SET web=? WHERE id=$this->id"))
+                return false;
+        $stm->bind_param('s', $web);
+        $ret = $stm->execute();
+        $stm->close();
+        return $ret;
     }
 
     public function hasReklamaOfSize(Velkost $velkost, Database $db)
     {
         $query = "SELECT COUNT(*) AS count FROM reklamy WHERE user=$this->id AND velkost=$velkost->id";
-        /* @var $result mysqli_result */
-        $result = $db->conn->query($query);
-        if($result->fetch_object()->count>0)
+        if($db->conn->query($query)->fetch_object()->count>0)
           return true;
         else
           return false;
@@ -79,9 +72,7 @@ class User
     public function hasBannerOfSize(Velkost $velkost, Database $db)
     {
         $query = "SELECT COUNT(*) AS count FROM bannery WHERE user=$this->id AND velkost=$velkost->id";
-        /* @var $result mysqli_result */
-        $result = $db->conn->query($query);
-        if($result->fetch_object()->count>0)
+        if($db->conn->query($query)->fetch_object()->count>0)
           return true;
         else
           return false;
@@ -99,13 +90,13 @@ class User
      * @param string $web
      * @param string $group 'inze' | 'zobra' [| 'admin']
      * @param Database $db
-     * @return <type>
+     * @return bool
      */
     public static function create($login, $password, $web, $group, Database $db)
     {
         if(!$stm = $db->conn->prepare("INSERT INTO users VALUES(NULL, ?, MD5(?), ? , ?)"))
             return false;
-        $stm->bind_param("ssss", $login,$password,$web,$group);
+        $stm->bind_param('ssss', $login,$password,$web,$group);
         $ret = $stm->execute();
         $stm->close();
         return $ret;
@@ -115,9 +106,9 @@ class User
      * overi ci sa dany login uz nepouziva
      * @param string $login
      * @param Database $db
-     * @return <type>
+     * @return bool
      */
-    public static function isLoginUnique($login, Database $db) //FIXME: prehodit na prepared statementy, for security reasons
+    public static function isLoginUnique($login, Database $db)
     {
         $stm = $db->conn->prepare("SELECT COUNT(*) FROM users WHERE login=?");
         $stm->bind_param('s', $login);
@@ -132,12 +123,6 @@ class User
             return true;
         else
             return false;
-//        $query = "SELECT COUNT(*) AS count FROM users WHERE login=$login";
-//        $result = $this->conn->query($query); /* @var $result mysqli_result */
-//        if ($result->fetch_object()->count > 0)
-//            return false;
-//        else
-//            return true;
     }
 }
 ?>

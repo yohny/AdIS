@@ -29,7 +29,7 @@ if(!$banner)
 
 $web = $db->getUserWebByPK($banner->userId);
 if(!$web)
-    exit("//chyba získavania webovej adresy (url) náležiacej banneru");
+    exit("//chyba získavania webovej adresy banneru");
 
 $zobr = new Zobrazenie(null, $reklama->userId, $reklama->id, $banner->userId, $banner->id);
 $zobr->save($db); //prida zobrazenie do DB

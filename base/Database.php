@@ -42,14 +42,14 @@ class Database
      */
     public function getUserByCredentials($login, $password)
     {
-        $query = "SELECT * FROM users WHERE login='$login' AND heslo=MD5('$password')";
-        /* @var $results mysqli_result */
-        $results = $this->conn->query($query);
-        if ($results->num_rows == 1)
-        {
-            $result = $results->fetch_object();
-            return new User($result->id, $result->login, $result->kategoria);
-        }
+        if(!$stm = $this->conn->prepare("SELECT id, login, kategoria FROM users WHERE login=? AND heslo=MD5(?)"))
+            return null;
+        $stm->bind_param('ss', $login,$password);
+        if(!$stm->execute())
+            return null;
+        $stm->bind_result($id,$login,$kateg);
+        if($stm->fetch())
+            return new User($id, $login, $kateg);
         else
             return null;
     }

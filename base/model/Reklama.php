@@ -1,4 +1,5 @@
 <?php
+
 /**
  * trieda reprezentujuca jeden zaznam z tabulky REKLAMY
  *
@@ -6,6 +7,7 @@
  */
 class Reklama
 {
+
     /**
      * primarny kluc
      * @var int
@@ -52,29 +54,45 @@ class Reklama
 
     public function save($kategorie, Database $db)
     {
+        $db->conn->autocommit(false); //zacne transaction
         $query = "INSERT INTO reklamy VALUES(NULL, $this->userId, {$this->velkost->id}, '$this->name')";
-        if(!$db->conn->query($query))
+        if (!$db->conn->query($query))
+        {
+            $db->conn->rollback();
             return false;
+        }
         $this->id = $db->conn->insert_id;
-        $db->conn->autocommit(false);
         foreach ($kategorie as $kat)
-            $db->conn->query("INSERT INTO kategoria_reklama VALUES (NULL, $kat, $this->id)");
-        $db->conn->autocommit(true);
-        return $db->conn->commit();
+        {
+            $query = "INSERT INTO kategoria_reklama VALUES (NULL, $kat, $this->id)";
+            if (!$db->conn->query($query))
+            {
+                $db->conn->rollback();
+                return false;
+            }
+        }
+        $db->conn->commit();
+        return true;
     }
 
     public function delete(Database $db)
     {
         $db->conn->autocommit(false);
-        $db->conn->query("DELETE FROM reklamy WHERE id=$this->id");
-        $db->conn->query("DELETE FROM kategoria_reklama WHERE reklama=$this->id");
-        $db->conn->autocommit(true);
-        return $db->conn->commit();
+        if (!$db->conn->query("DELETE FROM kategoria_reklama WHERE reklama=$this->id") ||
+                !$db->conn->query("DELETE FROM reklamy WHERE id=$this->id"))
+        {
+            $db->conn->rollback();
+            return false;
+        }
+        $db->conn->commit();
+        return true;
     }
 
     public function __toString()
     {
         return $this->name;
     }
+
 }
+
 ?>

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * trieda reprezentujuca jeden zaznam z tabulky BANNERY
  *
@@ -6,6 +7,7 @@
  */
 class Banner
 {
+
     /**
      * primarny kluc
      * @var int
@@ -52,31 +54,47 @@ class Banner
 
     public function save($kategorie, Database $db)
     {
+        $db->conn->autocommit(false); //zacne transactiu
         $query = "INSERT INTO bannery VALUES(NULL, $this->userId, {$this->velkost->id}, '$this->filename')";
-        if(!$db->conn->query($query))
+        if (!$db->conn->query($query))
+        {
+            $db->conn->rollback();
             return false;
+        }
         $this->id = $db->conn->insert_id;
-        $db->conn->autocommit(false);
         foreach ($kategorie as $kat)
-            $db->conn->query("INSERT INTO kategoria_banner VALUES (NULL, $kat, $this->id)");
+        {
+            $query = "INSERT INTO kategoria_banner VALUES (NULL, $kat, $this->id)";
+            if (!$db->conn->query($query))
+            {
+                $db->conn->rollback();
+                return false;
+            }
+        }
         $db->conn->autocommit(true);
-        return $db->conn->commit();
+        return true;
     }
 
     public function delete(Database $db)
     {
-        if(!unlink('../upload/'.$this->filename)) //relat cesta voci zmaz.php, kde je tato metoda volana
+        if (!unlink('../upload/' . $this->filename)) //relat cesta voci zmaz.php, kde je tato metoda volana
             return false;
         $db->conn->autocommit(false);
-        $db->conn->query("DELETE FROM bannery WHERE id=$this->id");
-        $db->conn->query("DELETE FROM kategoria_banner WHERE banner=$this->id");
-        $db->conn->autocommit(true);
-        return $db->conn->commit();
+        if (!$db->conn->query("DELETE FROM kategoria_banner WHERE banner=$this->id") ||
+                !$db->conn->query("DELETE FROM bannery WHERE id=$this->id"))
+        {
+            $db->conn->rollback();
+            return false;
+        }
+        $db->conn->commit();
+        return true;
     }
 
     public function __toString()
     {
         return $this->filename;
     }
+
 }
+
 ?>

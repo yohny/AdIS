@@ -13,7 +13,7 @@ catch (Exception $ex)
     exit($ex->getMessage());
 }
 
-if($db->isLoginUnique($login))
+if(User::isLoginUnique($login,$db))
     echo "<span class='g'>Váš login je vporiadku.</span>";
 else
     echo "<span class='r'>Neplatný login! Zvoľte iný.</span>";

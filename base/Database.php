@@ -34,41 +34,12 @@ class Database
         $this->conn->close();
     }
 
-    public function isLoginUnique($login) //FIXME: prehodit na prepared statementy, for security reasons
-    {
-
-        if($stm = $this->conn->prepare("SELECT COUNT(*) FROM users WHERE login=?"))
-        {
-            $stm->bind_param('s', $login);
-            //aj tu je mozne nastavit hodnotu $login, k samotnemu bindu dojde az v execute
-            //$login='fero';
-            $stm->execute();
-            //tu je mozne zmenit hodnotu $login a nanovo vykonat - vhodne pri viacnasobnych INSERToch
-            $stm->bind_result($count);//musi byt po execute a pred fetch, da sa rebindnut ale treba potom refetchnut
-            $stm->fetch();
-            $stm->close();
-            if($count==0)
-                return true;
-            else
-                return false;
-        }
-        else
-            throw new Exception ('statement failed');
-
-//        $query = "SELECT COUNT(*) AS count FROM users WHERE login=$login";
-//        $result = $this->conn->query($query); /* @var $result mysqli_result */
-//        if ($result->fetch_object()->count > 0)
-//            return false;
-//        else
-//            return true;
-    }
-
-    public function addUser($login, $password, $web, $group)
-    {
-        $query = "INSERT INTO users VALUES(NULL, '$login', MD5('$heslo'), '$web' , '$kategoria')";
-        return $this->conn->query($query);
-    }
-
+    /**
+     * vrati objekt pouzivatela na zaklade prihlasovacich udajov
+     * @param string $login
+     * @param string $password
+     * @return User
+     */
     public function getUserByCredentials($login, $password)
     {
         $query = "SELECT * FROM users WHERE login='$login' AND heslo=MD5('$password')";
@@ -83,9 +54,14 @@ class Database
             return null;
     }
 
-    public function getWebByUserId($id)
+    /**
+     * vrati webovu adresu pouzivatela s danym PK
+     * @param int $userId PK pouzivatela
+     * @return string
+     */
+    public function getUserWebByPK($userId)
     {
-        $query = "SELECT web FROM users WHERE id=$id";
+        $query = "SELECT web FROM users WHERE id=$userId";
         /* @var $result mysqli_result */
         $result = $this->conn->query($query);
         if (!$result)
@@ -94,6 +70,10 @@ class Database
             return $result->fetch_object()->web;
     }
 
+    /**
+     * vrati vsetky zaznamy z tabulky VELKOSTI
+     * @return Velkost
+     */
     public function getAllFromVelkosti()
     {
         $query = "SELECT * FROM velkosti ORDER BY nazov";
@@ -119,6 +99,10 @@ class Database
         return new Velkost($object->id, $object->sirka, $object->vyska, $object->nazov);
     }
 
+    /**
+     * vrati vsetky zaznamy z tabulky KATEGORIE
+     * @return Kategoria
+     */
     public function getAllFromKategorie()
     {
         $query = "SELECT * FROM kategorie ORDER BY nazov";
@@ -161,7 +145,12 @@ class Database
         return new Banner($object->id, $object->user, new Velkost($object->velkost, $object->sirka, $object->vyska, $object->nazov), $object->path);
     }
 
-    public function getBannerForReklama(Reklama $reklama)
+    /**
+     * vrati nahodny banner splnajuci kriteria na zobrazenie v danej reklame
+     * @param Reklama $reklama
+     * @return Banner
+     */
+    public function getRandBannerForReklama(Reklama $reklama)
     {
         $query = "SELECT DISTINCT bannery.*, velkosti.sirka, velkosti.vyska, velkosti.nazov
             FROM bannery
@@ -271,10 +260,10 @@ class Database
         else
             $query .= " WHERE 1";
 
-        if($filter->banner == 'del' || $filter->reklama == 'del') //zmazane reklamy/bannery
+        if ($filter->banner == 'del' || $filter->reklama == 'del') //zmazane reklamy/bannery
             $query .= " AND vbanrek NOT IN (SELECT id FROM $table WHERE user=$user->id)";
-        elseif($filter->banner != 'all' || $filter->reklama != 'all') //zvolena reklama/banner
-            $query .= " AND vbanrek=".($user->kategoria=='inzer'?$filter->banner:$filter->reklama);
+        elseif ($filter->banner != 'all' || $filter->reklama != 'all') //zvolena reklama/banner
+            $query .= " AND vbanrek=" . ($user->kategoria == 'inzer' ? $filter->banner : $filter->reklama);
 
         if ($countOnly) //len pocet zaznamov
         {
@@ -338,12 +327,12 @@ class Database
             }
         }
 
-        if($filter->banner == 'del')
+        if ($filter->banner == 'del')
             $query .= " AND banner NOT IN (SELECT id FROM bannery)";
         elseif ($filter->banner != 'all')
             $query .= " AND banner=$filter->banner";
 
-        if($filter->reklama == 'del')
+        if ($filter->reklama == 'del')
             $query .= " AND reklama NOT IN (SELECT id FROM reklamy)";
         elseif ($filter->reklama != 'all')
             $query .= " AND reklama=$filter->reklama";
@@ -372,5 +361,6 @@ class Database
         }
         return $objects;
     }
+
 }
 ?>

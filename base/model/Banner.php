@@ -54,11 +54,12 @@ class Banner
 
     public function save($kategorie, Database $db)
     {
-        $db->conn->autocommit(false); //zacne transactiu
+        $db->conn->autocommit(false);
         $query = "INSERT INTO bannery VALUES(NULL, $this->userId, {$this->velkost->id}, '$this->filename')";
         if (!$db->conn->query($query))
         {
             $db->conn->rollback();
+            $db->conn->autocommit(true);
             return false;
         }
         $this->id = $db->conn->insert_id;
@@ -68,9 +69,11 @@ class Banner
             if (!$db->conn->query($query))
             {
                 $db->conn->rollback();
+                $db->conn->autocommit(true);
                 return false;
             }
         }
+        $db->conn->commit();
         $db->conn->autocommit(true);
         return true;
     }
@@ -84,9 +87,11 @@ class Banner
                 !$db->conn->query("DELETE FROM bannery WHERE id=$this->id"))
         {
             $db->conn->rollback();
+            $db->conn->autocommit(true);
             return false;
         }
         $db->conn->commit();
+        $db->conn->autocommit(true);
         return true;
     }
 

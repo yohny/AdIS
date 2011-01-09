@@ -32,15 +32,15 @@ class User
         $this->kategoria = $kategoria;
     }
 
-    public function setPassword(mysqli $conn, $old, $new)
+    public function setPassword($old, $new, Database $db)
     {
         $query = "SELECT COUNT(*) AS count FROM users WHERE id=$this->id AND heslo=MD5('$old')";
         /* @var $result mysqli_result */
-        $result = $conn->query($query);
+        $result = $db->conn->query($query);
         if ($result->fetch_object()->count==1)
         {
             $query = "UPDATE users SET heslo=MD5('$new') WHERE id=$this->id";
-            $conn->query($query);
+            $db->conn->query($query);
             return true;
         }
         else
@@ -90,6 +90,54 @@ class User
     public function __toString()
     {
         return $this->login;
+    }
+
+    /**
+     * vytvori noveho pouzivatela v DB
+     * @param string $login
+     * @param string $password
+     * @param string $web
+     * @param string $group 'inze' | 'zobra' [| 'admin']
+     * @param Database $db
+     * @return <type>
+     */
+    public static function create($login, $password, $web, $group, Database $db)
+    {
+        if(!$stm = $db->conn->prepare("INSERT INTO users VALUES(NULL, ?, MD5(?), ? , ?)"))
+            return false;
+        $stm->bind_param("ssss", $login,$password,$web,$group);
+        $ret = $stm->execute();
+        $stm->close();
+        return $ret;
+    }
+
+    /**
+     * overi ci sa dany login uz nepouziva
+     * @param string $login
+     * @param Database $db
+     * @return <type>
+     */
+    public static function isLoginUnique($login, Database $db) //FIXME: prehodit na prepared statementy, for security reasons
+    {
+        $stm = $db->conn->prepare("SELECT COUNT(*) FROM users WHERE login=?");
+        $stm->bind_param('s', $login);
+        //aj tu je mozne nastavit hodnotu $login, k samotnemu bindu dojde az v execute
+        //$login='fero';
+        $stm->execute();
+        //tu je mozne zmenit hodnotu $login a nanovo vykonat - vhodne pri viacnasobnych INSERToch
+        $stm->bind_result($count); //musi byt po execute a pred fetch, da sa rebindnut ale treba potom refetchnut
+        $stm->fetch();
+        $stm->close();
+        if ($count == 0)
+            return true;
+        else
+            return false;
+//        $query = "SELECT COUNT(*) AS count FROM users WHERE login=$login";
+//        $result = $this->conn->query($query); /* @var $result mysqli_result */
+//        if ($result->fetch_object()->count > 0)
+//            return false;
+//        else
+//            return true;
     }
 }
 ?>

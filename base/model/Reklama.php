@@ -54,11 +54,12 @@ class Reklama
 
     public function save($kategorie, Database $db)
     {
-        $db->conn->autocommit(false); //zacne transaction
+        $db->conn->autocommit(false);
         $query = "INSERT INTO reklamy VALUES(NULL, $this->userId, {$this->velkost->id}, '$this->name')";
         if (!$db->conn->query($query))
         {
             $db->conn->rollback();
+            $db->conn->autocommit(true);
             return false;
         }
         $this->id = $db->conn->insert_id;
@@ -68,10 +69,12 @@ class Reklama
             if (!$db->conn->query($query))
             {
                 $db->conn->rollback();
+                $db->conn->autocommit(true);
                 return false;
             }
         }
         $db->conn->commit();
+        $db->conn->autocommit(true);
         return true;
     }
 
@@ -82,9 +85,11 @@ class Reklama
                 !$db->conn->query("DELETE FROM reklamy WHERE id=$this->id"))
         {
             $db->conn->rollback();
+            $db->conn->autocommit(true);
             return false;
         }
         $db->conn->commit();
+        $db->conn->autocommit(true);
         return true;
     }
 

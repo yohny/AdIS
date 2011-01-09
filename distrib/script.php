@@ -23,11 +23,11 @@ if(!$reklama)
     exit("//požadovaná reklama bola zmazaná, nový HTML kód ziskate z Ad-IS servra");
 
 //vytiahne nahodny banner pre danu reklamu
-$banner = $db->getBannerForReklama($reklama);
+$banner = $db->getRandBannerForReklama($reklama);
 if(!$banner)
     exit("//chyba získavania banneru");
 
-$web = $db->getWebByUserId($banner->userId);
+$web = $db->getUserWebByPK($banner->userId);
 if(!$web)
     exit("//chyba získavania webovej adresy (url) náležiacej banneru");
 

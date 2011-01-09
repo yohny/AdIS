@@ -24,9 +24,9 @@ else
         header("Location: $referer");
         exit();
     }
-    if($db->isLoginUnique($user['login']))
+    if(User::isLoginUnique($user['login'],$db))
     {
-        if($db->addUser($user['login'],$user['heslo'],$user['web'],$user['skupina']))
+        if(User::create($user['login'],$user['heslo'],$user['web'],$user['skupina'],$db))
             $message = "Registrácia úspešná.";
         else
             $message = "Registrácia neúspešná.";

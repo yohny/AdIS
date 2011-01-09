@@ -22,7 +22,7 @@ $user = $_SESSION['user'];
 $old = $_POST['old'];
 $new = $_POST['new'];
 
-if ($user->setPassword($db->conn, $old, $new))
+if ($user->setPassword($old, $new, $db))
     $resp = array('success' => true,'message' => 'Heslo zmenené.');
 else
     $resp = array('success' => false,'message' => 'Neplatné staré heslo!');

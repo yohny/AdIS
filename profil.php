@@ -32,7 +32,7 @@ $user = $_SESSION['user'];
                     <tr><td>Staré heslo:</td><td><input type="password" name="old" maxlength="10"></td></tr>
                     <tr><td>Nové heslo:</td><td><input type="password" name="new1" maxlength="10"></td></tr>
                     <tr><td>Nové heslo:</td><td><input type="password" name="new2" maxlength="10"></td></tr>
-                    <tr><td colspan="2"><input type="button" value="OK" onClick="spracuj_chpas()"></td></tr>
+                    <tr><td></td><td><input type="button" value="OK" onClick="spracuj_chpas()"></td></tr>
                     <tr><td colspan="2"><div id="chpas_errbox" class="errbox"></div><div id="chpas_okbox" class="okbox"></div></td></tr>
                 </table>
             </td>
@@ -50,7 +50,7 @@ $user = $_SESSION['user'];
             <td colspan="3">
                 <table>
                     <tr><td>Nová adresa:</td><td><input type="text" name="web" maxlength="100"></td></tr>
-                    <tr><td colspan="2"><input type="button" value="OK" onClick="spracuj_chweb()"></td></tr>
+                    <tr><td></td><td><input type="button" value="OK" onClick="spracuj_chweb()"></td></tr>
                     <tr><td colspan="2"><div id="chweb_errbox" class="errbox"></div><div id="chweb_okbox" class="okbox"></div></td></tr>
                 </table>
             </td>

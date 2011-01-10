@@ -57,17 +57,11 @@ if(isset($added))
 <h3>menu</h3>
 
 <fieldset>
-<legend>Úvod</legend>
+<legend>Ad-IS</legend>
 <a href="index.php">O systéme</a>
-</fieldset>
-
-<fieldset>
-<legend>Systém</legend>
-<a href="registracia.php">Registrácia</a>
 <a href="faq.php">FAQ</a>
 </fieldset>
 
-<h3>používateľ</h3>
 <?php
 require_once 'partials/userSection.php';
 ?>

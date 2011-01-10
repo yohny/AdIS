@@ -81,6 +81,17 @@ input[type='text'],input[type='password'], textarea, select
 {
     width: 100%;
 }
+input, textarea, select
+{
+    margin: 0;
+    padding: 1px;
+}
+a {
+    text-decoration: underline;
+}
+a:hover {
+    color: red;
+}
 /*------------------------------------ top ------------------------------------*/
 #top{
     /*background-image: url('../img/top.jpg');
@@ -110,17 +121,6 @@ input[type='text'],input[type='password'], textarea, select
     float: left;
 }
 /*------------------------------------ menu -----------------------------------*/
-#menu a {
-    text-decoration: none;
-    display: block;
-    height: 15px;
-    padding: 1px 10px;
-    margin: 1px 0px;
-    color: white;
-}
-#menu a:hover {
-    background-image: url('../img/button.png');
-}
 #menu fieldset {
     padding: 0px;
     margin: 15px 0;
@@ -131,6 +131,17 @@ input[type='text'],input[type='password'], textarea, select
 }
 #menu legend {
     font-size: 11px;
+}
+#menu fieldset a {
+    text-decoration: none;
+    display: block;
+    height: 15px;
+    padding: 1px 10px;
+    margin: 1px 0px;
+    color: white;
+}
+#menu fieldset a:hover {
+    background-image: url('../img/button.png');
 }
 /*------------------------------------ nove -----------------------------------*/
 #nove {
@@ -161,12 +172,6 @@ input[type='text'],input[type='password'], textarea, select
     margin-top: 10px;
     margin-bottom: 10px;
 }
-#main a {
-    text-decoration: underline;
-}
-#main a:hover {
-    color: red;
-}
 #main > form
 {
     width: 300px;
@@ -188,6 +193,7 @@ input[type='text'],input[type='password'], textarea, select
     border-width: 1px;
     border-style: solid;
     padding: 8px;
+    vertical-align: top;
 }
 #main table.data tbody tr:hover td
 {

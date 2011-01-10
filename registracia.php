@@ -40,7 +40,8 @@ if(isset($_SESSION['registrator']))
       <td><input type="radio" name="user[skupina]" id="user_zobra" value="zobra" <?php if(isset($tmpuser) && $tmpuser['skupina']=='zobra') echo 'checked="checkeded"'; ?>></td>
     </tr>
     <tr>
-      <td colspan="2"><input type="button" value="Odošli" onClick="spracuj_reg()"></td>
+       <td></td>
+      <td><input type="button" value="Odošli" onClick="spracuj_reg()"></td>
     </tr>
     <tr>
       <td colspan="2"><div id="reg_errbox" class="errbox"></div></td>

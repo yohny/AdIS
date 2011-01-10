@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if ($_POST['action'] == "Odhlásiť")
+if ($_POST['action'] == "logout")
 {
     session_unset();
     $message = "Boli ste odhlásený.";

@@ -24,6 +24,9 @@ input, textarea, select, pre {
     color: green;
     border-color: green;
 }
+a {
+    color: #006400; /*darkgreen*/
+}
 /*------------------------------------ top ------------------------------------*/
 #top h1.above {
     color: green;
@@ -36,13 +39,13 @@ input, textarea, select, pre {
     color: rgb(42,71,20);
     border-bottom-color: rgb(42,71,20);
 }
-#menu a:hover {
-    color: #006400; /*darkgreen*/
-}
 #menu fieldset {
     border-color: #006400; /*  darkgreen*/
 }
 #menu legend {
+    color: #006400; /*darkgreen*/
+}
+#menu fieldset a:hover {
     color: #006400; /*darkgreen*/
 }
 /*------------------------------------ nove -----------------------------------*/
@@ -60,9 +63,6 @@ input, textarea, select, pre {
 }
 #main hr {
     border-color: green;
-}
-#main a {
-    color: #006400; /*darkgreen*/
 }
 #main table.data thead {
     background-color: green;

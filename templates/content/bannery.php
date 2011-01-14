@@ -1,21 +1,14 @@
 <?php
-$nadpis = "Bannery";
-require 'base/layout.php';
-require 'base/secure.php';
+Context::getInstance()->getResponse()->setHeading('bannery');
 
-require_once 'base/Database.php';
 try
 {
     $db = new Database();
 }
 catch(Exception $ex)
 {
-    exit("<h4>{$ex->getMessage()}</h4>
-        <hr>
-        </div>
-        </div>
-        </body>
-        </html>");
+    echo 'nepodarilo sa pripojit na db';
+    return;
 }
 
 $bannery = $db->getBanneryByUser($_SESSION['user']);   //ziskanie bannerov pouzivatela
@@ -61,7 +54,7 @@ if(count($bannery)>0)
                 <a onclick="show2('tr<?php echo $banner->id; ?>')"><?php echo substr($banner,strlen($_SESSION['user'].$banner->velkost->sirka.$banner->velkost->vyska)+3); ?></a>
             </td>
             <td>
-                <form method="POST" action="actions/zmaz.php">
+                <form method="POST" action="/action/zmaz">
                     <input type="hidden" name="zmaz" value="<?php echo $banner->id; ?>">
                     <input type="button" value="Zmaž" onclick="if(confirm('Naozaj odstrániť?')) this.parentNode.submit();">
                 </form>
@@ -84,7 +77,7 @@ if(count($bannery)>0)
   ?>
 <hr>
 <h4>Pridanie nového banneru:</h4>
-<form name="upl_form" action="actions/pridajBanner.php" method="POST" enctype="multipart/form-data">
+<form name="upl_form" action="/action/pridajBanner" method="POST" enctype="multipart/form-data">
 <table cellspacing="5" style="text-align:left;">
     <tr title="Zvoľte rozmerový typ reklamného banneru.">
         <td>

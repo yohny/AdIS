@@ -1,7 +1,5 @@
 <?php
-$nadpis = "Štatistika";
-require 'base/layout.php';
-require 'base/secure.php';
+Context::getInstance()->getResponse()->setHeading('about');
 
 /* @var $user User */ //aktualne prihlaseny pouzivatel
 $user = $_SESSION['user'];
@@ -10,7 +8,6 @@ if($user->kategoria!='admin')
 
 define('ROWS_PER_PAGE', 10);
 
-require_once 'base/model/Filter.php';
 $filter = new Filter(ROWS_PER_PAGE);
 
 if(isset($_POST['page']))
@@ -35,7 +32,6 @@ if(isset($_POST['rekl']))
 if(isset($_POST['type']))
     $filter->type = $_POST['type'];
 
-require_once 'base/Database.php';
 try
 {
     $db = new Database();
@@ -77,7 +73,7 @@ $pages = ceil($pocet/ROWS_PER_PAGE);
         <tr id="customRow" <?php if($filter->date!='custom') echo 'style="display: none;"'; ?>>
             <td></td>
             <td>
-                 <?php require_once 'base/partials/dateInterval.php';?>
+                 <?php require_once 'templates/partials/dateInterval.php';?>
             </td>
         </tr>
         <tr>
@@ -132,7 +128,7 @@ $pages = ceil($pocet/ROWS_PER_PAGE);
 if(count($events)==0)
     echo "<h4>Žiadne dáta!</h4>";
 else
-{ $i=0; include 'base/partials/pager.php'; ?>
+{ $i=0; include 'templates/partials/pager.php'; ?>
     <table class="data">
         <thead>
             <tr>
@@ -169,10 +165,4 @@ else
         <?php endforeach; ?>
         </tbody>
     </table>
-<?php include 'base/partials/pager.php'; } ?>
-<hr>
-</div>
-
-</div>
-</body>
-</html>
+<?php include 'templates/partials/pager.php'; } ?>

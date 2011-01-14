@@ -7,21 +7,22 @@ else
 
 function set_scheme(c)
 {
+    if(c>3 || c<1) c=1; //len 3 schemy su
     var datum = new Date();
     datum.setTime(datum.getTime()+(10*24*60*60*1000));   //platnost 10 dni (v milisekundach)
     document.cookie="schema="+c+"; expires="+datum.toGMTString()+"; path=/";  //nastavi cookie
     for (j=1;j<=3;j++)  //nastavi stylesheet a ikonu schemy
     {
-        var ico = eval("document.getElementById('img"+j+"');");
+        var ico = document.getElementById('img'+j);
         if (j!=c)
         {
             document.styleSheets[j].disabled=true;
-            ico.src="img/sch"+j+".png";
+            ico.src="/img/sch"+j+".png";
         }
         else
         {
             document.styleSheets[j].disabled=false;
-            ico.src="img/sch"+j+"_big.png";
+            ico.src="/img/sch"+j+"_big.png";
         }
     }
 }
@@ -180,7 +181,7 @@ function spracuj_chweb()
         alert ("Váš prehliadač nepodporuje XMLHTTP (AjaX)!");
         return;
     }
-    var url="ajax/chweb.php";
+    var url="ajax/chweb";
     var params ="web="+encodeURIComponent(web);
     params+="&sid="+Math.random();  //Adds a random number to prevent the server from using a cached file
     xmlhttp.onreadystatechange=function() {
@@ -233,7 +234,7 @@ function spracuj_chpas()
         alert ("Váš prehliadač nepodporuje XMLHTTP (AjaX)!");
         return;
     }
-    var url = "ajax/chpas.php";
+    var url = "ajax/chpas";
     var params = "old="+encodeURIComponent(old);
     params += "&new="+encodeURIComponent(new1);
     params += "&sid="+Math.random();  //Adds a random number to prevent the server from using a cached file
@@ -257,6 +258,7 @@ function overLogin(str)
     if (!(/^[a-zA-Z0-9]{4,10}$/).test(str))
     {
         document.getElementById("loginStatus").innerHTML="<span class='r'>Nesprávny formát! (aspoň 4 znaky: a-z, A-Z, 0-9)</span>";
+        setContainerHeight();
         return;
     }
     var xmlhttp = GetXmlHttpObject();
@@ -265,7 +267,7 @@ function overLogin(str)
         alert ("Váš prehliadač nepodporuje XMLHTTP (AjaX)!");
         return;
     }
-    var url = "ajax/checklogin.php";
+    var url = "ajax/checklogin";
     var params = "login="+encodeURIComponent(str);
     params += "&sid="+Math.random();  //Adds a random number to prevent the server from using a cached file
     xmlhttp.onreadystatechange=function() {

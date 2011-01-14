@@ -29,6 +29,7 @@ img {
 }
 #img1, #img2, #img3 {
     cursor: pointer;
+    margin-left: 7px;
 }
 h3 {       /* vsetky nazvy divov  */
     margin: 0 0 15px;

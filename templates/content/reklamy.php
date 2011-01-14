@@ -1,9 +1,6 @@
 <?php
-$nadpis = "Reklamy";
-require 'base/layout.php';
-require 'base/secure.php';
+Context::getInstance()->getResponse()->setHeading('reklamy');
 
-require_once 'base/Database.php';
 try
 {
     $db = new Database();
@@ -61,7 +58,7 @@ if(count($reklamy)>0)
                 <a onclick="show2('tr<?php echo $reklama->id; ?>')"><?php echo $reklama; ?></a>
             </td>
             <td>
-                <form method="POST" action="actions/zmaz.php">
+                <form method="POST" action="/action/zmaz">
                     <input type="hidden" name="zmaz" value="<?php echo $reklama->id;?>">
                     <input type="button" value="Zmaž" onclick="if(confirm('Naozaj odstrániť?')) this.parentNode.submit();">
                 </form>
@@ -89,7 +86,7 @@ document.write(unescape("%3Cscript type=\"text/javascript\" language=\"javascrip
   ?>
 <hr>
 <h4>Pridanie novej reklamy:</h4>
-<form name="add_form" action="actions/pridajReklamu.php" method="POST" enctype="multipart/form-data">
+<form name="add_form" action="/action/pridajReklamu" method="POST" enctype="multipart/form-data">
 <table cellspacing="5" style="text-align:left;">
     <tr>
         <td title="Zvoľte rozmerový typ reklamnej jednotky.">
@@ -136,10 +133,3 @@ document.write(unescape("%3Cscript type=\"text/javascript\" language=\"javascrip
     </tr>
 </table>
 </form>
-
-<hr>
-</div>
-
-</div>
-</body>
-</html>

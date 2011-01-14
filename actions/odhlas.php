@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 if ($_POST['action'] == "logout")
 {
     session_unset();
@@ -9,9 +7,7 @@ if ($_POST['action'] == "logout")
 else
     $message = "Chybná požiadavka";
 
-$_SESSION['flash'] = $message;
+Context::getInstance()->setFlash($message);
 
-$referer = $_SERVER['HTTP_REFERER'];
-$referer = str_replace(basename($referer), 'index.php', $referer);
-header("Location: $referer");
+header("Location: /");
 ?>

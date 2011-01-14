@@ -1,25 +1,15 @@
 <?php
-$nadpis = "Profil";
-require 'base/layout.php';
-require 'base/secure.php';
+Context::getInstance()->getResponse()->setHeading('profil');
 
-require 'base/Database.php';
 try
 {
-    $db = new Database();
+   $web = Context::getInstance()->getUser()->getWeb();
 }
 catch (Exception $ex)
 {
-    exit("<h4>{$ex->getMessage()}</h4>
-        <hr>
-        </div>
-        </div>
-        </body>
-        </html>");
+    echo $ex->getMessage();
+    return;
 }
-
-/* @var $user User */
-$user = $_SESSION['user'];
 ?>
 <form name="chpas_form" action="">
     <table cellspacing="5" style="text-align:left;width:300px;">
@@ -40,11 +30,11 @@ $user = $_SESSION['user'];
     </table>
 </form>
 
-<?php if ($user->kategoria != 'admin'): ?>
+<?php if (Context::getInstance()->getUser()->kategoria != 'admin'): ?>
 <form name="chweb_form" action="">
     <table cellspacing="5" style="text-align:left;width:300px;">
         <tr>
-            <td width="80">WWW adresa:</td><td width="110"><span class="g" id="webTd"><?php echo $user->getWeb($db); ?></span></td><td width="30"><a onclick="show('web',this)">zmeň</a></td>
+            <td width="80">WWW adresa:</td><td width="110"><span class="g" id="webTd"><?php echo $web; ?></span></td><td width="30"><a onclick="show('web',this)">zmeň</a></td>
         </tr>
         <tr id="web" style="display:none;">
             <td colspan="3">
@@ -58,10 +48,3 @@ $user = $_SESSION['user'];
     </table>
 </form>
 <?php endif; ?>
-
-<hr>
-</div>
-
-</div>
-</body>
-</html>

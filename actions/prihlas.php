@@ -1,33 +1,25 @@
-<?php 
-session_start();
+<?php
+if(!isset($_POST['login']) || !isset($_POST['heslo']))
+{
+    echo 'nekompletne data';
+    return;
+}
 
-$login = $_POST['login'];
-$heslo = $_POST['heslo'];
-
-require '../base/Database.php';
 try
 {
-    $db = new Database();
+    $user = Context::getInstance()->getDatabase()->getUserByCredentials( $_POST['login'], $_POST['heslo']);
+    if ($user != null)
+    {
+        Context::getInstance()->setUser($user);
+        $message = "Úspešne ste sa prihlásili!";
+    }
+    else
+        $message = "Chyba pri prihlasovaní. / Neplatné prihlasovacie údaje!";
 }
 catch (Exception $ex)
 {
-    $_SESSION['flash'] = $ex->getMessage();
-    $referer = $_SERVER['HTTP_REFERER'];
-    header("Location: $referer");
-    exit();
+    $message = $ex->getMessage();
 }
-
-$user = $db->getUserByCredentials($login, $heslo);
-
-if($user!=null)
-{
-  $_SESSION['user'] = $user;
-  $message = "Úspešne ste sa prihlásili!";
-}
-else
-  $message = "Chyba pri prihlasovaní. / Neplatné prihlasovacie údaje!";
-
-$_SESSION['flash'] = $message;
-$referer = $_SERVER['HTTP_REFERER'];
-header("Location: $referer");
+Context::getInstance()->setFlash($message);
+header("Location: ".(isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:"/"));
 ?>

@@ -1,0 +1,8 @@
+Options +FollowSymLinks +ExecCGI
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule (\.css|\.js)$ - [L]
+  RewriteRule ^(img/|upload/) - [L]
+  RewriteRule ^(.*)$ index.php?id=123 [QSA,L]
+</IfModule>

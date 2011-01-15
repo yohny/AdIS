@@ -7,7 +7,7 @@ if(!isset($_POST['login']) || !isset($_POST['heslo']))
 
 try
 {
-    $user = Context::getInstance()->getDatabase()->getUserByCredentials( $_POST['login'], $_POST['heslo']);
+    $user = User::getByCredentials( $_POST['login'], $_POST['heslo']);
     if ($user != null)
     {
         Context::getInstance()->setUser($user);
@@ -20,6 +20,6 @@ catch (Exception $ex)
 {
     $message = $ex->getMessage();
 }
-Context::getInstance()->setFlash($message);
-header("Location: ".(isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:"/"));
+Context::getInstance()->getResponse()->setFlash($message);
+header("Location: /");
 ?>

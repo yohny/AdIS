@@ -12,7 +12,7 @@ try
     if (Context::getInstance()->getUser()->setPassword($_POST['old'], $_POST['new']))
         $resp = array('success' => true, 'message' => 'Heslo zmenené.');
     else
-        $resp = array('success' => false, 'message' => 'Neporarilo sa zmeniť heslo!(nesprávne?)');
+        $resp = array('success' => false, 'message' => 'Neporarilo sa zmeniť heslo! (nesprávne?)');
 }
 catch (Exception $ex)
 {

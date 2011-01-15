@@ -1,53 +1,47 @@
 <?php
-if(!isset($_POST['zmaz']))
-    exit('Nekompletne data');
+if (!isset($_POST['zmaz']))
+{
+    echo 'Nekompletne data';
+    return;
+}
+if (!is_numeric($_POST['zmaz']))
+{
+    echo 'Neplatne data';
+    return;
+}
 
-require '../base/model/User.php'; //pred session_start
-session_start();
-require '../base/secure.php';
-$user = $_SESSION['user']; /* @var $user User */
-require '../base/Database.php';
 try
 {
-    $db = new Database();
+    if (Context::getInstance()->getUser()->kategoria == 'inzer') //maze banner
+    {
+        $object = Context::getInstance()->getDatabase()->getBannerByPK($_POST['zmaz']);
+        $notAllowedMsg = 'Nemôžete zmazať tento banner!';
+        $okMsg = "Banner '$object->filename' zmazaný!";
+        $failMsg = "Banner '$object->filename' sa nepodarilo zmazať!";
+    }
+    elseif (Context::getInstance()->getUser()->kategoria == 'zobra') //maze reklamu
+    {
+        $object = Context::getInstance()->getDatabase()->getReklamaByPK($_POST['zmaz']);
+        $notAllowedMsg = 'Nemôžete zmazať túto reklamu!';
+        $okMsg = "Relama '$object->name' zmazaná!";
+        $failMsg = "Reklamu '$object->name' sa nepodarilo zmazať!";
+    }
+    else
+    {
+        $object = null;
+        $notAllowedMsg = 'Nemôžete zmazať tento objekt!';
+    }
+
+    if (!$object || $object->userId != Context::getInstance()->getUser()->id)
+        $message = $notAllowedMsg;
+    else
+        $message = $object->delete()?$okMsg:$failMsg;
 }
 catch (Exception $ex)
 {
-    $_SESSION['flash'] = $ex->getMessage();
-    $referer = $_SERVER['HTTP_REFERER'];
-    header("Location: $referer");
-    exit();
+    $message = $ex->getMessage();
 }
 
-
-if($user->kategoria=='inzer') //maze banner
-{
-    $banner = $db->getBannerByPK($_POST['zmaz']);
-    if(!$banner || $banner->userId!=$user->id)
-        $message = 'Nemôžete zmazať tento banner!';
-    else
-    {
-        if($banner->delete($db))
-            $message = "Banner '$banner->filename' zmazaný!";
-        else
-            $message = "Banner '$banner->filename' sa nepodarilo zmazať!";
-    }        
-}
-if($user->kategoria=='zobra') //maze reklamu
-{
-    $reklama = $db->getReklamaByPK($_POST['zmaz']);
-    if(!$reklama || $reklama->userId!=$user->id)
-        $message = 'Nemôžete zmazať túto reklamu!';
-    else
-    {
-        if($reklama->delete($db))
-            $message = "Relama '$reklama->name' zmazaná!";
-        else
-            $message = "Reklamu '$reklama->name' sa nepodarilo zmazať!";
-    }
-}
-
-$_SESSION['flash'] = $message;
-$referer = $_SERVER['HTTP_REFERER'];
-header("Location: $referer");
+Context::getInstance()->getResponse()->setFlash($message);
+header("Location: " . (isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : "/"));
 ?>

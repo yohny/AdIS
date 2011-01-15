@@ -1,5 +1,10 @@
 <?php
 Context::getInstance()->getResponse()->setHeading('bannery');
+if (Context::getInstance()->getUser()->kategoria != 'inzer')
+{
+    echo "<div class=\"error\">Nepovolený prístup</div>";
+    return;
+}
 
 try
 {
@@ -51,7 +56,7 @@ if(count($bannery)>0)
                 <?php echo implode(', ', $banner->getKategorie($db->conn)); ?>
             </td>
             <td>
-                <a onclick="show2('tr<?php echo $banner->id; ?>')"><?php echo substr($banner,strlen($_SESSION['user'].$banner->velkost->sirka.$banner->velkost->vyska)+3); ?></a>
+                <a href="javascript:void(0)"onclick="show2('tr<?php echo $banner->id; ?>')"><?php echo $banner; ?></a>
             </td>
             <td>
                 <form method="POST" action="/action/zmaz">
@@ -63,7 +68,7 @@ if(count($bannery)>0)
         <tr <?php if($i%2==0) echo "class=\"dark\"";?>  style="display:none;" id="tr<?php echo $banner->id; ?>">
             <td colspan="5">
                 <div style="max-height:200px;overflow: auto;">
-                <img alt="banner" src="<?php echo 'upload/'.$banner; ?>">
+                <img alt="banner" src="<?php echo '/upload/'.$banner->filename; ?>">
                 </div>
             </td>
         </tr>

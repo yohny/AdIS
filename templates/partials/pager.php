@@ -35,5 +35,5 @@ if( isset($pages) && isset($aktPage) && $pages>1 ):?>
     </tr>
 </table>
 <?php else: ?>
-chybaju premenne
+<b>PAGER: chybaju premenne</b>
 <?php endif;?>

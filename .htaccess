@@ -4,5 +4,6 @@ Options +FollowSymLinks +ExecCGI
   RewriteEngine On
   RewriteRule (\.css|\.js)$ - [L]
   RewriteRule ^(img/|upload/) - [L]
-  RewriteRule ^(.*)$ index.php?id=123 [QSA,L]
+  RewriteRule (doKlik|getBanner|getScript) distrib/$1.php [L]
+  RewriteRule ^(.*)$ index.php [L]
 </IfModule>

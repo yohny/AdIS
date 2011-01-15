@@ -48,6 +48,6 @@ echo "var adisRedir = \"$web\";\n";
 
 //<a href="..." ping="...">   - PING not supported by browsers (Firefox only?)
 ?>
-document.write("<a href=\"http://<?php echo $_SERVER["HTTP_HOST"]; ?>/distrib/klik.php?zobra="+adisZobrId+"&rekl="+adisReklId+"&inzer="+adisInzeId+"&bann="+adisBannId+"&redir="+adisRedir+"\">");
-document.write("<img height=\""+adisVyska+"\" width=\""+adisSirka+"\" alt=\"banner\" src=\"http://<?php echo $_SERVER["HTTP_HOST"]; ?>/distrib/banner.php?id="+adisBannId+"&rand="+adisRand+"\">");
+document.write("<a href=\"http://<?php echo $_SERVER["HTTP_HOST"]; ?>/doKlik?zobra="+adisZobrId+"&rekl="+adisReklId+"&inzer="+adisInzeId+"&bann="+adisBannId+"&redir="+adisRedir+"\">");
+document.write("<img height=\""+adisVyska+"\" width=\""+adisSirka+"\" alt=\"banner\" src=\"http://<?php echo $_SERVER["HTTP_HOST"]; ?>getBanner?id="+adisBannId+"&rand="+adisRand+"\">");
 document.write("</a>");

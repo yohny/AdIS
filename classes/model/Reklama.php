@@ -1,5 +1,4 @@
 <?php
-
 /**
  * trieda reprezentujuca jeden zaznam z tabulky REKLAMY
  *
@@ -7,7 +6,6 @@
  */
 class Reklama
 {
-
     /**
      * primarny kluc
      * @var int
@@ -37,12 +35,13 @@ class Reklama
         $this->name = $name;
     }
 
-    public function getKategorie(mysqli $conn)
+    public function getKategorie()
     {
+        $db = Context::getInstance()->getDatabase();
         $query = "SELECT kategorie.* FROM kategoria_reklama JOIN kategorie ON (kategoria_reklama.kategoria=kategorie.id)
             WHERE reklama=$this->id ORDER BY kategorie.nazov ASC";
         /* @var $result mysqli_result */
-        $results = $conn->query($query);
+        $results = $db->conn->query($query);
         $objects = array();
         while ($result = $results->fetch_object())
         {
@@ -52,8 +51,9 @@ class Reklama
         return $objects;
     }
 
-    public function save($kategorie, Database $db)
+    public function save($kategorie)
     {
+        $db = Context::getInstance()->getDatabase();
         $db->conn->autocommit(false);
         $query = "INSERT INTO reklamy VALUES(NULL, $this->userId, {$this->velkost->id}, '$this->name')";
         if (!$db->conn->query($query))
@@ -78,8 +78,9 @@ class Reklama
         return true;
     }
 
-    public function delete(Database $db)
+    public function delete()
     {
+        $db = Context::getInstance()->getDatabase();
         $db->conn->autocommit(false);
         if (!$db->conn->query("DELETE FROM kategoria_reklama WHERE reklama=$this->id") ||
                 !$db->conn->query("DELETE FROM reklamy WHERE id=$this->id"))
@@ -98,6 +99,14 @@ class Reklama
         return $this->name;
     }
 
+    public static function checkAd($meno,  Velkost $velkost)
+    {
+        $message = null;
+        if (strlen($meno) > 50)
+            $message .= "Príliš dlhý názov! (max. 50 znakov)<br>";
+        if (Context::getInstance()->getUser()->hasReklamaOfSize($velkost))
+            $message .= "Už máte reklamu typu $velkost->nazov!<br>";
+        return $message;
+    }
 }
-
 ?>

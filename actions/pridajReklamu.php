@@ -1,47 +1,40 @@
 <?php
-if(!isset ($_POST['meno']) || !isset ($_POST['velkost']) || !isset ($_POST['kategorie']))
-    exit("Nekompletne data");
+if (Context::getInstance()->getUser()->kategoria != 'zobra')
+{
+    echo "Nepovolený prístup";
+    return;
+}
+if (!isset($_POST['meno']) ||
+        !isset($_POST['velkost']) ||
+        !isset($_POST['kategorie']) ||
+        !is_numeric($_POST['velkost']))
+{
+    echo "Neplatné údaje";
+    return;
+}
 
-require '../base/model/User.php'; //pred session_start
-session_start();
-require '../base/secure.php';
-$user = $_SESSION['user']; /* @var $user User */
-require '../base/Database.php';
 try
 {
-    $db = new Database();
+    $velkost = Context::getInstance()->getDatabase()->getVelkostByPK($_POST['velkost']);
+    if (!$velkost)
+        $message = "Nepodarilo sa ziskat velkost";
+    else
+        $message = Reklama::checkAd($_POST['meno'], $velkost);
+
+    if (!$message)
+    {
+        $reklama = new Reklama(null, Context::getInstance()->getUser()->id, $velkost, $_POST['meno']);
+        if ($reklama->save($_POST['kategorie']))
+            $message = "Reklama bola úspešne uložená.";
+        else
+            $message = "Nepodarilo sa uložiť reklamu.";
+    }
 }
 catch (Exception $ex)
 {
-    $_SESSION['flash'] = $ex->getMessage();
-    $referer = $_SERVER['HTTP_REFERER'];
-    header("Location: $referer");
-    exit();
+    $message = $ex->getMessage();
 }
 
-$meno = $_POST['meno'];
-$kategorie = $_POST['kategorie'];
-$message = "";
-
-$velkost = $db->getVelkostByPK($_POST['velkost']);
-if(!$velkost)
-    exit ("Nepodarilo sa ziskat velkost");
-
-if(strlen($meno)>50)
-    $message .= "Príliš dlhý názov! (max. 50 znakov)<br>";
-if($user->hasReklamaOfSize($velkost, $db))
-    $message .= "Už máte reklamu typu $velkost->nazov!<br>";
-
-if($message=="")
-{
-    $reklama = new Reklama(null, $user->id, $velkost, $meno);
-    if($reklama->save($kategorie, $db))
-        $message = "Reklama bola úspešne uložená.";
-    else
-        $message = "Nepodarilo sa uložiť reklamu.";
-}
-
-$_SESSION['flash'] = $message;
-$referer = $_SERVER['HTTP_REFERER'];
-header("Location: $referer");
+Context::getInstance()->getResponse()->setFlash($message);
+header("Location: " . (isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : "/"));
 ?>

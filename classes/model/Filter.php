@@ -1,5 +1,4 @@
 <?php
-
 /**
  * filtovacie kriteria pre zobrazenie statistiky
  *
@@ -7,7 +6,6 @@
  */
 class Filter
 {
-
     public $date;
     public $page;
     public $banner;
@@ -43,7 +41,5 @@ class Filter
         $this->doYear = 0;
         $this->type = 'click';
     }
-
 }
-
 ?>

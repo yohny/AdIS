@@ -1,10 +1,11 @@
 <?php
-if(!isset ($_GET['id']))
+if(!isset ($_GET['id']) || !is_numeric($_GET['id']))
+{
+    header("HTTP/1.1 404 Not Found");
     exit();
-if (!preg_match('/[1-9][0-9]*/', $_GET['id']))
-    exit();
+}
  
-require '../base/Database.php';
+
 try
 {
     $db = new Database();

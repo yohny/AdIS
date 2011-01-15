@@ -8,12 +8,6 @@ class Context
 {
     private $request = null;
     private $response = null;
-    /**
-     * aktualne prihlaseny pouzivatel alebo null
-     * @var User
-     */
-    private $flash = null;
-    private $user = null;
     private $database = null;
     private static $instance = null;
 
@@ -21,11 +15,6 @@ class Context
     {
         $this->request = new Request(isset($_SERVER['REDIRECT_URL'])?$_SERVER['REDIRECT_URL']:'/');
         $this->response = new Response('Ad-IS');
-        //$this->database = new Database(); -loadnuta len ak treba SEE $this->getDatabase
-        if(isset($_SESSION['user']))
-            $this->user = $_SESSION['user'];
-        if(isset($_SESSION['flash']))
-            $this->flash = $_SESSION['flash'];
     }
 
     /**
@@ -70,7 +59,6 @@ class Context
 
     public function setUser(User $user)
     {
-        //$this->user = $user;
         $_SESSION['user'] = $user;
     }
 
@@ -81,26 +69,10 @@ class Context
      */
     public function getUser()
     {
-        return $this->user;
-    }
-
-    public function setFlash($flash)
-    {
-        //$this->flah = $flash;
-        $_SESSION['flash'] = $flash;
-    }
-
-    /**
-     * echoes temporary message
-     */
-    public function putFlash()
-    {
-        if($this->flash)
-        {
-            echo "<div class=\"flash\">$this->flash</div>";
-            session_unregister('flash');
-            $this->flash = null;
-        }
+        if(isset($_SESSION['user']))
+            return $_SESSION['user'];
+        else
+            return null;
     }
 }
 ?>

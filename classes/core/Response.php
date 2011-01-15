@@ -46,9 +46,28 @@ class Response {
         return $this->resourcces;
     }
 
+
+    public function setFlash($flash)
+    {
+        $_SESSION['flash'] = $flash;
+    }
+
+    /**
+     * echoes temporary message
+     */
+    public function getFlash()
+    {
+        if(isset($_SESSION['flash']))
+        {
+            $resp = "<div class=\"flash\">{$_SESSION['flash']}</div>";
+            unset($_SESSION['flash']);
+            return $resp;
+        }
+    }
+
     public function  __toString()
     {
-        return $this->content;
+        return $this->content?$this->content:'';
     }
 }
 ?>

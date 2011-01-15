@@ -15,6 +15,8 @@ if (!filter_var($user['web'], FILTER_VALIDATE_URL))
     $message = "Neplatná webová adresa!";
 elseif ($user['heslo'] != $user['heslo2'])
     $message = "Nezhodujúce sa heslo!";
+elseif (!preg_match('/^\w+$/', $user['login']))
+    $message = "Neplatný login!";
 else
 {
     try
@@ -35,6 +37,6 @@ else
     }
 }
 $_SESSION['registrator'] = $user;
-Context::getInstance()->setFlash($message);
-header("Location: " . $_SERVER['HTTP_REFERER']);
+Context::getInstance()->getResponse()->setFlash($message);
+header("Location: " . (isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:"/"));
 ?>

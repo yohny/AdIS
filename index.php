@@ -1,5 +1,4 @@
 <?php
-//var_dump($_SERVER);
 function __autoload($className)
 {
     if(file_exists('classes/model/'.$className.'.php'))
@@ -8,6 +7,8 @@ function __autoload($className)
         require_once 'classes/core/'.$className.'.php';
 }
 
+session_name('adis_session');
+//session_set_cookie_params(10);
 session_start();
 
 $request = Context::getInstance()->getRequest();
@@ -15,12 +16,12 @@ $request = Context::getInstance()->getRequest();
 if (!$request->fileExists)
 {
     header("HTTP/1.1 404 Not Found");
-    Context::getInstance()->getResponse()->content = $_SERVER['REQUEST_URI'] . ' not found';
+    Context::getInstance()->getResponse()->content = "<div class=\"error\">{$_SERVER['REQUEST_URI']} nenájdené!</div>";
 }
 elseif(!$request->isPublic && !Context::getInstance()->getUser())
 {
     header("HTTP/1.1 403 Forbidden");
-    Context::getInstance()->getResponse()->content = 'Nepovolený pristup';
+    Context::getInstance()->getResponse()->content = "<div class=\"error\">Nepovolený pristup!</div>";
 }
 else
 {
@@ -29,8 +30,8 @@ else
     Context::getInstance()->getResponse()->content = ob_get_clean();
 }
 
-if (!$request->hasTemplate)
-    echo Context::getInstance()->getResponse();
-else
+if ($request->hasTemplate)
     require 'templates/layout.php';
+else
+    echo Context::getInstance()->getResponse();
 ?>

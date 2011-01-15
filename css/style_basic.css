@@ -53,19 +53,24 @@ ul {
     text-decoration: underline;
     font-weight: bold;
 }
-#container .errbox, #container .okbox {
+#container .errbox, #container .okbox, #container .error {
     border: 2px solid black;
     background-color: white;
     display: none;
     padding: 10px;
 }
-#container .errbox {
+#container .errbox, #container .error {
     border-color: red;
     color: red;
 }
 #container .okbox {
     border-color: green;
     color: green;
+}
+#container .error{
+    text-align: center;
+    font-weight: bold;
+    display: block;
 }
 input, textarea, select, pre {
     font-size: 12px; /* firefox a ... ignoruje font-size pre input nastaveny v predchodcovi (body) */

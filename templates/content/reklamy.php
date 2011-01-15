@@ -1,5 +1,10 @@
 <?php
 Context::getInstance()->getResponse()->setHeading('reklamy');
+if (Context::getInstance()->getUser()->kategoria != 'zobra')
+{
+    echo "<div class=\"error\">Nepovolený prístup</div>";
+    return;
+}
 
 try
 {
@@ -71,7 +76,7 @@ if(count($reklamy)>0)
 &lt;script language="javascript" type="text/javascript" charset="utf-8"&gt;
 var adisRekl = <?php echo $reklama->id; ?>;
 var adisRand = Math.random();
-document.write(unescape("%3Cscript type=\"text/javascript\" language=\"javascript\" charset=\"utf-8\" src=\"http://<?php echo $_SERVER["HTTP_HOST"]; ?>/distrib/script.php?rekl="+adisRekl+"&amp;rand="+adisRand+"\"%3E%3C/script%3E"));
+document.write(unescape("%3Cscript type=\"text/javascript\" language=\"javascript\" charset=\"utf-8\" src=\"http://<?php echo $_SERVER["HTTP_HOST"]; ?>/getScript?rekl="+adisRekl+"&amp;rand="+adisRand+"\"%3E%3C/script%3E"));
 &lt;/script&gt;
                 </pre>
             </td>

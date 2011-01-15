@@ -33,7 +33,6 @@ class Velkost
         $this->sirka = $sirka;
         $this->vyska = $vyska;
         $this->nazov = $nazov;
-
     }
 
     public function __toString()

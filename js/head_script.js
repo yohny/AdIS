@@ -10,7 +10,7 @@ function set_scheme(c)
     if(c>3 || c<1) c=1; //len 3 schemy su
     var datum = new Date();
     datum.setTime(datum.getTime()+(10*24*60*60*1000));   //platnost 10 dni (v milisekundach)
-    document.cookie="schema="+c+"; expires="+datum.toGMTString()+"; path=/";  //nastavi cookie
+    document.cookie="schema="+c+"; expires="+datum.toUTCString()+"; path=/";  //nastavi cookie
     for (j=1;j<=3;j++)  //nastavi stylesheet a ikonu schemy
     {
         var ico = document.getElementById('img'+j);

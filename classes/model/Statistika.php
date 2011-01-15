@@ -5,14 +5,15 @@
  *
  * @author yohny
  */
-class Statistika {
+class Statistika
+{
     public $cas;
     public $banrekId;
     public $meno;
     public $zobrazenia;
     public $kliky;
 
-    public function __construct($cas,$banrekId,$meno,$zobrazenia,$kliky)
+    public function __construct($cas, $banrekId, $meno, $zobrazenia, $kliky)
     {
         $this->cas = $cas;
         $this->banrekId = $banrekId;

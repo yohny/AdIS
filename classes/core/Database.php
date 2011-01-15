@@ -15,7 +15,7 @@ class Database
     public function __construct()
     {
         $this->conn = @new mysqli('localhost', 'root', 'Neslira11', 'adis');
-        if (mysqli_connect_errno ())
+        if (mysqli_connect_errno())
             throw new Exception('Nepodarilo sa pripojiť na databázu!');
         //mysql_query("SET CHARACTER SET utf8");
         //mysql_query("SET NAMES 'utf8'")
@@ -27,26 +27,6 @@ class Database
     public function __destruct()
     {
         $this->conn->close();
-    }
-
-    /**
-     * vrati objekt pouzivatela na zaklade prihlasovacich udajov
-     * @param string $login
-     * @param string $password
-     * @return User
-     */
-    public function getUserByCredentials($login, $password)
-    {
-        if(!$stm = $this->conn->prepare("SELECT id, login, kategoria FROM users WHERE login=? AND heslo=MD5(?)"))
-            return null;
-        $stm->bind_param('ss', $login,$password);
-        if(!$stm->execute())
-            return null;
-        $stm->bind_result($id,$login,$kateg);
-        if($stm->fetch())
-            return new User($id, $login, $kateg);
-        else
-            return null;
     }
 
     /**
@@ -274,7 +254,7 @@ class Database
         $objects = array();
         while ($result = $results->fetch_object())
         {
-            $object = new Statistika($result->cas, $result->banrek, $result->meno, $result->vcount, $result->ccount);
+            $object = new Statistika($result->cas, $result->banrek, preg_replace('/^(\w+_\d+x\d+_)/', '', $result->meno), $result->vcount, $result->ccount);
             $objects[] = $object;
         }
         return $objects;
@@ -356,6 +336,5 @@ class Database
         }
         return $objects;
     }
-
 }
 ?>

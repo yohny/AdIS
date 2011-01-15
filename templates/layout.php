@@ -62,12 +62,12 @@
                     <p class="r">important message</p>
                     <p>
                         <a href="http://validator.w3.org/check?uri=referer">
-                            <img src="img/valid-html401.png" alt="val_html">
+                            <img src="/img/valid-html401.png" alt="val_html">
                         </a>
                     </p>
                     <p>
                         <a href="http://jigsaw.w3.org/css-validator/check/referer">
-                            <img src="img/vcss.gif" alt="val_css">
+                            <img src="/img/vcss.gif" alt="val_css">
                         </a>
                     </p>
                     <p>
@@ -87,7 +87,7 @@
                 <div class="bottom_left corner"></div>
                 <div class="bottom_right corner"></div>
                 <h3><?php echo Context::getInstance()->getResponse()->getHeading(); ?></h3>
-                <?php Context::getInstance()->putFlash(); ?>
+                <?php echo Context::getInstance()->getResponse()->getFlash(); ?>
                 <?php echo Context::getInstance()->getResponse(); ?>
                 <hr>
             </div>

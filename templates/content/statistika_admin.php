@@ -1,10 +1,10 @@
 <?php
-Context::getInstance()->getResponse()->setHeading('about');
-
-/* @var $user User */ //aktualne prihlaseny pouzivatel
-$user = $_SESSION['user'];
-if($user->kategoria!='admin')
-        exit('Nepovolený prístup');
+Context::getInstance()->getResponse()->setHeading('štatistika');
+if (Context::getInstance()->getUser()->kategoria != 'admin')
+{
+    echo "<div class=\"error\">Nepovolený prístup</div>";
+    return;
+}
 
 define('ROWS_PER_PAGE', 10);
 
@@ -83,7 +83,7 @@ $pages = ceil($pocet/ROWS_PER_PAGE);
                     <option value="all">všetky</option>
                     <?php foreach($bannery as $banner): ?>
                     <option value="<?php echo $banner->id; ?>" <?php if($filter->banner==$banner->id) echo 'selected="selected"'; ?>>
-                        <?php echo "$banner ({$banner->velkost->sirka}x{$banner->velkost->vyska}) :$banner->id"; ?>
+                        <?php echo $banner->filename; ?>
                     </option>
                     <?php endforeach; ?>
                     <option value="del" <?php if($filter->banner=='del') echo 'selected="selected"'; ?>>zmazané</option>
@@ -97,7 +97,7 @@ $pages = ceil($pocet/ROWS_PER_PAGE);
                     <option value="all">všetky</option>
                     <?php foreach($reklamy as $reklama): ?>
                     <option value="<?php echo $reklama->id; ?>" <?php if($filter->reklama==$reklama->id) echo 'selected="selected"'; ?>>
-                        <?php echo "$reklama ({$reklama->velkost->sirka}x{$reklama->velkost->vyska}) :$reklama->id" ?>
+                        <?php echo "$reklama ({$reklama->velkost->sirka}x{$reklama->velkost->vyska})" ?>
                     </option>
                     <?php endforeach; ?>
                     <option value="del" <?php if($filter->reklama=='del') echo 'selected="selected"'; ?>>zmazané</option>

@@ -82,7 +82,7 @@ $pages = ceil($counts['count']/ROWS_PER_PAGE);
                     <option value="all">všetky</option>
                     <?php foreach($bannery as $banner): ?>
                     <option value="<?php echo $banner->id; ?>" <?php if($filter->banner==$banner->id) echo 'selected="selected"'; ?>>
-                        <?php echo substr($banner,strlen($user.$banner->velkost->sirka.$banner->velkost->vyska)+3).' ('.$banner->velkost->sirka.'x'.$banner->velkost->vyska.')';?>
+                        <?php echo $banner.' ('.$banner->velkost->sirka.'x'.$banner->velkost->vyska.')';?>
                     </option>
                     <?php endforeach; ?>
                     <option value="del" <?php if($filter->banner=='del') echo 'selected="selected"'; ?>>zmazané</option>
@@ -151,7 +151,7 @@ else
                 <td>
                 <?php
                 if($user->kategoria=="inzer")
-                    echo $stat->meno?substr($stat->meno,strlen($user.'_')):"#zmazaný";
+                    echo $stat->meno?$stat->meno:"#zmazaný";
                 else//zobra
                     echo $stat->meno?$stat->meno:"#zmazaná";
                 ?>

@@ -4,50 +4,18 @@
  *
  * @author yohny
  */
-class Banner
+class Banner extends BanRek
 {
     /**
-     * primarny kluc
-     * @var int
-     */
-    public $id;
-    /**
-     * FK na pouzivatela vlastniaceho banner
-     * @var int
-     */
-    public $userId;
-    /**
-     * objekt velkosti banneru
-     * @var Velkost
-     */
-    public $velkost;
-    /**
-     * nazov suboru banneru bez cesty (stlpec v tabulke sa vola 'path')
+     * nazov suboru banneru (stlpec sa vola 'path')
      * @var string
      */
-    public $filename; //path in table
+    public $filename;
+
     public function __construct($id, $userId, Velkost $velkost, $filename)
     {
-        $this->id = $id;
-        $this->userId = $userId;
-        $this->velkost = $velkost;
+        parent::__construct($id, $userId, $velkost);
         $this->filename = $filename;
-    }
-
-    public function getKategorie()
-    {
-        $db = Context::getInstance()->getDatabase();
-        $query = "SELECT kategorie.* FROM kategoria_banner JOIN kategorie ON (kategoria_banner.kategoria=kategorie.id)
-            WHERE banner=$this->id ORDER BY kategorie.nazov ASC";
-        /* @var $result mysqli_result */
-        $results = $db->conn->query($query);
-        $objects = array();
-        while ($result = $results->fetch_object())
-        {
-            $object = new Kategoria($result->id, $result->nazov);
-            $objects[] = $object;
-        }
-        return $objects;
     }
 
     public function save($kategorie)
@@ -79,20 +47,9 @@ class Banner
 
     public function delete()
     {
-        $db = Context::getInstance()->getDatabase();
-        if (!unlink('upload/' . $this->filename)) //relat cesta voci zmaz.php, kde je tato metoda volana
+        if (!unlink('upload/' . $this->filename))
             return false;
-        $db->conn->autocommit(false);
-        if (!$db->conn->query("DELETE FROM kategoria_banner WHERE banner=$this->id") ||
-                !$db->conn->query("DELETE FROM bannery WHERE id=$this->id"))
-        {
-            $db->conn->rollback();
-            $db->conn->autocommit(true);
-            return false;
-        }
-        $db->conn->commit();
-        $db->conn->autocommit(true);
-        return true;
+        return parent::delete();
     }
 
     public function __toString()
@@ -107,11 +64,11 @@ class Banner
      */
     public static function createFilename($string, Velkost $velkost)
     {
-        $string = stripslashes($string);                        //odstrani lomitka
-        $string = preg_replace('/[\s+\'+]/', '_', $string);     //nahradi medzery a ine nepovolene symboly podtrznikmi
-        $string = preg_replace('/_+/', '_', $string);           //nahradi viacero podtrznikov jednym
+        $string = stripslashes($string);                    //odstrani lomitka
+        $string = preg_replace('/[\s+\'+]/', '_', $string); //nahradi medzery a ine nepovolene symboly podtrznikmi
+        $string = preg_replace('/_+/', '_', $string);       //nahradi viacero podtrznikov jednym
         $string = mb_strtolower($string, "UTF-8");
-        $notallowed = array("ľ", "š", "č", "ť", "ž", "ý", "á", "í", "é", "ú", "ä", "ó", "ô", "ň", "ĺ", "ŕ", "ř");  //nahradi nepovolene znaky
+        $notallowed = array("ľ", "š", "č", "ť", "ž", "ý", "á", "í", "é", "ú", "ä", "ó", "ô", "ň", "ĺ", "ŕ", "ř");
         $allowed = array("l", "s", "c", "t", "z", "y", "a", "i", "e", "u", "a", "o", "o", "n", "l", "r", "r");
         $string = str_replace($notallowed, $allowed, $string);
         $string = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $string);

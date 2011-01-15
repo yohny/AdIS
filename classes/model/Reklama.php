@@ -4,23 +4,8 @@
  *
  * @author yohny
  */
-class Reklama
+class Reklama extends BanRek
 {
-    /**
-     * primarny kluc
-     * @var int
-     */
-    public $id;
-    /**
-     * FK na pouzivatela vlastniaceho reklamu
-     * @var int
-     */
-    public $userId;
-    /**
-     * objekt velkosti reklamy
-     * @var Velkost
-     */
-    public $velkost;
     /**
      * meno reklamy (stlpec v tabulke sa vola 'meno')
      * @var string
@@ -29,26 +14,8 @@ class Reklama
 
     public function __construct($id, $userId, Velkost $velkost, $name)
     {
-        $this->id = $id;
-        $this->userId = $userId;
-        $this->velkost = $velkost;
+        parent::__construct($id, $userId, $velkost);
         $this->name = $name;
-    }
-
-    public function getKategorie()
-    {
-        $db = Context::getInstance()->getDatabase();
-        $query = "SELECT kategorie.* FROM kategoria_reklama JOIN kategorie ON (kategoria_reklama.kategoria=kategorie.id)
-            WHERE reklama=$this->id ORDER BY kategorie.nazov ASC";
-        /* @var $result mysqli_result */
-        $results = $db->conn->query($query);
-        $objects = array();
-        while ($result = $results->fetch_object())
-        {
-            $object = new Kategoria($result->id, $result->nazov);
-            $objects[] = $object;
-        }
-        return $objects;
     }
 
     public function save($kategorie)
@@ -80,18 +47,7 @@ class Reklama
 
     public function delete()
     {
-        $db = Context::getInstance()->getDatabase();
-        $db->conn->autocommit(false);
-        if (!$db->conn->query("DELETE FROM kategoria_reklama WHERE reklama=$this->id") ||
-                !$db->conn->query("DELETE FROM reklamy WHERE id=$this->id"))
-        {
-            $db->conn->rollback();
-            $db->conn->autocommit(true);
-            return false;
-        }
-        $db->conn->commit();
-        $db->conn->autocommit(true);
-        return true;
+        return parent::delete();
     }
 
     public function __toString()
@@ -99,7 +55,7 @@ class Reklama
         return $this->name;
     }
 
-    public static function checkAd($meno,  Velkost $velkost)
+    public static function checkAd($meno, Velkost $velkost)
     {
         $message = null;
         if (strlen($meno) > 50)

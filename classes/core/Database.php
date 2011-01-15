@@ -92,11 +92,21 @@ class Database
         return $objects;
     }
 
-    public function getBanneryByUser(User $user)
+    /**
+     * vrati bannery aktualne prihlaseneho usera,
+     * pri adminovi vrati vsetky
+     * @return Banner
+     */
+    public function getBanneryByUser()
     {
+        if(!Context::getInstance()->getUser())
+            throw new Exception ('Neprihlásený používateľ');
+        if(Context::getInstance()->getUser()->kategoria=='zobra')
+            throw new Exception ('Zlá kategória používateľa');
+
         $query = "SELECT bannery.*, velkosti.sirka, velkosti.vyska, velkosti.nazov FROM bannery JOIN velkosti ON (bannery.velkost=velkosti.id)";
-        if ($user->kategoria != 'admin')
-            $query.= " WHERE user=$user->id";
+        if (Context::getInstance()->getUser()->kategoria != 'admin')
+            $query.= " WHERE user=".Context::getInstance()->getUser()->id;
         $query.= " ORDER BY user,velkosti.nazov";
         /* @var $results mysqli_result */
         $results = $this->conn->query($query);
@@ -142,11 +152,21 @@ class Database
         return new Banner($object->id, $object->user, new Velkost($object->velkost, $object->sirka, $object->vyska, $object->nazov), $object->path);
     }
 
-    public function getReklamyByUser(User $user)
+    /**
+     * vrati reklamy aktualne prihlaseneho usera,
+     * pri adminovi vrati vsetky
+     * @return Reklama
+     */
+    public function getReklamyByUser()
     {
+        if(!Context::getInstance()->getUser())
+            throw new Exception ('Neprihlásený používateľ');
+        if(Context::getInstance()->getUser()->kategoria=='inzer')
+            throw new Exception ('Zlá kategória používateľa');
+
         $query = "SELECT reklamy.*, velkosti.sirka, velkosti.vyska, velkosti.nazov FROM reklamy JOIN velkosti ON (reklamy.velkost=velkosti.id)";
-        if ($user->kategoria != 'admin')
-            $query.= " WHERE user=$user->id";
+        if (Context::getInstance()->getUser()->kategoria != 'admin')
+            $query.= " WHERE user=".Context::getInstance()->getUser()->id;
         $query.= " ORDER BY user,velkosti.nazov";
         /* @var $results mysqli_result */
         $results = $this->conn->query($query);

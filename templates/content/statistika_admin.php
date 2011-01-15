@@ -35,22 +35,18 @@ if(isset($_POST['type']))
 try
 {
     $db = new Database();
+    $pocet = $db->getStatisticsForAdmin($filter, true);
+    $events = $db->getStatisticsForAdmin($filter);
+    $bannery = $db->getBanneryByUser();
+    $reklamy = $db->getReklamyByUser();
 }
 catch(Exception $ex)
 {
-    exit("<h4>{$ex->getMessage()}</h4>
-        <hr>
-        </div>
-        </div>
-        </body>
-        </html>");
+    echo $ex->getMessage();
+    return;
 }
 
-$pocet = $db->getStatisticsForAdmin($filter, true);
-$events = $db->getStatisticsForAdmin($filter);
 
-$bannery = $db->getBanneryByUser($user);
-$reklamy = $db->getReklamyByUser($user);
 
 //pre PAGER
 $aktPage = $filter->page;

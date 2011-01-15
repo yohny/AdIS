@@ -1,6 +1,6 @@
 <?php
 /**
- * trieda reprezentujuca zaznam z tabulky KLIKY a ZOBRAZENIA
+ * parent class for Klik a Zobrazenie
  *
  * @author yohny
  */

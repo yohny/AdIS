@@ -5,6 +5,9 @@ define('ROWS_PER_PAGE', 10);
 
 $filter = new Filter(ROWS_PER_PAGE);
 
+//TODO filter->parse(POST[filter]), upravit aj form)
+//TODO narobit partialy aj pre banner select,reklama select ?
+
 if(isset($_POST['page']))
     $filter->page = $_POST['page'];
 if(isset($_POST['date']))
@@ -25,8 +28,7 @@ if(isset($_POST['bann']))
 if(isset($_POST['rekl']))
     $filter->reklama = $_POST['rekl'];
 
-/* @var $user User */ //aktualne prihlaseny pouzivatel
-$user = $_SESSION['user'];
+$user = Context::getInstance()->getUser();
 
 try
 {
@@ -34,21 +36,17 @@ try
 }
 catch(Exception $ex)
 {
-    exit("<h4>{$ex->getMessage()}</h4>
-        <hr>
-        </div>
-        </div>
-        </body>
-        </html>");
+    echo $ex->getMessage();
+    return;
 }
 
 $counts = $db->getStatisticsForUser($user, $filter, true);
 $stats = $db->getStatisticsForUser($user, $filter);
 
 if($user->kategoria=='inzer')
-   $bannery = $db->getBanneryByUser($user);
+   $bannery = $db->getBanneryByUser();
 if($user->kategoria=='zobra')
-   $reklamy = $db->getReklamyByUser($user);
+   $reklamy = $db->getReklamyByUser();
 
 //pre PAGER
 $aktPage = $filter->page;

@@ -5,8 +5,13 @@
  * @param $pages celkovy pocet stran
  * @param $aktPage aktualna strana
  */
+if(!isset($pages) || !isset($aktPage))
+{
+    echo "<b>PAGER: chybaju premenne</b>";
+    return;
+}
 
-if( isset($pages) && isset($aktPage) && $pages>1 ):?>
+if($pages>1):?>
 <table class="pager">
     <tr>
         <?php if($aktPage!=1): ?>
@@ -34,6 +39,4 @@ if( isset($pages) && isset($aktPage) && $pages>1 ):?>
         <?php endif; ?>
     </tr>
 </table>
-<?php else: ?>
-<b>PAGER: chybaju premenne</b>
 <?php endif;?>

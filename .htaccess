@@ -1,9 +1,28 @@
-Options +FollowSymLinks +ExecCGI
+#Options +FollowSymLinks +ExecCGI
+#
+#nastavenie php
+#<ifModule mod_php5.c>
+#  #display errors
+#  php_flag display_errors off
+#  #default charset
+#  php_value default_charset utf-8
+#  #pouzi zip
+#  php_flag zlib.output_compression on
+#  #php_value zlib.output_compression 16386
+#  php_value zlib.output_compression_level 2
+#</ifModule>
 
+#nastavenie url rewritingu
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  #F = 403 Forbiden, classes/ a templaltes/ su zakazane
+  RewriteRule ^(classes/|templates/) - [F]
+  #requesty s priponou .js a .css - nechat tak
   RewriteRule (\.css|\.js)$ - [L]
-  RewriteRule ^(img/|upload/) - [L]
-  RewriteRule (doKlik|getBanner|getScript) distrib/$1.php [L]
-  RewriteRule ^(.*)$ index.php [L]
+  #requesty do img/, upload/ a distrib/ nechat tak
+  RewriteRule ^(img/|upload/|distrib/) - [L]
+  #requesty pre distribuciu (ak pravidlo sposobi redirect tak nanovo prebehne pravidlami)
+  RewriteRule ^(doKlik|getBanner|getScript)$ distrib/$1.php [L]
+  #vsetko ostatne na index.php, kde je vlastny routing
+  RewriteRule .* index.php [L]
 </IfModule>

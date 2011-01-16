@@ -9,32 +9,15 @@ if (Context::getInstance()->getUser()->kategoria != 'admin')
 define('ROWS_PER_PAGE', 10);
 
 $filter = new Filter(ROWS_PER_PAGE);
-
-if(isset($_POST['page']))
-    $filter->page = $_POST['page'];
-if(isset($_POST['date']))
+if(!$filter->parse($_POST))
 {
-    $filter->date = $_POST['date'];
-    if($filter->date=='custom')
-    {
-        $filter->odDay = $_POST['odDay'];
-        $filter->odMonth = $_POST['odMonth'];
-        $filter->odYear = $_POST['odYear'];
-        $filter->doDay = $_POST['doDay'];
-        $filter->doMonth = $_POST['doMonth'];
-        $filter->doYear = $_POST['doYear'];
-    }
+    Context::getInstance()->getResponse()->setFlash('Neplatné filtrovacie kritéria!');
+    return;
 }
-if(isset($_POST['bann']))
-    $filter->banner = $_POST['bann'];
-if(isset($_POST['rekl']))
-    $filter->reklama = $_POST['rekl'];
-if(isset($_POST['type']))
-    $filter->type = $_POST['type'];
 
 try
 {
-    $db = new Database();
+    $db = Context::getInstance()->getDatabase();
     $pocet = $db->getStatisticsForAdmin($filter, true);
     $events = $db->getStatisticsForAdmin($filter);
     $bannery = $db->getBanneryByUser();
@@ -42,11 +25,9 @@ try
 }
 catch(Exception $ex)
 {
-    echo $ex->getMessage();
+    Context::getInstance()->getResponse()->setFlash($ex->getMessage()) ;
     return;
 }
-
-
 
 //pre PAGER
 $aktPage = $filter->page;
@@ -60,7 +41,7 @@ $pages = ceil($pocet/ROWS_PER_PAGE);
             <td>Obdobie:</td>
             <td>
                 <select name="date" onchange="if(this.value=='custom') document.getElementById('customRow').style.display='table-row'; else document.getElementById('customRow').style.display='none'">
-                    <?php foreach(Filter::$options as $key => $value): ?>
+                    <?php foreach(Filter::$dateOptions as $key => $value): ?>
                     <option value="<?php echo $key; ?>" <?php if($filter->date==$key) echo 'selected="selected"'; ?>><?php echo $value; ?></option>
                     <?php endforeach; ?>
                 </select>
@@ -118,47 +99,48 @@ $pages = ceil($pocet/ROWS_PER_PAGE);
         </tr>
     </table>
 </form>
+
 <hr>
 <h4>Počet: <span class="g" style="font-size:16px;"><?php echo $pocet; ?></span></h4>
-<?php
-if(count($events)==0)
-    echo "<h4>Žiadne dáta!</h4>";
-else
-{ $i=0; include 'templates/partials/pager.php'; ?>
-    <table class="data">
-        <thead>
-            <tr>
-            <th>Por.</th>
-            <th>Čas</th>
-            <th>Zobrazovateľ</th>
-            <th>Reklama</th>
-            <th>Inzerent</th>
-            <th>Banner</th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php foreach($events as $event): $i++; ?>
-            <tr <?php if($i%2==0) echo "class=\"dark\""; ?>>
-                <td>
-                    <?php echo ($filter->page-1)*ROWS_PER_PAGE+$i; ?>.
-                </td>
-                <td>
-                    <?php echo $event; ?>
-                </td>
-                <td>
-                    <?php echo ($event->zobraLogin?$event->zobraLogin:"#zmazaný")." ($event->zobraId)"; ?>
-                </td>
-                <td>
-                    <?php echo ($event->reklamaName?$event->reklamaName:"#zmazaná")." ($event->reklamaId)"; ?>
-                </td>
-                <td>
-                    <?php echo ($event->inzerLogin?$event->inzerLogin:"#zmazaný")." ($event->inzerId)"; ?>
-                </td>
-                <td>
-                    <?php echo ($event->bannerFilename?$event->bannerFilename:"#zmazaný")." ($event->bannerId)"; ?>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-        </tbody>
-    </table>
-<?php include 'templates/partials/pager.php'; } ?>
+<?php if(count($events)==0): ?>
+<h4>Žiadne dáta!</h4>
+<?php else: ?>
+<?php  include 'templates/partials/pager.php'; ?>
+<table class="data">
+    <thead>
+        <tr>
+        <th>Por.</th>
+        <th>Čas</th>
+        <th>Zobrazovateľ</th>
+        <th>Reklama</th>
+        <th>Inzerent</th>
+        <th>Banner</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php $i=0; foreach($events as $event): $i++; ?>
+        <tr <?php if($i%2==0) echo "class=\"dark\""; ?>>
+            <td>
+                <?php echo ($filter->page-1)*ROWS_PER_PAGE+$i; ?>.
+            </td>
+            <td>
+                <?php echo $event; ?>
+            </td>
+            <td>
+                <?php echo ($event->zobraLogin?$event->zobraLogin:"#zmazaný")." ($event->zobraId)"; ?>
+            </td>
+            <td>
+                <?php echo ($event->reklamaName?$event->reklamaName:"#zmazaná")." ($event->reklamaId)"; ?>
+            </td>
+            <td>
+                <?php echo ($event->inzerLogin?$event->inzerLogin:"#zmazaný")." ($event->inzerId)"; ?>
+            </td>
+            <td>
+                <?php echo ($event->bannerFilename?$event->bannerFilename:"#zmazaný")." ($event->bannerId)"; ?>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+<?php include 'templates/partials/pager.php'; ?>
+<?php endif; ?>

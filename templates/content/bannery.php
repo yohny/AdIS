@@ -15,7 +15,7 @@ try
 }
 catch(Exception $ex)
 {
-    echo $ex->getMessage();
+    Context::getInstance()->getResponse()->setFlash($ex->getMessage()) ;
     return;
 }
 

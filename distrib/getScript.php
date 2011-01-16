@@ -5,11 +5,10 @@ if (!isset($_GET['rekl']) || !is_numeric($_GET['rekl']))
     exit("//neplatný/chýbajúci parameter");
 
 //TODO checking ci request prisiel zo servra nejakeho zobrazovatela
-//HTTP_REFFERER porovnat s DB zobrazovatelov
+//HTTP_REFFERER porovnat s DB zobrazovatelov, aj getBanner aj doKlik
 
 try
 {
-
     require_once '../classes/core/Database.php';
     require_once '../classes/model/base/Event.php';
     require_once '../classes/model/base/BanRek.php';

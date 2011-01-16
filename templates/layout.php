@@ -17,7 +17,6 @@
         <script language="javascript" type="text/javascript" src="/js/head_script.js"></script>
         <?php foreach (Context::getInstance()->getResponse()->getResources() as $resource) echo $resource . "\n"; ?>
     </head>
-
     <body onload="setContainerHeight();">
         <div id="container">
             <div class="top_left contcorner"></div>

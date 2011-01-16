@@ -4,49 +4,28 @@ Context::getInstance()->getResponse()->setHeading('štatistika');
 define('ROWS_PER_PAGE', 10);
 
 $filter = new Filter(ROWS_PER_PAGE);
-
-//TODO filter->parse(POST[filter]), upravit aj form)
-//TODO narobit partialy aj pre banner select,reklama select ?
-
-if(isset($_POST['page']))
-    $filter->page = $_POST['page'];
-if(isset($_POST['date']))
+if(!$filter->parse($_POST))
 {
-    $filter->date = $_POST['date'];
-    if($filter->date=='custom')
-    {
-        $filter->odDay = $_POST['odDay'];
-        $filter->odMonth = $_POST['odMonth'];
-        $filter->odYear = $_POST['odYear'];
-        $filter->doDay = $_POST['doDay'];
-        $filter->doMonth = $_POST['doMonth'];
-        $filter->doYear = $_POST['doYear'];
-    }
-}
-if(isset($_POST['bann']))
-    $filter->banner = $_POST['bann'];
-if(isset($_POST['rekl']))
-    $filter->reklama = $_POST['rekl'];
-
-$user = Context::getInstance()->getUser();
-
-try
-{
-    $db = new Database();
-}
-catch(Exception $ex)
-{
-    echo $ex->getMessage();
+    Context::getInstance()->getResponse()->setFlash('Neplatné filtrovacie kritéria!');
     return;
 }
 
-$counts = $db->getStatisticsForUser($user, $filter, true);
-$stats = $db->getStatisticsForUser($user, $filter);
-
-if($user->kategoria=='inzer')
-   $bannery = $db->getBanneryByUser();
-if($user->kategoria=='zobra')
-   $reklamy = $db->getReklamyByUser();
+$user = Context::getInstance()->getUser();
+try
+{
+    $db = Context::getInstance()->getDatabase();
+    $counts = $db->getStatisticsForUser($user, $filter, true);
+    $stats = $db->getStatisticsForUser($user, $filter);
+    if($user->kategoria=='inzer')
+       $bannery = $db->getBanneryByUser();
+    if($user->kategoria=='zobra')
+       $reklamy = $db->getReklamyByUser();
+}
+catch(Exception $ex)
+{
+    Context::getInstance()->getResponse()->setFlash($ex->getMessage()) ;
+    return;
+}
 
 //pre PAGER
 $aktPage = $filter->page;
@@ -60,7 +39,7 @@ $pages = ceil($counts['count']/ROWS_PER_PAGE);
             <td>Obdobie:</td>
             <td>
                 <select name="date" onchange="if(this.value=='custom') document.getElementById('customRow').style.display='table-row'; else document.getElementById('customRow').style.display='none'">
-                    <?php foreach(Filter::$options as $key => $value): ?>
+                    <?php foreach(Filter::$dateOptions as $key => $value): ?>
                     <option value="<?php echo $key; ?>" <?php if($filter->date==$key) echo 'selected="selected"'; ?>><?php echo $value; ?></option>
                     <?php endforeach; ?>
                 </select>
@@ -115,56 +94,57 @@ $pages = ceil($counts['count']/ROWS_PER_PAGE);
         </tr>
     </table>
 </form>
+
 <hr>
 <h4>
     Zobrazení: <span class="g" style="font-size:16px;margin-right: 10px;"><?php echo $counts['views']?$counts['views']:'0'; ?></span>
     Kliknutí: <span class="g" style="font-size:16px;margin-right: 10px;"><?php echo $counts['clicks']?$counts['clicks']:'0'; ?></span>
     CTR: <span class="g" style="font-size:16px;margin-right: 10px;"><?php echo $counts['views']?number_format($counts['clicks']/$counts['views']*100, 2):'0.00'; ?>%</span>
 </h4>
-<?php
-if(count($stats)==0)
-    echo "<h4>Žiadne dáta!</h4>";
-else
-{ $i=0; include 'templates/partials/pager.php'; ?>
-    <table class="data">
-        <thead>
-            <tr>
-            <th>Por.</th>
-            <th>Dátum</th>
-            <th><?php echo $user->kategoria=="inzer"?'Banner':'Reklama' ?></th>
-            <th>Zobrazenia</th>
-            <th>Kliky</th>
-            <th>CTR</th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php foreach($stats as $stat): $i++; ?>
-            <tr <?php if($i%2==0) echo "class=\"dark\""; ?>>
-                <td>
-                    <?php echo ($filter->page-1)*ROWS_PER_PAGE+$i; ?>.
-                </td>
-                <td>
-                    <?php echo $stat; ?>
-                </td>
-                <td>
-                <?php
-                if($user->kategoria=="inzer")
-                    echo $stat->meno?$stat->meno:"#zmazaný";
-                else//zobra
-                    echo $stat->meno?$stat->meno:"#zmazaná";
-                ?>
-                </td>
-                <td>
-                    <?php echo $stat->zobrazenia?$stat->zobrazenia:"0"; ?>
-                </td>
-                <td>
-                    <?php echo $stat->kliky?$stat->kliky:"0"; ?>
-                </td>
-                <td>
-                    <?php echo $stat->zobrazenia?number_format($stat->kliky/$stat->zobrazenia*100, 2):'0.00'; ?>%
-                </td>
-            </tr>
-        <?php endforeach; ?>
-        </tbody>
-    </table>
-<?php include 'templates/partials/pager.php'; } ?>
+<?php if(count($stats)==0): ?>
+<h4>Žiadne dáta!</h4>
+<?php else: ?>
+<?php include 'templates/partials/pager.php'; ?>
+<table class="data">
+    <thead>
+        <tr>
+        <th>Por.</th>
+        <th>Dátum</th>
+        <th><?php echo $user->kategoria=="inzer"?'Banner':'Reklama' ?></th>
+        <th>Zobrazenia</th>
+        <th>Kliky</th>
+        <th>CTR</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php $i=0; foreach($stats as $stat): $i++; ?>
+        <tr <?php if($i%2==0) echo "class=\"dark\""; ?>>
+            <td>
+                <?php echo ($filter->page-1)*ROWS_PER_PAGE+$i; ?>.
+            </td>
+            <td>
+                <?php echo $stat; ?>
+            </td>
+            <td>
+            <?php
+            if($user->kategoria=="inzer")
+                echo $stat->meno?$stat->meno:"#zmazaný";
+            else//zobra
+                echo $stat->meno?$stat->meno:"#zmazaná";
+            ?>
+            </td>
+            <td>
+                <?php echo $stat->zobrazenia?$stat->zobrazenia:"0"; ?>
+            </td>
+            <td>
+                <?php echo $stat->kliky?$stat->kliky:"0"; ?>
+            </td>
+            <td>
+                <?php echo $stat->zobrazenia?number_format($stat->kliky/$stat->zobrazenia*100, 2):'0.00'; ?>%
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+<?php include 'templates/partials/pager.php'; ?>
+<?php endif; ?>

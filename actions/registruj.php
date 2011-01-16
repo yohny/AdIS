@@ -11,7 +11,7 @@ if (!isset($user['login']) || !isset($user['heslo']) || !isset($user['web']) || 
     return;
 }
 
-if (!filter_var($user['web'], FILTER_VALIDATE_URL))
+if (!filter_var("http://".$user['web'], FILTER_VALIDATE_URL))
     $message = "Neplatná webová adresa!";
 elseif ($user['heslo'] != $user['heslo2'])
     $message = "Nezhodujúce sa heslo!";
@@ -23,7 +23,7 @@ else
     {
         if (User::isLoginUnique($user['login']))
         {
-            if (User::create($user['login'], $user['heslo'], $user['web'], $user['skupina']))
+            if (User::create($user['login'], $user['heslo'], "http://".$user['web'], $user['skupina']))
                 $message = "Registrácia úspešná.";
             else
                 $message = "Registrácia neúspešná.";

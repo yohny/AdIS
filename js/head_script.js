@@ -190,7 +190,7 @@ function spracuj_chweb()
             var resp = eval('('+xmlhttp.responseText+')');
             box_show(resp.success?okbox:errorbox,resp.message);
             if(resp.success)
-                document.getElementById('webTd').innerHTML = document.forms['chweb_form'].web.value;
+                document.getElementById('webTd').innerHTML = "http://"+document.forms['chweb_form'].web.value;
         }
     };
     xmlhttp.open("POST",url,true);

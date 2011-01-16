@@ -5,7 +5,9 @@ if (!isset($_GET['rekl']) || !is_numeric($_GET['rekl']))
     exit("//neplatný/chýbajúci parameter");
 
 //TODO checking ci request prisiel zo servra nejakeho zobrazovatela
-//HTTP_REFFERER porovnat s DB zobrazovatelov, aj getBanner aj doKlik
+//HTTP_REFFERER porovnat s DB zobrazovatelov
+if(!isset($_SERVER['HTTP_REFERER']))
+    exit("//neplatný zdroj requestu");
 
 try
 {

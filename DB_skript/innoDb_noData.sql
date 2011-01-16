@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `login` varchar(10) COLLATE utf8_slovak_ci NOT NULL,
   `heslo` varchar(50) COLLATE utf8_slovak_ci NOT NULL,
-  `web` varchar(100) COLLATE utf8_slovak_ci NOT NULL,
+  `web` varchar(30) COLLATE utf8_slovak_ci NOT NULL,
   `kategoria` varchar(5) COLLATE utf8_slovak_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `login` (`login`)

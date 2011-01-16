@@ -9,9 +9,9 @@ if (!isset($_POST['web']))
 
 try
 {
-    if (!filter_var($_POST['web'], FILTER_VALIDATE_URL))
+    if (!filter_var("http://".$_POST['web'], FILTER_VALIDATE_URL))
         $resp = array('success' => false, 'message' => 'Neplatná webová adresa!');
-    elseif (Context::getInstance()->getUser()->setWeb($_POST['web'], $db))
+    elseif (Context::getInstance()->getUser()->setWeb("http://".$_POST['web']))
         $resp = array('success' => true, 'message' => 'WWW adresa zmenená.');
     else
         $resp = array('success' => false, 'message' => 'Nepodarilo sa zmeniť web!');

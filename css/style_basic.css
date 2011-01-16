@@ -77,6 +77,8 @@ input, textarea, select, pre {
     border-width: 1px;
     border-style: solid;
     background-color: white;
+    margin: 0;
+    padding: 1px;
 }
 pre
 {
@@ -86,11 +88,6 @@ pre
 input[type='text'],input[type='password'], textarea, select
 {
     width: 100%;
-}
-input, textarea, select
-{
-    margin: 0;
-    padding: 1px;
 }
 a {
     text-decoration: underline;
@@ -183,6 +180,15 @@ a:hover {
     width: 300px;
     position: relative;
     margin: 0 auto;
+}
+#main > form > table
+{
+    border-spacing: 4px;
+}
+#main > form > table td
+{
+    margin: 0;
+    padding: 0;
 }
 #main table.data {
     width: 100%;

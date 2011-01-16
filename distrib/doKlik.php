@@ -6,6 +6,10 @@ function customError($errno, $errstr) //error handler function
 }
 set_error_handler("customError");
 
+//TODO checking ci request prisiel zo servra nejakeho zobrazovatela
+//ak hej tak overit ci ma ten zobrazovatel momentalne zobrazene to co je aj v kliku
+
+
 $zobr_id = $_GET['zobra'];
 $rekl_id = $_GET['rekl'];
 $inze_id = $_GET['inzer'];
@@ -30,5 +34,5 @@ if(!isset($_COOKIE['voted']))
         trigger_error($ex->getMessage());
     }
 }
-header("Location: $web");
+header("Location: http://$web");
 ?>

@@ -5,6 +5,10 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id']))
     exit();
 }
 
+//TODO checking ci request prisiel zo servra nejakeho zobrazovatela
+//ak hej overit ci te zobrazovatel ma reklamu do ktorej sa "vojde" tento banner,
+//ak hej tak checknut ci v nej ma zobrazany tento banner
+
 try
 {
     require_once '../classes/core/Database.php';

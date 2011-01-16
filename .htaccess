@@ -15,6 +15,8 @@
 #nastavenie url rewritingu
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  #just for testing
+  RewriteRule ^test - [L]
   #F = 403 Forbiden, classes/ a templaltes/ su zakazane
   RewriteRule ^(classes/|templates/) - [F]
   #requesty s priponou .js a .css - nechat tak

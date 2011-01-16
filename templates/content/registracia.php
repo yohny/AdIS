@@ -7,7 +7,7 @@ if(isset($_SESSION['registrator']))
     session_unregister('registrator');
 }
 ?>
-<form name="reg_form" action="/action/registruj" method="POST" autocomplete="off">
+<form name="reg_form" action="/action/registruj" method="POST">
   <table>
     <tr title="Login slúžiaci na prihlásenie do systému. Musí byť jedinečný.">
       <td><label for="user_login">Login:</label></td>
@@ -27,9 +27,14 @@ if(isset($_SESSION['registrator']))
       <td><label for="user_heslo2">Heslo znova:</label></td>
       <td><input type="password" name="user[heslo2]" id="user_heslo2" maxlength="10" <?php if(isset($tmpuser)) echo 'value="'.$tmpuser['heslo2'].'"'; ?>></td>
     </tr>
-    <tr title="Vaša webová adresa vrátane protokolu (http://) napr.: 'http://www.vasafirma.sk'.">
+    <tr title="Vaša webová adresa napr.: 'http://www.priklad.sk'.">
       <td><label for="user_web">WWW adresa:</label></td>
-      <td><input type="text" name="user[web]" id="user_web" maxlength="100" <?php if(isset($tmpuser)) echo 'value="'.$tmpuser['web'].'"'; ?>></td>
+      <td>
+          <table style="width: 100%;border-collapse: collapse;"><tr>
+          <td style="width: 40px;"><input type="text" value="http://" readonly></td>
+          <td><input type="text" name="user[web]" id="user_web" maxlength="30" <?php if (isset($tmpuser)) echo "value=\"{$tmpuser['web']}\""; ?>></td>
+          </tr></table>
+      </td>
     </tr>
     <tr title="Zvoľte 'Inzerent' ak chcete pridať svoje reklamy, ktoré bolú zobrazované inými používateľmi na ich stránkach.">
       <td><label for="user_inzer">Inzerent</label></td>

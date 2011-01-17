@@ -7,7 +7,7 @@ if(!isset($_POST['login']) || !isset($_POST['heslo']))
 
 try
 {
-    $user = User::getByCredentials( $_POST['login'], $_POST['heslo']);
+    $user =  Context::getInstance()->getDatabase()->getUserByCredentials( $_POST['login'], $_POST['heslo']);
     if ($user != null)
     {
         Context::getInstance()->setUser($user);

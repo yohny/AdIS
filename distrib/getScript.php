@@ -4,36 +4,27 @@ header('Content-type: application/javascript; charset=UTF-8');
 if (!isset($_GET['rekl']) || !is_numeric($_GET['rekl']))
     exit("//neplatný/chýbajúci parameter");
 
-//TODO checking ci request prisiel zo servra nejakeho zobrazovatela
-//HTTP_REFFERER porovnat s DB zobrazovatelov
-if(!isset($_SERVER['HTTP_REFERER']))
-    exit("//neplatný zdroj requestu");
-
 try
 {
-    require_once '../classes/core/Database.php';
-    require_once '../classes/model/base/Event.php';
-    require_once '../classes/model/base/BanRek.php';
-    require_once '../classes/model/Zobrazenie.php';
-    require_once '../classes/model/Velkost.php';
-    require_once '../classes/model/Banner.php';
-    require_once '../classes/model/Reklama.php';
     $db = new Database();
-    //zisti parametre pozadovanej reklamy
-    $reklama = $db->getReklamaByPK($_GET['rekl']);
-    if (!$reklama)
+    //vytiahne pozadovanu reklamu
+    if (!$reklama = $db->getReklamaByPK($_GET['rekl']))
         exit("//požadovaná reklama bola zmazaná, nový HTML kód ziskate z Ad-IS servra");
+    //overenie requestu
+    if(!isset($_SERVER['HTTP_REFERER']) || !$user = $db->getUserByReferer($_SERVER['HTTP_REFERER']))
+        exit("//neplatný zdroj požiadavky");
+    if($user->id != $reklama->userId)
+        exit ('//nemôžete zobrazovať túto reklamu, overte správnosť kódu');
     //vytiahne nahodny banner pre danu reklamu
-    $banner = $db->getRandBannerForReklama($reklama);
-    if (!$banner)
+    if (!$banner = $db->getRandBannerForReklama($reklama))
         exit("//chyba získavania banneru");
     //vytiahne adresu na presmerovanie
-    $web = $db->getUserWebByPK($banner->userId);
-    if (!$web)
+    if (!$web = User::getWebByPK($banner->userId))
         exit("//chyba získavania webovej adresy banneru");
     //zapise zobrazenie do DB
     $zobr = new Zobrazenie(null, $reklama->userId, $reklama->id, $banner->userId, $banner->id);
-    $zobr->save($db); //prida zobrazenie do DB
+    $zobr->save($db);
+    setcookie("adis_rekl_{$_GET['rekl']}",$db->conn->insert_id);
 }
 catch (Exception $ex)
 {
@@ -56,3 +47,5 @@ echo "var adisRedir = \"$web\";\n";
 document.write("<a href=\"http://<?php echo $_SERVER["HTTP_HOST"]; ?>/doKlik?zobra="+adisZobrId+"&rekl="+adisReklId+"&inzer="+adisInzeId+"&bann="+adisBannId+"&redir="+adisRedir+"\">");
 document.write("<img height=\""+adisVyska+"\" width=\""+adisSirka+"\" alt=\"banner\" src=\"http://<?php echo $_SERVER["HTTP_HOST"]; ?>/getBanner?id="+adisBannId+"&rand="+adisRand+"\">");
 document.write("</a>");
+//TODO javascript upravit aby checkoval ci uspesne sa nacital obrazok a az tak zobrazil link
+//moze aj kontrolovat ci sa nastavilo cookie?

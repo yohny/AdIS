@@ -19,10 +19,6 @@ $web = $_GET['redir'];//kvoli rychlejsiemu redirectu sa adresa posiela ako argum
 if(!isset($_COOKIE['voted']))
 {
     setcookie("voted","voted", time()+10);  //platnost cookie 10 sek
-
-    require_once '../classes/core//Database.php';
-    require_once '../classes/model/base/Event.php';
-    require_once '../classes/model/Klik.php';
     try
     {
         $db = new Database();

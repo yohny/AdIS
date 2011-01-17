@@ -3,17 +3,11 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 09, 2011 at 04:12 PM
+-- Generation Time: Jan 17, 2011 at 10:02 PM
 -- Server version: 5.1.49
--- PHP Version: 5.3.3-1ubuntu9.1
+-- PHP Version: 5.3.3-1ubuntu9.3
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `adis`
@@ -33,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `bannery` (
   PRIMARY KEY (`id`),
   KEY `user_fk` (`user`),
   KEY `velkost_fk` (`velkost`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci AUTO_INCREMENT=25 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci AUTO_INCREMENT=22 ;
 
 -- --------------------------------------------------------
 
@@ -48,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `kategoria_banner` (
   PRIMARY KEY (`id`),
   KEY `kategoria_fk` (`kategoria`),
   KEY `banner_fk` (`banner`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci AUTO_INCREMENT=100 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci AUTO_INCREMENT=91 ;
 
 -- --------------------------------------------------------
 
@@ -63,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `kategoria_reklama` (
   PRIMARY KEY (`id`),
   KEY `kategoria_fk2` (`kategoria`),
   KEY `reklama_fk` (`reklama`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci AUTO_INCREMENT=58 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci AUTO_INCREMENT=28 ;
 
 -- --------------------------------------------------------
 
@@ -91,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `kliky` (
   `reklama` int(11) NOT NULL,
   `banner` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci AUTO_INCREMENT=194 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci AUTO_INCREMENT=212 ;
 
 -- --------------------------------------------------------
 
@@ -107,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `reklamy` (
   PRIMARY KEY (`id`),
   KEY `user_fk2` (`user`),
   KEY `velkost_fk2` (`velkost`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci AUTO_INCREMENT=6 ;
 
 -- --------------------------------------------------------
 
@@ -120,10 +114,11 @@ CREATE TABLE IF NOT EXISTS `users` (
   `login` varchar(10) COLLATE utf8_slovak_ci NOT NULL,
   `heslo` varchar(50) COLLATE utf8_slovak_ci NOT NULL,
   `web` varchar(30) COLLATE utf8_slovak_ci NOT NULL,
-  `kategoria` varchar(5) COLLATE utf8_slovak_ci NOT NULL,
+  `kategoria` enum('inzer','zobra','admin') COLLATE utf8_slovak_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `login` (`login`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci AUTO_INCREMENT=9 ;
+  UNIQUE KEY `login` (`login`),
+  UNIQUE KEY `web` (`web`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci AUTO_INCREMENT=10 ;
 
 -- --------------------------------------------------------
 
@@ -153,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `zobrazenia` (
   `reklama` int(11) NOT NULL,
   `banner` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3130 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3551 ;
 
 --
 -- Constraints for dumped tables
@@ -163,8 +158,8 @@ CREATE TABLE IF NOT EXISTS `zobrazenia` (
 -- Constraints for table `bannery`
 --
 ALTER TABLE `bannery`
-  ADD CONSTRAINT `velkost_fk` FOREIGN KEY (`velkost`) REFERENCES `velkosti` (`id`),
-  ADD CONSTRAINT `user_fk` FOREIGN KEY (`user`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `user_fk` FOREIGN KEY (`user`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `velkost_fk` FOREIGN KEY (`velkost`) REFERENCES `velkosti` (`id`);
 
 --
 -- Constraints for table `kategoria_banner`
@@ -177,12 +172,12 @@ ALTER TABLE `kategoria_banner`
 -- Constraints for table `kategoria_reklama`
 --
 ALTER TABLE `kategoria_reklama`
-  ADD CONSTRAINT `reklama_fk` FOREIGN KEY (`reklama`) REFERENCES `reklamy` (`id`),
-  ADD CONSTRAINT `kategoria_fk2` FOREIGN KEY (`kategoria`) REFERENCES `kategorie` (`id`);
+  ADD CONSTRAINT `kategoria_fk2` FOREIGN KEY (`kategoria`) REFERENCES `kategorie` (`id`),
+  ADD CONSTRAINT `reklama_fk` FOREIGN KEY (`reklama`) REFERENCES `reklamy` (`id`);
 
 --
 -- Constraints for table `reklamy`
 --
 ALTER TABLE `reklamy`
-  ADD CONSTRAINT `velkost_fk2` FOREIGN KEY (`velkost`) REFERENCES `velkosti` (`id`),
-  ADD CONSTRAINT `user_fk2` FOREIGN KEY (`user`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `user_fk2` FOREIGN KEY (`user`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `velkost_fk2` FOREIGN KEY (`velkost`) REFERENCES `velkosti` (`id`);

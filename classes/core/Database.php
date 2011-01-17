@@ -30,19 +30,47 @@ class Database
     }
 
     /**
-     * vrati webovu adresu pouzivatela s danym PK
-     * @param int $userId PK pouzivatela
-     * @return string
+     * vrati objekt pouzivatela na zaklade prihlasovacich udajov
+     * @param string $login
+     * @param string $password
+     * @return User
      */
-    public function getUserWebByPK($userId)
+    public function  getUserByCredentials($login, $password)
     {
-        $query = "SELECT web FROM users WHERE id=$userId";
-        /* @var $result mysqli_result */
-        $result = $this->conn->query($query);
-        if (!$result)
-            return false;
+        if (!$stm = $this->conn->prepare("SELECT id, login, kategoria FROM users WHERE login=? AND heslo=MD5(?)"))
+            return null;
+        $stm->bind_param('ss', $login, $password);
+        if (!$stm->execute())
+            return null;
+        $stm->bind_result($id, $login, $kateg);
+        $ret = $stm->fetch();
+        $stm->close();
+        if ($ret)
+            return new User($id, $login, $kateg);
         else
-            return $result->fetch_object()->web;
+            return null;
+    }
+
+    /**
+     * vrati objekt pouzivatela na zaklade ulr adresy
+     * @param string $referer url adresa
+     * @return User
+     */
+    public function getUserByReferer($referer)
+    {
+        $referer = preg_replace('/^http:\/\/([^\/]+).*$/', '$1', $referer);
+        if (!$stm = $this->conn->prepare("SELECT id, login, kategoria FROM users WHERE web LIKE ? AND kategoria='zobra'"))
+            return null;
+        $stm->bind_param('s', $referer);
+        if (!$stm->execute())
+            return null;
+        $stm->bind_result($id, $login, $kateg);
+        $ret = $stm->fetch();
+        $stm->close();
+        if ($ret)
+            return new User($id, $login, $kateg);
+        else
+            return null;
     }
 
     /**

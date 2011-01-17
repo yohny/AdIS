@@ -53,8 +53,8 @@ catch (Exception $ex)
                         <td>Nová adresa:</td>
                         <td>
                             <table style="width: 100%;border-collapse: collapse;"><tr>
-                            <td style="width: 40px;"><input type="text" value="http://" readonly></td>
-                            <td><input type="text" name="web" maxlength="30"></td>
+                            <td style="width: 40px;"><input type="text" value="http://" readonly style="border-right-style: none;"></td>
+                            <td><input type="text" name="web" maxlength="30" style="border-left-style: none;"></td>
                             </tr></table>
                         </td>
                     </tr>

@@ -1,21 +1,25 @@
 <?php
 if (!isset($_GET['id']) || !is_numeric($_GET['id']))
 {
-    header("HTTP/1.1 404 Not Found");
+    header("HTTP/1.1 403 Forbidden");
     exit();
 }
 
 //TODO checking ci request prisiel zo servra nejakeho zobrazovatela
 //ak hej overit ci te zobrazovatel ma reklamu do ktorej sa "vojde" tento banner,
 //ak hej tak checknut ci v nej ma zobrazany tento banner
+// - neda sa len cez db bo moze mat viacero navstevnikov zobrazenu jeho stranku, vymysliet cookie
+//napr ak by getScript nastavil cookie s PK zobrazenia a potom cez to by sa checkovalo
 
 try
 {
-    require_once '../classes/core/Database.php';
-    require_once '../classes/model/base/BanRek.php';
-    require_once '../classes/model/Velkost.php';
-    require_once '../classes/model/Banner.php';
     $db = new Database();
+    //overenie requestu
+    if(!isset($_SERVER['HTTP_REFERER']) || !$user = $db->getUserByReferer($_SERVER['HTTP_REFERER']))
+    {
+        header("HTTP/1.1 403 Forbidden");
+        exit();
+    }
     //vytiahne banner z DB
     $banner = $db->getBannerByPK($_GET['id']);
     if (!$banner)

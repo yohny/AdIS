@@ -31,8 +31,8 @@ if(isset($_SESSION['registrator']))
       <td><label for="user_web">WWW adresa:</label></td>
       <td>
           <table style="width: 100%;border-collapse: collapse;"><tr>
-          <td style="width: 40px;"><input type="text" value="http://" readonly></td>
-          <td><input type="text" name="user[web]" id="user_web" maxlength="30" <?php if (isset($tmpuser)) echo "value=\"{$tmpuser['web']}\""; ?>></td>
+                  <td style="width: 40px;"><input type="text" value="http://" readonly style="border-right-style: none;"></td>
+          <td><input type="text" name="user[web]" id="user_web" maxlength="30" style="border-left-style: none;" <?php if (isset($tmpuser)) echo "value=\"{$tmpuser['web']}\""; ?>></td>
           </tr></table>
       </td>
     </tr>

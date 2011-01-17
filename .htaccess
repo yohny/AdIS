@@ -24,7 +24,7 @@
   #requesty do img/, upload/ a distrib/ nechat tak
   RewriteRule ^(img/|upload/|distrib/) - [L]
   #requesty pre distribuciu (ak pravidlo sposobi redirect tak nanovo prebehne pravidlami)
-  RewriteRule ^(doKlik|getBanner|getScript)$ distrib/$1.php [L]
+  RewriteRule ^(doKlik|getBanner|getScript)$ distrib/loader.php [L]
   #vsetko ostatne na index.php, kde je vlastny routing
   RewriteRule .* index.php [L]
 </IfModule>

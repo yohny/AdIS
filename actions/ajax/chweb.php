@@ -9,9 +9,11 @@ if (!isset($_POST['web']))
 
 try
 {
-    if (!filter_var("http://".$_POST['web'], FILTER_VALIDATE_URL))
+    if (!User::validUrl($_POST['web']))
         $resp = array('success' => false, 'message' => 'Neplatná webová adresa!');
-    elseif (Context::getInstance()->getUser()->setWeb("http://".$_POST['web']))
+    elseif(!\User::isWebUnique($_POST['web']))
+        $resp = array('success' => false, 'message' => 'Tento web už je registrovaný!');
+    elseif (Context::getInstance()->getUser()->setWeb($_POST['web']))
         $resp = array('success' => true, 'message' => 'WWW adresa zmenená.');
     else
         $resp = array('success' => false, 'message' => 'Nepodarilo sa zmeniť web!');

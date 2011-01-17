@@ -73,6 +73,8 @@ class User
 
     public function hasReklamaOfSize(Velkost $velkost)
     {
+        if($this->kategoria!='zobra')
+            throw new Exception ('Zlá kategória používateľa');
         $db = Context::getInstance()->getDatabase();
         $query = "SELECT COUNT(*) AS count FROM reklamy WHERE user=$this->id AND velkost=$velkost->id";
         if ($db->conn->query($query)->fetch_object()->count > 0)
@@ -83,6 +85,8 @@ class User
 
     public function hasBannerOfSize(Velkost $velkost)
     {
+        if($this->kategoria!='inzer')
+            throw new Exception ('Zlá kategória používateľa');
         $db = Context::getInstance()->getDatabase();
         $query = "SELECT COUNT(*) AS count FROM bannery WHERE user=$this->id AND velkost=$velkost->id";
         if ($db->conn->query($query)->fetch_object()->count > 0)
@@ -118,13 +122,12 @@ class User
     /**
      * overi ci sa dany login uz nepouziva
      * @param string $login
-     * @param Database $db
      * @return bool
      */
     public static function isLoginUnique($login)
     {
         $db = Context::getInstance()->getDatabase();
-        if (!$stm = $db->conn->prepare("SELECT COUNT(*) FROM users WHERE login=?"))
+        if (!$stm = $db->conn->prepare("SELECT COUNT(*) FROM users WHERE login LIKE?"))
             throw new Exception('DB error');
         $stm->bind_param('s', $login);
         //aj tu je mozne nastavit hodnotu $login, k samotnemu bindu dojde az v execute
@@ -143,24 +146,55 @@ class User
     }
 
     /**
-     * vrati objekt pouzivatela na zaklade prihlasovacich udajov
-     * @param string $login
-     * @param string $password
-     * @return User
+     * overi ci sa dany web uz nepouziva
+     * @param string $web
+     * @return bool
      */
-    public static function getByCredentials($login, $password)
+    public static function isWebUnique($web)
     {
         $db = Context::getInstance()->getDatabase();
-        if (!$stm = $db->conn->prepare("SELECT id, login, kategoria FROM users WHERE login=? AND heslo=MD5(?)"))
-            return null;
-        $stm->bind_param('ss', $login, $password);
+        if (!$stm = $db->conn->prepare("SELECT COUNT(*) FROM users WHERE web LIKE ?"))
+            throw new Exception('DB error');
+        $stm->bind_param('s', $web);
         if (!$stm->execute())
-            return null;
-        $stm->bind_result($id, $login, $kateg);
-        if ($stm->fetch())
-            return new User($id, $login, $kateg);
+            throw new Exception('DB error');
+        $stm->bind_result($count);
+        if (!$stm->fetch())
+            throw new Exception('DB error');
+        $stm->close();
+        if ($count == 0)
+            return true;
         else
-            return null;
+            return false;
+    }
+
+    /**
+     * overi platnost url
+     * @param string $url
+     * @return bool
+     */
+    public static function validUrl($url)
+    {
+        if(preg_match('/^([a-z\-]+\.)?[a-z_\-]+\.[a-z]{2,3}$/', $url))
+            return true;
+        else
+            return false;
+    }
+
+    /**
+     * vrati webovu adresu pouzivatela s danym PK
+     * @param int $userId PK pouzivatela
+     * @return string
+     */
+    public static function getWebByPK($userId)
+    {
+        $query = "SELECT web FROM users WHERE id=$userId";
+        /* @var $result mysqli_result */
+        $result = Context::getInstance()->getDatabase()->conn->query($query);
+        if (!$result || $result->num_rows!=1)
+            return false;
+        else
+            return $result->fetch_object()->web;
     }
 }
 ?>

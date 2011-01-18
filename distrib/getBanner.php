@@ -32,15 +32,8 @@ try
         $zobrazenie->delete($db);
         exit();
     }
-
-    //own error handling from now on
-    function customError($errno, $errstr)
-    {
-        header("HTTP/1.1 500 Image error");
-        $zobrazenie->delete($db);
-        exit();
-    }
-    set_error_handler("customError");
+    //v error handleri nepozna externe premenne - neda sa pouzit na mazanie
+    //a ak je zadefinovany tak zbehne aj pre prikazy so @
 }
 catch (Exception $ex)
 {
@@ -48,13 +41,23 @@ catch (Exception $ex)
     exit();
 }
 
-$fileContent = file_get_contents('../upload/' . $banner->filename);
+if (!$fileContent = @file_get_contents('../upload/' . $banner->filename))
+{
+    $zobrazenie->delete($db);
+    header("HTTP/1.1 500 Content error");
+    exit();
+}
 $img = imagecreatefromstring($fileContent);
 $watermark = imagecreate(imagesx($img), 15);
 imagecolorallocate($watermark, 0, 0, 0); //black - first color becomes background
 $white = imagecolorallocate($watermark, 255, 255, 255);
-imagettftext($watermark, 10, 0, imagesx($watermark) - 40, 12, $white, '../img/Ubuntu-B.ttf', 'Ad-IS');
-imagecopymerge($img, $watermark, 0, imagesy($img) - imagesy($watermark), 0, 0, imagesx($watermark), imagesy($watermark), 50);;
+if(!imagettftext($watermark, 10, 0, imagesx($watermark) - 40, 12, $white, '../img/Ubuntu-B.ttf', 'Ad-IS'))
+{
+    $zobrazenie->delete($db);
+    header("HTTP/1.1 500 TTF error");
+    exit();
+}
+imagecopymerge($img, $watermark, 0, imagesy($img) - imagesy($watermark), 0, 0, imagesx($watermark), imagesy($watermark), 50);
 imagepng($img);
 imagedestroy($img);
 ?>

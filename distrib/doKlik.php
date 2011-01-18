@@ -6,6 +6,9 @@ function customError($errno, $errstr) //error handler function
 }
 set_error_handler("customError");
 
+//v error handleri nepozna externe premenne - neda sa pouzit na mazanie
+    //a ak je zadefinovany tak zbehne aj pre prikazy so @
+
 //TODO pekne by tiez bol aj daky tracking spravit (cookie tracking PK kliknutí) aby sa
 //nejaký cas nedalo klikat na tu istu "konstalaciu" tj nie len voted, ale aby tam bolo pole
 //id klikov za poslednych X sekund a na zaklade toho by sa povedalo ze nemoze klikat napr na danej stranke
@@ -42,12 +45,12 @@ try
     //clicked dojde vzdy aj ked sa nezapise klik (kvoli cookie)
     if (!$zobrazenie->isClicked())
         $zobrazenie->setClicked($db);
-//    else                  //bez erroru nemusi vediet o tom user, stai ze sa nezapocita
+//    else                  //bez erroru nemusi vediet o tom user, staci ze sa nezapocita
 //        trigger_error("Opakovane klikanie");
 }
 catch (Exception $ex)
 {
     trigger_error($ex->getMessage());
 }
-header("Location: http://$inzer->web");//ne toho web ale inzerenta!!!
+header("Location: http://$inzer->web");
 ?>

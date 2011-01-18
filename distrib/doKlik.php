@@ -6,29 +6,48 @@ function customError($errno, $errstr) //error handler function
 }
 set_error_handler("customError");
 
-//TODO checking ci request prisiel zo servra nejakeho zobrazovatela
-//ak hej tak overit ci ma ten zobrazovatel momentalne zobrazene to co je aj v kliku
-
+//TODO pekne by tiez bol aj daky tracking spravit (cookie tracking PK kliknutí) aby sa
+//nejaký cas nedalo klikat na tu istu "konstalaciu" tj nie len voted, ale aby tam bolo pole
+//id klikov za poslednych X sekund a na zaklade toho by sa povedalo ze nemoze klikat napr na danej stranke
+//resp na dany banner aj na inych strankach
 
 $zobr_id = $_GET['zobra'];
 $rekl_id = $_GET['rekl'];
 $inze_id = $_GET['inzer'];
 $bann_id = $_GET['bann'];
-$web = $_GET['redir'];//kvoli rychlejsiemu redirectu sa adresa posiela ako argument a netaha z DB
+$view_id = $_GET['view'];
 
-if(!isset($_COOKIE['voted']))
+try
 {
-    setcookie("voted","voted", time()+10);  //platnost cookie 10 sek
-    try
+    $db = new Database();
+    if (!isset($_SERVER['HTTP_REFERER']) || !$user = $db->getUserByReferer($_SERVER['HTTP_REFERER']))
+        trigger_error("Neplatný zdroj (referer).");
+    if ($user->id != $_GET['zobra'])
+        trigger_error("Neplatný zdroj (parameter).");
+    if (!$zobrazenie = $db->getZobrazenieByPK($_GET['view']))
+        trigger_error("Neplatné zobrazenie.");
+    if ($zobrazenie->zobraId != $_GET['zobra'] || $zobrazenie->reklamaId != $_GET['rekl']
+            || $zobrazenie->inzerId != $_GET['inzer'] || $zobrazenie->bannerId != $_GET['bann'])
+        trigger_error("Kolízia parametrov.");
+    if(!$inzer = $db->getUserByPK($inze_id))
+        trigger_error("Chyba získavania cieľovej URL adresy.");
+    //samotny klik
+    if (!isset($_COOKIE['voted']) && !$zobrazenie->isClicked())
     {
-        $db = new Database();
-        $klik = new Klik(null, $zobr_id, $rekl_id, $inze_id, $bann_id);
+        setcookie("voted", "voted", time() + 10);  //platnost cookie 10 sek
+        $klik = new Klik(null, null, $zobr_id, $rekl_id, $inze_id, $bann_id);
         $klik->save($db);
     }
-    catch (Exception $ex)
-    {
-        trigger_error($ex->getMessage());
-    }
+    //NOTE pocet zobrazeni s 'clicked' nie je ten isty ako pocet kliknuti, lebo k nastaveniu
+    //clicked dojde vzdy aj ked sa nezapise klik (kvoli cookie)
+    if (!$zobrazenie->isClicked())
+        $zobrazenie->setClicked($db);
+//    else                  //bez erroru nemusi vediet o tom user, stai ze sa nezapocita
+//        trigger_error("Opakovane klikanie");
 }
-header("Location: http://$web");
+catch (Exception $ex)
+{
+    trigger_error($ex->getMessage());
+}
+header("Location: http://$inzer->web");//ne toho web ale inzerenta!!!
 ?>

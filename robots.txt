@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /DB_skript/
+Disallow: /actions/
+Disallow: /classes/
+Disallow: /templates/
+Disallow: /distrib/
+Disallow: /upload/
+Disallow: /js/
+Disallow: /css/
+Disallow: /img/

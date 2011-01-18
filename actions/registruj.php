@@ -11,8 +11,6 @@ if (!isset($user['login']) || !isset($user['heslo']) || !isset($user['web']) || 
     return;
 }
 
-//FIXME web musi byt tiez unique (aby sa na zaklade neho dal jednoznacne urcit user pri distrib)
-//bez lomitka na konci pouzit regexp namiesto filtra
 if (!User::validUrl($user['web']))
     $message = "Neplatná webová adresa!";
 elseif ($user['heslo'] != $user['heslo2'])

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 17, 2011 at 10:02 PM
+-- Generation Time: Jan 18, 2011 at 04:30 PM
 -- Server version: 5.1.49
 -- PHP Version: 5.3.3-1ubuntu9.3
 
@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `kliky` (
   `reklama` int(11) NOT NULL,
   `banner` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci AUTO_INCREMENT=212 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci AUTO_INCREMENT=213 ;
 
 -- --------------------------------------------------------
 
@@ -147,8 +147,9 @@ CREATE TABLE IF NOT EXISTS `zobrazenia` (
   `inzer` int(11) NOT NULL,
   `reklama` int(11) NOT NULL,
   `banner` int(11) NOT NULL,
+  `clicked` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3551 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3567 ;
 
 --
 -- Constraints for dumped tables

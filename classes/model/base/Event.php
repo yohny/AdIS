@@ -17,9 +17,10 @@ class Event
     public $bannerId;
     public $bannerFilename;
 
-    public function __construct($id, $zobraId, $reklamaId, $inzerId, $bannerId)
+    public function __construct($id, $cas, $zobraId, $reklamaId, $inzerId, $bannerId)
     {
         $this->id = $id;
+        $this->cas = $cas;
         $this->zobraId = $zobraId;
         $this->reklamaId = $reklamaId;
         $this->inzerId = $inzerId;

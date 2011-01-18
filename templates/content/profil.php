@@ -1,15 +1,5 @@
 <?php
 Context::getInstance()->getResponse()->setHeading('profil');
-
-try
-{
-   $web = Context::getInstance()->getUser()->getWeb();
-}
-catch (Exception $ex)
-{
-    Context::getInstance()->getResponse()->setFlash($ex->getMessage()) ;
-    return;
-}
 ?>
 <form name="chpas_form" action="">
     <table cellspacing="5" style="text-align:left;width:300px;">
@@ -44,7 +34,7 @@ catch (Exception $ex)
 <form name="chweb_form" action="">
     <table cellspacing="5" style="text-align:left;width:300px;">
         <tr>
-            <td width="80">WWW adresa:</td><td width="110"><span class="g" id="webTd"><?php echo $web; ?></span></td><td width="30"><a onclick="show('web',this)">zmeň</a></td>
+            <td width="80">WWW adresa:</td><td width="110"><span class="g" id="webTd"><?php echo $web = Context::getInstance()->getUser()->web; ?></span></td><td width="30"><a onclick="show('web',this)">zmeň</a></td>
         </tr>
         <tr id="web" style="display:none;">
             <td colspan="3">

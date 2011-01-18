@@ -1,56 +1,60 @@
 <?php
-if (!isset($_GET['id']) || !is_numeric($_GET['id']))
+header("Content-type: image/png");
+if (!isset($_GET['id']) || !is_numeric($_GET['id']) || !isset($_GET['view']) || !is_numeric($_GET['view']))
 {
-    header("HTTP/1.1 403 Forbidden");
+    header("HTTP/1.1 403 Zle parametre");
     exit();
 }
-
-//TODO checking ci request prisiel zo servra nejakeho zobrazovatela
-//ak hej overit ci te zobrazovatel ma reklamu do ktorej sa "vojde" tento banner,
-//ak hej tak checknut ci v nej ma zobrazany tento banner
-// - neda sa len cez db bo moze mat viacero navstevnikov zobrazenu jeho stranku, vymysliet cookie
-//napr ak by getScript nastavil cookie s PK zobrazenia a potom cez to by sa checkovalo
 
 try
 {
     $db = new Database();
     //overenie requestu
-    if(!isset($_SERVER['HTTP_REFERER']) || !$user = $db->getUserByReferer($_SERVER['HTTP_REFERER']))
+    if (!isset($_SERVER['HTTP_REFERER']) || !$user = $db->getUserByReferer($_SERVER['HTTP_REFERER']))
     {
-        header("HTTP/1.1 403 Forbidden");
+        header("HTTP/1.1 403 Zly zdroj");
+        exit();
+    }
+    if (!$zobrazenie = $db->getZobrazenieByPK($_GET['view']))
+    {
+        header("HTTP/1.1 403 Neexistujuce");
+        exit();
+    }
+    if ($zobrazenie->bannerId != $_GET['id'] || $zobrazenie->zobraId != $user->id || $zobrazenie->isClicked())
+    {
+        header("HTTP/1.1 403 Neplatne");
         exit();
     }
     //vytiahne banner z DB
-    $banner = $db->getBannerByPK($_GET['id']);
-    if (!$banner)
+    if (!$banner = $db->getBannerByPK($_GET['id']))
+    {
+        header("HTTP/1.1 500 Error");
+        $zobrazenie->delete($db);
         exit();
+    }
+
+    //own error handling from now on
+    function customError($errno, $errstr)
+    {
+        header("HTTP/1.1 500 Image error");
+        $zobrazenie->delete($db);
+        exit();
+    }
+    set_error_handler("customError");
 }
 catch (Exception $ex)
 {
-    header("HTTP/1.1 500 Error");
+    header("HTTP/1.1 500 DB error");
     exit();
 }
 
-/* $info = getimagesize($image); //[0]-width,[1]-height,[2]-type,[3]-height+width from img tags
-  switch($info[2])
-  {
-  case 1: $img = imagecreatefromgif("$image");
-  break;
-  case 2: $img = imagecreatefromjpeg("$image");
-  break;
-  case 3: $img = imagecreatefrompng("$image");
-  break;
-  } */
-$img = imagecreatefromstring(file_get_contents('../upload/' . $banner->filename));
-
+$fileContent = file_get_contents('../upload/' . $banner->filename);
+$img = imagecreatefromstring($fileContent);
 $watermark = imagecreate(imagesx($img), 15);
 imagecolorallocate($watermark, 0, 0, 0); //black - first color becomes background
 $white = imagecolorallocate($watermark, 255, 255, 255);
 imagettftext($watermark, 10, 0, imagesx($watermark) - 40, 12, $white, '../img/Ubuntu-B.ttf', 'Ad-IS');
-imagecopymerge($img, $watermark, 0, imagesy($img) - imagesy($watermark), 0, 0, imagesx($watermark), imagesy($watermark), 50);
-
-//zobrazenie
-header("Content-type: image/png");
+imagecopymerge($img, $watermark, 0, imagesy($img) - imagesy($watermark), 0, 0, imagesx($watermark), imagesy($watermark), 50);;
 imagepng($img);
 imagedestroy($img);
 ?>

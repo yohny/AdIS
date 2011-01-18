@@ -37,16 +37,16 @@ class Database
      */
     public function  getUserByCredentials($login, $password)
     {
-        if (!$stm = $this->conn->prepare("SELECT id, login, kategoria FROM users WHERE login=? AND heslo=MD5(?)"))
+        if (!$stm = $this->conn->prepare("SELECT id, login, web, kategoria FROM users WHERE login=? AND heslo=MD5(?)"))
             return null;
         $stm->bind_param('ss', $login, $password);
         if (!$stm->execute())
             return null;
-        $stm->bind_result($id, $login, $kateg);
+        $stm->bind_result($id, $login, $web, $kateg);
         $ret = $stm->fetch();
         $stm->close();
         if ($ret)
-            return new User($id, $login, $kateg);
+            return new User($id, $login, $web, $kateg);
         else
             return null;
     }
@@ -59,18 +59,34 @@ class Database
     public function getUserByReferer($referer)
     {
         $referer = preg_replace('/^http:\/\/([^\/]+).*$/', '$1', $referer);
-        if (!$stm = $this->conn->prepare("SELECT id, login, kategoria FROM users WHERE web LIKE ? AND kategoria='zobra'"))
+        if (!$stm = $this->conn->prepare("SELECT id, login, web, kategoria FROM users WHERE web LIKE ? AND kategoria='zobra'"))
             return null;
         $stm->bind_param('s', $referer);
         if (!$stm->execute())
             return null;
-        $stm->bind_result($id, $login, $kateg);
+        $stm->bind_result($id, $login, $web, $kateg);
         $ret = $stm->fetch();
         $stm->close();
         if ($ret)
-            return new User($id, $login, $kateg);
+            return new User($id, $login, $web, $kateg);
         else
             return null;
+    }
+
+    /**
+     * vrati pouzivatela na zaklade PK
+     * @param int $id
+     * @return User
+     */
+    public function getUserByPK($id)
+    {
+        $query = "SELECT * FROM users WHERE id=$id";
+        /* @var $result mysqli_result */
+        $result = $this->conn->query($query);
+        if (!$result || $result->num_rows != 1)
+            return null;
+        $object = $result->fetch_object();
+        return new User($object->id, $object->login, $object->web, $object->kategoria);
     }
 
     /**
@@ -374,8 +390,7 @@ class Database
         $objects = array();
         while ($result = $results->fetch_object())
         {
-            $object = new Event($result->id, $result->zobra, $result->reklama, $result->inzer, $result->banner);
-            $object->cas = $result->cas;
+            $object = new Event($result->id, $result->cas,$result->zobra, $result->reklama, $result->inzer, $result->banner);
             $object->zobraLogin = $result->zobra_login;
             $object->reklamaName = $result->meno;
             $object->inzerLogin = $result->inzer_login;
@@ -383,6 +398,17 @@ class Database
             $objects[] = $object;
         }
         return $objects;
+    }
+
+    public function getZobrazenieByPK($id)
+    {
+        $query = "SELECT * FROM zobrazenia WHERE id=$id";
+        /* @var $result mysqli_result */
+        $result = $this->conn->query($query);
+        if (!$result || $result->num_rows != 1)
+            return null;
+        $object = $result->fetch_object();
+        return new Zobrazenie($object->id, $object->cas, $object->zobra, $object->reklama, $object->inzer, $object->banner, $object->clicked);
     }
 }
 ?>

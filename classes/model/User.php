@@ -18,17 +18,18 @@ class User
      */
     public $login;
     //public $password;
-    //public $web;
+    public $web;
     /**
      * kategoria pouzivatela: 'zobra', 'inzer' alebo 'admin'
      * @var string
      */
     public $kategoria;
 
-    public function __construct($id, $login, $kategoria)
+    public function __construct($id, $login, $web, $kategoria)
     {
         $this->id = $id;
         $this->login = $login;
+        $this->web = $web;
         $this->kategoria = $kategoria;
     }
 
@@ -53,20 +54,14 @@ class User
         return $ret;
     }
 
-    public function getWeb()
-    {
-        $db = Context::getInstance()->getDatabase();
-        $query = "SELECT web FROM users WHERE id=$this->id";
-        return $db->conn->query($query)->fetch_object()->web;
-    }
-
     public function setWeb($web)
     {
         $db = Context::getInstance()->getDatabase();
         if (!$stm = $db->conn->prepare("UPDATE users SET web=? WHERE id=?"))
             return false;
         $stm->bind_param('si', $web, $this->id);
-        $ret = $stm->execute();
+        if($ret = $stm->execute())
+            $this->web = $web;
         $stm->close();
         return $ret;
     }
@@ -179,22 +174,6 @@ class User
             return true;
         else
             return false;
-    }
-
-    /**
-     * vrati webovu adresu pouzivatela s danym PK
-     * @param int $userId PK pouzivatela
-     * @return string
-     */
-    public static function getWebByPK($userId)
-    {
-        $query = "SELECT web FROM users WHERE id=$userId";
-        /* @var $result mysqli_result */
-        $result = Context::getInstance()->getDatabase()->conn->query($query);
-        if (!$result || $result->num_rows!=1)
-            return false;
-        else
-            return $result->fetch_object()->web;
     }
 }
 ?>

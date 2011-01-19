@@ -1,5 +1,5 @@
 <?php
-header('Content-type: application/json; charset=UTF-8');
+Context::getInstance()->getResponse()->setHeaderContentType('application/json');
 
 if (!isset($_POST['web']))
 {

@@ -1,4 +1,6 @@
 <?php
+Context::getInstance()->getResponse()->setHeaderContentType('text/plain');
+
 if (!isset($_GET['login']))
 {
     echo 'Nekompletne data';

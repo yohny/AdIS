@@ -8,8 +8,11 @@ class Response {
 
     private $title = 'Ad-IS';
     private $nadpis = 'Ad-IS';
+    private $headerContentType = 'text/html';
+    private $encoding = 'utf-8';
     private $resourcces = array();
     public $content;
+    public $error = false;
 
     public function __construct($title)
     {
@@ -59,11 +62,24 @@ class Response {
     {
         if(isset($_SESSION['flash']))
         {
-            $resp = "<div class=\"flash\">{$_SESSION['flash']}</div>";
+            $resp = $_SESSION['flash'];
             unset($_SESSION['flash']);
             return $resp;
         }
+        else
+            return null;
     }
+
+    public function setHeaderContentType($contentType)
+    {
+        $this->headerContentType = $contentType;
+    }
+
+    public function getHeaderContentType()
+    {
+        return "Content-type: $this->headerContentType; charset=$this->encoding";
+    }
+
 
     public function  __toString()
     {

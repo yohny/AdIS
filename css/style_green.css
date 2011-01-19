@@ -6,7 +6,7 @@ body {
 }
 #top, #menu, #nove, #main {
     border-color: green;
-    background-color:rgb(129,192,67);
+    background-color: rgb(129,192,67);
 }
 .g {
     color: green;
@@ -77,12 +77,16 @@ a {
     background-color: rgb(170,226,139);
 }
 /*-------------------------------- oble rohy ----------------------------------*/
-div.corner
+#top > div.corner, #menu > div.corner, #nove > div.corner, #main > div.corner
 {
-    background-image: url('../img/corner_green.png');
+    background-image: url('/img/corner_green.png');
 }
-div.contcorner
+#container > div.corner
 {
-    background-image: url('../img/corner_green_cont.png');
+    background-image: url('/img/corner_green_cont.png');
     background-color: rgb(204,255,204);
+}
+div.flash > div.corner, div.error > div.corner
+{
+   background-color: rgb(129,192,67);
 }

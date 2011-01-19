@@ -77,12 +77,16 @@ a {
     background-color: rgb(255,244,128);
 }
 /*-------------------------------- oble rohy ----------------------------------*/
-div.corner
+#top > div.corner, #menu > div.corner, #nove > div.corner, #main > div.corner
 {
-    background-image: url('../img/corner_orange.png');
+    background-image: url('/img/corner_orange.png');
 }
-div.contcorner
+#container > div.corner
 {
-    background-image: url('../img/corner_orange_cont.png');
+    background-image: url('/img/corner_orange_cont.png');
     background-color: rgb(255,255,153);
+}
+div.flash > div.corner, div.error > div.corner
+{
+   background-color: rgb(235,202,122);
 }

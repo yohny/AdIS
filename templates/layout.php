@@ -19,10 +19,10 @@
     </head>
     <body onload="setContainerHeight();">
         <div id="container">
-            <div class="top_left contcorner"></div>
-            <div class="top_right contcorner"></div>
-            <div class="bottom_left contcorner"></div>
-            <div class="bottom_right contcorner"></div>
+            <div class="top_left corner"></div>
+            <div class="top_right corner"></div>
+            <div class="bottom_left corner"></div>
+            <div class="bottom_right corner"></div>
 
             <div id="top">
                 <div class="top_left corner"></div>
@@ -86,8 +86,24 @@
                 <div class="bottom_left corner"></div>
                 <div class="bottom_right corner"></div>
                 <h3><?php echo Context::getInstance()->getResponse()->getHeading(); ?></h3>
-                <?php echo Context::getInstance()->getResponse()->getFlash(); ?>
-                <?php echo Context::getInstance()->getResponse(); ?>
+                <?php if($flash=Context::getInstance()->getResponse()->getFlash()): ?>
+                <div class="flash">
+                    <div class="top_left corner"></div>
+                    <div class="top_right corner"></div>
+                    <div class="bottom_left corner"></div>
+                    <div class="bottom_right corner"></div>
+                    <?php echo $flash; ?>
+                </div>
+                <?php endif; ?>
+                <?php if(Context::getInstance()->getResponse()->error){ ?>
+                <div class="error">
+                    <div class="top_left corner"></div>
+                    <div class="top_right corner"></div>
+                    <div class="bottom_left corner"></div>
+                    <div class="bottom_right corner"></div>
+                    <?php echo Context::getInstance()->getResponse(); ?>
+                    </div>
+                <?php } else echo Context::getInstance()->getResponse(); ?>
                 <hr>
             </div>
         </div><!-- end div#container -->

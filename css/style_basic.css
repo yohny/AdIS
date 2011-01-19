@@ -1,6 +1,6 @@
 body {
     color: white;
-    font-family: Arial, Helvetica, "Sans-serif";
+    font-family: Arial, Helvetica, Sans-serif;
     font-size: 12px;
     counter-reset: faq;
 }
@@ -53,24 +53,19 @@ ul {
     text-decoration: underline;
     font-weight: bold;
 }
-#container .errbox, #container .okbox, #container .error {
+#container .errbox, #container .okbox{
     border: 2px solid black;
     background-color: white;
     display: none;
     padding: 10px;
 }
-#container .errbox, #container .error {
+#container .errbox {
     border-color: red;
     color: red;
 }
 #container .okbox {
     border-color: green;
     color: green;
-}
-#container .error{
-    text-align: center;
-    font-weight: bold;
-    display: block;
 }
 input, textarea, select, pre {
     font-size: 12px; /* firefox a ... ignoruje font-size pre input nastaveny v predchodcovi (body) */
@@ -144,7 +139,7 @@ a:hover {
     color: white;
 }
 #menu fieldset a:hover {
-    background-image: url('../img/button.png');
+    background-image: url('/img/button.png');
 }
 /*------------------------------------ nove -----------------------------------*/
 #nove {
@@ -235,16 +230,38 @@ a:hover {
 {
     width: auto;
 }
+#main div.flash, #main div.error
+{
+    position: relative;
+    border: 2px solid black;
+    color: black;
+    margin: 10px 0px;
+    padding: 16px;
+    padding-left: 60px;
+}
 #main div.flash
 {
-    border: 1px solid black;
+    border: 2px solid black;
     color: black;
-    background: white url('../img/flash.png') no-repeat 5px;
-    margin: 10px 0px;
-    padding: 10px 10px 10px 40px;
+    background: white url('/img/bulb.png') no-repeat 20px;
+}
+div.flash > div.corner
+{
+   background-image: url('/img/corner_flash.png');
+}
+#main div.error{
+    border: 2px solid red;
+    color: red;
+    text-align: center;
+    font-weight: bold;
+    background: white url('/img/error.gif') no-repeat 20px;
+}
+div.error > div.corner
+{
+   background-image: url('/img/corner_error.png');
 }
 /*-------------------------------- oble rohy ----------------------------------*/
-div.corner, div.contcorner
+div.corner
 {
     background-color: white;
     width:16px;

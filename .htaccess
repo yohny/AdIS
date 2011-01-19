@@ -12,6 +12,8 @@
 #  php_value zlib.output_compression_level 2
 #</ifModule>
 
+#TODO pridat pravidlo (RuleCond?) aby img a upload boli pristupne  len ked refferer je z hhtp_hosta
+
 #nastavenie url rewritingu
 <IfModule mod_rewrite.c>
   RewriteEngine On

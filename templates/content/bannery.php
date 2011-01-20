@@ -56,7 +56,7 @@ if(count($bannery)==0): ?>
             <?php echo implode(', ', $banner->getKategorie()); ?>
         </td>
         <td>
-            <a href="javascript:void(0)"onclick="show2('tr<?php echo $banner->id; ?>')"><?php echo $banner; ?></a>
+            <a href="" onclick="show2('tr<?php echo $banner->id; ?>');return false;"><?php echo $banner; ?></a>
         </td>
         <td>
             <form method="POST" action="/action/zmaz">

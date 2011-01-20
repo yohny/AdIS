@@ -52,7 +52,8 @@ class Database
     }
 
     /**
-     * vrati objekt pouzivatela na zaklade ulr adresy
+     * vrati objekt pouzivatela (zobra) na zaklade ulr adresy
+     * !prehladava len ZOBRAZOVATELOV!
      * @param string $referer url adresa
      * @return User
      */

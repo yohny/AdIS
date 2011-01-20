@@ -56,7 +56,7 @@ if(count($reklamy)==0): ?>
             <?php echo implode(', ', $reklama->getKategorie()); ?>
         </td>
         <td>
-            <a onclick="show2('tr<?php echo $reklama->id; ?>')"><?php echo $reklama; ?></a>
+            <a href="" onclick="show2('tr<?php echo $reklama->id; ?>');return false;"><?php echo $reklama; ?></a>
         </td>
         <td>
             <form method="POST" action="/action/zmaz">

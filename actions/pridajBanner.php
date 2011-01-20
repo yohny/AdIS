@@ -25,7 +25,7 @@ try
     }
 //TODO bannerov aj viac jedneho typu? ma zmysel? - unikatne filename potom pomocou timestamp
 //!osetrit vyber banneru do reklamy (eliminovat viacero kandidatov od jedneho usera)
-//TODO bannery - mod rewrite + meno na md5 timestampu
+//TODO bannery - mod rewrite aby sa nedalo dostat zvonka + meno na md5 timestampu
     if (!$message) //banner je OK
     {
         if (move_uploaded_file($_FILES['userfile']['tmp_name'], 'upload/' . $uploadname))

@@ -102,7 +102,7 @@
                     <div class="bottom_left corner"></div>
                     <div class="bottom_right corner"></div>
                     <?php echo Context::getInstance()->getResponse(); ?>
-                    </div>
+                </div>
                 <?php } else echo Context::getInstance()->getResponse(); ?>
                 <hr>
             </div>

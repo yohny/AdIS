@@ -4,11 +4,11 @@ Context::getInstance()->getResponse()->setHeading('profil');
 <form name="chpas_form" action="">
     <table cellspacing="5" style="text-align:left;width:300px;">
         <tr>
-            <td width="80">Heslo:</td><td width="110"><span class="g">**********</span></td><td width="30"><a onclick="show('pas',this)">zmeň</a></td>
+            <td width="80">Heslo:</td><td width="110"><span class="g">**********</span></td><td width="30"><a href="" onclick="show('pas',this);return false;">zmeň</a></td>
         </tr>
         <tr id="pas" style="display:none;">
             <td colspan="3">
-                <table>
+                <table style="width: 100%;">
                     <tr>
                         <td>Staré heslo:</td><td><input type="password" name="old" maxlength="10"></td>
                     </tr>
@@ -34,11 +34,11 @@ Context::getInstance()->getResponse()->setHeading('profil');
 <form name="chweb_form" action="">
     <table cellspacing="5" style="text-align:left;width:300px;">
         <tr>
-            <td width="80">WWW adresa:</td><td width="110"><span class="g" id="webTd"><?php echo "http://".$web = Context::getInstance()->getUser()->web; ?></span></td><td width="30"><a onclick="show('web',this)">zmeň</a></td>
+            <td width="80">WWW adresa:</td><td width="110"><span class="g" id="webTd"><?php echo "http://".$web = Context::getInstance()->getUser()->web; ?></span></td><td width="30"><a href="" onclick="show('web',this);return false;">zmeň</a></td>
         </tr>
         <tr id="web" style="display:none;">
             <td colspan="3">
-                <table>
+                <table style="width: 100%;">
                     <tr>
                         <td>Nová adresa:</td>
                         <td>

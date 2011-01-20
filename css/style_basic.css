@@ -1,11 +1,10 @@
 body {
+    margin: 0px;
+    padding: 0px;
     color: white;
     font-family: Arial, Helvetica, Sans-serif;
     font-size: 12px;
     counter-reset: faq;
-}
-#container {
-    background-color: white;
 }
 #container, #top, #menu, #nove, #main {
     position:relative;
@@ -14,9 +13,10 @@ body {
     padding: 20px;
     margin: 5px;
 }
-#container { /*celkova sirka stranky 1000px -> 1000-2x2border-2x20padding = 956 */
+#container { /*celkova sirka stranky 1000px -> 1000-2x2(border)-2x20(padding) = 956 */
     width: 956px;
     margin: 20px auto;
+    background-color: white;
 }
 .r {
     color: red;

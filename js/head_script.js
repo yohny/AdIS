@@ -326,3 +326,21 @@ function setContainerHeight()
     container.style.height = (left.offsetHeight>main.offsetHeight ? left.offsetHeight : main.offsetHeight+10) + 10 + document.getElementById('top').offsetHeight + 'px';
     //main je +10 lebo left uz v sebe ma aj 2x5 margin
 }
+
+function nacitajGraf()
+{
+    var place = document.getElementById('graf');
+    //place.innerHTML = 'loading...';
+    var img = document.createElement('img');
+    img.style.width = '700px';
+    img.style.height = '250px';
+    img.onload = function(){
+        img.alt = 'graf';
+        place.removeChild(place.childNodes[0]);
+        place.appendChild(this);
+    };
+    img.onerror = function(){
+        place.innerHTML = 'Chyba!';
+    };
+    img.src = '/img/graf';
+}

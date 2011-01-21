@@ -260,6 +260,21 @@ div.error > div.corner
 {
    background-image: url('/img/corner_error.png');
 }
+#main div#graf
+{
+    line-height: 250px;
+    vertical-align: middle;
+    text-align: center;
+    width: 700px;
+    height: 250px;
+/*    background: white;
+    color: black;*/
+    font-size: 16px;
+    font-weight: bolder;
+    padding: 0;
+    margin: 15px auto;
+    position: relative;
+}
 /*-------------------------------- oble rohy ----------------------------------*/
 div.corner
 {

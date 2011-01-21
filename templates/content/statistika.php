@@ -27,6 +27,9 @@ catch(Exception $ex)
     return;
 }
 
+//pre graf
+$_SESSION['stats'] = $stats;
+
 //pre PAGER
 $aktPage = $filter->page;
 $pages = ceil($counts['count']/ROWS_PER_PAGE);
@@ -94,6 +97,13 @@ $pages = ceil($counts['count']/ROWS_PER_PAGE);
         </tr>
     </table>
 </form>
+
+<hr>
+<h4>Graf</h4>
+<div id="graf">nahrávam...</div>
+<script type="text/javascript" language="javascript">
+nacitajGraf();
+</script>
 
 <hr>
 <h4>

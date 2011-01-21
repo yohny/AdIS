@@ -23,6 +23,8 @@
   RewriteRule ^(classes|templates)/ - [F]
   #requesty s priponou .js a .css - nechat tak
   RewriteRule \.(css|js)$ - [L]
+  #graf
+  RewriteRule ^img/graf$ img/graf.php [L]
   #requesty do img/, upload/ a distrib/ nechat tak
   RewriteRule ^(img|upload|distrib)/ - [L]
   #requesty pre distribuciu (ak pravidlo sposobi redirect tak sa nanovo vyhodnoti)

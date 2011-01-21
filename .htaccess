@@ -15,14 +15,16 @@
 #nastavenie url rewritingu
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  #just for testing
-  RewriteRule ^test - [L]
+  #potrebne pre subdomenu adis.stkpo.sk
+  RewriteBase /
+  #testovanie
+  RewriteRule ^test/ - [L]
   #F = 403 Forbiden, classes/ a templaltes/ su zakazane
-  RewriteRule ^(classes/|templates/) - [F]
+  RewriteRule ^(classes|templates)/ - [F]
   #requesty s priponou .js a .css - nechat tak
-  RewriteRule (\.css|\.js)$ - [L]
+  RewriteRule \.(css|js)$ - [L]
   #requesty do img/, upload/ a distrib/ nechat tak
-  RewriteRule ^(img/|upload/|distrib/) - [L]
+  RewriteRule ^(img|upload|distrib)/ - [L]
   #requesty pre distribuciu (ak pravidlo sposobi redirect tak sa nanovo vyhodnoti)
   RewriteRule ^(doKlik|getBanner|getScript)$ distrib/loader.php [L]
   #vsetko ostatne na index.php, kde je vlastny routing

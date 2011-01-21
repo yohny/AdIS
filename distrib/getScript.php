@@ -32,7 +32,7 @@ catch (Exception $ex)
 //<a href=”http://www.bbc.co.uk” onclick=”x=new XMLHttpRequest();x.open(’POST’,’track.py’,false);x.onreadystatechange=function() { if (x.readyState>1)location=this.href };x.send(’’);”>BBC</a>
 //<a href="..." ping="...">   - PING not supported by browsers (Firefox only?)
 ?>
-document.write("<a id=\"adis_container_<?php echo $reklama->id; ?>\" style=\"margin:0;padding:0;border-style:none;width:<?php echo $reklama->velkost->sirka; ?>px;height:<?php echo $reklama->velkost->vyska; ?>px;display:inline-block;background:black;color:white;text-decoration:none;\"></a>");
+document.write("<a id=\"adis_container_<?php echo $reklama->id; ?>\" style=\"margin:0;padding:0;border-style:none;width:<?php echo $reklama->velkost->sirka; ?>px;height:<?php echo $reklama->velkost->vyska; ?>px;display:inline-block;vertical-align:text-bottom;background:black;color:white;text-decoration:none;\"></a>");
 var adis_container_<?php echo $reklama->id; ?> = document.getElementById("adis_container_<?php echo $reklama->id; ?>");
 adis_container_<?php echo $reklama->id; ?>.innerHTML = 'loading...';
 adis_container_<?php echo $reklama->id; ?>.style.margin = '0';

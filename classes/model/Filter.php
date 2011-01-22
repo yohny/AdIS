@@ -88,14 +88,14 @@ class Filter
         }
         if (isset($filterData['bann']))
         {
-            if(!is_numeric($filterData['bann']) && $filterData['bann']!='all')
+            if(!is_numeric($filterData['bann']) && $filterData['bann']!='all' && $filterData['bann']!='del')
                 return false;
             else
                 $this->banner = $filterData['bann'];
         }
         if (isset($filterData['rekl']))
         {
-            if(!is_numeric($filterData['rekl']) && $filterData['rekl']!='all')
+            if(!is_numeric($filterData['rekl']) && $filterData['rekl']!='all' && $filterData['rekl']!='del')
                 return false;
             else
                 $this->reklama = $filterData['rekl'];

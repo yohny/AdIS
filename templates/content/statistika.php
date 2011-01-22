@@ -137,10 +137,12 @@ nacitajGraf();
             </td>
             <td>
             <?php
-            if($user->kategoria=="inzer")
+            if($user->kategoria=="inzer" && $filter->banner!='all')
                 echo $stat->meno?$stat->meno:"#zmazaný";
-            else//zobra
+            elseif($user->kategoria=="zobra" && $filter->reklama!='all')
                 echo $stat->meno?$stat->meno:"#zmazaná";
+            else
+                echo "#všetky"
             ?>
             </td>
             <td>

@@ -258,11 +258,15 @@ class Database
             FROM zobrazenia
             WHERE $user->kategoria = $user->id
             GROUP BY vdate,vbanrek";
+        //treba aj groupby cbanrek/vbanrek lebo sa nasledne robi select podla id reklamy/banneru
+        //a keby toto nebolo tak by tam bolo len jedno id, ostatne by boli zgrupnute do datumu s tym id
 
-        if ($countOnly)
-            $selectPart = "COUNT(*) AS count, SUM(vcount) AS vsum, SUM(ccount) AS csum";
-        else
-            $selectPart = "vdate AS cas, vbanrek AS banrek, $table.$colname AS meno, vcount, ccount";
+        //FIXME --- countOnly nema groupby cas a teda vracia plany pocet riadkov
+        //-fixnute namiesto COUNT(*) je COUNT(DISTINCT vdate)
+        if ($countOnly)//cas je aj pri countonly lebo groupby cas by nezbehlo
+            $selectPart = "COUNT(DISTINCT vdate) AS count, SUM(vcount) AS vsum, SUM(ccount) AS csum";
+        else //tu sum je kvoli tomu aby ked sa robi groupby cas tak aby bolo spocitane
+            $selectPart = "vdate AS cas, vbanrek AS banrek, $table.$colname AS meno, SUM(vcount) AS vsum, SUM(ccount) AS csum";
 
         $query = " SELECT $selectPart FROM
             ($viewsSubQuery) AS wiews
@@ -305,6 +309,7 @@ class Database
         elseif ($filter->banner != 'all' || $filter->reklama != 'all') //zvolena reklama/banner
             $query .= " AND vbanrek=" . ($user->kategoria == 'inzer' ? $filter->banner : $filter->reklama);
 
+
         if ($countOnly) //len pocet zaznamov
         {
             $result = $this->conn->query($query);  /* @var $result mysqli_result */
@@ -312,14 +317,15 @@ class Database
             return array('count' => $object->count, 'views' => $object->vsum, 'clicks' => $object->csum);
         }
 
-        $query .= " ORDER BY cas DESC,meno";
+        $query .= " GROUP BY cas"; //spocita vsetky klik/zobr vramci dna lebo ma hore SUM a tu je groupby
+        $query .= " ORDER BY cas DESC";
         $query .= " LIMIT " . ($filter->page - 1) * $filter->rowsPerPage . ", $filter->rowsPerPage";
 
         $results = $this->conn->query($query);
         $objects = array();
         while ($result = $results->fetch_object())
         {
-            $object = new Statistika($result->cas, $result->banrek, preg_replace('/^(\w+_\d+x\d+_)/', '', $result->meno), $result->vcount, $result->ccount);
+            $object = new Statistika($result->cas, $result->banrek, preg_replace('/^(\w+_\d+x\d+_)/', '', $result->meno), $result->vsum, $result->csum);
             $objects[] = $object;
         }
         return $objects;

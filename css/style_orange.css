@@ -9,7 +9,7 @@ body {
     background-color: rgb(235,202,122);
 }
 .g {
-    color: orange;
+    color: orange !important;
 }
 table.kontakt td {
     border-left-color: orange;

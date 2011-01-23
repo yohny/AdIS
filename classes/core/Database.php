@@ -237,6 +237,9 @@ class Database
 
     public function getStatisticsForUser(User $user, Filter $filter, $countOnly = false)
     {
+        if($user->kategoria=='zobra' && $user->kategoria=='inzer')
+            throw new Exception ('Zlá kategória používateľa');
+
         if ($user->kategoria == 'inzer')
         {
             $banrek = "banner";

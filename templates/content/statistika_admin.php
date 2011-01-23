@@ -103,7 +103,7 @@ $pages = ceil($pocet/ROWS_PER_PAGE);
 <hr>
 <h4>Počet: <span class="g" style="font-size:16px;"><?php echo $pocet; ?></span></h4>
 <?php if(count($events)==0): ?>
-<h4>Žiadne dáta!</h4>
+<h4 class="r">Žiadne dáta!</h4>
 <?php else: ?>
 <?php  include 'templates/partials/pager.php'; ?>
 <table class="data">

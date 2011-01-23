@@ -332,8 +332,6 @@ function nacitajGraf()
     var place = document.getElementById('graf');
     //place.innerHTML = 'loading...';
     var img = document.createElement('img');
-    img.style.width = '710px';
-    img.style.height = '260px';
     img.onload = function(){
         img.alt = 'graf';
         place.removeChild(place.childNodes[0]);

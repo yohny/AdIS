@@ -19,13 +19,15 @@ body {
     background-color: white;
 }
 .r {
-    color: red;
+    color: red !important;
 }
 p {
     font-weight: bold;
 }
 img {
     border-style: none;
+    margin: 0;
+    padding: 0;
 }
 #img1, #img2, #img3 {
     cursor: pointer;
@@ -266,11 +268,11 @@ div.error > div.corner
     vertical-align: middle;
     text-align: center;
     width: 710px;
-    height: 260px;
+    height: 250px;
     font-size: 16px;
     font-weight: bolder;
     padding: 0;
-    margin: 15px auto;
+    margin: 0 auto;
     position: relative;
 }
 /*-------------------------------- oble rohy ----------------------------------*/

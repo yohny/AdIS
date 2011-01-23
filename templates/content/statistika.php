@@ -100,10 +100,15 @@ $pages = ceil($counts['count']/ROWS_PER_PAGE);
 
 <hr>
 <h4>Graf</h4>
+<?php if(count($stats)==0): ?>
+<h4 class="r">Žiadne dáta!</h4>
+<?php else: ?>
 <div id="graf">nahrávam...</div>
+<?php include 'templates/partials/pager.php'; ?>
 <script type="text/javascript" language="javascript">
 nacitajGraf();
 </script>
+<?php endif; ?>
 
 <hr>
 <h4>
@@ -112,9 +117,8 @@ nacitajGraf();
     CTR: <span class="g" style="font-size:16px;margin-right: 10px;"><?php echo $counts['views']?number_format($counts['clicks']/$counts['views']*100, 2):'0.00'; ?>%</span>
 </h4>
 <?php if(count($stats)==0): ?>
-<h4>Žiadne dáta!</h4>
+<h4 class="r">Žiadne dáta!</h4>
 <?php else: ?>
-<?php include 'templates/partials/pager.php'; ?>
 <table class="data">
     <thead>
         <tr>

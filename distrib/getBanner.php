@@ -44,7 +44,7 @@ catch (Exception $ex)
 if (!$fileContent = @file_get_contents('../upload/' . $banner->filename))
 {
     $zobrazenie->delete($db);
-    header("HTTP/1.1 500 Content error");
+    header("HTTP/1.1 500 File error");
     exit();
 }
 $img = imagecreatefromstring($fileContent);

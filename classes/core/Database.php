@@ -237,7 +237,7 @@ class Database
 
     public function getStatisticsForUser(User $user, Filter $filter, $countOnly = false)
     {
-        if($user->kategoria=='zobra' && $user->kategoria=='inzer')
+        if($user->kategoria!='zobra' && $user->kategoria!='inzer')
             throw new Exception ('Zlá kategória používateľa');
 
         if ($user->kategoria == 'inzer')
@@ -328,7 +328,11 @@ class Database
         $objects = array();
         while ($result = $results->fetch_object())
         {
-            $object = new Statistika($result->cas, $result->banrek, preg_replace('/^(\w+_\d+x\d+_)/', '', $result->meno), $result->vsum, $result->csum);
+            if($user->kategoria=='inzer')
+                $meno = preg_replace('/^(\w+_\d+x\d+_)/', '', $result->meno);
+            else
+                $meno = $result->meno;
+            $object = new Statistika($result->cas, $result->banrek, $meno, $result->vsum, $result->csum);
             $objects[] = $object;
         }
         return $objects;

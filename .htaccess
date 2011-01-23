@@ -19,12 +19,12 @@
   RewriteBase /
   #testovanie
   RewriteRule ^test/ - [L]
-  #F = 403 Forbiden, classes/ a templaltes/ su zakazane
-  RewriteRule ^(classes|templates)/ - [F]
+  #F = 403 Forbiden, classes/, templaltes/ actions/ a upload/ su zakazane
+  RewriteRule ^(classes|templates|actions|upload)/ - [F]
   #requesty s priponou .js a .css - nechat tak
   RewriteRule \.(css|js)$ - [L]
   #graf
-  RewriteRule ^img/graf$ img/graf.php [L]
+  RewriteRule ^img/(graf|banner)$ img/$1.php [L]
   #requesty do img/, upload/ a distrib/ nechat tak
   RewriteRule ^(img|upload|distrib)/ - [L]
   #requesty pre distribuciu (ak pravidlo sposobi redirect tak sa nanovo vyhodnoti)

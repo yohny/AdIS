@@ -15,7 +15,7 @@ if (!User::validUrl($user['web']))
     $message = "Neplatná webová adresa!";
 elseif ($user['heslo'] != $user['heslo2'])
     $message = "Nezhodujúce sa heslo!";
-elseif (!preg_match('/^\w{4-10}$/', $user['login']))
+elseif (!preg_match('/^[a-zA-Z\d]{4,10}$/', $user['login']))
     $message = "Neplatný login!";
 else
 {

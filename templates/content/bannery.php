@@ -2,7 +2,8 @@
 Context::getInstance()->getResponse()->setHeading('bannery');
 if (Context::getInstance()->getUser()->kategoria != 'inzer')
 {
-    echo "<div class=\"error\">Nepovolený prístup</div>";
+    echo "Nepovolený prístup";
+    Context::getInstance()->getResponse()->error = true;
     return;
 }
 
@@ -68,7 +69,7 @@ if(count($bannery)==0): ?>
     <tr <?php if($i%2==0) echo "class=\"dark\"";?>  style="display:none;" id="tr<?php echo $banner->id; ?>">
         <td colspan="5">
             <div style="max-height:200px;overflow: auto;">
-            <img alt="banner" src="<?php echo '/upload/'.$banner->filename; ?>">
+            <img alt="banner" src="/img/banner?id=<?php echo $banner->id; ?>">
             </div>
         </td>
     </tr>

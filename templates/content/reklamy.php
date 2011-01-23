@@ -2,7 +2,8 @@
 Context::getInstance()->getResponse()->setHeading('reklamy');
 if (Context::getInstance()->getUser()->kategoria != 'zobra')
 {
-    echo "<div class=\"error\">Nepovolený prístup</div>";
+    echo "Nepovolený prístup";
+    Context::getInstance()->getResponse()->error = true;
     return;
 }
 

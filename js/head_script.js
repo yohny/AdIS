@@ -255,7 +255,7 @@ function overLogin(str)
 {
     document.getElementById("loginStatus").innerHTML="Overujem..."
 
-    if (!(/^[a-zA-Z0-9]{4,10}$/).test(str))
+    if (!(/^[a-zA-Z\d]{4,10}$/).test(str))
     {
         document.getElementById("loginStatus").innerHTML="<span class='r'>Nesprávny formát! (aspoň 4 znaky: a-z, A-Z, 0-9)</span>";
         setContainerHeight();

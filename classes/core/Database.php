@@ -264,8 +264,9 @@ class Database
         //treba aj groupby cbanrek/vbanrek lebo sa nasledne robi select podla id reklamy/banneru
         //a keby toto nebolo tak by tam bolo len jedno id, ostatne by boli zgrupnute do datumu s tym id
 
-        //FIXME --- countOnly nema groupby cas a teda vracia plany pocet riadkov
-        //-fixnute namiesto COUNT(*) je COUNT(DISTINCT vdate)
+
+        //namiesto COUNT(*) je COUNT(DISTINCT vdate) lebo grupuje aj podla vbanrek
+        //tj je viacero riadkov s rovnakym datumom len inym vbanrek, nas zaujima kolko datumov je
         if ($countOnly)//cas je aj pri countonly lebo groupby cas by nezbehlo
             $selectPart = "COUNT(DISTINCT vdate) AS count, SUM(vcount) AS vsum, SUM(ccount) AS csum";
         else //tu sum je kvoli tomu aby ked sa robi groupby cas tak aby bolo spocitane
@@ -280,19 +281,22 @@ class Database
 
         if ($filter->date != 'all')
         {
-            $date = new DateTime(); // FIXME datetime OOP = phph 5.3.0+ only (konkretne sub nepojde)
+            $date = new DateTime();
             switch ($filter->date)
             {
                 case 'today':
                     break;
                 case 'week':
-                    $date->sub(new DateInterval('P7D'));
+                    //$date->sub(new DateInterval('P7D'));
+                    $date->modify('-7 days');
                     break;
                 case 'month':
-                    $date->sub(new DateInterval('P1M'));
+                    //$date->sub(new DateInterval('P1M'));
+                    $date->modify('-1 month');
                     break;
                 case 'year':
-                    $date->sub(new DateInterval('P1Y'));
+                    //$date->sub(new DateInterval('P1Y'));
+                    $date->modify('-1 year');
                     break;
             }
             if ($filter->date != 'custom')
@@ -354,20 +358,22 @@ class Database
         //filter
         if ($filter->date != 'all')
         {
-            //FIXME datetime OOP requires php 5.3.0+, not working on olders versions
             $date = new DateTime();
             switch ($filter->date)
             {
                 case 'today':
                     break;
                 case 'week':
-                    $date->sub(new DateInterval('P7D'));
+                    //$date->sub(new DateInterval('P7D'));
+                    $date->modify('-7 days');
                     break;
                 case 'month':
-                    $date->sub(new DateInterval('P1M'));
+                    //$date->sub(new DateInterval('P1M'));
+                    $date->modify('-1 month');
                     break;
                 case 'year':
-                    $date->sub(new DateInterval('P1Y'));
+                    //$date->sub(new DateInterval('P1Y'));
+                    $date->modify('-1 year');
                     break;
             }
             if ($filter->date != 'custom')

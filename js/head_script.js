@@ -40,9 +40,10 @@ function spracuj_reg()
     var heslo = document.forms['reg_form']['user[heslo]'].value;
     var heslo2 = document.forms['reg_form']['user[heslo2]'].value;
     var web = document.forms['reg_form']['user[web]'].value;
+    var captcha = document.forms['reg_form']['user[captcha]'].value;
     var errorbox = document.getElementById("reg_errbox");
 
-    if(login=="" || heslo=="" || heslo2=="" || web=="")
+    if(login=="" || heslo=="" || heslo2=="" || web=="" || captcha=="")
     {
         box_show(errorbox,"Vyplňte všetky údaje!");
         return;

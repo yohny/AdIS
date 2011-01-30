@@ -4,7 +4,7 @@ Context::getInstance()->getResponse()->setHeading('profil');
 <form name="chpas_form" action="">
     <table cellspacing="5" style="text-align:left;width:300px;">
         <tr>
-            <td width="80">Heslo:</td><td width="110"><span class="g">**********</span></td><td width="30"><a href="" onclick="show('pas',this);return false;">zmeň</a></td>
+            <td width="80">Heslo:</td><td width="110"><span class="g">**********</span></td><td width="30"><a href="#" onclick="show('pas',this);return false;">zmeň</a></td>
         </tr>
         <tr id="pas" style="display:none;">
             <td colspan="3">
@@ -28,13 +28,14 @@ Context::getInstance()->getResponse()->setHeading('profil');
             </td>
         </tr>
     </table>
+    <input type="hidden" name="csrf_token" value="<?php echo Context::getInstance()->getCsrfToken(); ?>">
 </form>
 
 <?php if (Context::getInstance()->getUser()->kategoria != 'admin'): ?>
 <form name="chweb_form" action="">
     <table cellspacing="5" style="text-align:left;width:300px;">
         <tr>
-            <td width="80">WWW adresa:</td><td width="110"><span class="g" id="webTd"><?php echo "http://".$web = Context::getInstance()->getUser()->web; ?></span></td><td width="30"><a href="" onclick="show('web',this);return false;">zmeň</a></td>
+            <td width="80">WWW adresa:</td><td width="110"><span class="g" id="webTd"><?php echo "http://".$web = Context::getInstance()->getUser()->web; ?></span></td><td width="30"><a href="#" onclick="show('web',this);return false;">zmeň</a></td>
         </tr>
         <tr id="web" style="display:none;">
             <td colspan="3">
@@ -58,5 +59,6 @@ Context::getInstance()->getResponse()->setHeading('profil');
             </td>
         </tr>
     </table>
+    <input type="hidden" name="csrf_token" value="<?php echo Context::getInstance()->getCsrfToken(); ?>">
 </form>
 <?php endif; ?>

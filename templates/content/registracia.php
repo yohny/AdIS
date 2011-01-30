@@ -67,4 +67,5 @@ if (isset($_SESSION['registrator']))
             <td colspan="2"><div id="reg_errbox" class="errbox"></div></td>
         </tr>
     </table>
+    <input type="hidden" name="csrf_token" value="<?php echo Context::getInstance()->getCsrfToken(); ?>">
 </form>

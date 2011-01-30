@@ -57,12 +57,13 @@ if(count($bannery)==0): ?>
             <?php echo implode(', ', $banner->getKategorie()); ?>
         </td>
         <td>
-            <a href="" onclick="show2('tr<?php echo $banner->id; ?>');return false;"><?php echo $banner; ?></a>
+            <a href="#" onclick="show2('tr<?php echo $banner->id; ?>');return false;"><?php echo $banner; ?></a>
         </td>
         <td>
             <form method="POST" action="/action/zmaz">
                 <input type="hidden" name="zmaz" value="<?php echo $banner->id; ?>">
-                <input type="button" value="Zmaž" onclick="if(confirm('Naozaj odstrániť?')) this.parentNode.submit();">
+                <input type="hidden" name="csrf_token" value="<?php echo Context::getInstance()->getCsrfToken(); ?>">
+                <input type="button" value="Zmaž" onclick="if(confirm('Naozaj odstrániť?')) this.form.submit();">
             </form>
         </td>
     </tr>
@@ -81,49 +82,50 @@ if(count($bannery)==0): ?>
 <hr>
 <h4>Pridanie nového banneru:</h4>
 <form name="upl_form" action="/action/pridajBanner" method="POST" enctype="multipart/form-data">
-<table cellspacing="5" style="text-align:left;">
-    <tr title="Zvoľte rozmerový typ reklamného banneru.">
-        <td>
-            Typ banneru:
-        </td>
-        <td>
-            <select name="velkost">
-                <?php foreach($velkosti as $velkost): ?>
-                <option value="<?php echo $velkost->id; ?>"><?php echo $velkost->sirka."x".$velkost->vyska." - ".$velkost; ?></option>
-                <?php endforeach; ?>
-            </select>
-        </td>
-    </tr>
-    <tr title="Zvoľte súbor banneru.">
-        <td>
-            Banner:
-        </td>
-        <td>
-            <input type="file" name="userfile">
-        </td>
-    </tr>
-    <tr title="Kategórie, do ktorých spadá Vaša stránka (prezentovaná týmto bannerom).">
-        <td>
-            Kategórie:
-        </td>
-        <td>
-            <select name="kategorie[]" multiple="multiple" size="5">
-                <?php foreach($kategorie as $kategoria): ?>
-                <option value="<?php echo $kategoria->id; ?>"><?php echo $kategoria; ?></option>
-                <?php endforeach; ?>
-            </select>
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>
-            <input type="button" value="Uložiť" onClick="spracuj_upl()">
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <div id="upl_errbox" class="errbox"></div>
-        </td>
-    </tr>
-</table>
+    <table cellspacing="5" style="text-align:left;">
+        <tr title="Zvoľte rozmerový typ reklamného banneru.">
+            <td>
+                Typ banneru:
+            </td>
+            <td>
+                <select name="velkost">
+                    <?php foreach($velkosti as $velkost): ?>
+                    <option value="<?php echo $velkost->id; ?>"><?php echo $velkost->sirka."x".$velkost->vyska." - ".$velkost; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </td>
+        </tr>
+        <tr title="Zvoľte súbor banneru.">
+            <td>
+                Banner:
+            </td>
+            <td>
+                <input type="file" name="userfile">
+            </td>
+        </tr>
+        <tr title="Kategórie, do ktorých spadá Vaša stránka (prezentovaná týmto bannerom).">
+            <td>
+                Kategórie:
+            </td>
+            <td>
+                <select name="kategorie[]" multiple="multiple" size="5">
+                    <?php foreach($kategorie as $kategoria): ?>
+                    <option value="<?php echo $kategoria->id; ?>"><?php echo $kategoria; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="button" value="Uložiť" onClick="spracuj_upl()">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div id="upl_errbox" class="errbox"></div>
+            </td>
+        </tr>
+    </table>
+    <input type="hidden" name="csrf_token" value="<?php echo Context::getInstance()->getCsrfToken(); ?>">
 </form>

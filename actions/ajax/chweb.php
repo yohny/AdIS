@@ -1,9 +1,14 @@
 <?php
 Context::getInstance()->getResponse()->setHeaderContentType('application/json');
 
-if (!isset($_POST['web']))
+if (!isset($_POST['web']) || !isset($_POST['csrf_token']))
 {
     echo 'Nekompletne data';
+    return;
+}
+if($_POST['csrf_token'] != Context::getInstance()->getCsrfToken())
+{
+    echo 'CSRF fail!';
     return;
 }
 

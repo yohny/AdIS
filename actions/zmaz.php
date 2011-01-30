@@ -1,12 +1,12 @@
 <?php
-if (!isset($_POST['zmaz']))
-{
-    echo 'Nekompletne data';
-    return;
-}
-if (!is_numeric($_POST['zmaz']))
+if (!isset($_POST['zmaz']) || !is_numeric($_POST['zmaz']) || !isset($_POST['csrf_token']))
 {
     echo 'Neplatne data';
+    return;
+}
+if($_POST['csrf_token'] != Context::getInstance()->getCsrfToken())
+{
+    echo 'CSRF fail!';
     return;
 }
 

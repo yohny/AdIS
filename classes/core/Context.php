@@ -24,7 +24,7 @@ class Context
     public static function getInstance()
     {
         if(self::$instance==null)
-            self::$instance = new Context ();
+            self::$instance = new Context();
         return self::$instance;
     }
 
@@ -57,11 +57,6 @@ class Context
         return $this->database;
     }
 
-    public function setUser(User $user)
-    {
-        $_SESSION['user'] = $user;
-    }
-
     /**
      * vrati aktualne prihlaseneho pouzivatela
      * ak nie je prihlaseny vrati null
@@ -73,6 +68,17 @@ class Context
             return $_SESSION['user'];
         else
             return null;
+    }
+
+    /**
+     * vrati unikatny token na obranu formov proti CSRF
+     * @return string
+     */
+    public function getCsrfToken()
+    {
+        if(!isset($_SESSION['csrf_token']))
+            $_SESSION['csrf_token'] = md5(rand(1, time()));
+        return $_SESSION['csrf_token'];
     }
 }
 ?>

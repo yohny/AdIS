@@ -1,9 +1,15 @@
 <?php
-if (!isset($_POST['user']))
+if (!isset($_POST['user']) || !isset($_POST['csrf_token']))
 {
     echo 'nekompletne data';
     return;
 }
+if($_POST['csrf_token'] != Context::getInstance()->getCsrfToken())
+{
+    echo 'CSRF fail!';
+    return;
+}
+
 $user = $_POST['user'];
 if (!isset($user['login']) || !isset($user['heslo']) || !isset($user['web']) || !isset($user['skupina']) || !isset($user['captcha']))
 {

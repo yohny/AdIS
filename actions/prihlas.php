@@ -1,7 +1,12 @@
 <?php
-if(!isset($_POST['login']) || !isset($_POST['heslo']))
+if(!isset($_POST['login']) || !isset($_POST['heslo']) || !isset($_POST['csrf_token']))
 {
     echo 'nekompletne data';
+    return;
+}
+if($_POST['csrf_token'] != Context::getInstance()->getCsrfToken())
+{
+    echo 'CSRF fail!';
     return;
 }
 
@@ -10,7 +15,7 @@ try
     $user =  Context::getInstance()->getDatabase()->getUserByCredentials( $_POST['login'], $_POST['heslo']);
     if ($user != null)
     {
-        Context::getInstance()->setUser($user);
+        $_SESSION['user'] = $user;
         $message = "Úspešne ste sa prihlásili!";
     }
     else

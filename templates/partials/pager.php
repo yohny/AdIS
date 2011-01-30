@@ -7,7 +7,7 @@
  */
 if(!isset($pages) || !isset($aktPage))
 {
-    echo "<b>PAGER: chybaju premenne</b>";
+    echo "<b>PAGER: nenastavene premenne</b>";
     return;
 }
 

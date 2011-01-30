@@ -5,11 +5,17 @@ if (Context::getInstance()->getUser()->kategoria != 'zobra')
     return;
 }
 if (!isset($_POST['meno']) ||
-        !isset($_POST['velkost']) ||
-        !isset($_POST['kategorie']) ||
-        !is_numeric($_POST['velkost']))
+    !isset($_POST['velkost']) ||
+    !isset($_POST['kategorie']) ||
+    !is_numeric($_POST['velkost']) ||
+    !isset($_POST['csrf_token']))
 {
     echo "Neplatné údaje";
+    return;
+}
+if($_POST['csrf_token'] != Context::getInstance()->getCsrfToken())
+{
+    echo 'CSRF fail!';
     return;
 }
 

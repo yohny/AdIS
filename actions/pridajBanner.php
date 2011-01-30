@@ -7,9 +7,15 @@ if(Context::getInstance()->getUser()->kategoria!='inzer')
 if (!isset($_FILES['userfile']) ||
     !isset($_POST['velkost']) ||
     !isset($_POST['kategorie']) ||
-    !is_numeric($_POST['velkost']))
+    !is_numeric($_POST['velkost']) ||
+    !isset($_POST['csrf_token']))
 {
     echo "Neplatné údaje";
+    return;
+}
+if($_POST['csrf_token'] != Context::getInstance()->getCsrfToken())
+{
+    echo 'CSRF fail!';
     return;
 }
 

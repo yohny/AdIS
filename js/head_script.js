@@ -166,6 +166,7 @@ function setPage(p)
 function spracuj_chweb()
 {
     var web = document.forms['chweb_form'].web.value;
+    var csrf_token = document.forms['chweb_form'].csrf_token.value;
     var errorbox = document.getElementById("chweb_errbox");
     var okbox = document.getElementById("chweb_okbox");
     errorbox.style.display = 'none';
@@ -182,8 +183,8 @@ function spracuj_chweb()
         alert ("Váš prehliadač nepodporuje XMLHTTP (AjaX)!");
         return;
     }
-    var url="ajax/chweb";
-    var params ="web="+encodeURIComponent(web);
+    var url="/ajax/chweb";
+    var params ="web="+encodeURIComponent(web)+"&csrf_token="+encodeURIComponent(csrf_token);
     params+="&sid="+Math.random();  //Adds a random number to prevent the server from using a cached file
     xmlhttp.onreadystatechange=function() {
         if (xmlhttp.readyState==4)
@@ -191,7 +192,7 @@ function spracuj_chweb()
             var resp = eval('('+xmlhttp.responseText+')');
             box_show(resp.success?okbox:errorbox,resp.message);
             if(resp.success)
-                document.getElementById('webTd').innerHTML = "http://"+document.forms['chweb_form'].web.value;
+                document.getElementById('webTd').innerHTML = "http://"+web;
         }
     };
     xmlhttp.open("POST",url,true);
@@ -204,6 +205,7 @@ function spracuj_chpas()
     var old = document.forms['chpas_form'].old.value;
     var new1 = document.forms['chpas_form'].new1.value;
     var new2 = document.forms['chpas_form'].new2.value;
+    var csrf_token = document.forms['chweb_form'].csrf_token.value;
     var errorbox = document.getElementById("chpas_errbox");
     var okbox = document.getElementById("chpas_okbox");
     errorbox.style.display = 'none';
@@ -235,9 +237,8 @@ function spracuj_chpas()
         alert ("Váš prehliadač nepodporuje XMLHTTP (AjaX)!");
         return;
     }
-    var url = "ajax/chpas";
-    var params = "old="+encodeURIComponent(old);
-    params += "&new="+encodeURIComponent(new1);
+    var url = "/ajax/chpas";
+    var params = "old="+encodeURIComponent(old)+"&new="+encodeURIComponent(new1)+"&csrf_token="+encodeURIComponent(csrf_token);
     params += "&sid="+Math.random();  //Adds a random number to prevent the server from using a cached file
     xmlhttp.onreadystatechange=function() {
         if (xmlhttp.readyState==4)

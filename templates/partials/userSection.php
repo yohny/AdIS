@@ -19,9 +19,10 @@
 </fieldset>
 <h3>používateľ</h3>
 <span style="font-variant: small-caps;font-weight: bolder;"><?php echo $_SESSION['user']; ?></span>
-<form style="display: inline-block" id="out_form" method="POST" action="/action/odhlas">
-    <a style="margin-left:10px;" href="javascript:document.getElementById('out_form').submit()">(Odlásiť)</a>
+<form style="display: inline-block" method="POST" action="/action/odhlas">
+    <a style="margin-left:10px;" href="#" onclick="this.parentNode.submit();return false;">(Odlásiť)</a>
     <input type="hidden" name="action" value="logout">
+    <input type="hidden" name="csrf_token" value="<?php echo Context::getInstance()->getCsrfToken(); ?>">
 </form>
 <?php else: ?>
         <h3>používateľ</h3>
@@ -32,5 +33,6 @@
                 <tr><td><input type="button" value="Prihlásiť" onClick="spracuj_log()"><a style="margin-left:10px;" href="/registracia">Registruj</a></td></tr>
                 <tr><td><div id="log_errbox" class="errbox"></div></td></tr>
             </table>
+            <input type="hidden" name="csrf_token" value="<?php echo Context::getInstance()->getCsrfToken(); ?>">
         </form>
 <?php endif; ?>

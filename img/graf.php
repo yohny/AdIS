@@ -20,7 +20,7 @@ require_once '../classes/pChart/pImage.class.php';
 $dates = array();$clicks = array();$views = array();
 foreach ($stats as $stat)
 {
-    $dates[] = $stat->__toString();
+    $dates[] = date_format(new DateTime($stat->cas), 'd.m.Y');
     $clicks[] = $stat->kliky;
     $views[] = $stat->zobrazenia;
 }

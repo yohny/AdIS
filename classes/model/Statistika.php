@@ -24,7 +24,13 @@ class Statistika
 
     public function __toString()
     {
-        return date_format(new DateTime($this->cas), 'd.m.Y');
+        $dateTime = new DateTime($this->cas);
+        if(setlocale(LC_ALL, "sk_SK.utf8"))
+            return strftime('%A %e. %B %Y', $dateTime->format('U'));
+        elseif(setlocale(LC_ALL, "sk_SK")) //iso-8859-2
+            return iconv('iso-8859-2', 'utf-8', strftime('%A %e. %B %Y', $dateTime->format('U')));
+        else
+            return $dateTime->format('d.m.Y');
     }
 }
 ?>

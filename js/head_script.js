@@ -205,7 +205,7 @@ function spracuj_chpas()
     var old = document.forms['chpas_form'].old.value;
     var new1 = document.forms['chpas_form'].new1.value;
     var new2 = document.forms['chpas_form'].new2.value;
-    var csrf_token = document.forms['chweb_form'].csrf_token.value;
+    var csrf_token = document.forms['chpas_form'].csrf_token.value;
     var errorbox = document.getElementById("chpas_errbox");
     var okbox = document.getElementById("chpas_okbox");
     errorbox.style.display = 'none';

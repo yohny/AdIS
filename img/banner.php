@@ -1,6 +1,8 @@
 <?php
-header("Content-type: image/png");
-require_once '../classes/model/User.php';
+require_once '../classes/Autoloader.class.php';
+spl_autoload_register('Autoloader::loadCore');
+spl_autoload_register('Autoloader::loadModel');
+
 session_name('adis_session');
 session_start();
 
@@ -9,11 +11,6 @@ if (!isset($_SESSION['user']) || !isset($_GET['id']) || !is_numeric($_GET['id'])
     header("HTTP/1.1 403 Forbidden");
     exit();
 }
-
-require_once '../classes/model/Velkost.php';
-require_once '../classes/model/base/BanRek.php';
-require_once '../classes/model/Banner.php';
-require_once '../classes/core/Database.php';
 
 try
 {
@@ -51,6 +48,7 @@ if(!imagettftext($watermark, 10, 0, imagesx($watermark) - 40, 12, $white, './Ubu
     exit();
 }
 imagecopymerge($img, $watermark, 0, imagesy($img) - imagesy($watermark), 0, 0, imagesx($watermark), imagesy($watermark), 50);
+header("Content-type: image/png");
 imagepng($img);
 imagedestroy($img);
 ?>

@@ -1,16 +1,9 @@
 <?php
-function __autoload($className)
-{
-    if(file_exists('classes/core/'.$className.'.php'))
-        require_once 'classes/core/'.$className.'.php';
-    if(file_exists('classes/model/'.$className.'.php'))
-        require_once 'classes/model/'.$className.'.php';
-    if(file_exists('classes/model/base/'.$className.'.php'))
-        require_once 'classes/model/base/'.$className.'.php';
-}
+require_once './classes/Autoloader.class.php';
+spl_autoload_register('Autoloader::loadCore');
+spl_autoload_register('Autoloader::loadModel');
 
 session_name('adis_session');
-//session_set_cookie_params(10);
 session_start();
 
 $request = Context::getInstance()->getRequest();

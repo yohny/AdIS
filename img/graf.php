@@ -1,6 +1,8 @@
 <?php
-require_once '../classes/model/Statistika.php';
-require_once '../classes/model/User.php';
+require_once '../classes/Autoloader.class.php';
+spl_autoload_register('Autoloader::loadModel');
+spl_autoload_register('Autoloader::loadPChart');
+
 session_name('adis_session');
 session_start();
 
@@ -12,10 +14,6 @@ if (!isset($_SESSION['user']) || !isset($_SESSION['stats']))
 
 $stats = $_SESSION['stats'];
 unset($_SESSION['stats']);
-
-require_once '../classes/pChart/pData.class.php';
-require_once '../classes/pChart/pDraw.class.php';
-require_once '../classes/pChart/pImage.class.php';
 
 $dates = array();$clicks = array();$views = array();
 foreach ($stats as $stat)

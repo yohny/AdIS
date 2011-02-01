@@ -45,7 +45,7 @@ class Autoloader
     }
 
     /**
-     * registers all calsses and libraries
+     * registers all classes and libraries
      */
     public static function registerAll()
     {

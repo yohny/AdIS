@@ -2,9 +2,9 @@
  /*
      pDraw - pChart core class
 
-     Version     : 2.0.13
+     Version     : 2.1.0
      Made by     : Jean-Damien POGOLOTTI
-     Last Update : 18/01/11
+     Last Update : 26/01/11
 
      This file can be distributed under the license you can find at :
 

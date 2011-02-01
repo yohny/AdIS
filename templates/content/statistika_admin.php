@@ -61,7 +61,7 @@ $pages = ceil($pocet/ROWS_PER_PAGE);
                     <option value="all">všetky</option>
                     <?php foreach($bannery as $banner): ?>
                     <option value="<?php echo $banner->id; ?>" <?php if($filter->banner==$banner->id) echo 'selected="selected"'; ?>>
-                        <?php echo $banner->filename; ?>
+                        <?php echo htmlspecialchars($banner->filename); ?>
                     </option>
                     <?php endforeach; ?>
                     <option value="del" <?php if($filter->banner=='del') echo 'selected="selected"'; ?>>zmazané</option>
@@ -128,16 +128,16 @@ $pages = ceil($pocet/ROWS_PER_PAGE);
                 <?php echo $event; ?>
             </td>
             <td>
-                <?php echo ($event->zobraLogin?$event->zobraLogin:"#zmazaný")." ($event->zobraId)"; ?>
+                <?php echo ($event->zobraLogin?htmlspecialchars($event->zobraLogin):"#zmazaný")." ($event->zobraId)"; ?>
             </td>
             <td>
-                <?php echo ($event->reklamaName?$event->reklamaName:"#zmazaná")." ($event->reklamaId)"; ?>
+                <?php echo ($event->reklamaName?htmlspecialchars($event->reklamaName):"#zmazaná")." ($event->reklamaId)"; ?>
             </td>
             <td>
-                <?php echo ($event->inzerLogin?$event->inzerLogin:"#zmazaný")." ($event->inzerId)"; ?>
+                <?php echo ($event->inzerLogin?htmlspecialchars($event->inzerLogin):"#zmazaný")." ($event->inzerId)"; ?>
             </td>
             <td>
-                <?php echo ($event->bannerFilename?$event->bannerFilename:"#zmazaný")." ($event->bannerId)"; ?>
+                <?php echo ($event->bannerFilename?htmlspecialchars($event->bannerFilename):"#zmazaný")." ($event->bannerId)"; ?>
             </td>
         </tr>
     <?php endforeach; ?>

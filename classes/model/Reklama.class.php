@@ -52,7 +52,7 @@ class Reklama extends BanRek
 
     public function __toString()
     {
-        return $this->name;
+        return htmlspecialchars($this->name);
     }
 
     public static function checkAd($meno, Velkost $velkost)

@@ -48,7 +48,7 @@ if(count($bannery)==0): ?>
     <?php $i=0; foreach($bannery as $banner): $i++; ?>
     <tr <?php if($i%2==0) echo "class=\"dark\""; ?>>
         <td>
-            <?php echo $banner->velkost->nazov;?>
+            <?php echo $banner->velkost;?>
         </td>
         <td>
             <?php echo $banner->velkost->sirka." x ".$banner->velkost->vyska; ?>

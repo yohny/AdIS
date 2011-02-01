@@ -16,15 +16,15 @@ try
     {
         $object = Context::getInstance()->getDatabase()->getBannerByPK($_POST['zmaz']);
         $notAllowedMsg = 'Nemôžete zmazať tento banner!';
-        $okMsg = "Banner '$object->filename' zmazaný!";
-        $failMsg = "Banner '$object->filename' sa nepodarilo zmazať!";
+        $okMsg = "Banner '$object' zmazaný!";
+        $failMsg = "Banner '$object' sa nepodarilo zmazať!";
     }
     elseif (Context::getInstance()->getUser()->kategoria == 'zobra') //maze reklamu
     {
         $object = Context::getInstance()->getDatabase()->getReklamaByPK($_POST['zmaz']);
         $notAllowedMsg = 'Nemôžete zmazať túto reklamu!';
-        $okMsg = "Relama '$object->name' zmazaná!";
-        $failMsg = "Reklamu '$object->name' sa nepodarilo zmazať!";
+        $okMsg = "Relama '$object' zmazaná!";
+        $failMsg = "Reklamu '$object' sa nepodarilo zmazať!";
     }
     else
     {

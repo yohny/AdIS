@@ -48,7 +48,7 @@ if(count($reklamy)==0): ?>
     <?php $i=0; foreach($reklamy as $reklama): $i++; ?>
     <tr <?php if($i%2==0) echo "class=\"dark\""; ?>>
         <td>
-            <?php echo $reklama->velkost->nazov;?>
+            <?php echo $reklama->velkost;?>
         </td>
         <td>
             <?php echo $reklama->velkost->sirka." x ".$reklama->velkost->vyska; ?>

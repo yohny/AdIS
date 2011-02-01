@@ -54,7 +54,7 @@ class Banner extends BanRek
 
     public function __toString()
     {
-        return preg_replace('/^(\w+_\d+x\d+_)/', '', $this->filename);
+        return htmlspecialchars(preg_replace('/^(\w+_\d+x\d+_)/', '', $this->filename));
     }
 
     /**

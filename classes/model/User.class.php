@@ -92,7 +92,7 @@ class User
 
     public function __toString()
     {
-        return $this->login;
+        return htmlspecialchars($this->login);
     }
 
     /**

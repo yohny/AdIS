@@ -25,7 +25,7 @@ class Kategoria
 
     public function __toString()
     {
-        return $this->nazov;
+        return htmlspecialchars($this->nazov);
     }
 }
 ?>

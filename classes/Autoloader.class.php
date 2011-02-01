@@ -1,8 +1,4 @@
 <?php
-spl_autoload_register(null,false);//reset autoloaderov
-spl_autoload_extensions('.class.php, .php');//pripony
-define('CLASSES_DIR', dirname(__FILE__));
-
 /**
  * trieda sluziaca na autoloading ostatnych tried
  *
@@ -10,40 +6,121 @@ define('CLASSES_DIR', dirname(__FILE__));
  */
 class Autoloader
 {
-    private static function loadClass($path)
+    /**
+     * directory which contains classes and libraries
+     * @var string
+     */
+    private $baseDir = null;
+    private static $instance = null;
+
+    private function __construct()
     {
-        if(file_exists($path))
+        $this->baseDir = dirname(__FILE__);
+        spl_autoload_register(null,false);//reset autoloaderov
+        spl_autoload_extensions('.class.php, .php');//pripony
+    }
+
+    /**
+     * singleton call
+     * @return Autoloader
+     */
+    private static function getInstance()
+    {
+        if(!self::$instance)
+            self::$instance = new Autoloader();
+        return self::$instance;
+    }
+
+    /**
+     * includes class file, or fails with FALSE
+     * @param string $path relative path from baseDir (/classes)
+     * @return bool
+     */
+    private function loadClass($path)
+    {
+        if(file_exists($this->baseDir.DIRECTORY_SEPARATOR.$path))
             require_once $path;
         else
             return false;
     }
 
-    public static function loadCore($slassName)
+    /**
+     * registers all calsses and libraries
+     */
+    public static function registerAll()
     {
-        $path = CLASSES_DIR.DIRECTORY_SEPARATOR.'core'.DIRECTORY_SEPARATOR.$slassName.'.class.php';
-        return self::loadClass($path);
+        self::registerCore();
+        self::registerModel();
+        self::registerCaptcha();
+        self::registerPChart();
     }
 
-    public static function loadModel($slassName)
+    /**
+     * registers autoload function for Core classes
+     */
+    public static function registerCore()
     {
-        $path = CLASSES_DIR.DIRECTORY_SEPARATOR.'model'.DIRECTORY_SEPARATOR.$slassName.'.class.php';
-        if(!self::loadClass($path))//ak nezbehne skusi /base
-        {
-            $path = CLASSES_DIR.DIRECTORY_SEPARATOR.'model'.DIRECTORY_SEPARATOR.'base'.DIRECTORY_SEPARATOR.$slassName.'.class.php';
-            return self::loadClass($path);
-        }
+        $callback = array(self::getInstance(),'loadCore');
+        if(!spl_autoload_functions() || !in_array($callback, spl_autoload_functions()))
+            spl_autoload_register($callback);
+    }
+    private function loadCore($className)
+    {
+        $path ='core'.DIRECTORY_SEPARATOR.$className.'.class.php';
+        return $this->loadClass($path);
     }
 
-    public static function loadCaptcha($slassName)
+    /**
+     * registers autoload function for Model classes
+     */
+    public static function registerModel()
     {
-        $path = self::$baseDir.DIRECTORY_SEPARATOR.'captcha'.DIRECTORY_SEPARATOR.$slassName.'.class.php';
-        return self::loadClass($path);
+        $callback = array(self::getInstance(),'loadModel');
+        if(!spl_autoload_functions() || !in_array($callback, spl_autoload_functions()))
+            spl_autoload_register($callback);
+        $callback = array(self::getInstance(),'loadModelBase');
+        if(!spl_autoload_functions() || !in_array($callback, spl_autoload_functions()))
+            spl_autoload_register($callback);
+    }
+    private function loadModel($className)
+    {
+        $path ='model'.DIRECTORY_SEPARATOR.$className.'.class.php';
+        return $this->loadClass($path);
+    }
+    private function loadModelBase($className)
+    {
+        $path ='model'.DIRECTORY_SEPARATOR.'base'.DIRECTORY_SEPARATOR.$className.'.class.php';
+        return $this->loadClass($path);
     }
 
-    public static function loadPChart($slassName)
+    /**
+     * registers autoload function for Captcha classes
+     */
+    public static function registerCaptcha()
     {
-        $path = CLASSES_DIR.DIRECTORY_SEPARATOR.'pChart'.DIRECTORY_SEPARATOR.$slassName.'.class.php';
-        return self::loadClass($path);
+        $callback = array(self::getInstance(),'loadCaptcha');
+        if(!spl_autoload_functions() || !in_array($callback, spl_autoload_functions()))
+            spl_autoload_register($callback);
+    }
+    private function loadCaptcha($className)
+    {
+        $path = 'captcha'.DIRECTORY_SEPARATOR.$className.'.class.php';
+        return $this->loadClass($path);
+    }
+
+    /**
+     * registers autoload function for pChart classes
+     */
+    public static function registerPChart()
+    {
+        $callback = array(self::getInstance(),'loadPChart');
+        if(!spl_autoload_functions() || !in_array($callback, spl_autoload_functions()))
+            spl_autoload_register($callback);
+    }
+    private function loadPChart($slassName)
+    {
+        $path = 'pChart'.DIRECTORY_SEPARATOR.$slassName.'.class.php';
+        return $this->loadClass($path);
     }
 }
 ?>

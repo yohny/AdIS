@@ -1,6 +1,6 @@
 <?php
 require_once '../classes/Autoloader.class.php';
-spl_autoload_register('Autoloader::loadCaptcha');
+Autoloader::registerCaptcha();
 
 session_name('adis_session');
 session_start();

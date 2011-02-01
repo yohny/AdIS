@@ -1,7 +1,7 @@
 <?php
 require_once './classes/Autoloader.class.php';
-spl_autoload_register('Autoloader::loadCore');
-spl_autoload_register('Autoloader::loadModel');
+Autoloader::registerCore();
+Autoloader::registerModel();
 
 session_name('adis_session');
 session_start();

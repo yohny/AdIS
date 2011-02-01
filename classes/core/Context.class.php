@@ -23,7 +23,7 @@ class Context
      */
     public static function getInstance()
     {
-        if(self::$instance==null)
+        if(!self::$instance)
             self::$instance = new Context();
         return self::$instance;
     }

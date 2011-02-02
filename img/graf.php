@@ -1,5 +1,5 @@
 <?php
-require_once '../classes/Autoloader.class.php';
+require_once '../app/lib/Autoloader.class.php';
 Autoloader::registerModel();
 Autoloader::registerPChart();
 

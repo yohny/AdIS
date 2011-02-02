@@ -1,0 +1,101 @@
+<?php
+/**
+ * trieda starajuca sa o konfiguraciu
+ * poskytuje konfiguracne nastavenia aplikacie
+ *
+ * @author yohny
+ */
+class Config {
+
+    private static $instance = null;
+    private $dbHost = '#host';
+    private $dbUser = '#user';
+    private $dbPassw = '#password';
+    private $dbName = '#name';
+    private $statRowsPerPage = 10;
+
+
+    private function __construct()
+    {
+        libxml_use_internal_errors(); //aby parser neohlasoval chyby XML dokumentu
+
+        //musi byt absolutna lebo niekedy cita konfig voci index.php, inokedy voci /img abo /distrib
+        if($xml = @simplexml_load_file($_SERVER['DOCUMENT_ROOT'].'/app/config.xml'))
+        {
+            if(isset($xml->database_host))
+                $this->dbHost = trim($xml->database_host);
+            if(isset($xml->database_user))
+                $this->dbUser = trim($xml->database_user);
+            if(isset($xml->database_password))
+                $this->dbPassw = trim($xml->database_password);
+            if(isset($xml->database_name))
+                $this->dbName = trim($xml->database_name);
+            if(isset($xml->stat_rows_per_page) && is_numeric(trim($xml->stat_rows_per_page)))
+                $this->statRowsPerPage = trim($xml->stat_rows_per_page);
+        }
+        else
+            throw new Exception('Nepodarilo sa načitať konfiguráciu!');
+    }
+
+    /**
+     * singleton call
+     * @return Config
+     */
+    private static function getInstance()
+    {
+        if(!self::$instance)
+            self::$instance = new Config();
+        return self::$instance;
+    }
+
+    /**
+     * vrati host an ktorom bezi DB na zaklade nastavenia v config.xml
+     * ak toto nastavenie v konfiguracnom subore nie je vrati '#host'
+     * @return string
+     */
+    public static function getDbHost()
+    {
+        return self::getInstance()->dbHost;
+    }
+
+    /**
+     * vrati pouzivatelske meno pre pristup do DB na zaklade nastavenia v config.xml
+     * ak toto nastavenie v konfiguracnom subore nie je vrati '#user'
+     * @return string
+     */
+    public static function getDbUser()
+    {
+        return self::getInstance()->dbUser;
+    }
+
+    /**
+     * vrati pouzivatelske heslo pre pristup do DB na zaklade nastavenia v config.xml
+     * ak toto nastavenie v konfiguracnom subore nie je vrati '#password'
+     * @return string
+     */
+    public static function getDbPassword()
+    {
+        return self::getInstance()->dbPassw;
+    }
+
+    /**
+     * vrati meno DB na zaklade nastavenia v config.xml
+     * ak toto nastavenie v konfiguracnom subore nie je vrati '#user'
+     * @return string
+     */
+    public static function getDbName()
+    {
+        return self::getInstance()->dbName;
+    }
+
+    /**
+     * vrati pocet riadkov na stranu zobrazovanych v statistikach na zaklade nastavenia v config.xml
+     * ak toto nastavenie v konfiguracnom subore nie je vrati '10'
+     * @return string
+     */
+    public static function getStatRowsPerPage()
+    {
+        return self::getInstance()->statRowsPerPage;
+    }
+}
+?>

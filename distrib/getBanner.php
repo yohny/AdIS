@@ -37,7 +37,7 @@ try
 }
 catch (Exception $ex)
 {
-    header("HTTP/1.1 500 DB error");
+    header("HTTP/1.1 500 Error: exception");
     exit();
 }
 

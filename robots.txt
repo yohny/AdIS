@@ -1,8 +1,5 @@
 User-agent: *
-Disallow: /DB_skript/
-Disallow: /actions/
-Disallow: /classes/
-Disallow: /templates/
+Disallow: /app/
 Disallow: /distrib/
 Disallow: /upload/
 Disallow: /js/

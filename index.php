@@ -1,11 +1,12 @@
 <?php
-require_once './classes/Autoloader.class.php';
+require_once './app/lib/Autoloader.class.php';
 Autoloader::registerCore();
 Autoloader::registerModel();
 
 session_name('adis_session');
 session_start();
 
+define('TEMPLATES_DIR', './app/templates');
 $request = Context::getInstance()->getRequest();
 
 if (!$request->fileExists)
@@ -22,14 +23,22 @@ elseif(!$request->isPublic && !Context::getInstance()->getUser())
 }
 else //vsetko ok
 {
-    ob_start();
-    require_once $request->getUri();
-    Context::getInstance()->getResponse()->content = ob_get_clean();
+    try
+    {
+        ob_start();
+        require_once $request->getUri();
+        Context::getInstance()->getResponse()->content = ob_get_clean();
+    }
+    catch(Exception $ex)
+    {
+        Context::getInstance()->getResponse()->content = $ex->getMessage();
+        Context::getInstance()->getResponse()->error = true;
+    }
 }
 
 header(Context::getInstance()->getResponse()->getHeaderContentType());
 if ($request->hasTemplate)
-    require 'templates/layout.php';
+    require TEMPLATES_DIR.'/layout.php';
 else
     echo Context::getInstance()->getResponse();
 ?>

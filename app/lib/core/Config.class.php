@@ -20,7 +20,7 @@ class Config {
         libxml_use_internal_errors(); //aby parser neohlasoval chyby XML dokumentu
 
         //musi byt absolutna lebo niekedy cita konfig voci index.php, inokedy voci /img abo /distrib
-        if($xml = @simplexml_load_file($_SERVER['DOCUMENT_ROOT'].'/app/config.xml'))
+        if($xml = @simplexml_load_file(realpath(dirname(__FILE__).'/../../config.xml')))
         {
             if(isset($xml->database_host))
                 $this->dbHost = trim($xml->database_host);

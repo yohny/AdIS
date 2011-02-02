@@ -6,7 +6,7 @@ Autoloader::registerModel();
 session_name('adis_session');
 session_start();
 
-define('TEMPLATES_DIR', './app/templates');
+define('TEMPLATES_DIR', realpath('./app/templates'));
 $request = Context::getInstance()->getRequest();
 
 if (!$request->fileExists)
@@ -36,9 +36,14 @@ else //vsetko ok
     }
 }
 
-header(Context::getInstance()->getResponse()->getHeaderContentType());
-if ($request->hasTemplate)
-    require TEMPLATES_DIR.'/layout.php';
-else
+//posle header
+header("Content-type: ".Context::getInstance()->getResponse()->getHeaderContentType());
+
+//redirect sa nastavuje az na konci, tj ak bola chyba nebude nastaveny
+if(Context::getInstance()->getResponse()->redirect)
+    header("Location: ".Context::getInstance()->getResponse()->redirect);
+elseif(!$request->hasTemplate)
     echo Context::getInstance()->getResponse();
+else
+    require TEMPLATES_DIR.'/layout.php';
 ?>

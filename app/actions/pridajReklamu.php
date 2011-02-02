@@ -35,5 +35,5 @@ if (!$message)
 }
 
 Context::getInstance()->getResponse()->setFlash($message);
-header("Location: " . (isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : "/"));
+Context::getInstance()->getResponse()->redirect = '/reklamy';
 ?>

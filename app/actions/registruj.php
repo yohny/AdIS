@@ -45,5 +45,6 @@ else
 
 $_SESSION['registrator'] = $user;
 Context::getInstance()->getResponse()->setFlash($message);
-header("Location: " . (isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:"/"));
+
+Context::getInstance()->getResponse()->redirect = '/registracia';
 ?>

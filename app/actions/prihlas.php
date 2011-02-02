@@ -20,5 +20,5 @@ else
     $message = "Chyba pri prihlasovaní. / Neplatné prihlasovacie údaje!";
 
 Context::getInstance()->getResponse()->setFlash($message);
-header("Location: /");
+Context::getInstance()->getResponse()->redirect = '/';
 ?>

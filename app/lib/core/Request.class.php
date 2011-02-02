@@ -8,20 +8,14 @@ class Request
 {
     private $uri = '';
     /**
-     * pole nazvov suborov alebo ciest (bez .php), ktore su bez layoutu
+     * pole nazvov suborov alebo ciest (bez .php), ktore su bez layoutu (ajax)
      * !po mapingu na fyzicke cesty
      * @var regexp
      */
     private $withoutTemplate = array(
         'checklogin',
         'chpas',
-        'chweb',
-        'prihlas',
-        'odhlas',
-        'registruj',
-        'zmaz',
-        'pridajBanner',
-        'pridajReklamu');
+        'chweb');
     /**
      * pole nazvov suborov alebo ciest (bez .php), ktore su pristupne bez lognutia
      * !po mapingu na fyzicke cesty
@@ -52,6 +46,7 @@ class Request
      */
     public $isPublic = false;
 
+
     public function __construct($redir_url)
     {
         //odstrani lomitko na zaciatku a pripadne .php na konci
@@ -63,8 +58,8 @@ class Request
         {
             //maping logickych url adries na fyzicke cesty (relativne voci index.php)
             $this->uri = preg_replace("/^(\w+)$/", TEMPLATES_DIR."/content/$1", $this->uri);
-            $this->uri = preg_replace("/^action\/(\w+)$/", "./app/actions/$1", $this->uri);
-            $this->uri = preg_replace("/^ajax\/(\w+)$/", "./app/actions/ajax/$1", $this->uri);
+            $this->uri = preg_replace("/^action\/(\w+)$/", TEMPLATES_DIR."/../actions/$1", $this->uri);
+            $this->uri = preg_replace("/^ajax\/(\w+)$/", TEMPLATES_DIR."/../actions/ajax/$1", $this->uri);
         }
 
         foreach ($this->withoutTemplate as $noTemp) //checking na tamplate
@@ -86,7 +81,7 @@ class Request
             }
         }
 
-        $this->uri .= '.php';
+        $this->uri = realpath($this->uri.'.php');
         if (!file_exists($this->uri) || is_dir($this->uri))
             $this->fileExists = false;
     }

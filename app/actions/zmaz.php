@@ -36,5 +36,5 @@ else
     $message = $object->delete()?$okMsg:$failMsg;
 
 Context::getInstance()->getResponse()->setFlash($message);
-header("Location: " . (isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : "/"));
+Context::getInstance()->getResponse()->redirect = Context::getInstance()->getUser()->kategoria == 'inzer'?'/bannery':'/reklamy';
 ?>

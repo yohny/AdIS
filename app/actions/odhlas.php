@@ -20,5 +20,5 @@ else
     $message = "Chybná požiadavka";
 
 Context::getInstance()->getResponse()->setFlash($message);
-header("Location: /");
+Context::getInstance()->getResponse()->redirect = '/';
 ?>

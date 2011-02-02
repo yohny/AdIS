@@ -13,6 +13,11 @@ class Response {
     private $resourcces = array();
     public $content;
     public $error = false;
+    /**
+     * ak stranka robi redirect tak obsahuje ciel redirectu
+     * @var string
+     */
+    public $redirect = null;
 
     public function __construct($title)
     {
@@ -77,7 +82,7 @@ class Response {
 
     public function getHeaderContentType()
     {
-        return "Content-type: $this->headerContentType; charset=$this->encoding";
+        return "$this->headerContentType; charset=$this->encoding";
     }
 
 

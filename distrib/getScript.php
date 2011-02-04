@@ -45,7 +45,7 @@ if(typeof adis_container_<?php echo $reklama->id; ?> == 'undefined' && typeof ad
     adis_banner_<?php echo $banner->id; ?>.onload = function(){
         adis_container_<?php echo $reklama->id; ?>.removeChild(adis_container_<?php echo $reklama->id; ?>.childNodes[0]);
         adis_container_<?php echo $reklama->id; ?>.appendChild(this);
-        adis_container_<?php echo $reklama->id; ?>.href = <?php echo "\"http://{$_SERVER["HTTP_HOST"]}/doKlik?zobra=$reklama->userId&amp;rekl=$reklama->id&amp;inzer=$banner->userId&amp;bann=$banner->id&amp;view=$view\";"; ?>
+        adis_container_<?php echo $reklama->id; ?>.href = <?php echo "\"http://{$_SERVER["HTTP_HOST"]}/doKlik?zobra=$reklama->userId&rekl=$reklama->id&inzer=$banner->userId&bann=$banner->id&view=$view\";"; ?>
     };
     adis_banner_<?php echo $banner->id; ?>.onerror = function(){
         adis_container_<?php echo $reklama->id; ?>.innerHTML = 'Ad-IS: banner loading error';

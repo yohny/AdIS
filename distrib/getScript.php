@@ -32,20 +32,23 @@ catch (Exception $ex)
 //<a href=”http://www.bbc.co.uk” onclick=”x=new XMLHttpRequest();x.open(’POST’,’track.py’,false);x.onreadystatechange=function() { if (x.readyState>1)location=this.href };x.send(’’);”>BBC</a>
 //<a href="..." ping="...">   - PING not supported by browsers (Firefox only?)
 ?>
-document.write("<a id=\"adis_container_<?php echo $reklama->id; ?>\" style=\"margin:0;padding:0;border-style:none;width:<?php echo $reklama->velkost->sirka; ?>px;height:<?php echo $reklama->velkost->vyska; ?>px;display:inline-block;vertical-align:text-bottom;background:black;color:white;text-decoration:none;\"></a>");
-var adis_container_<?php echo $reklama->id; ?> = document.getElementById("adis_container_<?php echo $reklama->id; ?>");
-adis_container_<?php echo $reklama->id; ?>.innerHTML = 'loading...';
-adis_container_<?php echo $reklama->id; ?>.style.margin = '0';
-adis_container_<?php echo $reklama->id; ?>.style.padding = '0';
-adis_container_<?php echo $reklama->id; ?>.style.borderStyle = 'none';
-var adis_banner_<?php echo $banner->id; ?> = document.createElement('img');
-adis_banner_<?php echo $banner->id; ?>.alt = "banner_<?php echo $banner->id; ?>";
-adis_banner_<?php echo $banner->id; ?>.onload = function(){
-    adis_container_<?php echo $reklama->id; ?>.removeChild(adis_container_<?php echo $reklama->id; ?>.childNodes[0]);
-    adis_container_<?php echo $reklama->id; ?>.appendChild(this);
-    adis_container_<?php echo $reklama->id; ?>.href = <?php echo "\"http://{$_SERVER["HTTP_HOST"]}/doKlik?zobra=$reklama->userId&rekl=$reklama->id&inzer=$banner->userId&bann=$banner->id&view=$view\";"; ?>
-};
-adis_banner_<?php echo $banner->id; ?>.onerror = function(){
-    adis_container_<?php echo $reklama->id; ?>.innerHTML = 'Ad-IS: banner loading error';
-};
-adis_banner_<?php echo $banner->id; ?>.src = <?php echo "\"http://{$_SERVER["HTTP_HOST"]}/getBanner?id=$banner->id&view=$view\";"; ?>
+if(typeof adis_container_<?php echo $reklama->id; ?> == 'undefined' && typeof adis_banner_<?php echo $banner->id; ?> == 'undefined')
+{
+    document.write("<a id=\"adis_container_<?php echo $reklama->id; ?>\" style=\"margin:0;padding:0;border-style:none;width:<?php echo $reklama->velkost->sirka; ?>px;height:<?php echo $reklama->velkost->vyska; ?>px;display:inline-block;vertical-align:text-bottom;text-decoration:none;\"><\/a>");
+    var adis_container_<?php echo $reklama->id; ?> = document.getElementById("adis_container_<?php echo $reklama->id; ?>");
+    adis_container_<?php echo $reklama->id; ?>.innerHTML = 'loading...';
+    var adis_banner_<?php echo $banner->id; ?> = document.createElement('img');
+    adis_banner_<?php echo $banner->id; ?>.style.margin = '0';
+    adis_banner_<?php echo $banner->id; ?>.style.padding = '0';
+    adis_banner_<?php echo $banner->id; ?>.style.borderStyle = 'none';
+    adis_banner_<?php echo $banner->id; ?>.alt = "banner_<?php echo $banner->id; ?>";
+    adis_banner_<?php echo $banner->id; ?>.onload = function(){
+        adis_container_<?php echo $reklama->id; ?>.removeChild(adis_container_<?php echo $reklama->id; ?>.childNodes[0]);
+        adis_container_<?php echo $reklama->id; ?>.appendChild(this);
+        adis_container_<?php echo $reklama->id; ?>.href = <?php echo "\"http://{$_SERVER["HTTP_HOST"]}/doKlik?zobra=$reklama->userId&amp;rekl=$reklama->id&amp;inzer=$banner->userId&amp;bann=$banner->id&amp;view=$view\";"; ?>
+    };
+    adis_banner_<?php echo $banner->id; ?>.onerror = function(){
+        adis_container_<?php echo $reklama->id; ?>.innerHTML = 'Ad-IS: banner loading error';
+    };
+    adis_banner_<?php echo $banner->id; ?>.src = <?php echo "\"http://{$_SERVER["HTTP_HOST"]}/getBanner?id=$banner->id&view=$view\";\n"; ?>
+}

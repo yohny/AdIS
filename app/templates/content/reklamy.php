@@ -62,13 +62,13 @@ if(count($reklamy)==0): ?>
     <tr <?php if($i%2==0) echo "class=\"dark\"";?> style="display:none;" id="tr<?php echo $reklama->id; ?>">
         <td colspan="5">
             <p>Nasledujúci HTML kód vložte do vašej stránky (na miesto kde chcete mať reklamu):</p>
-            <pre>
-&lt;script language="javascript" type="text/javascript" charset="utf-8"&gt;
-var adisRekl = <?php echo $reklama->id; ?>;
-var adisRand = Math.random();
-document.write(unescape("%3Cscript type=\"text/javascript\" language=\"javascript\" charset=\"utf-8\" src=\"http://<?php echo $_SERVER["HTTP_HOST"]; ?>/getScript?rekl="+adisRekl+"&amp;rand="+adisRand+"\"%3E%3C/script%3E"));
+            <code>
+&lt;script language="javascript" type="text/javascript" charset="utf-8"&gt;<br>
+var adisRekl = <?php echo $reklama->id; ?>;<br>
+var adisRand = Math.random();<br>
+document.write(unescape("%3Cscript type=\"text/javascript\" language=\"javascript\" charset=\"utf-8\" src=\"http://<?php echo $_SERVER["HTTP_HOST"]; ?>/getScript?rekl="+adisRekl+"&amp;rand="+adisRand+"\"%3E%3C/script%3E"));<br>
 &lt;/script&gt;
-            </pre>
+            </code>
         </td>
     </tr>
     <?php endforeach; ?>

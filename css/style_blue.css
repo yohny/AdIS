@@ -20,7 +20,7 @@ table.kontakt td {
 #ja {
     color: blue;
 }
-input, textarea, select, pre {
+input, textarea, select, code {
     color: blue;
     border-color: blue;
 }

@@ -5,8 +5,9 @@
     Created on : February 2, 2011, 2:24 PM
     Author     : yohny
     Description:
-        kanfiguracny subor aplikacie: nastavenia pripojenia na databazu
-        a pocet riakov na stranu pre statistiky
+        konfiguracny subor aplikacie:
+            nastavenia pripojenia na databazu
+            pocet riakov na stranu pre statistiky
 -->
 
 <root>

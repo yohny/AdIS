@@ -55,7 +55,9 @@ if(typeof adis_container_<?php echo $reklama->id; ?> == 'undefined' && typeof ad
         adis_container_<?php echo $reklama->id; ?>.href = <?php echo "\"http://{$_SERVER["HTTP_HOST"]}/doKlik?zobra=$reklama->userId&rekl=$reklama->id&inzer=$banner->userId&bann=$banner->id&view=$view\";"; ?>
     };
     adis_banner_<?php echo $banner->id; ?>.onerror = function(){
-        adis_container_<?php echo $reklama->id; ?>.innerHTML = 'Ad-IS: banner loading error';
+        adis_container_<?php echo $reklama->id; ?>.innerHTML = "Ad-IS: banner loading error";
     };
     adis_banner_<?php echo $banner->id; ?>.src = <?php echo "\"http://{$_SERVER["HTTP_HOST"]}/getBanner?id=$banner->id&view=$view\";\n"; ?>
 }
+else
+    document.write("Ad-IS: duplication error");

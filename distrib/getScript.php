@@ -31,6 +31,13 @@ catch (Exception $ex)
 //or
 //<a href=”http://www.bbc.co.uk” onclick=”x=new XMLHttpRequest();x.open(’POST’,’track.py’,false);x.onreadystatechange=function() { if (x.readyState>1)location=this.href };x.send(’’);”>BBC</a>
 //<a href="..." ping="...">   - PING not supported by browsers (Firefox only?)
+
+//TODO variable scope separation - http://www.howtocreate.co.uk/tutorials/javascript/functions uplne dole
+/*
+(function () {
+  //Put your script code in here
+})();
+*/
 ?>
 if(typeof adis_container_<?php echo $reklama->id; ?> == 'undefined' && typeof adis_banner_<?php echo $banner->id; ?> == 'undefined')
 {

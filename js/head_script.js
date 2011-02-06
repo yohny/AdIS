@@ -63,9 +63,9 @@ function spracuj_reg()
         box_show(errorbox,"Heslo musí mať aspoň 4 znaky!");
         return;
     }
-    if(heslo.indexOf("\"")>=0 || heslo.indexOf("\'")>=0 || heslo.indexOf("\\")>=0)
+    if(heslo.indexOf("\"")>=0 || heslo.indexOf("\'")>=0)
     {
-        box_show(errorbox,"Heslo nesmie obsahovať: \", \', \\");
+        box_show(errorbox,"Heslo nesmie obsahovať \" ani \'!");
         return;
     }
     document.forms['reg_form'].submit();

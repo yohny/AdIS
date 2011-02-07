@@ -35,21 +35,24 @@ catch (Exception $ex)
 //variable scope separation - http://www.howtocreate.co.uk/tutorials/javascript/functions uplne dole
 ?>
 (function () {
-    document.write("<a id=\"adis_container_<?php echo $reklama->id; ?>\" style=\"margin:0;padding:0;border-style:none;width:<?php echo $reklama->velkost->sirka; ?>px;height:<?php echo $reklama->velkost->vyska; ?>px;display:inline-block;vertical-align:text-bottom;text-decoration:none;\"><\/a>");
-    var adis_container_<?php echo $reklama->id; ?> = document.getElementById("adis_container_<?php echo $reklama->id; ?>");
-    adis_container_<?php echo $reklama->id; ?>.innerHTML = 'loading...';
-    var adis_banner_<?php echo $banner->id; ?> = document.createElement('img');
-    adis_banner_<?php echo $banner->id; ?>.style.margin = '0';
-    adis_banner_<?php echo $banner->id; ?>.style.padding = '0';
-    adis_banner_<?php echo $banner->id; ?>.style.borderStyle = 'none';
-    adis_banner_<?php echo $banner->id; ?>.alt = "banner_<?php echo $banner->id; ?>";
-    adis_banner_<?php echo $banner->id; ?>.onload = function(){
-        adis_container_<?php echo $reklama->id; ?>.removeChild(adis_container_<?php echo $reklama->id; ?>.childNodes[0]);
-        adis_container_<?php echo $reklama->id; ?>.appendChild(this);
-        adis_container_<?php echo $reklama->id; ?>.href = <?php echo "\"http://{$_SERVER["HTTP_HOST"]}/doKlik?zobra=$reklama->userId&rekl=$reklama->id&inzer=$banner->userId&bann=$banner->id&view=$view\";"; ?>
+    var container_id = 1;
+    while(document.getElementById("adis_container_"+container_id))
+        container_id++;
+    document.write("<a id=\"adis_container_"+container_id+"\" style=\"margin:0;padding:0;border-style:none;width:<?php echo $reklama->velkost->sirka; ?>px;height:<?php echo $reklama->velkost->vyska; ?>px;display:inline-block;vertical-align:text-bottom;text-decoration:none;\"><\/a>");
+    var adis_container = document.getElementById("adis_container_"+container_id);
+    adis_container.innerHTML = 'loading...';
+    var adis_banner = document.createElement('img');
+    adis_banner.style.margin = '0';
+    adis_banner.style.padding = '0';
+    adis_banner.style.borderStyle = 'none';
+    adis_banner.alt = "banner_<?php echo $banner->id; ?>";
+    adis_banner.onload = function(){
+        adis_container.removeChild(adis_container.childNodes[0]);
+        adis_container.appendChild(this);
+        adis_container.href = <?php echo "\"http://{$_SERVER["HTTP_HOST"]}/doKlik?zobra=$reklama->userId&rekl=$reklama->id&inzer=$banner->userId&bann=$banner->id&view=$view\";"; ?>
     };
-    adis_banner_<?php echo $banner->id; ?>.onerror = function(){
-        adis_container_<?php echo $reklama->id; ?>.innerHTML = "Ad-IS: banner loading error";
+    adis_banner.onerror = function(){
+        adis_container.innerHTML = "Ad-IS: banner loading error";
     };
-    adis_banner_<?php echo $banner->id; ?>.src = <?php echo "\"http://{$_SERVER["HTTP_HOST"]}/getBanner?id=$banner->id&view=$view\";\n"; ?>
+    adis_banner.src = <?php echo "\"http://{$_SERVER["HTTP_HOST"]}/getBanner?id=$banner->id&view=$view\";\n"; ?>
 })();

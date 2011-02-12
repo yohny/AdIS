@@ -1,15 +1,12 @@
-poz = document.cookie.indexOf("schema");
-if(poz==-1)
-    schema = 1;
-else
-    schema = document.cookie.charAt(poz+7) * 1;    //*1  -prevod char na cislo
-
+var schema = 1;
+if(document.cookie.indexOf("schema")!=-1)
+    schema = parseInt(document.cookie.charAt(document.cookie.indexOf("schema")+7), 10);
 
 function set_scheme(c)
 {
-    if(c>3 || c<1) c=1; //len 3 schemy su
+    if(c>3 || c<1 || isNaN(c)) c=1; //len 3 platne schemy su
     var datum = new Date();
-    datum.setTime(datum.getTime()+(10*24*60*60*1000));   //platnost 10 dni (v milisekundach)
+    datum.setTime(datum.getTime()+10*24*60*60*1000);   //platnost 10 dni (v milisekundach)
     document.cookie="schema="+c+"; expires="+datum.toUTCString()+"; path=/";  //nastavi cookie
     for (j=1;j<=3;j++)  //nastavi stylesheet a ikonu schemy
     {
@@ -149,7 +146,7 @@ function spracuj_filter()
     if(odDatum>doDatum && document.forms['filter'].date.value=='custom')
     {
         box_show(document.getElementById('filter_errbox'),"Začiatok obdobia je neskôr ako koniec!")
-        return
+        return;
     }
     document.forms['filter'].page.value = 1;
     document.forms['filter'].submit();

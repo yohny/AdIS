@@ -4,10 +4,10 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <title><?php echo Context::getInstance()->getResponse()->getTitle(); ?></title>
         <meta name="generator" content="Netbeans IDE, www.netbeans.org">
-        <meta name="description" content="IS pre správu reklamy">
-        <meta name="keywords" content="internetova reklama, online reklama, adis, banner, ppc, is">
+        <meta name="description" content="reklamný systém">
+        <meta name="keywords" content="internetová reklama, online reklama, reklama, ad-is, banner, ppc, is">
         <meta name="copyright" content="Copyright (c) Jan Nescivera">
-        <meta name="author" content="Designed by Yohny, jan.nescivera@student.tuke.sk">
+        <meta name="author" content="Yohny - jan.nescivera@student.tuke.sk">
         <meta name="content-language" content="sk">
         <link rel="shortcut icon" href="/img/favicon.ico">
         <link rel="stylesheet" type="text/css" href="/css/style_basic.css">
@@ -31,7 +31,7 @@
                 <div class="bottom_right corner"></div>
                 <h1 class="above">Ad-IS</h1>
                 <h1 class="below">Ad-IS</h1>
-                <h2>IS pre správu internetovej reklamy</h2>
+                <h2>Reklamný systém</h2>
             </div>
 
             <div id="left">
@@ -57,8 +57,8 @@
                     <div class="bottom_left corner"></div>
                     <div class="bottom_right corner"></div>
                     <h3>info</h3>
-                    <p class="g">common message</p>
-                    <p class="r">important message</p>
+                    <p class="g">bežný oznam</p>
+                    <p class="r">dôležitý oznam</p>
                     <p>
                         <a href="http://validator.w3.org/check?uri=referer">
                             <img src="/img/valid-html401.png" alt="val_html">
@@ -105,7 +105,7 @@
                 </div>
                 <?php } else echo Context::getInstance()->getResponse(); ?>
                 <hr>
-            </div>
+            </div><!-- end div#main -->
         </div><!-- end div#container -->
     </body>
 </html>

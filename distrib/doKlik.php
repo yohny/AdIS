@@ -13,13 +13,7 @@ set_error_handler("customError");
 //nejaký cas nedalo klikat na tu istu "konstalaciu" tj nie len voted, ale aby tam bolo pole
 //id klikov za poslednych X sekund a na zaklade toho by sa povedalo ze nemoze klikat napr na danej stranke
 //resp na dany banner aj na inych strankach
-//lebo bz v cookie stacili id zobrazovatelov a reklam
-
-$zobr_id = $_GET['zobra'];
-$rekl_id = $_GET['rekl'];
-$inze_id = $_GET['inzer'];
-$bann_id = $_GET['bann'];
-$view_id = $_GET['view'];
+//alebo by v cookie stacili id zobrazovatelov a reklam
 
 try
 {
@@ -31,27 +25,28 @@ try
     if (!$zobrazenie = $db->getZobrazenieByPK($_GET['view']))
         trigger_error("Neplatné zobrazenie.");
     if ($zobrazenie->zobraId != $_GET['zobra'] || $zobrazenie->reklamaId != $_GET['rekl']
-            || $zobrazenie->inzerId != $_GET['inzer'] || $zobrazenie->bannerId != $_GET['bann'])
+        || $zobrazenie->inzerId != $_GET['inzer'] || $zobrazenie->bannerId != $_GET['bann'])
         trigger_error("Kolízia parametrov.");
-    if(!$inzer = $db->getUserByPK($inze_id))
+    if(!$inzer = $db->getUserByPK($_GET['inzer']))
         trigger_error("Chyba získavania cieľovej URL adresy.");
-    //samotny klik
+
+//samotny klik
     if (!isset($_COOKIE['voted']) && !$zobrazenie->isClicked())
     {
         setcookie("voted", "voted", time() + 10);  //platnost cookie 10 sek
-        $klik = new Klik(null, null, $zobr_id, $rekl_id, $inze_id, $bann_id);
+        $klik = new Klik(null, null, $_GET['zobra'], $_GET['rekl'], $_GET['inzer'], $_GET['bann']);
         $klik->save($db);
     }
     //NOTE pocet zobrazeni s 'clicked' nie je ten isty ako pocet kliknuti, lebo k nastaveniu
     //clicked dojde vzdy aj ked sa nezapise klik (kvoli cookie)
     if (!$zobrazenie->isClicked())
         $zobrazenie->setClicked($db);
-//    else                  //bez erroru nemusi vediet o tom user, staci ze sa nezapocita
+//    else                  //bez erroru nemusi vediet o tom user, staci ze sa nezapocita (osetrene vyssie)
 //        trigger_error("Opakovane klikanie");
 }
 catch (Exception $ex)
 {
     trigger_error($ex->getMessage());
 }
-header("Location: http://$inzer->web");
+header("Location: http://{$inzer->getWeb()}");
 ?>

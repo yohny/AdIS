@@ -16,9 +16,9 @@ class User
      * jedinecne prihlasovacie meno
      * @var string
      */
-    public $login;
+    private $login;
     //public $password;
-    public $web;
+    private $web;
     /**
      * kategoria pouzivatela: 'zobra', 'inzer' alebo 'admin'
      * @var string
@@ -64,6 +64,16 @@ class User
             $this->web = $web;
         $stm->close();
         return $ret;
+    }
+
+    public function getWeb()
+    {
+        return $this->web;
+    }
+
+    public function getLogin()
+    {
+        return $this->login;
     }
 
     public function hasReklamaOfSize(Velkost $velkost)

@@ -8,6 +8,7 @@
         konfiguracny subor aplikacie:
             nastavenia pripojenia na databazu
             pocet riakov na stranu pre statistiky
+            adresar na upload bannerov (relativne voci index.php)
 -->
 
 <root>
@@ -26,4 +27,7 @@
     <stat_rows_per_page>
         10
     </stat_rows_per_page>
+    <upload_dir>
+        ./upload
+    </upload_dir>
 </root>

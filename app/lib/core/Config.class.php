@@ -13,6 +13,7 @@ class Config {
     private $dbPassw = '#password';
     private $dbName = '#name';
     private $statRowsPerPage = 10;
+    private $uploadDir = '#uploadDir';
 
 
     private function __construct()
@@ -32,6 +33,8 @@ class Config {
                 $this->dbName = trim($xml->database_name);
             if(isset($xml->stat_rows_per_page) && is_numeric(trim($xml->stat_rows_per_page)))
                 $this->statRowsPerPage = trim($xml->stat_rows_per_page);
+            if(isset($xml->upload_dir))
+                $this->uploadDir = trim($xml->upload_dir);
         }
         else
             throw new Exception('Nepodarilo sa načitať konfiguráciu!');
@@ -96,6 +99,25 @@ class Config {
     public static function getStatRowsPerPage()
     {
         return self::getInstance()->statRowsPerPage;
+    }
+
+    /**
+     * vrati adresar na upload bannerov (absolutna cesta) na zaklade nastavenia v config.xml
+     * ak toto nastavenie v konfiguracnom subore nie je vrati '#uploadDir'
+     * @return string
+     */
+    public static function getUploadDir()
+    {
+        return realpath(dirname(__FILE__).'/../../../'.self::getInstance()->uploadDir).DIRECTORY_SEPARATOR;
+    }
+
+    /**
+     * vrati korenovy adresar - s index.php (absolutna cesta) bez / na konci
+     * @return string
+     */
+    public static function getBaseDir()
+    {
+        return realpath(dirname(__FILE__).'/../../..');
     }
 }
 ?>

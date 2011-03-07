@@ -1,9 +1,12 @@
+* {
+    font-family: Arial, Helvetica, Sans-serif; /* firefox a ... ignoruje font-size a family pre inputy */
+    font-size: 12px;
+}
+
 body {
     margin: 0px;
     padding: 0px;
-    color: white;
-    font-family: Arial, Helvetica, Sans-serif;
-    font-size: 12px;
+    color: white; 
     counter-reset: faq;
 }
 #container, #top, #menu, #nove, #main {
@@ -70,7 +73,6 @@ ul {
     color: green;
 }
 input, textarea, select  {
-    font-size: 12px; /* firefox a ... ignoruje font-size pre input nastaveny v predchodcovi (body) */
     border-width: 1px;
     border-style: solid;
     background-color: white;

@@ -1,6 +1,6 @@
 <?php
 /**
- * triedda reprezentujuca jeden zaznam z tabulky USERS (ciastocne),
+ * trieda reprezentujuca jeden zaznam z tabulky USERS (ciastocne),
  * v session reprezentuje aktualne prihlaseneho pouzivatela
  *
  * @author yohny
@@ -189,6 +189,7 @@ class User
     /**
      * validates form input
      * @param array $input
+     * @return string validation output message, empty if valid
      */
     public static function validateInput($input)
     {

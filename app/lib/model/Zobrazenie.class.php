@@ -1,6 +1,6 @@
 <?php
 /**
- * trieda reprezentujuca zaznam z tabulky KLIKY
+ * trieda reprezentujuca zaznam z tabulky ZOBRAZENIA
  *
  * @author yohny
  */

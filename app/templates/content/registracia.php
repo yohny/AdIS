@@ -10,8 +10,8 @@ if (isset($_SESSION['registrator']))
 <form name="reg_form" action="/action/registruj" method="POST">
     <table>
         <tr title="Login slúžiaci na prihlásenie do systému. Musí byť jedinečný.">
-            <td><label for="user_login">Login:</label></td>
-            <td><input type="text" name="user[login]" id="user_login" maxlength="10" onBlur="overLogin(this.value);" <?php if (isset($tmpuser)) echo 'value="' . $tmpuser['login'] . '"'; ?>>
+            <td>Login:</td>
+            <td><input type="text" name="user[login]" maxlength="10" onBlur="overLogin(this.value);" <?php if (isset($tmpuser)) echo 'value="' . $tmpuser['login'] . '"'; ?>>
         </tr>
         <tr>
             <td></td>
@@ -20,19 +20,19 @@ if (isset($_SESSION['registrator']))
             </td>
         </tr>
         <tr title="Heslo pre prístup do systému.">
-            <td><label for="user_heslo">Heslo:</label></td>
-            <td><input type="password" name="user[heslo]" id="user_heslo" maxlength="10" <?php if (isset($tmpuser)) echo 'value="' . $tmpuser['heslo'] . '"'; ?>></td>
+            <td>Heslo:</td>
+            <td><input type="password" name="user[heslo]" maxlength="10" <?php if (isset($tmpuser)) echo 'value="' . $tmpuser['heslo'] . '"'; ?>></td>
         </tr>
         <tr title="Potvrdenie hesla do systému.">
-            <td><label for="user_heslo2">Heslo znova:</label></td>
-            <td><input type="password" name="user[heslo2]" id="user_heslo2" maxlength="10" <?php if (isset($tmpuser)) echo 'value="' . $tmpuser['heslo2'] . '"'; ?>></td>
+            <td>Heslo znova:</td>
+            <td><input type="password" name="user[heslo2]" maxlength="10" <?php if (isset($tmpuser)) echo 'value="' . $tmpuser['heslo2'] . '"'; ?>></td>
         </tr>
         <tr title="Vaša webová adresa napr.: 'http://www.priklad.sk'.">
-            <td><label for="user_web">WWW adresa:</label></td>
+            <td>WWW adresa:</td>
             <td>
                 <table style="width: 100%;border-collapse: collapse;"><tr>
-                        <td style="width: 40px;"><input type="text" value="http://" readonly style="border-right-style: none;"></td>
-                        <td><input type="text" name="user[web]" id="user_web" maxlength="30" style="border-left-style: none;" <?php if (isset($tmpuser)) echo "value=\"{$tmpuser['web']}\""; ?>></td>
+                        <td style="width: 32px;"><input type="text" value="http://" readonly style="border-right-style: none;" onclick="this.form['user[web]'].focus()"></td>
+                        <td><input type="text" name="user[web]" maxlength="30" style="border-left-style: none;" <?php if (isset($tmpuser)) echo "value=\"{$tmpuser['web']}\""; ?>></td>
                     </tr></table>
             </td>
         </tr>
@@ -51,7 +51,7 @@ if (isset($_SESSION['registrator']))
                 </table>
             </td>
         </tr>
-        <tr title="Captcha na overenie, že formular vypĺňa človek. Kliknutím sa načíta nový obrázok.">
+        <tr title="Captcha na overenie, či formulár vypĺňa človek. Kliknutím sa načíta nový obrázok.">
             <td>Captcha:</td>
             <td><img alt="captcha" src="/img/captcha" onclick="this.src='/img/captcha?rand='+Math.random();"></td>
         </tr>

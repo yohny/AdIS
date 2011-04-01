@@ -5,15 +5,15 @@
  *
  * @author yohny
  */
-class Config {
-
+class Config
+{
     private static $instance = null;
     private $dbHost = '#host';
     private $dbUser = '#user';
     private $dbPassw = '#password';
     private $dbName = '#name';
     private $statRowsPerPage = 10;
-    private $uploadDir = '#uploadDir';
+    private $uploadDir = './pload';
 
 
     private function __construct()
@@ -52,7 +52,7 @@ class Config {
     }
 
     /**
-     * vrati host an ktorom bezi DB na zaklade nastavenia v config.xml
+     * vrati host na ktorom bezi DB na zaklade nastavenia v config.xml
      * ak toto nastavenie v konfiguracnom subore nie je vrati '#host'
      * @return string
      */
@@ -103,7 +103,7 @@ class Config {
 
     /**
      * vrati adresar na upload bannerov (absolutna cesta) na zaklade nastavenia v config.xml
-     * ak toto nastavenie v konfiguracnom subore nie je vrati '#uploadDir'
+     * ak toto nastavenie v konfiguracnom subore nie je vrati './upload' (default)
      * @return string
      */
     public static function getUploadDir()
@@ -117,7 +117,7 @@ class Config {
      */
     public static function getBaseDir()
     {
-        return realpath(dirname(__FILE__).'/../../..');
+        return realpath(dirname(__FILE__).'/../../../');
     }
 }
 ?>

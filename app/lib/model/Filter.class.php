@@ -81,12 +81,16 @@ class Filter
                     || $filterData['odYear']<2010 || $filterData['odYear']>date('Y')
                     || $filterData['doYear']<2010 || $filterData['doYear']>date('Y'))
                         return false;
-                    $this->odDay = $filterData['odDay'];
-                    $this->odMonth = $filterData['odMonth'];
-                    $this->odYear = $filterData['odYear'];
-                    $this->doDay = $filterData['doDay'];
-                    $this->doMonth = $filterData['doMonth'];
-                    $this->doYear = $filterData['doYear'];
+                    //prerabka datumu - ak yada 31.2.2011 tak objekt sa vztvori ale datum bude 3.3.2011
+                    //a teda treba prepisat filter aby v UI bolo spravne
+                    $from = new DateTime($filterData['odYear'] . '-' . $filterData['odMonth'] . '-' . $filterData['odDay']);
+                    $to = new DateTime($filterData['doYear'] . '-' . $filterData['doMonth'] . '-' . $filterData['doDay']);
+                    $this->odDay = $from->format('j');
+                    $this->odMonth = $from->format('n');
+                    $this->odYear = $from->format('Y');
+                    $this->doDay = $to->format('j');
+                    $this->doMonth = $to->format('n');
+                    $this->doYear = $to->format('Y');
                 }
             }
         }

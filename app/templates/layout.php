@@ -14,7 +14,7 @@
         <link rel="stylesheet" type="text/css" href="/css/style_green.css">
         <link rel="stylesheet" type="text/css" href="/css/style_orange.css">
         <link rel="stylesheet" type="text/css" href="/css/style_blue.css">
-        <script language="javascript" type="text/javascript" src="/js/head_script.js"></script>
+        <script language="javascript" type="text/javascript" src="/js/script.js"></script>
         <?php foreach (Context::getInstance()->getResponse()->getResources() as $resource) echo $resource . "\n"; ?>
     </head>
     <body onload="setContainerHeight();">

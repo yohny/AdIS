@@ -6,7 +6,7 @@ Autoloader::registerModel();
 session_name('adis_session');
 session_start();
 
-define('TEMPLATES_DIR', realpath(Config::getBaseDir().'/app/templates/'));
+define('TEMPLATES_DIR', Config::getBaseDir().'/app/templates/');
 $request = Context::getInstance()->getRequest();
 
 if (!$request->fileExists)

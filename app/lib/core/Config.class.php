@@ -13,7 +13,7 @@ class Config
     private $dbPassw = '#password';
     private $dbName = '#name';
     private $statRowsPerPage = 10;
-    private $uploadDir = './pload';
+    private $uploadDir = './upload';
 
 
     private function __construct()
@@ -33,8 +33,8 @@ class Config
                 $this->dbName = trim($xml->database_name);
             if(isset($xml->stat_rows_per_page) && is_numeric(trim($xml->stat_rows_per_page)))
                 $this->statRowsPerPage = trim($xml->stat_rows_per_page);
-            if(isset($xml->upload_dir))
-                $this->uploadDir = trim($xml->upload_dir);
+            if(isset($xml->upload_dir) && ($path = realpath(self::getBaseDir().DIRECTORY_SEPARATOR.trim($xml->upload_dir))))
+                $this->uploadDir = $path.DIRECTORY_SEPARATOR;
         }
         else
             throw new Exception('Nepodarilo sa načitať konfiguráciu!');
@@ -102,17 +102,17 @@ class Config
     }
 
     /**
-     * vrati adresar na upload bannerov (absolutna cesta) na zaklade nastavenia v config.xml
-     * ak toto nastavenie v konfiguracnom subore nie je vrati './upload' (default)
+     * vrati adresar na upload bannerov (absolutna cesta) na zaklade nastavenia v config.xml s '/' na konci
+     * ak toto nastavenie v konfiguracnom subore nie je vrati cestu do adresara upload/ (default)
      * @return string
      */
     public static function getUploadDir()
     {
-        return realpath(dirname(__FILE__).'/../../../'.self::getInstance()->uploadDir).DIRECTORY_SEPARATOR;
+        return self::getInstance()->uploadDir;
     }
 
     /**
-     * vrati korenovy adresar - s index.php (absolutna cesta) bez / na konci
+     * vrati korenovy adresar - s index.php (absolutna cesta) bez '/' na konci
      * @return string
      */
     public static function getBaseDir()

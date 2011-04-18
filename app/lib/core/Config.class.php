@@ -31,7 +31,7 @@ class Config
                 $this->dbPassw = trim($xml->database_password);
             if(isset($xml->database_name))
                 $this->dbName = trim($xml->database_name);
-            if(isset($xml->stat_rows_per_page) && is_numeric(trim($xml->stat_rows_per_page)))
+            if(isset($xml->stat_rows_per_page) && is_numeric(trim($xml->stat_rows_per_page)) && intval(trim($xml->stat_rows_per_page), 10)>0)
                 $this->statRowsPerPage = trim($xml->stat_rows_per_page);
             if(isset($xml->upload_dir) && ($path = realpath(self::getBaseDir().DIRECTORY_SEPARATOR.trim($xml->upload_dir))))
                 $this->uploadDir = $path.DIRECTORY_SEPARATOR;

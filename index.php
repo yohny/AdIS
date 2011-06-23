@@ -17,7 +17,7 @@ if (!$request->fileExists)
 }
 elseif(!$request->isPublic && !Context::getInstance()->getUser())
 {
-    header("HTTP/1.1 403 Forbidden");
+    header("HTTP/1.1 401 Not authorized");
     Context::getInstance()->getResponse()->content = "Nepovolený pristup!";
     Context::getInstance()->getResponse()->error = true;
 }

@@ -1,4 +1,6 @@
 <?php
+mb_internal_encoding("utf-8");
+
 require_once './app/lib/Autoloader.class.php';
 Autoloader::registerCore();
 Autoloader::registerModel();

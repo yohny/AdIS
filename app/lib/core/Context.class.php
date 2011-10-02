@@ -77,7 +77,7 @@ class Context
     public function getCsrfToken()
     {
         if(!isset($_SESSION['csrf_token']))
-            $_SESSION['csrf_token'] = md5(rand(1, time()));
+            $_SESSION['csrf_token'] = uniqid();
         return $_SESSION['csrf_token'];
     }
 }

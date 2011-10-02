@@ -7,8 +7,8 @@
 class Autoloader
 {
     /**
-     * directory which contains classes and libraries
-     * musi byt absolutna cesta lebo loaduje niekedy voci index.html inokedy voci /img alebo /distrib
+     * adresar obsahujuci triedy a kniznice
+     * musi byt absolutna cesta lebo loaduje niekedy voci index.php inokedy voci /img alebo /distrib
      * @var string
      */
     private $baseDir = null;

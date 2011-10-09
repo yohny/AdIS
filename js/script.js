@@ -28,7 +28,6 @@ function box_show(box,message)
 {
   box.style.display="block";
   box.innerHTML=message;
-  setContainerHeight(); //nastavi vysku kontainera po zobrazeni errorboxu
 }
 
 function spracuj_reg()
@@ -257,7 +256,6 @@ function overLogin(str)
     if (!(/^[a-zA-Z\d]{4,10}$/).test(str))
     {
         document.getElementById("loginStatus").innerHTML="<span class='r'>Nesprávny formát! (aspoň 4 znaky: a-z, A-Z, 0-9)</span>";
-        setContainerHeight();
         return;
     }
     var xmlhttp = GetXmlHttpObject();
@@ -303,7 +301,6 @@ function show(co,a)
         tr.style.display="none";
         a.innerHTML = "zmeň";
     }
-    setContainerHeight(); //nastavi vysku kontainera po zobrazeni errorboxu
 }
 
 function show2(co)
@@ -314,16 +311,6 @@ function show2(co)
         tr.style.display="table-row";
     else
         tr.style.display="none";
-    setContainerHeight(); //nastavi vysku kontainera po zobrazeni errorboxu
-}
-
-function setContainerHeight()
-{
-    var container = document.getElementById('container');
-    var left = document.getElementById('left');
-    var main = document.getElementById('main');
-    container.style.height = (left.offsetHeight>main.offsetHeight ? left.offsetHeight : main.offsetHeight+10) + 10 + document.getElementById('top').offsetHeight + 'px';
-    //main je +10 lebo left uz v sebe ma aj 2x5 margin
 }
 
 function nacitajGraf()

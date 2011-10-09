@@ -122,7 +122,8 @@ a:hover {
 /*----------------------------------- left (menu+nove) ------------------------*/
 #left{
     width: 184px; /* 130(menu/nove)+40(2x20-padding)+4(2x2-border)+10(2x5-margin)*/
-    float: left;
+    display: inline-block;
+    vertical-align: top;
 }
 /*------------------------------------ menu -----------------------------------*/
 #menu fieldset {
@@ -153,7 +154,9 @@ a:hover {
 }
 /*------------------------------------ main -----------------------------------*/
 #main {
-    margin: 10px 5px 10px 189px;/*top right bottom left*/
+    width: 718px;
+    display: inline-block;
+    vertical-align: top;
 }
 #main h3 { /* vacsi font ako ostatne divy */
     font-size: 18px;

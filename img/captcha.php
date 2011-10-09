@@ -6,11 +6,11 @@ Autoloader::registerCaptcha();
 session_name('adis_session');
 session_start();
 
-if (!preg_match('/^http:\/\/'.quotemeta($_SERVER['HTTP_HOST']).'/', $_SERVER['HTTP_REFERER']))//len 'odtialto' povolene
-{
-    header("HTTP/1.1 403 Forbidden");
-    exit();
-}
+//if (!key_exists('HTTP_REFERER', $_SERVER) || !preg_match('/^http:\/\/'.quotemeta($_SERVER['HTTP_HOST']).'/', $_SERVER['HTTP_REFERER']))//len 'odtialto' povolene
+//{
+//    header("HTTP/1.1 403 Forbidden");
+//    exit();
+//}
 
 $img = new Securimage();
 //Change some settings
@@ -25,8 +25,9 @@ $img->code_length = rand(5,6);
 //$img->use_multi_text = true;
 //$img->text_transparency_percentage = 75; // 100 = completely transparent
 $img->num_lines = 15;
+$img->noise_level = 3;
 //$img->image_signature = '';
 //$img->text_color = new Securimage_Color("#000000");
 //$img->line_color = new Securimage_Color("#cccccc");
-$img->show('../classes/captcha/backgrounds/bg3.jpg'); 
+$img->show("../app/lib/external/captcha/backgrounds/bg4.jpg");
 ?>

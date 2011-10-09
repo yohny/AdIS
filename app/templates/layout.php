@@ -17,7 +17,7 @@
         <script language="javascript" type="text/javascript" src="/js/script.js"></script>
         <?php foreach (Context::getInstance()->getResponse()->getResources() as $resource) echo $resource . "\n"; ?>
     </head>
-    <body onload="setContainerHeight();">
+    <body>
         <div id="container">
             <div class="top_left corner"></div>
             <div class="top_right corner"></div>
@@ -78,9 +78,7 @@
                     <script language="javascript" type="text/javascript">set_scheme(schema);</script>
                 </div>
                 <a href="mailto:jan.nescivera@student.tuke.sk" id="ja" title="admin&amp;webmaster">&lt;Yohny&gt;</a>
-            </div><!-- end div#left -->
-
-            <div id="main">
+            </div><!-- end div#left --><div id="main">
                 <div class="top_left corner"></div>
                 <div class="top_right corner"></div>
                 <div class="bottom_left corner"></div>

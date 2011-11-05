@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml version="1.0"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
   <html xmlns="http://www.w3.org/1999/xhtml">
 		<head>
 			<!-- template designed by Marco Von Ballmoos -->
 			<title>Docs For Class Database</title>
 			<link rel="stylesheet" href="../../media/stylesheet.css" />
-			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+			<meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
 		</head>
 		<body>
 			<div class="page-body">			
@@ -93,9 +93,9 @@
 										()
 									</div>
 																<div class="method-definition">
-											<span class="method-result">void</span>
+											<span class="method-result"><a href="../../AdIS/model/Banner.html">Banner</a></span>
 										<a href="#getBannerByPK" title="details" class="method-name">getBannerByPK</a>
-											(<span class="var-type"></span>&nbsp;<span class="var-name">$id</span>)
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$id</span>)
 									</div>
 																<div class="method-definition">
 											<span class="method-result"><a href="../../AdIS/model/Banner.html">Banner</a></span>
@@ -108,9 +108,9 @@
 											(<span class="var-type"><a href="../../AdIS/model/Reklama.html">Reklama</a></span>&nbsp;<span class="var-name">$reklama</span>)
 									</div>
 																<div class="method-definition">
-											<span class="method-result">void</span>
+											<span class="method-result"><a href="../../AdIS/model/Reklama.html">Reklama</a></span>
 										<a href="#getReklamaByPK" title="details" class="method-name">getReklamaByPK</a>
-											(<span class="var-type"></span>&nbsp;<span class="var-name">$id</span>)
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$id</span>)
 									</div>
 																<div class="method-definition">
 											<span class="method-result"><a href="../../AdIS/model/Reklama.html">Reklama</a></span>
@@ -118,14 +118,14 @@
 										()
 									</div>
 																<div class="method-definition">
-											<span class="method-result">void</span>
+											<span class="method-result"><a href="../../AdIS/model/Event.html">Event</a>|int</span>
 										<a href="#getStatisticsForAdmin" title="details" class="method-name">getStatisticsForAdmin</a>
-											(<span class="var-type"><a href="../../AdIS/model/Filter.html">Filter</a></span>&nbsp;<span class="var-name">$filter</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$countOnly</span> = <span class="var-default">false</span>])
+											(<span class="var-type"><a href="../../AdIS/model/Filter.html">Filter</a></span>&nbsp;<span class="var-name">$filter</span>, [<span class="var-type">type</span>&nbsp;<span class="var-name">$countOnly</span> = <span class="var-default">false</span>])
 									</div>
 																<div class="method-definition">
-											<span class="method-result">void</span>
+											<span class="method-result"><a href="../../AdIS/model/Statistika.html">Statistika</a>|int</span>
 										<a href="#getStatisticsForUser" title="details" class="method-name">getStatisticsForUser</a>
-											(<span class="var-type"><a href="../../AdIS/model/User.html">User</a></span>&nbsp;<span class="var-name">$user</span>, <span class="var-type"><a href="../../AdIS/model/Filter.html">Filter</a></span>&nbsp;<span class="var-name">$filter</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$countOnly</span> = <span class="var-default">false</span>])
+											(<span class="var-type"><a href="../../AdIS/model/User.html">User</a></span>&nbsp;<span class="var-name">$user</span>, <span class="var-type"><a href="../../AdIS/model/Filter.html">Filter</a></span>&nbsp;<span class="var-name">$filter</span>, [<span class="var-type">type</span>&nbsp;<span class="var-name">$countOnly</span> = <span class="var-default">false</span>])
 									</div>
 																<div class="method-definition">
 											<span class="method-result"><a href="../../AdIS/model/User.html">User</a></span>
@@ -143,14 +143,14 @@
 											(<span class="var-type">string</span>&nbsp;<span class="var-name">$referer</span>)
 									</div>
 																<div class="method-definition">
-											<span class="method-result">void</span>
+											<span class="method-result"><a href="../../AdIS/model/Velkost.html">Velkost</a></span>
 										<a href="#getVelkostByPK" title="details" class="method-name">getVelkostByPK</a>
-											(<span class="var-type"></span>&nbsp;<span class="var-name">$id</span>)
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$id</span>)
 									</div>
 																<div class="method-definition">
-											<span class="method-result">void</span>
+											<span class="method-result"><a href="../../AdIS/model/Zobrazenie.html">Zobrazenie</a></span>
 										<a href="#getZobrazenieByPK" title="details" class="method-name">getZobrazenieByPK</a>
-											(<span class="var-type"></span>&nbsp;<span class="var-name">$id</span>)
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$id</span>)
 									</div>
 								</div>
 		</div>
@@ -257,7 +257,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">getAllFromKategorie</span> (line <span class="line-number">130</span>)
+		<span class="method-title">getAllFromKategorie</span> (line <span class="line-number">135</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -305,26 +305,27 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">getBannerByPK</span> (line <span class="line-number">171</span>)
+		<span class="method-title">getBannerByPK</span> (line <span class="line-number">181</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">vrati banner na zaklade primarneho kluca</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">void</span>
+		<span class="method-result"><a href="../../AdIS/model/Banner.html">Banner</a></span>
 		<span class="method-name">
 			getBannerByPK
 		</span>
-					(<span class="var-type"></span>&nbsp;<span class="var-name">$id</span>)
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$id</span>)
 			</div>
 	
 			<ul class="parameters">
 					<li>
-				<span class="var-type"></span>
-				<span class="var-name">$id</span>			</li>
+				<span class="var-type">int</span>
+				<span class="var-name">$id</span><span class="var-description">: primarny kluc</span>			</li>
 				</ul>
 		
 			
@@ -333,13 +334,14 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">getBanneryByUser</span> (line <span class="line-number">149</span>)
+		<span class="method-title">getBanneryByUser</span> (line <span class="line-number">154</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">vrati bannery aktualne prihlaseneho usera,</p>
+<p class="short-description">vrati vsetky bannery aktualne prihlaseneho usera,</p>
 <p class="description"><p>pri adminovi vrati vsetky</p></p>
 	<ul class="tags">
+				<li><span class="field">return:</span> array</li>
 				<li><span class="field">access:</span> public</li>
 			</ul>
 	
@@ -358,7 +360,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">getRandBannerForReklama</span> (line <span class="line-number">187</span>)
+		<span class="method-title">getRandBannerForReklama</span> (line <span class="line-number">197</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -378,7 +380,7 @@
 			<ul class="parameters">
 					<li>
 				<span class="var-type"><a href="../../AdIS/model/Reklama.html">Reklama</a></span>
-				<span class="var-name">$reklama</span>			</li>
+				<span class="var-name">$reklama</span><span class="var-description">: reklamna jednotka, pre ktoru treba vybrat banner</span>			</li>
 				</ul>
 		
 			
@@ -387,26 +389,27 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">getReklamaByPK</span> (line <span class="line-number">231</span>)
+		<span class="method-title">getReklamaByPK</span> (line <span class="line-number">246</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">vrati reklamu na zaklade primarneho kluca</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">void</span>
+		<span class="method-result"><a href="../../AdIS/model/Reklama.html">Reklama</a></span>
 		<span class="method-name">
 			getReklamaByPK
 		</span>
-					(<span class="var-type"></span>&nbsp;<span class="var-name">$id</span>)
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$id</span>)
 			</div>
 	
 			<ul class="parameters">
 					<li>
-				<span class="var-type"></span>
-				<span class="var-name">$id</span>			</li>
+				<span class="var-type">int</span>
+				<span class="var-name">$id</span><span class="var-description">: primarny kluc</span>			</li>
 				</ul>
 		
 			
@@ -415,13 +418,14 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">getReklamyByUser</span> (line <span class="line-number">209</span>)
+		<span class="method-title">getReklamyByUser</span> (line <span class="line-number">219</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">vrati reklamy aktualne prihlaseneho usera,</p>
+<p class="short-description">vrati vsetky reklamy aktualne prihlaseneho usera,</p>
 <p class="description"><p>pri adminovi vrati vsetky</p></p>
 	<ul class="tags">
+				<li><span class="field">return:</span> array</li>
 				<li><span class="field">access:</span> public</li>
 			</ul>
 	
@@ -440,29 +444,31 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">getStatisticsForAdmin</span> (line <span class="line-number">349</span>)
+		<span class="method-title">getStatisticsForAdmin</span> (line <span class="line-number">377</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">vracia statistiky pre admina (podla filtra bud Kliky alebo Zobrazenia)</p>
 	<ul class="tags">
+				<li><span class="field">return:</span> ak $countOnly=true tak len pocet, inak pole Eventov</li>
 				<li><span class="field">access:</span> public</li>
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">void</span>
+		<span class="method-result"><a href="../../AdIS/model/Event.html">Event</a>|int</span>
 		<span class="method-name">
 			getStatisticsForAdmin
 		</span>
-					(<span class="var-type"><a href="../../AdIS/model/Filter.html">Filter</a></span>&nbsp;<span class="var-name">$filter</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$countOnly</span> = <span class="var-default">false</span>])
+					(<span class="var-type"><a href="../../AdIS/model/Filter.html">Filter</a></span>&nbsp;<span class="var-name">$filter</span>, [<span class="var-type">type</span>&nbsp;<span class="var-name">$countOnly</span> = <span class="var-default">false</span>])
 			</div>
 	
 			<ul class="parameters">
 					<li>
 				<span class="var-type"><a href="../../AdIS/model/Filter.html">Filter</a></span>
-				<span class="var-name">$filter</span>			</li>
+				<span class="var-name">$filter</span><span class="var-description">: specifikuje vyberove kriteria</span>			</li>
 					<li>
-				<span class="var-type"></span>
-				<span class="var-name">$countOnly</span>			</li>
+				<span class="var-type">type</span>
+				<span class="var-name">$countOnly</span><span class="var-description">: ak true vrati len pocet</span>			</li>
 				</ul>
 		
 			
@@ -471,32 +477,34 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">getStatisticsForUser</span> (line <span class="line-number">242</span>)
+		<span class="method-title">getStatisticsForUser</span> (line <span class="line-number">264</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">varti statistiky pre daneho pouzivatela a kriteria</p>
 	<ul class="tags">
+				<li><span class="field">return:</span> ak $countOnly je true vrati pocet, inak pole statistik</li>
 				<li><span class="field">access:</span> public</li>
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">void</span>
+		<span class="method-result"><a href="../../AdIS/model/Statistika.html">Statistika</a>|int</span>
 		<span class="method-name">
 			getStatisticsForUser
 		</span>
-					(<span class="var-type"><a href="../../AdIS/model/User.html">User</a></span>&nbsp;<span class="var-name">$user</span>, <span class="var-type"><a href="../../AdIS/model/Filter.html">Filter</a></span>&nbsp;<span class="var-name">$filter</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$countOnly</span> = <span class="var-default">false</span>])
+					(<span class="var-type"><a href="../../AdIS/model/User.html">User</a></span>&nbsp;<span class="var-name">$user</span>, <span class="var-type"><a href="../../AdIS/model/Filter.html">Filter</a></span>&nbsp;<span class="var-name">$filter</span>, [<span class="var-type">type</span>&nbsp;<span class="var-name">$countOnly</span> = <span class="var-default">false</span>])
 			</div>
 	
 			<ul class="parameters">
 					<li>
 				<span class="var-type"><a href="../../AdIS/model/User.html">User</a></span>
-				<span class="var-name">$user</span>			</li>
+				<span class="var-name">$user</span><span class="var-description">: pouzivatel, pre  ktoreho sa vytiahnu statistiky</span>			</li>
 					<li>
 				<span class="var-type"><a href="../../AdIS/model/Filter.html">Filter</a></span>
-				<span class="var-name">$filter</span>			</li>
+				<span class="var-name">$filter</span><span class="var-description">: specifikuje vyberove kriteria</span>			</li>
 					<li>
-				<span class="var-type"></span>
-				<span class="var-name">$countOnly</span>			</li>
+				<span class="var-type">type</span>
+				<span class="var-name">$countOnly</span><span class="var-description">: ak true vrati len pocet</span>			</li>
 				</ul>
 		
 			
@@ -541,7 +549,7 @@
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">vrati pouzivatela na zaklade PK</p>
+<p class="short-description">vrati pouzivatela na zaklade primarneho kluca</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
 			</ul>
@@ -557,7 +565,7 @@
 			<ul class="parameters">
 					<li>
 				<span class="var-type">int</span>
-				<span class="var-name">$id</span>			</li>
+				<span class="var-name">$id</span><span class="var-description">: primarny kluc</span>			</li>
 				</ul>
 		
 			
@@ -596,26 +604,27 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">getVelkostByPK</span> (line <span class="line-number">115</span>)
+		<span class="method-title">getVelkostByPK</span> (line <span class="line-number">120</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">vrati velkost na zaklade primarneho kluca</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">void</span>
+		<span class="method-result"><a href="../../AdIS/model/Velkost.html">Velkost</a></span>
 		<span class="method-name">
 			getVelkostByPK
 		</span>
-					(<span class="var-type"></span>&nbsp;<span class="var-name">$id</span>)
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$id</span>)
 			</div>
 	
 			<ul class="parameters">
 					<li>
-				<span class="var-type"></span>
-				<span class="var-name">$id</span>			</li>
+				<span class="var-type">int</span>
+				<span class="var-name">$id</span><span class="var-description">: primarny kluc</span>			</li>
 				</ul>
 		
 			
@@ -624,26 +633,27 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">getZobrazenieByPK</span> (line <span class="line-number">427</span>)
+		<span class="method-title">getZobrazenieByPK</span> (line <span class="line-number">460</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">vrati zobrazenie na zaklade primarneho kluca</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
 			</ul>
 	
 	<div class="method-signature">
-		<span class="method-result">void</span>
+		<span class="method-result"><a href="../../AdIS/model/Zobrazenie.html">Zobrazenie</a></span>
 		<span class="method-name">
 			getZobrazenieByPK
 		</span>
-					(<span class="var-type"></span>&nbsp;<span class="var-name">$id</span>)
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$id</span>)
 			</div>
 	
 			<ul class="parameters">
 					<li>
-				<span class="var-type"></span>
-				<span class="var-name">$id</span>			</li>
+				<span class="var-type">int</span>
+				<span class="var-name">$id</span><span class="var-description">: primarny kluc</span>			</li>
 				</ul>
 		
 			
@@ -654,7 +664,7 @@
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Sat, 05 Nov 2011 13:06:37 +0100 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Sat, 05 Nov 2011 18:40:07 +0100 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>

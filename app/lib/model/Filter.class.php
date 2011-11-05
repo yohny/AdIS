@@ -1,6 +1,6 @@
 <?php
 /**
- * filtovacie kriteria pre zobrazenie statistiky
+ * filtrovacie kriteria pre zobrazenie statistiky
  * 
  * @version    1.0
  * @package    AdIS

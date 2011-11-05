@@ -79,8 +79,8 @@ class Database
     }
 
     /**
-     * vrati pouzivatela na zaklade PK
-     * @param int $id
+     * vrati pouzivatela na zaklade primarneho kluca
+     * @param int $id primarny kluc
      * @return User
      */
     public function getUserByPK($id)
@@ -112,6 +112,11 @@ class Database
         return $objects;
     }
 
+    /**
+     * vrati velkost na zaklade primarneho kluca
+     * @param int $id primarny kluc
+     * @return Velkost 
+     */
     public function getVelkostByPK($id)
     {
         $query = "SELECT * FROM velkosti WHERE id=$id";
@@ -142,9 +147,9 @@ class Database
     }
 
     /**
-     * vrati bannery aktualne prihlaseneho usera,
+     * vrati vsetky bannery aktualne prihlaseneho usera,
      * pri adminovi vrati vsetky
-     * @return Banner
+     * @return Banner array
      */
     public function getBanneryByUser()
     {
@@ -168,6 +173,11 @@ class Database
         return $objects;
     }
 
+    /**
+     * vrati banner na zaklade primarneho kluca
+     * @param int $id primarny kluc
+     * @return Banner 
+     */
     public function getBannerByPK($id)
     {
         $query = "SELECT bannery.*, velkosti.sirka, velkosti.vyska, velkosti.nazov FROM bannery JOIN velkosti ON (bannery.velkost=velkosti.id) WHERE bannery.id=$id";
@@ -181,7 +191,7 @@ class Database
 
     /**
      * vrati nahodny banner splnajuci kriteria na zobrazenie v danej reklame
-     * @param Reklama $reklama
+     * @param Reklama $reklama reklamna jednotka, pre ktoru treba vybrat banner
      * @return Banner
      */
     public function getRandBannerForReklama(Reklama $reklama)
@@ -202,9 +212,9 @@ class Database
     }
 
     /**
-     * vrati reklamy aktualne prihlaseneho usera,
+     * vrati vsetky reklamy aktualne prihlaseneho usera,
      * pri adminovi vrati vsetky
-     * @return Reklama
+     * @return Reklama array
      */
     public function getReklamyByUser()
     {
@@ -228,6 +238,11 @@ class Database
         return $objects;
     }
 
+    /**
+     * vrati reklamu na zaklade primarneho kluca
+     * @param int $id primarny kluc
+     * @return Reklama 
+     */
     public function getReklamaByPK($id)
     {
         $query = "SELECT reklamy.*, velkosti.sirka, velkosti.vyska, velkosti.nazov FROM reklamy JOIN velkosti ON (reklamy.velkost=velkosti.id) WHERE reklamy.id=$id";
@@ -239,6 +254,13 @@ class Database
         return new Reklama($object->id, $object->user, new Velkost($object->velkost, $object->sirka, $object->vyska, $object->nazov), $object->meno);
     }
 
+    /**
+     * varti statistiky pre daneho pouzivatela a kriteria
+     * @param User $user pouzivatel, pre  ktoreho sa vytiahnu statistiky
+     * @param Filter $filter specifikuje vyberove kriteria
+     * @param type $countOnly ak true vrati len pocet
+     * @return Statistika|int ak $countOnly je true vrati pocet, inak pole statistik
+     */
     public function getStatisticsForUser(User $user, Filter $filter, $countOnly = false)
     {
         if($user->kategoria!='zobra' && $user->kategoria!='inzer')
@@ -346,6 +368,12 @@ class Database
         return $objects;
     }
 
+    /**
+     * vracia statistiky pre admina (podla filtra bud Kliky alebo Zobrazenia)
+     * @param Filter $filter specifikuje vyberove kriteria
+     * @param type $countOnly ak true vrati len pocet
+     * @return Event|int ak $countOnly=true tak len pocet, inak pole Eventov
+     */
     public function getStatisticsForAdmin(Filter $filter, $countOnly = false)
     {
         if ($filter->type == 'click')
@@ -424,6 +452,11 @@ class Database
         return $objects;
     }
 
+    /**
+     * vrati zobrazenie na zaklade primarneho kluca
+     * @param int $id primarny kluc
+     * @return Zobrazenie 
+     */
     public function getZobrazenieByPK($id)
     {
         $query = "SELECT * FROM zobrazenia WHERE id=$id";

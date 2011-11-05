@@ -2,8 +2,12 @@
 /**
  * reprezentuje jeden statisticky zaznam zobrazovany beznemu pouzivatelovi
  * ! nie 'admin', tym sa zobrazuju kliky resp zobrazenia !
+ * 
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage model
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
  *
- * @author yohny
  */
 class Statistika
 {

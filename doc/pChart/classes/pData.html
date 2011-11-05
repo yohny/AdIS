@@ -1,0 +1,2346 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class pData</title>
+			<link rel="stylesheet" href="../../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class pData</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">pDraw - class to manipulate data arrays.</p>
+<p class="description"><p>This file can be distributed under the license you can find at                      http://www.pchart.net/license  You can find the whole class documentation on the pChart web site.</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Jean-Damien POGOLOTTI</li>
+				<li><span class="field">version:</span> 2.1.3</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_app---lib---external---pChart---pData.class.php.html">/app/lib/external/pChart/pData.class.php</a> (line <span class="field">52</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$Data" title="details" class="var-name">$Data</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$Palette" title="details" class="var-name">$Palette</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																				
+												<div class="method-definition">
+											<span class="method-result">pData</span>
+										<a href="#pData" title="details" class="method-name">pData</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#addPoints" title="details" class="method-name">addPoints</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Values</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$SerieName</span> = <span class="var-default">&quot;Serie1&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#addRandomValues" title="details" class="method-name">addRandomValues</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$SerieName</span> = <span class="var-default">&quot;Serie1&quot;</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$Options</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#containsData" title="details" class="method-name">containsData</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#convertToArray" title="details" class="method-name">convertToArray</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Value</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#createFunctionSerie" title="details" class="method-name">createFunctionSerie</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$SerieName</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Formula</span> = <span class="var-default">&quot;&quot;</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$Options</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawAll" title="details" class="method-name">drawAll</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getCoefficientOfVariation" title="details" class="method-name">getCoefficientOfVariation</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getData" title="details" class="method-name">getData</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getGeometricMean" title="details" class="method-name">getGeometricMean</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getHarmonicMean" title="details" class="method-name">getHarmonicMean</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getMax" title="details" class="method-name">getMax</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getMin" title="details" class="method-name">getMin</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getPalette" title="details" class="method-name">getPalette</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getSerieAverage" title="details" class="method-name">getSerieAverage</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getSerieCount" title="details" class="method-name">getSerieCount</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getSerieMedian" title="details" class="method-name">getSerieMedian</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getSeriePalette" title="details" class="method-name">getSeriePalette</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getSeriePercentile" title="details" class="method-name">getSeriePercentile</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span> = <span class="var-default">&quot;Serie1&quot;</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$Percentil</span> = <span class="var-default">95</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getStandardDeviation" title="details" class="method-name">getStandardDeviation</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getSum" title="details" class="method-name">getSum</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getValueAt" title="details" class="method-name">getValueAt</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Index</span> = <span class="var-default">0</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getValues" title="details" class="method-name">getValues</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#importFromCSV" title="details" class="method-name">importFromCSV</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$FileName</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Options</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#initialise" title="details" class="method-name">initialise</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#initScatterSerie" title="details" class="method-name">initScatterSerie</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$ID</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#left" title="details" class="method-name">left</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$value</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$NbChar</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#limits" title="details" class="method-name">limits</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#loadPalette" title="details" class="method-name">loadPalette</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$FileName</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Overwrite</span> = <span class="var-default">FALSE</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#mid" title="details" class="method-name">mid</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$value</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Depart</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$NbChar</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#negateValues" title="details" class="method-name">negateValues</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Series</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#normalize" title="details" class="method-name">normalize</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$NormalizationFactor</span> = <span class="var-default">100</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$UnitChange</span> = <span class="var-default">NULL</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$Round</span> = <span class="var-default">1</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#removeSerie" title="details" class="method-name">removeSerie</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Series</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#reverseSerie" title="details" class="method-name">reverseSerie</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Series</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#right" title="details" class="method-name">right</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$value</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$NbChar</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#saveAxisConfig" title="details" class="method-name">saveAxisConfig</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Axis</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#saveExtendedData" title="details" class="method-name">saveExtendedData</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Tag</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Values</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#saveOrientation" title="details" class="method-name">saveOrientation</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Orientation</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#savePalette" title="details" class="method-name">savePalette</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$ID</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Color</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#saveYMargin" title="details" class="method-name">saveYMargin</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Value</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setAbscissa" title="details" class="method-name">setAbscissa</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setAbscissaName" title="details" class="method-name">setAbscissaName</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Name</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setAbsicssaPosition" title="details" class="method-name">setAbsicssaPosition</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$Position</span> = <span class="var-default">AXIS_POSITION_BOTTOM</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setAxisColor" title="details" class="method-name">setAxisColor</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$AxisID</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Format</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setAxisDisplay" title="details" class="method-name">setAxisDisplay</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$AxisID</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Mode</span> = <span class="var-default">AXIS_FORMAT_DEFAULT</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setAxisName" title="details" class="method-name">setAxisName</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$AxisID</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Name</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setAxisPosition" title="details" class="method-name">setAxisPosition</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$AxisID</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Position</span> = <span class="var-default">AXIS_POSITION_LEFT</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setAxisUnit" title="details" class="method-name">setAxisUnit</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$AxisID</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Unit</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setAxisXY" title="details" class="method-name">setAxisXY</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$AxisID</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Identity</span> = <span class="var-default">AXIS_Y</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setPalette" title="details" class="method-name">setPalette</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Series</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setScatterSerie" title="details" class="method-name">setScatterSerie</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$SerieX</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$SerieY</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$ID</span> = <span class="var-default">0</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setScatterSerieColor" title="details" class="method-name">setScatterSerieColor</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$ID</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Format</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setScatterSerieDescription" title="details" class="method-name">setScatterSerieDescription</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$ID</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Description</span> = <span class="var-default">&quot;My serie&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setScatterSerieDrawable" title="details" class="method-name">setScatterSerieDrawable</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$ID</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Drawable</span> = <span class="var-default">TRUE</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setScatterSeriePicture" title="details" class="method-name">setScatterSeriePicture</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$ID</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Picture</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setScatterSerieShape" title="details" class="method-name">setScatterSerieShape</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$ID</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Shape</span> = <span class="var-default">SERIE_SHAPE_FILLEDCIRCLE</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setScatterSerieTicks" title="details" class="method-name">setScatterSerieTicks</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$ID</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Width</span> = <span class="var-default">0</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setScatterSerieWeight" title="details" class="method-name">setScatterSerieWeight</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$ID</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Weight</span> = <span class="var-default">0</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setSerieDescription" title="details" class="method-name">setSerieDescription</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Series</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Description</span> = <span class="var-default">&quot;My serie&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setSerieDrawable" title="details" class="method-name">setSerieDrawable</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Series</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Drawable</span> = <span class="var-default">TRUE</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setSerieOnAxis" title="details" class="method-name">setSerieOnAxis</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Series</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$AxisID</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setSeriePicture" title="details" class="method-name">setSeriePicture</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Series</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Picture</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setSerieShape" title="details" class="method-name">setSerieShape</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Series</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Shape</span> = <span class="var-default">SERIE_SHAPE_FILLEDCIRCLE</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setSerieTicks" title="details" class="method-name">setSerieTicks</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Series</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Width</span> = <span class="var-default">0</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setSerieWeight" title="details" class="method-name">setSerieWeight</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Series</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Weight</span> = <span class="var-default">0</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setXAxisDisplay" title="details" class="method-name">setXAxisDisplay</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Mode</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setXAxisName" title="details" class="method-name">setXAxisName</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Name</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setXAxisUnit" title="details" class="method-name">setXAxisUnit</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Unit</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#stripVOID" title="details" class="method-name">stripVOID</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Values</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#__toString" title="details" class="method-name">__toString</a>
+										()
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="var$Data" id="$Data"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$Data</span>
+						(line <span class="line-number">54</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+		
+		
+
+</div>
+<a name="var$Palette" id="$Palette"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$Palette</span>
+			 = <span class="var-default">array(&quot;0&quot;=&gt;array(&quot;R&quot;=&gt;188,&quot;G&quot;=&gt;224,&quot;B&quot;=&gt;46,&quot;Alpha&quot;=&gt;100),&quot;1&quot;=&gt;array(&quot;R&quot;=&gt;224,&quot;G&quot;=&gt;100,&quot;B&quot;=&gt;46,&quot;Alpha&quot;=&gt;100),&quot;2&quot;=&gt;array(&quot;R&quot;=&gt;224,&quot;G&quot;=&gt;214,&quot;B&quot;=&gt;46,&quot;Alpha&quot;=&gt;100),&quot;3&quot;=&gt;array(&quot;R&quot;=&gt;46,&quot;G&quot;=&gt;151,&quot;B&quot;=&gt;224,&quot;Alpha&quot;=&gt;100),&quot;4&quot;=&gt;array(&quot;R&quot;=&gt;176,&quot;G&quot;=&gt;46,&quot;B&quot;=&gt;224,&quot;Alpha&quot;=&gt;100),&quot;5&quot;=&gt;array(&quot;R&quot;=&gt;224,&quot;G&quot;=&gt;46,&quot;B&quot;=&gt;117,&quot;Alpha&quot;=&gt;100),&quot;6&quot;=&gt;array(&quot;R&quot;=&gt;92,&quot;G&quot;=&gt;224,&quot;B&quot;=&gt;46,&quot;Alpha&quot;=&gt;100),&quot;7&quot;=&gt;array(&quot;R&quot;=&gt;224,&quot;G&quot;=&gt;176,&quot;B&quot;=&gt;46,&quot;Alpha&quot;=&gt;100))</span>			(line <span class="line-number">56</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	
+		
+		
+
+</div>
+						
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="methodpData" id="pData"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor pData</span> (line <span class="line-number">66</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">pData</span>
+		<span class="method-name">
+			pData
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodaddPoints" id="addPoints"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">addPoints</span> (line <span class="line-number">82</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			addPoints
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Values</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$SerieName</span> = <span class="var-default">&quot;Serie1&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Values</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$SerieName</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodaddRandomValues" id="addRandomValues"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">addRandomValues</span> (line <span class="line-number">378</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			addRandomValues
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$SerieName</span> = <span class="var-default">&quot;Serie1&quot;</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$Options</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$SerieName</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Options</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodcontainsData" id="containsData"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">containsData</span> (line <span class="line-number">393</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			containsData
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodconvertToArray" id="convertToArray"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">convertToArray</span> (line <span class="line-number">773</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			convertToArray
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Value</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Value</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodcreateFunctionSerie" id="createFunctionSerie"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">createFunctionSerie</span> (line <span class="line-number">700</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			createFunctionSerie
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$SerieName</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Formula</span> = <span class="var-default">&quot;&quot;</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$Options</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$SerieName</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Formula</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Options</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawAll" id="drawAll"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawAll</span> (line <span class="line-number">263</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawAll
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetCoefficientOfVariation" id="getCoefficientOfVariation"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getCoefficientOfVariation</span> (line <span class="line-number">325</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getCoefficientOfVariation
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Serie</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetData" id="getData"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getData</span> (line <span class="line-number">749</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getData
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetGeometricMean" id="getGeometricMean"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getGeometricMean</span> (line <span class="line-number">279</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getGeometricMean
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Serie</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetHarmonicMean" id="getHarmonicMean"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getHarmonicMean</span> (line <span class="line-number">292</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getHarmonicMean
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Serie</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetMax" id="getMax"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getMax</span> (line <span class="line-number">139</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getMax
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Serie</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetMin" id="getMin"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getMin</span> (line <span class="line-number">143</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getMin
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Serie</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetPalette" id="getPalette"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getPalette</span> (line <span class="line-number">757</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getPalette
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetSerieAverage" id="getSerieAverage"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getSerieAverage</span> (line <span class="line-number">267</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getSerieAverage
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Serie</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetSerieCount" id="getSerieCount"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getSerieCount</span> (line <span class="line-number">109</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getSerieCount
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Serie</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetSerieMedian" id="getSerieMedian"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getSerieMedian</span> (line <span class="line-number">342</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getSerieMedian
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Serie</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetSeriePalette" id="getSeriePalette"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getSeriePalette</span> (line <span class="line-number">483</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getSeriePalette
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Serie</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetSeriePercentile" id="getSeriePercentile"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getSeriePercentile</span> (line <span class="line-number">360</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getSeriePercentile
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span> = <span class="var-default">&quot;Serie1&quot;</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$Percentil</span> = <span class="var-default">95</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Serie</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Percentil</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetStandardDeviation" id="getStandardDeviation"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getStandardDeviation</span> (line <span class="line-number">305</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getStandardDeviation
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Serie</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetSum" id="getSum"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getSum</span> (line <span class="line-number">135</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getSum
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Serie</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetValueAt" id="getValueAt"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getValueAt</span> (line <span class="line-number">120</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getValueAt
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Index</span> = <span class="var-default">0</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Serie</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Index</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetValues" id="getValues"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getValues</span> (line <span class="line-number">124</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getValues
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Serie</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodimportFromCSV" id="importFromCSV"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">importFromCSV</span> (line <span class="line-number">663</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			importFromCSV
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$FileName</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Options</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$FileName</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Options</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodinitialise" id="initialise"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">initialise</span> (line <span class="line-number">581</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			initialise
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Serie</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodinitScatterSerie" id="initScatterSerie"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">initScatterSerie</span> (line <span class="line-number">559</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			initScatterSerie
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$ID</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$ID</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodleft" id="left"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">left</span> (line <span class="line-number">780</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			left
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$value</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$NbChar</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$value</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$NbChar</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodlimits" id="limits"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">limits</span> (line <span class="line-number">243</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			limits
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodloadPalette" id="loadPalette"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">loadPalette</span> (line <span class="line-number">524</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			loadPalette
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$FileName</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Overwrite</span> = <span class="var-default">FALSE</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$FileName</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Overwrite</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodmid" id="mid"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">mid</span> (line <span class="line-number">782</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			mid
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$value</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Depart</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$NbChar</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$value</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Depart</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$NbChar</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodnegateValues" id="negateValues"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">negateValues</span> (line <span class="line-number">730</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			negateValues
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Series</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Series</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodnormalize" id="normalize"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">normalize</span> (line <span class="line-number">606</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			normalize
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$NormalizationFactor</span> = <span class="var-default">100</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$UnitChange</span> = <span class="var-default">NULL</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$Round</span> = <span class="var-default">1</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$NormalizationFactor</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$UnitChange</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Round</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodremoveSerie" id="removeSerie"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">removeSerie</span> (line <span class="line-number">113</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			removeSerie
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Series</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Series</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodreverseSerie" id="reverseSerie"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">reverseSerie</span> (line <span class="line-number">128</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			reverseSerie
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Series</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Series</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodright" id="right"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">right</span> (line <span class="line-number">781</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			right
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$value</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$NbChar</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$value</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$NbChar</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsaveAxisConfig" id="saveAxisConfig"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">saveAxisConfig</span> (line <span class="line-number">761</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			saveAxisConfig
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Axis</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Axis</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsaveExtendedData" id="saveExtendedData"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">saveExtendedData</span> (line <span class="line-number">767</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			saveExtendedData
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Tag</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Values</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Tag</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Values</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsaveOrientation" id="saveOrientation"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">saveOrientation</span> (line <span class="line-number">770</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			saveOrientation
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Orientation</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Orientation</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsavePalette" id="savePalette"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">savePalette</span> (line <span class="line-number">753</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			savePalette
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$ID</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Color</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$ID</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Color</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsaveYMargin" id="saveYMargin"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">saveYMargin</span> (line <span class="line-number">764</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			saveYMargin
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Value</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Value</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetAbscissa" id="setAbscissa"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setAbscissa</span> (line <span class="line-number">187</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setAbscissa
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Serie</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Serie</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetAbscissaName" id="setAbscissaName"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setAbscissaName</span> (line <span class="line-number">194</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setAbscissaName
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Name</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetAbsicssaPosition" id="setAbsicssaPosition"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setAbsicssaPosition</span> (line <span class="line-number">190</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setAbsicssaPosition
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$Position</span> = <span class="var-default">AXIS_POSITION_BOTTOM</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Position</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetAxisColor" id="setAxisColor"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setAxisColor</span> (line <span class="line-number">426</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setAxisColor
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$AxisID</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Format</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$AxisID</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetAxisDisplay" id="setAxisDisplay"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setAxisDisplay</span> (line <span class="line-number">404</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setAxisDisplay
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$AxisID</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Mode</span> = <span class="var-default">AXIS_FORMAT_DEFAULT</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$AxisID</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Mode</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetAxisName" id="setAxisName"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setAxisName</span> (line <span class="line-number">422</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setAxisName
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$AxisID</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Name</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$AxisID</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetAxisPosition" id="setAxisPosition"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setAxisPosition</span> (line <span class="line-number">414</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setAxisPosition
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$AxisID</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Position</span> = <span class="var-default">AXIS_POSITION_LEFT</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$AxisID</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Position</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetAxisUnit" id="setAxisUnit"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setAxisUnit</span> (line <span class="line-number">418</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setAxisUnit
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$AxisID</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Unit</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$AxisID</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Unit</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetAxisXY" id="setAxisXY"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setAxisXY</span> (line <span class="line-number">444</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setAxisXY
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$AxisID</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Identity</span> = <span class="var-default">AXIS_Y</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$AxisID</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Identity</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetPalette" id="setPalette"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setPalette</span> (line <span class="line-number">497</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setPalette
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Series</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Series</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetScatterSerie" id="setScatterSerie"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setScatterSerie</span> (line <span class="line-number">198</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setScatterSerie
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$SerieX</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$SerieY</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$ID</span> = <span class="var-default">0</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$SerieX</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$SerieY</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$ID</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetScatterSerieColor" id="setScatterSerieColor"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setScatterSerieColor</span> (line <span class="line-number">226</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setScatterSerieColor
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$ID</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Format</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$ID</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetScatterSerieDescription" id="setScatterSerieDescription"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setScatterSerieDescription</span> (line <span class="line-number">206</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setScatterSerieDescription
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$ID</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Description</span> = <span class="var-default">&quot;My serie&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$ID</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Description</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetScatterSerieDrawable" id="setScatterSerieDrawable"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setScatterSerieDrawable</span> (line <span class="line-number">214</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setScatterSerieDrawable
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$ID</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Drawable</span> = <span class="var-default">TRUE</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$ID</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Drawable</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetScatterSeriePicture" id="setScatterSeriePicture"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setScatterSeriePicture</span> (line <span class="line-number">210</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setScatterSeriePicture
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$ID</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Picture</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$ID</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Picture</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetScatterSerieShape" id="setScatterSerieShape"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setScatterSerieShape</span> (line <span class="line-number">202</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setScatterSerieShape
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$ID</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Shape</span> = <span class="var-default">SERIE_SHAPE_FILLEDCIRCLE</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$ID</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Shape</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetScatterSerieTicks" id="setScatterSerieTicks"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setScatterSerieTicks</span> (line <span class="line-number">218</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setScatterSerieTicks
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$ID</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Width</span> = <span class="var-default">0</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$ID</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Width</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetScatterSerieWeight" id="setScatterSerieWeight"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setScatterSerieWeight</span> (line <span class="line-number">222</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setScatterSerieWeight
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$ID</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Weight</span> = <span class="var-default">0</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$ID</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Weight</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetSerieDescription" id="setSerieDescription"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setSerieDescription</span> (line <span class="line-number">154</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setSerieDescription
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Series</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Description</span> = <span class="var-default">&quot;My serie&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Series</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Description</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetSerieDrawable" id="setSerieDrawable"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setSerieDrawable</span> (line <span class="line-number">161</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setSerieDrawable
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Series</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Drawable</span> = <span class="var-default">TRUE</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Series</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Drawable</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetSerieOnAxis" id="setSerieOnAxis"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setSerieOnAxis</span> (line <span class="line-number">448</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setSerieOnAxis
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Series</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$AxisID</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Series</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$AxisID</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetSeriePicture" id="setSeriePicture"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setSeriePicture</span> (line <span class="line-number">168</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setSeriePicture
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Series</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Picture</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Series</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Picture</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetSerieShape" id="setSerieShape"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setSerieShape</span> (line <span class="line-number">147</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setSerieShape
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Series</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Shape</span> = <span class="var-default">SERIE_SHAPE_FILLEDCIRCLE</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Series</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Shape</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetSerieTicks" id="setSerieTicks"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setSerieTicks</span> (line <span class="line-number">469</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setSerieTicks
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Series</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Width</span> = <span class="var-default">0</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Series</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Width</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetSerieWeight" id="setSerieWeight"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setSerieWeight</span> (line <span class="line-number">476</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setSerieWeight
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Series</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Weight</span> = <span class="var-default">0</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Series</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Weight</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetXAxisDisplay" id="setXAxisDisplay"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setXAxisDisplay</span> (line <span class="line-number">179</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setXAxisDisplay
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Mode</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Mode</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetXAxisName" id="setXAxisName"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setXAxisName</span> (line <span class="line-number">175</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setXAxisName
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Name</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Name</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetXAxisUnit" id="setXAxisUnit"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setXAxisUnit</span> (line <span class="line-number">183</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setXAxisUnit
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Unit</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Unit</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodstripVOID" id="stripVOID"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">stripVOID</span> (line <span class="line-number">105</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			stripVOID
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Values</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Values</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="method__toString" id="__toString"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">__toString</span> (line <span class="line-number">777</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			__toString
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Sat, 05 Nov 2011 13:06:38 +0100 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

@@ -25,7 +25,7 @@ $aktPage = $filter->page;
 $pages = ceil($counts['count']/Config::getStatRowsPerPage());
 ?>
 <h4>Filter</h4>
-<form name="filter" action="" method="POST">
+<form name="filter" action="" method="post">
     <input type="hidden" name="page" value="1"/>
     <table>
         <tr>

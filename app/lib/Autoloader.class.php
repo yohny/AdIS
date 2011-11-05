@@ -1,8 +1,11 @@
 <?php
 /**
- * trieda sluziaca na autoloading ostatnych tried
+ * trieda zabezpecujuca autoloading tried aplikacie, singleton
+ * 
+ * @version    1.0
+ * @package    AdIS
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
  *
- * @author yohny
  */
 class Autoloader
 {
@@ -12,6 +15,11 @@ class Autoloader
      * @var string
      */
     private $baseDir = null;
+    
+    /**
+     * holds instance of this class
+     * @var Autoloader
+     */
     private static $instance = null;
 
     private function __construct()
@@ -22,7 +30,7 @@ class Autoloader
     }
 
     /**
-     * singleton call
+     * private singleton call
      * @return Autoloader
      */
     private static function getInstance()

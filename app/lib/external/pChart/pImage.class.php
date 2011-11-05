@@ -1,18 +1,4 @@
 <?php
- /*
-     pDraw - pChart core class
-
-     Version     : 2.1.3
-     Made by     : Jean-Damien POGOLOTTI
-     Last Update : 09/09/11
-
-     This file can be distributed under the license you can find at :
-
-                       http://www.pchart.net/license
-
-     You can find the whole class documentation on the pChart web site.
- */
-
  /* The GD extension is mandatory */
  if (!extension_loaded('gd') && !extension_loaded('gd2'))
   {
@@ -31,6 +17,18 @@
  /* ImageMap string delimiter */
  define("IMAGE_MAP_DELIMITER"		, chr(1));
 
+  /**
+ * pDraw - pChart core class
+ * This file can be distributed under the license you can find at
+ *                     http://www.pchart.net/license
+ * You can find the whole class documentation on the pChart web site.
+ *
+ * @version    2.1.3
+ * @package    pChart
+ * @subpackage classes
+ * @author     Jean-Damien POGOLOTTI
+ * 
+ */
  class pImage extends pDraw
   {
    /* Image settings, size, quality, .. */

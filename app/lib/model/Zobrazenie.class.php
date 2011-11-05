@@ -1,8 +1,12 @@
 <?php
 /**
  * trieda reprezentujuca zaznam z tabulky ZOBRAZENIA
+ * 
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage model
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
  *
- * @author yohny
  */
 class Zobrazenie extends Event
 {

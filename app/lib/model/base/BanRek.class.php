@@ -1,8 +1,12 @@
 <?php
 /**
- * parent class for Banner and Reklama
+ * spoloscny predok pre Banner a Reklama
+ * 
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage model
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
  *
- * @author yohny
  */
 class BanRek
 {

@@ -1,12 +1,21 @@
 <?php
 /**
- * reprezentuje uzivatelsky request
+ * trieda reprezentuje aktualnu poziadavku uzivatela (http request)
+ * 
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage core
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
  *
- * @author yohny
  */
 class Request
 {
+    /**
+     * adresa pozadovana uzivatelom (requested url)
+     * @var string
+     */
     private $uri = '';
+    
     /**
      * pole nazvov suborov alebo ciest (bez .php), ktore su bez layoutu (ajax)
      * !po mapingu na fyzicke cesty
@@ -16,9 +25,10 @@ class Request
         'checklogin',
         'chpas',
         'chweb');
+    
     /**
      * pole nazvov suborov alebo ciest (bez .php), ktore su pristupne bez lognutia
-     * !po mapingu na fyzicke cesty
+     * !po mapingu na fyzicke cesty!
      * @var string
      */
     private $public = array(
@@ -28,17 +38,20 @@ class Request
         'checklogin',
         'klikerror',
         'prihlas',
-        'registruj',);
+        'registruj');
+    
     /**
      * flag urcujuci ci je potrebny layout
      * @var bool
      */
     public $hasTemplate = true;
+    
     /**
      * flag urcujuci ci pozadovany subor existuje
      * @var bool
      */
     public $fileExists = true;
+    
     /**
      * flag oznacujuci ci pozadovana stranka je pristuna verejne
      * alebo len prihlasenym userom
@@ -46,7 +59,10 @@ class Request
      */
     public $isPublic = false;
 
-
+    /**
+     * nastavi instancne premenne na zaklade spracovania parametra
+     * @param string $redir_url pozadovana adresa (url)
+     */
     public function __construct($redir_url)
     {
         //odstrani lomitko na zaciatku a pripadne .php na konci

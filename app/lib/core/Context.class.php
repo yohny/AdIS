@@ -1,14 +1,37 @@
 <?php
 /**
- * reprezentuje kontext aktualnej poziadavky
+ * trieda reprezentuje kontext aktualnej poziadavky, singleton
+ * 
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage core
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
  *
- * @author yohny
  */
 class Context
 {
+    /**
+     * current request instance
+     * @var Request
+     */
     private $request = null;
+    
+    /**
+     * current response instance
+     * @var Response
+     */
     private $response = null;
+    
+    /**
+     * current database instance
+     * @var Request
+     */
     private $database = null;
+    
+    /**
+     * holds instance of this class
+     * @var Context
+     */
     private static $instance = null;
 
     private function __construct()

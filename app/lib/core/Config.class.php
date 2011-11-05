@@ -1,18 +1,57 @@
 <?php
 /**
  * trieda starajuca sa o konfiguraciu
- * poskytuje konfiguracne nastavenia aplikacie
+ * poskytuje konfiguracne nastavenia aplikacie, ktore nacita z config.xml
+ * @see config.xml
+ * 
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage core
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
  *
- * @author yohny
  */
 class Config
 {
+    /**
+     * static, instance of this class
+     * @var Config
+     */
     private static $instance = null;
+    
+    /**
+     * database host (server)
+     * @var string
+     */
     private $dbHost = '#host';
+    
+    /**
+     * database user
+     * @var string
+     */
     private $dbUser = '#user';
+    
+    /**
+     * database password
+     * @var string
+     */
     private $dbPassw = '#password';
+    
+    /**
+     * database name
+     * @var string
+     */
     private $dbName = '#name';
+    
+    /**
+     * number of rows showed per page in statistics listings
+     * @var int
+     */
     private $statRowsPerPage = 10;
+    
+    /**
+     * directory for banner upload
+     * @var string
+     */
     private $uploadDir = './upload';
 
 
@@ -20,7 +59,7 @@ class Config
     {
         libxml_use_internal_errors(); //aby parser neohlasoval chyby XML dokumentu
 
-        //musi byt absolutna lebo niekedy cita konfig voci index.php, inokedy voci /img abo /distrib
+        //musi byt absolutna lebo niekedy cita konfig voci index.php, inokedy voci /img alebo /distrib
         if($xml = @simplexml_load_file(realpath(dirname(__FILE__).'/../../config.xml')))
         {
             if(isset($xml->database_host))

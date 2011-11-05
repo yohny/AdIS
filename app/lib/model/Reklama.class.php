@@ -1,8 +1,12 @@
 <?php
 /**
  * trieda reprezentujuca jeden zaznam z tabulky REKLAMY
+ * 
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage model
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
  *
- * @author yohny
  */
 class Reklama extends BanRek
 {

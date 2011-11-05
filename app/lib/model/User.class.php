@@ -2,8 +2,12 @@
 /**
  * trieda reprezentujuca jeden zaznam z tabulky USERS (ciastocne),
  * v session reprezentuje aktualne prihlaseneho pouzivatela
+ * 
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage model
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
  *
- * @author yohny
  */
 class User
 {

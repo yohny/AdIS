@@ -1,18 +1,4 @@
 <?php
- /*
-     pDraw - class to manipulate data arrays
-
-     Version     : 2.1.3
-     Made by     : Jean-Damien POGOLOTTI
-     Last Update : 09/09/11
-
-     This file can be distributed under the license you can find at :
-
-                       http://www.pchart.net/license
-
-     You can find the whole class documentation on the pChart web site.
- */
-
  /* Axis configuration */
  define("AXIS_FORMAT_DEFAULT"		, 680001);
  define("AXIS_FORMAT_TIME"		, 680002);
@@ -51,7 +37,18 @@
  /* Euro symbol for GD fonts */
  define("EURO_SYMBOL"			, utf8_encode("&#8364;"));
 
- /* pData class definition */
+/**
+ * pDraw - class to manipulate data arrays.
+ * This file can be distributed under the license you can find at
+ *                     http://www.pchart.net/license
+ * You can find the whole class documentation on the pChart web site.
+ *
+ * @version    2.1.3
+ * @package    pChart
+ * @subpackage classes
+ * @author     Jean-Damien POGOLOTTI
+ * 
+ */
  class pData
   {
    var $Data;

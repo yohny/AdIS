@@ -1,0 +1,660 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class Database</title>
+			<link rel="stylesheet" href="../../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class Database</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">trieda reprezentujuca databazu</p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Ján Neščivera &lt;<a href="mailto:jan.nescivera@gmail.com">jan.nescivera@gmail.com</a>&gt;</li>
+				<li><span class="field">version:</span> 1.0</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_app---lib---core---Database.class.php.html">/app/lib/core/Database.class.php</a> (line <span class="field">11</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																								<div class="var-title">
+					<span class="var-type">mysqli</span>
+					<a href="#$conn" title="details" class="var-name">$conn</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																																																																				
+												<div class="method-definition">
+											<span class="method-result">Database</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#__destruct" title="details" class="method-name">__destruct</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../../AdIS/model/Kategoria.html">Kategoria</a></span>
+										<a href="#getAllFromKategorie" title="details" class="method-name">getAllFromKategorie</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../../AdIS/model/Velkost.html">Velkost</a></span>
+										<a href="#getAllFromVelkosti" title="details" class="method-name">getAllFromVelkosti</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getBannerByPK" title="details" class="method-name">getBannerByPK</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$id</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../../AdIS/model/Banner.html">Banner</a></span>
+										<a href="#getBanneryByUser" title="details" class="method-name">getBanneryByUser</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../../AdIS/model/Banner.html">Banner</a></span>
+										<a href="#getRandBannerForReklama" title="details" class="method-name">getRandBannerForReklama</a>
+											(<span class="var-type"><a href="../../AdIS/model/Reklama.html">Reklama</a></span>&nbsp;<span class="var-name">$reklama</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getReklamaByPK" title="details" class="method-name">getReklamaByPK</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$id</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../../AdIS/model/Reklama.html">Reklama</a></span>
+										<a href="#getReklamyByUser" title="details" class="method-name">getReklamyByUser</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getStatisticsForAdmin" title="details" class="method-name">getStatisticsForAdmin</a>
+											(<span class="var-type"><a href="../../AdIS/model/Filter.html">Filter</a></span>&nbsp;<span class="var-name">$filter</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$countOnly</span> = <span class="var-default">false</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getStatisticsForUser" title="details" class="method-name">getStatisticsForUser</a>
+											(<span class="var-type"><a href="../../AdIS/model/User.html">User</a></span>&nbsp;<span class="var-name">$user</span>, <span class="var-type"><a href="../../AdIS/model/Filter.html">Filter</a></span>&nbsp;<span class="var-name">$filter</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$countOnly</span> = <span class="var-default">false</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../../AdIS/model/User.html">User</a></span>
+										<a href="#getUserByCredentials" title="details" class="method-name">getUserByCredentials</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$login</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$password</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../../AdIS/model/User.html">User</a></span>
+										<a href="#getUserByPK" title="details" class="method-name">getUserByPK</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$id</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../../AdIS/model/User.html">User</a></span>
+										<a href="#getUserByReferer" title="details" class="method-name">getUserByReferer</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$referer</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getVelkostByPK" title="details" class="method-name">getVelkostByPK</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$id</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getZobrazenieByPK" title="details" class="method-name">getZobrazenieByPK</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$id</span>)
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="var$conn" id="$conn"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mysqli</span>
+			<span class="var-name">$conn</span>
+						(line <span class="line-number">17</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">actual mysqli connection object</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+						
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">19</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">Database</span>
+		<span class="method-name">
+			__construct
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="method__destruct" id="__destruct"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">Destructor __destruct</span> (line <span class="line-number">31</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			__destruct
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetAllFromKategorie" id="getAllFromKategorie"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getAllFromKategorie</span> (line <span class="line-number">130</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">vrati vsetky zaznamy z tabulky KATEGORIE</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../AdIS/model/Kategoria.html">Kategoria</a></span>
+		<span class="method-name">
+			getAllFromKategorie
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetAllFromVelkosti" id="getAllFromVelkosti"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getAllFromVelkosti</span> (line <span class="line-number">101</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">vrati vsetky zaznamy z tabulky VELKOSTI</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../AdIS/model/Velkost.html">Velkost</a></span>
+		<span class="method-name">
+			getAllFromVelkosti
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetBannerByPK" id="getBannerByPK"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getBannerByPK</span> (line <span class="line-number">171</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getBannerByPK
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$id</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$id</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetBanneryByUser" id="getBanneryByUser"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getBanneryByUser</span> (line <span class="line-number">149</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">vrati bannery aktualne prihlaseneho usera,</p>
+<p class="description"><p>pri adminovi vrati vsetky</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../AdIS/model/Banner.html">Banner</a></span>
+		<span class="method-name">
+			getBanneryByUser
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetRandBannerForReklama" id="getRandBannerForReklama"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getRandBannerForReklama</span> (line <span class="line-number">187</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">vrati nahodny banner splnajuci kriteria na zobrazenie v danej reklame</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../AdIS/model/Banner.html">Banner</a></span>
+		<span class="method-name">
+			getRandBannerForReklama
+		</span>
+					(<span class="var-type"><a href="../../AdIS/model/Reklama.html">Reklama</a></span>&nbsp;<span class="var-name">$reklama</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../AdIS/model/Reklama.html">Reklama</a></span>
+				<span class="var-name">$reklama</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetReklamaByPK" id="getReklamaByPK"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getReklamaByPK</span> (line <span class="line-number">231</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getReklamaByPK
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$id</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$id</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetReklamyByUser" id="getReklamyByUser"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getReklamyByUser</span> (line <span class="line-number">209</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">vrati reklamy aktualne prihlaseneho usera,</p>
+<p class="description"><p>pri adminovi vrati vsetky</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../AdIS/model/Reklama.html">Reklama</a></span>
+		<span class="method-name">
+			getReklamyByUser
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetStatisticsForAdmin" id="getStatisticsForAdmin"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getStatisticsForAdmin</span> (line <span class="line-number">349</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getStatisticsForAdmin
+		</span>
+					(<span class="var-type"><a href="../../AdIS/model/Filter.html">Filter</a></span>&nbsp;<span class="var-name">$filter</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$countOnly</span> = <span class="var-default">false</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../AdIS/model/Filter.html">Filter</a></span>
+				<span class="var-name">$filter</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$countOnly</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetStatisticsForUser" id="getStatisticsForUser"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getStatisticsForUser</span> (line <span class="line-number">242</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getStatisticsForUser
+		</span>
+					(<span class="var-type"><a href="../../AdIS/model/User.html">User</a></span>&nbsp;<span class="var-name">$user</span>, <span class="var-type"><a href="../../AdIS/model/Filter.html">Filter</a></span>&nbsp;<span class="var-name">$filter</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$countOnly</span> = <span class="var-default">false</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../AdIS/model/User.html">User</a></span>
+				<span class="var-name">$user</span>			</li>
+					<li>
+				<span class="var-type"><a href="../../AdIS/model/Filter.html">Filter</a></span>
+				<span class="var-name">$filter</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$countOnly</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetUserByCredentials" id="getUserByCredentials"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getUserByCredentials</span> (line <span class="line-number">42</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">vrati objekt pouzivatela na zaklade prihlasovacich udajov</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../AdIS/model/User.html">User</a></span>
+		<span class="method-name">
+			getUserByCredentials
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$login</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$password</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$login</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$password</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetUserByPK" id="getUserByPK"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getUserByPK</span> (line <span class="line-number">86</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">vrati pouzivatela na zaklade PK</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../AdIS/model/User.html">User</a></span>
+		<span class="method-name">
+			getUserByPK
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$id</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$id</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetUserByReferer" id="getUserByReferer"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getUserByReferer</span> (line <span class="line-number">64</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">vrati objekt pouzivatela (zobra) na zaklade ulr adresy</p>
+<p class="description"><p>!prehladava len ZOBRAZOVATELOV!</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../AdIS/model/User.html">User</a></span>
+		<span class="method-name">
+			getUserByReferer
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$referer</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$referer</span><span class="var-description">: url adresa</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetVelkostByPK" id="getVelkostByPK"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getVelkostByPK</span> (line <span class="line-number">115</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getVelkostByPK
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$id</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$id</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetZobrazenieByPK" id="getZobrazenieByPK"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getZobrazenieByPK</span> (line <span class="line-number">427</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getZobrazenieByPK
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$id</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$id</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Sat, 05 Nov 2011 13:06:37 +0100 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

@@ -1,8 +1,12 @@
 <?php
 /**
  * trieda reprezentuje jeden zaznam z tabulky VELKOSTI
+ * 
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage model
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
  *
- * @author yohny
  */
 class Velkost
 {

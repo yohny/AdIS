@@ -1,8 +1,12 @@
 <?php
 /**
- * trieda sluziaca na pracu s databazou
+ * trieda reprezentujuca databazu
+ * 
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage core
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
  *
- * @author yohny
  */
 class Database
 {

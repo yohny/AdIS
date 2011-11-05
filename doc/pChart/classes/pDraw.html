@@ -1,0 +1,2428 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class pDraw</title>
+			<link rel="stylesheet" href="../../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class pDraw</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+							<a href="#sec-descendents">Descendents</a>
+			|													<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">pDraw - class extension with drawing methods  This file can be distributed under the license you can find at                      http://www.pchart.net/license  You can find the whole class documentation on the pChart web site.</p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Jean-Damien POGOLOTTI</li>
+				<li><span class="field">version:</span> 2.1.3</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_app---lib---external---pChart---pDraw.class.php.html">/app/lib/external/pChart/pDraw.class.php</a> (line <span class="field">101</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+	<a name="sec-descendents"></a>
+	<div class="info-box">
+		<div class="info-box-title">Direct descendents</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+			<span class="disabled">Descendents</span>
+			|															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<table cellpadding="2" cellspacing="0" class="class-table">
+				<tr>
+					<th class="class-table-header">Class</th>
+					<th class="class-table-header">Description</th>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em"><a href="../../pChart/classes/pImage.html">pImage</a></td>
+					<td>
+											pDraw - pChart core class  This file can be distributed under the license you can find at                      http://www.pchart.net/license  You can find the whole class documentation on the pChart web site.
+										</td>
+				</tr>
+							</table>
+		</div>
+	</div>
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+												<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																				
+												<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#allocateColor" title="details" class="method-name">allocateColor</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Picture</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$R</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$G</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$B</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Alpha</span> = <span class="var-default">100</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#computeScale" title="details" class="method-name">computeScale</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$XMin</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$XMax</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$MaxDivs</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Factors</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$AxisID</span> = <span class="var-default">0</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#convertAlpha" title="details" class="method-name">convertAlpha</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$AlphaValue</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#countDrawableSeries" title="details" class="method-name">countDrawableSeries</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawAlphaPixel" title="details" class="method-name">drawAlphaPixel</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$X</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Alpha</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$R</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$G</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$B</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawAntialiasPixel" title="details" class="method-name">drawAntialiasPixel</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$X</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawAreaChart" title="details" class="method-name">drawAreaChart</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawArrow" title="details" class="method-name">drawArrow</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$X1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$X2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y2</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawArrowLabel" title="details" class="method-name">drawArrowLabel</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$X1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Text</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawBarChart" title="details" class="method-name">drawBarChart</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawBestFit" title="details" class="method-name">drawBestFit</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawBezier" title="details" class="method-name">drawBezier</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$X1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$X2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Xv1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Yv1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Xv2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Yv2</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawCircle" title="details" class="method-name">drawCircle</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Xc</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Yc</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Height</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Width</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawDerivative" title="details" class="method-name">drawDerivative</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawFilledCircle" title="details" class="method-name">drawFilledCircle</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$X</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Radius</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawFilledRectangle" title="details" class="method-name">drawFilledRectangle</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$X1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$X2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y2</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawFilledSplineChart" title="details" class="method-name">drawFilledSplineChart</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawFilledStepChart" title="details" class="method-name">drawFilledStepChart</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawFromGIF" title="details" class="method-name">drawFromGIF</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$X</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$FileName</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawFromJPG" title="details" class="method-name">drawFromJPG</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$X</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$FileName</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawFromPicture" title="details" class="method-name">drawFromPicture</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$PicType</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$FileName</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$X</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawFromPNG" title="details" class="method-name">drawFromPNG</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$X</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$FileName</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawGradientArea" title="details" class="method-name">drawGradientArea</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$X1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$X2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Direction</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawLabelBox" title="details" class="method-name">drawLabelBox</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$X</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Title</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Captions</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawLegend" title="details" class="method-name">drawLegend</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$X</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawLine" title="details" class="method-name">drawLine</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$X1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$X2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y2</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawLineChart" title="details" class="method-name">drawLineChart</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawPlotChart" title="details" class="method-name">drawPlotChart</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawPolygon" title="details" class="method-name">drawPolygon</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Points</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawPolygonChart" title="details" class="method-name">drawPolygonChart</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Points</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawProgress" title="details" class="method-name">drawProgress</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$X</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Percent</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawRectangle" title="details" class="method-name">drawRectangle</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$X1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$X2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y2</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawRectangleMarker" title="details" class="method-name">drawRectangleMarker</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$X</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawRoundedFilledRectangle" title="details" class="method-name">drawRoundedFilledRectangle</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$X1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$X2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Radius</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawRoundedFilledRectangle_deprecated" title="details" class="method-name">drawRoundedFilledRectangle_deprecated</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$X1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$X2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Radius</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawRoundedRectangle" title="details" class="method-name">drawRoundedRectangle</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$X1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$X2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Radius</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawScale" title="details" class="method-name">drawScale</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawShape" title="details" class="method-name">drawShape</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$X</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Shape</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$PlotSize</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$PlotBorder</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$BorderSize</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$R</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$G</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$B</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Alpha</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$BorderR</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$BorderG</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$BorderB</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$BorderAlpha</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawSpline" title="details" class="method-name">drawSpline</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Coordinates</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawSplineChart" title="details" class="method-name">drawSplineChart</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawStackedAreaChart" title="details" class="method-name">drawStackedAreaChart</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawStackedBarChart" title="details" class="method-name">drawStackedBarChart</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawStepChart" title="details" class="method-name">drawStepChart</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawText" title="details" class="method-name">drawText</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$X</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Text</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawThreshold" title="details" class="method-name">drawThreshold</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Value</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawThresholdArea" title="details" class="method-name">drawThresholdArea</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Value1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Value2</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawXThreshold" title="details" class="method-name">drawXThreshold</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Value</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawXThresholdArea" title="details" class="method-name">drawXThresholdArea</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Value1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Value2</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#drawZoneChart" title="details" class="method-name">drawZoneChart</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$SerieA</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$SerieB</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#fixBoxCoordinates" title="details" class="method-name">fixBoxCoordinates</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Xa</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Ya</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Xb</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Yb</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getAbscissaMargin" title="details" class="method-name">getAbscissaMargin</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Data</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getLegendSize" title="details" class="method-name">getLegendSize</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getPicInfo" title="details" class="method-name">getPicInfo</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$FileName</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#getRandomColor" title="details" class="method-name">getRandomColor</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$Alpha</span> = <span class="var-default">100</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#isValidLabel" title="details" class="method-name">isValidLabel</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Value</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$LastValue</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$LabelingMethod</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$ID</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$LabelSkip</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#modulo" title="details" class="method-name">modulo</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Value1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Value2</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#offsetCorrection" title="details" class="method-name">offsetCorrection</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Value</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Mode</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#processScale" title="details" class="method-name">processScale</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$XMin</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$XMax</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$MaxDivs</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Factors</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$AxisID</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#scaleComputeY" title="details" class="method-name">scaleComputeY</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Values</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Option</span> = <span class="var-default">&quot;&quot;</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$ReturnOnly0Height</span> = <span class="var-default">FALSE</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#scaleFormat" title="details" class="method-name">scaleFormat</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Value</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Mode</span> = <span class="var-default">NULL</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$Unit</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#scaleGetXSettings" title="details" class="method-name">scaleGetXSettings</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#validatePalette" title="details" class="method-name">validatePalette</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$Colors</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Surrounding</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#writeBounds" title="details" class="method-name">writeBounds</a>
+											([<span class="var-type"></span>&nbsp;<span class="var-name">$Type</span> = <span class="var-default">BOUND_BOTH</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#writeLabel" title="details" class="method-name">writeLabel</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$SeriesName</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Indexes</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+																<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="methodallocateColor" id="allocateColor"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">allocateColor</span> (line <span class="line-number">1193</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			allocateColor
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Picture</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$R</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$G</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$B</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Alpha</span> = <span class="var-default">100</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Picture</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$R</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$G</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$B</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Alpha</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodcomputeScale" id="computeScale"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">computeScale</span> (line <span class="line-number">2495</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			computeScale
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$XMin</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$XMax</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$MaxDivs</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Factors</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$AxisID</span> = <span class="var-default">0</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$XMin</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$XMax</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$MaxDivs</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Factors</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$AxisID</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodconvertAlpha" id="convertAlpha"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">convertAlpha</span> (line <span class="line-number">1189</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			convertAlpha
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$AlphaValue</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$AlphaValue</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodcountDrawableSeries" id="countDrawableSeries"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">countDrawableSeries</span> (line <span class="line-number">104</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			countDrawableSeries
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methoddrawAlphaPixel" id="drawAlphaPixel"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawAlphaPixel</span> (line <span class="line-number">1166</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawAlphaPixel
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$X</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Alpha</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$R</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$G</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$B</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Alpha</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$R</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$G</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$B</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawAntialiasPixel" id="drawAntialiasPixel"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawAntialiasPixel</span> (line <span class="line-number">1110</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawAntialiasPixel
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$X</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawAreaChart" id="drawAreaChart"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawAreaChart</span> (line <span class="line-number">4221</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawAreaChart
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawArrow" id="drawArrow"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawArrow</span> (line <span class="line-number">1280</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawArrow
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$X1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$X2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y2</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X1</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y1</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X2</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y2</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawArrowLabel" id="drawArrowLabel"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawArrowLabel</span> (line <span class="line-number">1361</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawArrowLabel
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$X1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Text</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X1</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y1</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Text</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawBarChart" id="drawBarChart"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawBarChart</span> (line <span class="line-number">4420</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawBarChart
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawBestFit" id="drawBestFit"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawBestFit</span> (line <span class="line-number">5470</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawBestFit
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawBezier" id="drawBezier"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawBezier</span> (line <span class="line-number">633</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawBezier
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$X1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$X2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Xv1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Yv1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Xv2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Yv2</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X1</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y1</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X2</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y2</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Xv1</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Yv1</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Xv2</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Yv2</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawCircle" id="drawCircle"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawCircle</span> (line <span class="line-number">844</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawCircle
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Xc</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Yc</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Height</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Width</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Xc</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Yc</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Height</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Width</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawDerivative" id="drawDerivative"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawDerivative</span> (line <span class="line-number">5218</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawDerivative
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawFilledCircle" id="drawFilledCircle"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawFilledCircle</span> (line <span class="line-number">896</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawFilledCircle
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$X</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Radius</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Radius</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawFilledRectangle" id="drawFilledRectangle"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawFilledRectangle</span> (line <span class="line-number">470</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawFilledRectangle
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$X1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$X2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y2</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X1</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y1</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X2</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y2</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawFilledSplineChart" id="drawFilledSplineChart"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawFilledSplineChart</span> (line <span class="line-number">3535</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawFilledSplineChart
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawFilledStepChart" id="drawFilledStepChart"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawFilledStepChart</span> (line <span class="line-number">4081</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawFilledStepChart
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawFromGIF" id="drawFromGIF"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawFromGIF</span> (line <span class="line-number">1210</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawFromGIF
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$X</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$FileName</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$FileName</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawFromJPG" id="drawFromJPG"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawFromJPG</span> (line <span class="line-number">1214</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawFromJPG
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$X</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$FileName</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$FileName</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawFromPicture" id="drawFromPicture"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawFromPicture</span> (line <span class="line-number">1232</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawFromPicture
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$PicType</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$FileName</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$X</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$PicType</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$FileName</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawFromPNG" id="drawFromPNG"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawFromPNG</span> (line <span class="line-number">1206</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawFromPNG
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$X</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$FileName</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$FileName</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawGradientArea" id="drawGradientArea"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawGradientArea</span> (line <span class="line-number">1029</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawGradientArea
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$X1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$X2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Direction</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X1</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y1</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X2</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y2</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Direction</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawLabelBox" id="drawLabelBox"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawLabelBox</span> (line <span class="line-number">5773</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawLabelBox
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$X</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Title</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Captions</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Title</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Captions</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawLegend" id="drawLegend"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawLegend</span> (line <span class="line-number">1587</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawLegend
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$X</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawLine" id="drawLine"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawLine</span> (line <span class="line-number">737</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawLine
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$X1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$X2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y2</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X1</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y1</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X2</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y2</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawLineChart" id="drawLineChart"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawLineChart</span> (line <span class="line-number">3709</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawLineChart
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawPlotChart" id="drawPlotChart"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawPlotChart</span> (line <span class="line-number">3319</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawPlotChart
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawPolygon" id="drawPolygon"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawPolygon</span> (line <span class="line-number">125</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawPolygon
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Points</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Points</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawPolygonChart" id="drawPolygonChart"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawPolygonChart</span> (line <span class="line-number">5997</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawPolygonChart
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Points</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Points</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawProgress" id="drawProgress"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawProgress</span> (line <span class="line-number">1412</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawProgress
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$X</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Percent</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Percent</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawRectangle" id="drawRectangle"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawRectangle</span> (line <span class="line-number">433</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawRectangle
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$X1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$X2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y2</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X1</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y1</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X2</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y2</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawRectangleMarker" id="drawRectangleMarker"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawRectangleMarker</span> (line <span class="line-number">565</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawRectangleMarker
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$X</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawRoundedFilledRectangle" id="drawRoundedFilledRectangle"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawRoundedFilledRectangle</span> (line <span class="line-number">269</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawRoundedFilledRectangle
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$X1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$X2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Radius</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X1</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y1</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X2</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y2</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Radius</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawRoundedFilledRectangle_deprecated" id="drawRoundedFilledRectangle_deprecated"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawRoundedFilledRectangle_deprecated</span> (line <span class="line-number">354</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawRoundedFilledRectangle_deprecated
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$X1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$X2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Radius</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X1</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y1</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X2</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y2</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Radius</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawRoundedRectangle" id="drawRoundedRectangle"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawRoundedRectangle</span> (line <span class="line-number">215</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawRoundedRectangle
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$X1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$X2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y2</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Radius</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X1</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y1</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X2</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y2</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Radius</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawScale" id="drawScale"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawScale</span> (line <span class="line-number">1739</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawScale
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawShape" id="drawShape"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawShape</span> (line <span class="line-number">5946</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawShape
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$X</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Shape</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$PlotSize</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$PlotBorder</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$BorderSize</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$R</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$G</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$B</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Alpha</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$BorderR</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$BorderG</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$BorderB</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$BorderAlpha</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Shape</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$PlotSize</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$PlotBorder</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$BorderSize</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$R</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$G</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$B</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Alpha</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$BorderR</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$BorderG</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$BorderB</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$BorderAlpha</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawSpline" id="drawSpline"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawSpline</span> (line <span class="line-number">574</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawSpline
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Coordinates</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Coordinates</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawSplineChart" id="drawSplineChart"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawSplineChart</span> (line <span class="line-number">3422</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawSplineChart
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawStackedAreaChart" id="drawStackedAreaChart"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawStackedAreaChart</span> (line <span class="line-number">5022</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawStackedAreaChart
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawStackedBarChart" id="drawStackedBarChart"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawStackedBarChart</span> (line <span class="line-number">4762</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawStackedBarChart
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawStepChart" id="drawStepChart"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawStepChart</span> (line <span class="line-number">3912</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawStepChart
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawText" id="drawText"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawText</span> (line <span class="line-number">947</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawText
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$X</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Y</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Text</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$X</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Y</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Text</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawThreshold" id="drawThreshold"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawThreshold</span> (line <span class="line-number">2852</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawThreshold
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Value</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Value</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawThresholdArea" id="drawThresholdArea"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawThresholdArea</span> (line <span class="line-number">2964</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawThresholdArea
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Value1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Value2</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Value1</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Value2</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawXThreshold" id="drawXThreshold"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawXThreshold</span> (line <span class="line-number">2616</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawXThreshold
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Value</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Value</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawXThresholdArea" id="drawXThresholdArea"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawXThresholdArea</span> (line <span class="line-number">2746</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawXThresholdArea
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Value1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Value2</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Value1</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Value2</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddrawZoneChart" id="drawZoneChart"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">drawZoneChart</span> (line <span class="line-number">3823</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			drawZoneChart
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$SerieA</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$SerieB</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$SerieA</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$SerieB</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodfixBoxCoordinates" id="fixBoxCoordinates"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">fixBoxCoordinates</span> (line <span class="line-number">116</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			fixBoxCoordinates
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Xa</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Ya</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Xb</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Yb</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Xa</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Ya</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Xb</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Yb</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetAbscissaMargin" id="getAbscissaMargin"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getAbscissaMargin</span> (line <span class="line-number">6184</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getAbscissaMargin
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Data</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Data</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetLegendSize" id="getLegendSize"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getLegendSize</span> (line <span class="line-number">1508</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getLegendSize
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetPicInfo" id="getPicInfo"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getPicInfo</span> (line <span class="line-number">1217</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getPicInfo
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$FileName</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$FileName</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetRandomColor" id="getRandomColor"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getRandomColor</span> (line <span class="line-number">5182</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getRandomColor
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$Alpha</span> = <span class="var-default">100</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Alpha</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodisValidLabel" id="isValidLabel"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">isValidLabel</span> (line <span class="line-number">2484</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			isValidLabel
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Value</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$LastValue</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$LabelingMethod</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$ID</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$LabelSkip</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Value</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$LastValue</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$LabelingMethod</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$ID</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$LabelSkip</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodmodulo" id="modulo"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">modulo</span> (line <span class="line-number">2603</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			modulo
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Value1</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Value2</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Value1</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Value2</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodoffsetCorrection" id="offsetCorrection"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">offsetCorrection</span> (line <span class="line-number">194</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			offsetCorrection
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Value</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Mode</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Value</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Mode</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodprocessScale" id="processScale"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">processScale</span> (line <span class="line-number">2523</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			processScale
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$XMin</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$XMax</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$MaxDivs</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Factors</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$AxisID</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$XMin</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$XMax</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$MaxDivs</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Factors</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$AxisID</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodscaleComputeY" id="scaleComputeY"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">scaleComputeY</span> (line <span class="line-number">3084</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			scaleComputeY
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Values</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Option</span> = <span class="var-default">&quot;&quot;</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$ReturnOnly0Height</span> = <span class="var-default">FALSE</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Values</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Option</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$ReturnOnly0Height</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodscaleFormat" id="scaleFormat"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">scaleFormat</span> (line <span class="line-number">3126</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			scaleFormat
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Value</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Mode</span> = <span class="var-default">NULL</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$Unit</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Value</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Mode</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Unit</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodscaleGetXSettings" id="scaleGetXSettings"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">scaleGetXSettings</span> (line <span class="line-number">3070</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			scaleGetXSettings
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodvalidatePalette" id="validatePalette"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">validatePalette</span> (line <span class="line-number">5186</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			validatePalette
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$Colors</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Surrounding</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Colors</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Surrounding</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodwriteBounds" id="writeBounds"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">writeBounds</span> (line <span class="line-number">3156</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			writeBounds
+		</span>
+					([<span class="var-type"></span>&nbsp;<span class="var-name">$Type</span> = <span class="var-default">BOUND_BOTH</span>], [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">NULL</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Type</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodwriteLabel" id="writeLabel"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">writeLabel</span> (line <span class="line-number">5569</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			writeLabel
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$SeriesName</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$Indexes</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$Format</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$SeriesName</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Indexes</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$Format</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Sat, 05 Nov 2011 13:06:38 +0100 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

@@ -1,18 +1,4 @@
 <?php
- /*
-     pDraw - class extension with drawing methods
-
-     Version     : 2.1.3
-     Made by     : Jean-Damien POGOLOTTI
-     Last Update : 09/09/11
-
-     This file can be distributed under the license you can find at :
-
-                       http://www.pchart.net/license
-
-     You can find the whole class documentation on the pChart web site.
- */
-
  define("DIRECTION_VERTICAL"		, 690001);
  define("DIRECTION_HORIZONTAL"		, 690002);
 
@@ -100,6 +86,18 @@
  define("AUTO"		, 690000);
  define("OUT_OF_SIGHT"	, -10000000000000);
 
+ /**
+ * pDraw - class extension with drawing methods
+ * This file can be distributed under the license you can find at
+ *                     http://www.pchart.net/license
+ * You can find the whole class documentation on the pChart web site.
+ *
+ * @version    2.1.3
+ * @package    pChart
+ * @subpackage classes
+ * @author     Jean-Damien POGOLOTTI
+ * 
+ */
  class pDraw
   {
    /* Returns the number of drawable series */

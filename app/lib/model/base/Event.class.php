@@ -1,8 +1,12 @@
 <?php
 /**
- * parent class for Klik a Zobrazenie
+ * spoloscny predok pre klik a Zobrazenie
+ * 
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage model
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
  *
- * @author yohny
  */
 class Event
 {

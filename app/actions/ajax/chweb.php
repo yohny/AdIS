@@ -1,4 +1,14 @@
 <?php
+/**
+ * AJAX zmena webu
+ *
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage actions
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
+ *
+ */
+
 Context::getInstance()->getResponse()->setHeaderContentType('application/json');
 
 if (!isset($_POST['web']) || !isset($_POST['csrf_token']))

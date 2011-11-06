@@ -14,9 +14,9 @@ $db = Context::getInstance()->getDatabase();
 $counts = $db->getStatisticsForUser($user, $filter, true);
 $stats = $db->getStatisticsForUser($user, $filter);
 if($user->kategoria=='inzer')
-   $bannery = $db->getBanneryByUser();
+   $bannery = $db->getBanneryByUser($user);
 if($user->kategoria=='zobra')
-   $reklamy = $db->getReklamyByUser();
+   $reklamy = $db->getReklamyByUser($user);
 
 //pre graf
 $_SESSION['stats'] = $stats;

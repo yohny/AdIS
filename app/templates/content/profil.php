@@ -44,7 +44,7 @@ Context::getInstance()->getResponse()->setHeading('profil');
                         <td>Nová adresa:</td>
                         <td>
                             <table style="width: 100%;border-collapse: collapse;"><tr>
-                            <td style="width: 32px;"><input type="text" value="http://" readonly style="border-right-style: none;" onclick="this.form['web'].focus()"></td>
+                            <td style="width: 32px;"><input type="text" value="http://" readonly="readonly" style="border-right-style: none;" onclick="this.form['web'].focus()"></td>
                             <td><input type="text" name="web" maxlength="30" style="border-left-style: none;"></td>
                             </tr></table>
                         </td>

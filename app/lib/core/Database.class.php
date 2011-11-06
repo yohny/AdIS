@@ -1,7 +1,7 @@
 <?php
 /**
  * trieda reprezentujuca databazu
- * 
+ *
  * @version    1.0
  * @package    AdIS
  * @subpackage core
@@ -115,7 +115,7 @@ class Database
     /**
      * vrati velkost na zaklade primarneho kluca
      * @param int $id primarny kluc
-     * @return Velkost 
+     * @return Velkost
      */
     public function getVelkostByPK($id)
     {
@@ -147,21 +147,39 @@ class Database
     }
 
     /**
-     * vrati vsetky bannery aktualne prihlaseneho usera,
-     * pri adminovi vrati vsetky
+     * vrati vsetky bannery
+     *
      * @return Banner array
      */
-    public function getBanneryByUser()
+    public function getAllFromBannery()
     {
-        if(!Context::getInstance()->getUser())
-            throw new Exception ('Neprihlásený používateľ');
-        if(Context::getInstance()->getUser()->kategoria=='zobra')
-            throw new Exception ('Zlá kategória používateľa');
+        $query = "SELECT bannery.*, sirka, vyska, nazov
+            FROM bannery JOIN velkosti ON (bannery.velkost=velkosti.id)";
+        /* @var $results mysqli_result */
+        $results = $this->conn->query($query);
+        $objects = array();
+        while ($result = $results->fetch_object())
+        {
+            $object = new Banner($result->id, $result->user, new Velkost($result->velkost, $result->sirka, $result->vyska, $result->nazov), $result->path);
+            $objects[] = $object;
+        }
+        return $objects;
+    }
 
-        $query = "SELECT bannery.*, velkosti.sirka, velkosti.vyska, velkosti.nazov FROM bannery JOIN velkosti ON (bannery.velkost=velkosti.id)";
-        if (Context::getInstance()->getUser()->kategoria != 'admin')
-            $query.= " WHERE user=".Context::getInstance()->getUser()->id;
-        $query.= " ORDER BY user,velkosti.nazov";
+    /**
+     * vrati vsetky bannery daneho pouzivatela
+     *
+     * @param User $user
+     * @return Banner array
+     */
+    public function getBanneryByUser(User $user)
+    {
+        if($user->kategoria!='inzer')
+            throw new Exception ("Zlá kategória používateľa ($user->kategoria)");
+
+        $query = "SELECT bannery.*, sirka, vyska, nazov
+            FROM bannery JOIN velkosti ON (bannery.velkost=velkosti.id)
+            WHERE user=$user->id";
         /* @var $results mysqli_result */
         $results = $this->conn->query($query);
         $objects = array();
@@ -176,11 +194,13 @@ class Database
     /**
      * vrati banner na zaklade primarneho kluca
      * @param int $id primarny kluc
-     * @return Banner 
+     * @return Banner
      */
     public function getBannerByPK($id)
     {
-        $query = "SELECT bannery.*, velkosti.sirka, velkosti.vyska, velkosti.nazov FROM bannery JOIN velkosti ON (bannery.velkost=velkosti.id) WHERE bannery.id=$id";
+        $query = "SELECT bannery.*, velkosti.sirka, velkosti.vyska, velkosti.nazov
+            FROM bannery JOIN velkosti ON (bannery.velkost=velkosti.id)
+            WHERE bannery.id=$id";
         /* @var $result mysqli_result */
         $result = $this->conn->query($query);
         if (!$result || $result->num_rows != 1)
@@ -212,21 +232,39 @@ class Database
     }
 
     /**
-     * vrati vsetky reklamy aktualne prihlaseneho usera,
-     * pri adminovi vrati vsetky
+     * vrati vsetky reklamy
+     *
      * @return Reklama array
      */
-    public function getReklamyByUser()
+    public function getAllFromReklamy()
     {
-        if(!Context::getInstance()->getUser())
-            throw new Exception ('Neprihlásený používateľ');
-        if(Context::getInstance()->getUser()->kategoria=='inzer')
-            throw new Exception ('Zlá kategória používateľa');
+        $query = "SELECT reklamy.*, sirka, vyska, nazov
+            FROM reklamy JOIN velkosti ON (reklamy.velkost=velkosti.id)";
+        /* @var $results mysqli_result */
+        $results = $this->conn->query($query);
+        $objects = array();
+        while ($result = $results->fetch_object())
+        {
+            $object = new Reklama($result->id, $result->user, new Velkost($result->velkost, $result->sirka, $result->vyska, $result->nazov), $result->meno);
+            $objects[] = $object;
+        }
+        return $objects;
+    }
 
-        $query = "SELECT reklamy.*, velkosti.sirka, velkosti.vyska, velkosti.nazov FROM reklamy JOIN velkosti ON (reklamy.velkost=velkosti.id)";
-        if (Context::getInstance()->getUser()->kategoria != 'admin')
-            $query.= " WHERE user=".Context::getInstance()->getUser()->id;
-        $query.= " ORDER BY user,velkosti.nazov";
+    /**
+     * vrati vsetky reklamy daneho pouzivatela,
+     *
+     * @param User $user
+     * @return Reklama array
+     */
+    public function getReklamyByUser(User $user)
+    {
+        if($user->kategoria!='zobra')
+            throw new Exception ("Zlá kategória používateľa ($user->kategoria)");
+
+        $query = "SELECT reklamy.*, sirka, vyska, nazov
+            FROM reklamy JOIN velkosti ON (reklamy.velkost=velkosti.id)
+            WHERE user=$user->id";
         /* @var $results mysqli_result */
         $results = $this->conn->query($query);
         $objects = array();
@@ -241,11 +279,13 @@ class Database
     /**
      * vrati reklamu na zaklade primarneho kluca
      * @param int $id primarny kluc
-     * @return Reklama 
+     * @return Reklama
      */
     public function getReklamaByPK($id)
     {
-        $query = "SELECT reklamy.*, velkosti.sirka, velkosti.vyska, velkosti.nazov FROM reklamy JOIN velkosti ON (reklamy.velkost=velkosti.id) WHERE reklamy.id=$id";
+        $query = "SELECT reklamy.*, velkosti.sirka, velkosti.vyska, velkosti.nazov
+            FROM reklamy JOIN velkosti ON (reklamy.velkost=velkosti.id)
+            WHERE reklamy.id=$id";
         /* @var $result mysqli_result */
         $result = $this->conn->query($query);
         if (!$result || $result->num_rows != 1)
@@ -455,7 +495,7 @@ class Database
     /**
      * vrati zobrazenie na zaklade primarneho kluca
      * @param int $id primarny kluc
-     * @return Zobrazenie 
+     * @return Zobrazenie
      */
     public function getZobrazenieByPK($id)
     {

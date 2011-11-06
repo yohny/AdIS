@@ -1,7 +1,7 @@
 <?php
 /**
  * trieda zabezpecujuca autoloading tried aplikacie, singleton
- * 
+ *
  * @version    1.0
  * @package    AdIS
  * @author     Ján Neščivera <jan.nescivera@gmail.com>
@@ -15,7 +15,7 @@ class Autoloader
      * @var string
      */
     private $baseDir = null;
-    
+
     /**
      * holds instance of this class
      * @var Autoloader

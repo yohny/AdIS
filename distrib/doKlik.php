@@ -1,4 +1,14 @@
 <?php
+/**
+ * spracovanie kliknutia
+ *
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage distribution
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
+ *
+ */
+
 function customError($errno, $errstr) //error handler function
 {
     header("Location: http://{$_SERVER["HTTP_HOST"]}/klikerror?msg=$errstr");

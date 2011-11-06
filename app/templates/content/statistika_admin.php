@@ -1,5 +1,6 @@
 <?php
 Context::getInstance()->getResponse()->setHeading('štatistika');
+
 if (Context::getInstance()->getUser()->kategoria != 'admin')
 {
     echo "Nepovolený prístup";
@@ -17,15 +18,15 @@ if(!$filter->parse($_POST))
 $db = Context::getInstance()->getDatabase();
 $pocet = $db->getStatisticsForAdmin($filter, true);
 $events = $db->getStatisticsForAdmin($filter);
-$bannery = $db->getBanneryByUser();
-$reklamy = $db->getReklamyByUser();
+$bannery = $db->getAllFromBannery();
+$reklamy = $db->getAllFromReklamy();
 
 //pre PAGER
 $aktPage = $filter->page;
 $pages = ceil($pocet/Config::getStatRowsPerPage());
 ?>
 <h4>Filter</h4>
-<form name="filter" action="" method="POST">
+<form name="filter" action="" method="post">
     <input type="hidden" name="page" value="1"/>
     <table>
         <tr>

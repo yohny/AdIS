@@ -1,4 +1,14 @@
 <?php
+/**
+ * generator obrazku grafu
+ *
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage images
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
+ *
+ */
+
 mb_internal_encoding("utf-8");
 require_once '../app/lib/Autoloader.class.php';
 Autoloader::registerModel();

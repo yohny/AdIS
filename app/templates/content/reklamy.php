@@ -8,7 +8,7 @@ if (Context::getInstance()->getUser()->kategoria != 'zobra')
 }
 
 $db = Context::getInstance()->getDatabase();
-$reklamy = $db->getReklamyByUser();   //ziskanie reklam pouzivatela
+$reklamy = $db->getReklamyByUser(Context::getInstance()->getUser());   //ziskanie reklam pouzivatela
 $velkosti = $db->getAllFromVelkosti();      //ziskanie typov bannerov
 $kategorie = $db->getAllFromKategorie();    //ziskanie kategorii
 
@@ -52,7 +52,7 @@ if(count($reklamy)==0): ?>
             <a href="#" onclick="show2('tr<?php echo $reklama->id; ?>');return false;"><?php echo $reklama; ?></a>
         </td>
         <td>
-            <form method="POST" action="/action/zmaz">
+            <form method="post" action="/action/zmaz">
                 <input type="hidden" name="zmaz" value="<?php echo $reklama->id;?>">
                 <input type="hidden" name="csrf_token" value="<?php echo Context::getInstance()->getCsrfToken(); ?>">
                 <input type="button" value="Zmaž" onclick="if(confirm('Naozaj odstrániť?')) this.form.submit();">
@@ -78,7 +78,7 @@ document.write(unescape("%3Cscript type=\"text\/javascript\" language=\"javascri
 
 <hr>
 <h4>Pridanie novej reklamy:</h4>
-<form name="add_form" action="/action/pridajReklamu" method="POST" enctype="multipart/form-data">
+<form name="add_form" action="/action/pridajReklamu" method="post" enctype="multipart/form-data">
     <table cellspacing="5" style="text-align:left;">
         <tr>
             <td title="Zvoľte rozmerový typ reklamnej jednotky.">

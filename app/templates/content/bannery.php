@@ -8,7 +8,7 @@ if (Context::getInstance()->getUser()->kategoria != 'inzer')
 }
 
 $db = Context::getInstance()->getDatabase();
-$bannery = $db->getBanneryByUser();   //ziskanie bannerov pouzivatela
+$bannery = $db->getBanneryByUser(Context::getInstance()->getUser());   //ziskanie bannerov pouzivatela
 $velkosti = $db->getAllFromVelkosti();      //ziskanie typov bannerov
 $kategorie = $db->getAllFromKategorie();    //ziskanie kategorii
 
@@ -52,7 +52,7 @@ if(count($bannery)==0): ?>
             <a href="#" onclick="show2('tr<?php echo $banner->id; ?>');return false;"><?php echo $banner; ?></a>
         </td>
         <td>
-            <form method="POST" action="/action/zmaz">
+            <form method="post" action="/action/zmaz">
                 <input type="hidden" name="zmaz" value="<?php echo $banner->id; ?>">
                 <input type="hidden" name="csrf_token" value="<?php echo Context::getInstance()->getCsrfToken(); ?>">
                 <input type="button" value="Zmaž" onclick="if(confirm('Naozaj odstrániť?')) this.form.submit();">
@@ -73,7 +73,7 @@ if(count($bannery)==0): ?>
 
 <hr>
 <h4>Pridanie nového banneru:</h4>
-<form name="upl_form" action="/action/pridajBanner" method="POST" enctype="multipart/form-data">
+<form name="upl_form" action="/action/pridajBanner" method="post" enctype="multipart/form-data">
     <table cellspacing="5" style="text-align:left;">
         <tr title="Zvoľte rozmerový typ reklamného banneru.">
             <td>

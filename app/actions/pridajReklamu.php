@@ -1,4 +1,14 @@
 <?php
+/**
+ * pridanie reklamy
+ *
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage actions
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
+ *
+ */
+
 if (Context::getInstance()->getUser()->kategoria != 'zobra')
 {
     echo "Nepovolený prístup";

@@ -1,4 +1,14 @@
 <?php
+/**
+ * prihlasenie
+ *
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage actions
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
+ *
+ */
+
 if(!isset($_POST['login']) || !isset($_POST['heslo']) || !isset($_POST['csrf_token']))
 {
     echo 'nekompletne data';

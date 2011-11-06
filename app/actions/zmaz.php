@@ -1,4 +1,14 @@
 <?php
+/**
+ * odstranenie banneru/reklamy
+ *
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage actions
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
+ *
+ */
+
 if (!isset($_POST['zmaz']) || !is_numeric($_POST['zmaz']) || !isset($_POST['csrf_token']))
 {
     echo 'Neplatne data';

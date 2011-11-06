@@ -1,4 +1,14 @@
 <?php
+/**
+ * AJAX zmena hesla
+ *
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage actions
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
+ *
+ */
+
 Context::getInstance()->getResponse()->setHeaderContentType('application/json');
 
 if (!isset($_POST['old']) || !isset($_POST['new']) || !isset($_POST['csrf_token']))

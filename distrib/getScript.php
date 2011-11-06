@@ -1,4 +1,14 @@
 <?php
+/**
+ * generator javascriptu
+ *
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage distribution
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
+ *
+ */
+
 header('Content-type: application/javascript; charset=UTF-8');
 
 if (!isset($_GET['rekl']) || !is_numeric($_GET['rekl']))

@@ -1,4 +1,14 @@
 <?php
+/**
+ * poskytnutie banneru
+ *
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage distribution
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
+ *
+ */
+
 if (!isset($_GET['id']) || !is_numeric($_GET['id']) || !isset($_GET['view']) || !is_numeric($_GET['view']))
 {
     header("HTTP/1.1 403 Zle parametre");

@@ -1,4 +1,14 @@
 <?php
+/**
+ * AJAX overenie unikatnosti loginu
+ *
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage actions
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
+ *
+ */
+
 Context::getInstance()->getResponse()->setHeaderContentType('text/plain');
 
 if (!isset($_GET['login']))

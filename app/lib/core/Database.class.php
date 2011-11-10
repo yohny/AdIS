@@ -15,6 +15,16 @@ class Database
      * @var mysqli
      */
     public $conn;
+    private $userBaseSelect = "SELECT id, login, web, kategoria FROM users";
+    private $velkostiBaseSelect = "SELECT * FROM velkosti";
+    private $kategorieBaseSelect = "SELECT * FROM kategorie";
+    private $banneryBaseSelect = "SELECT bannery.*, sirka, vyska, nazov FROM bannery JOIN velkosti ON (bannery.velkost=velkosti.id)";
+    private $reklamyBaseSelect = "SELECT reklamy.*, sirka, vyska, nazov FROM reklamy JOIN velkosti ON (reklamy.velkost=velkosti.id)";
+    const USER = 1;
+    const VELKOST = 2;
+    const KATEGORIA = 3;
+    const BANNER = 4;
+    const REKLAMA = 5;
 
     public function __construct()
     {
@@ -33,6 +43,7 @@ class Database
         $this->conn->close();
     }
 
+
     /**
      * vrati objekt pouzivatela na zaklade prihlasovacich udajov
      * @param string $login
@@ -41,7 +52,7 @@ class Database
      */
     public function  getUserByCredentials($login, $password)
     {
-        if (!$stm = $this->conn->prepare("SELECT id, login, web, kategoria FROM users WHERE login=? AND heslo=MD5(?)"))
+        if (!$stm = $this->conn->prepare($this->userBaseSelect." WHERE login=? AND heslo=MD5(?)"))
             return null;
         $stm->bind_param('ss', $login, $password);
         if (!$stm->execute())
@@ -64,7 +75,7 @@ class Database
     public function getUserByReferer($referer)
     {
         $referer = preg_replace('/^http:\/\/([^\/]+).*$/', '$1', $referer);
-        if (!$stm = $this->conn->prepare("SELECT id, login, web, kategoria FROM users WHERE web LIKE ? AND kategoria='zobra'"))
+        if (!$stm = $this->conn->prepare($this->userBaseSelect." WHERE web LIKE ? AND kategoria='zobra'"))
             return null;
         $stm->bind_param('s', $referer);
         if (!$stm->execute())
@@ -85,31 +96,20 @@ class Database
      */
     public function getUserByPK($id)
     {
-        $query = "SELECT * FROM users WHERE id=$id";
-        /* @var $result mysqli_result */
+        $query = $this->userBaseSelect." WHERE  id=$id";
         $result = $this->conn->query($query);
-        if (!$result || $result->num_rows != 1)
-            return null;
-        $object = $result->fetch_object();
-        return new User($object->id, $object->login, $object->web, $object->kategoria);
+        return $this->resultsetToModel($result, self::USER, false);
     }
 
     /**
      * vrati vsetky zaznamy z tabulky VELKOSTI
-     * @return Velkost
+     * @return Velkost array
      */
     public function getAllFromVelkosti()
     {
-        $query = "SELECT * FROM velkosti ORDER BY nazov";
-        /* @var $results mysqli_result */
+        $query = $this->velkostiBaseSelect." ORDER BY nazov";
         $results = $this->conn->query($query);
-        $objects = array();
-        while ($result = $results->fetch_object())
-        {
-            $object = new Velkost($result->id, $result->sirka, $result->vyska, $result->nazov);
-            $objects[] = $object;
-        }
-        return $objects;
+        return $this->resultsetToModel($results, self::VELKOST);
     }
 
     /**
@@ -119,31 +119,20 @@ class Database
      */
     public function getVelkostByPK($id)
     {
-        $query = "SELECT * FROM velkosti WHERE id=$id";
-        /* @var $result mysqli_result */
+        $query = $this->velkostiBaseSelect." WHERE id=$id";
         $result = $this->conn->query($query);
-        if (!$result || $result->num_rows != 1)
-            return null;
-        $object = $result->fetch_object();
-        return new Velkost($object->id, $object->sirka, $object->vyska, $object->nazov);
+        return $this->resultsetToModel($result, self::VELKOST, false);
     }
 
     /**
      * vrati vsetky zaznamy z tabulky KATEGORIE
-     * @return Kategoria
+     * @return Kategoria array
      */
     public function getAllFromKategorie()
     {
-        $query = "SELECT * FROM kategorie ORDER BY nazov";
-        /* @var $results mysqli_result */
+        $query = $this->kategorieBaseSelect." ORDER BY nazov";
         $results = $this->conn->query($query);
-        $objects = array();
-        while ($result = $results->fetch_object())
-        {
-            $object = new Kategoria($result->id, $result->nazov);
-            $objects[] = $object;
-        }
-        return $objects;
+        return $this->resultsetToModel($results, self::KATEGORIA);
     }
 
     /**
@@ -153,17 +142,9 @@ class Database
      */
     public function getAllFromBannery()
     {
-        $query = "SELECT bannery.*, sirka, vyska, nazov
-            FROM bannery JOIN velkosti ON (bannery.velkost=velkosti.id)";
-        /* @var $results mysqli_result */
+        $query = $this->banneryBaseSelect." ORDER BY bannery.id";
         $results = $this->conn->query($query);
-        $objects = array();
-        while ($result = $results->fetch_object())
-        {
-            $object = new Banner($result->id, $result->user, new Velkost($result->velkost, $result->sirka, $result->vyska, $result->nazov), $result->path);
-            $objects[] = $object;
-        }
-        return $objects;
+        return $this->resultsetToModel($results, self::BANNER);
     }
 
     /**
@@ -176,19 +157,9 @@ class Database
     {
         if($user->kategoria!='inzer')
             throw new Exception ("Zlá kategória používateľa ($user->kategoria)");
-
-        $query = "SELECT bannery.*, sirka, vyska, nazov
-            FROM bannery JOIN velkosti ON (bannery.velkost=velkosti.id)
-            WHERE user=$user->id";
-        /* @var $results mysqli_result */
+        $query = $this->banneryBaseSelect." WHERE user=$user->id";
         $results = $this->conn->query($query);
-        $objects = array();
-        while ($result = $results->fetch_object())
-        {
-            $object = new Banner($result->id, $result->user, new Velkost($result->velkost, $result->sirka, $result->vyska, $result->nazov), $result->path);
-            $objects[] = $object;
-        }
-        return $objects;
+        return $this->resultsetToModel($results, self::BANNER);
     }
 
     /**
@@ -198,15 +169,9 @@ class Database
      */
     public function getBannerByPK($id)
     {
-        $query = "SELECT bannery.*, velkosti.sirka, velkosti.vyska, velkosti.nazov
-            FROM bannery JOIN velkosti ON (bannery.velkost=velkosti.id)
-            WHERE bannery.id=$id";
-        /* @var $result mysqli_result */
+        $query = $this->banneryBaseSelect." WHERE bannery.id=$id";
         $result = $this->conn->query($query);
-        if (!$result || $result->num_rows != 1)
-            return null;
-        $object = $result->fetch_object();
-        return new Banner($object->id, $object->user, new Velkost($object->velkost, $object->sirka, $object->vyska, $object->nazov), $object->path);
+        return $this->resultsetToModel($result, self::BANNER, false);
     }
 
     /**
@@ -223,12 +188,8 @@ class Database
             WHERE bannery.velkost={$reklama->velkost->id}
             AND kategoria_banner.kategoria IN (SELECT kategoria FROM kategoria_reklama WHERE reklama=$reklama->id)
             ORDER BY RAND() LIMIT 1";
-        /* @var $result mysqli_result */
         $result = $this->conn->query($query);
-        if (!$result || $result->num_rows != 1)
-            return null;
-        $object = $result->fetch_object();
-        return new Banner($object->id, $object->user, new Velkost($object->velkost, $object->sirka, $object->vyska, $object->nazov), $object->path);
+        return $this->resultsetToModel($result, self::BANNER, false);
     }
 
     /**
@@ -238,17 +199,9 @@ class Database
      */
     public function getAllFromReklamy()
     {
-        $query = "SELECT reklamy.*, sirka, vyska, nazov
-            FROM reklamy JOIN velkosti ON (reklamy.velkost=velkosti.id)";
-        /* @var $results mysqli_result */
+        $query = $this->reklamyBaseSelect." ORDER BY reklamy.id)";
         $results = $this->conn->query($query);
-        $objects = array();
-        while ($result = $results->fetch_object())
-        {
-            $object = new Reklama($result->id, $result->user, new Velkost($result->velkost, $result->sirka, $result->vyska, $result->nazov), $result->meno);
-            $objects[] = $object;
-        }
-        return $objects;
+        return $this->resultsetToModel($results, self::REKLAMA);
     }
 
     /**
@@ -261,19 +214,9 @@ class Database
     {
         if($user->kategoria!='zobra')
             throw new Exception ("Zlá kategória používateľa ($user->kategoria)");
-
-        $query = "SELECT reklamy.*, sirka, vyska, nazov
-            FROM reklamy JOIN velkosti ON (reklamy.velkost=velkosti.id)
-            WHERE user=$user->id";
-        /* @var $results mysqli_result */
+        $query = $this->reklamyBaseSelect." WHERE user=$user->id";
         $results = $this->conn->query($query);
-        $objects = array();
-        while ($result = $results->fetch_object())
-        {
-            $object = new Reklama($result->id, $result->user, new Velkost($result->velkost, $result->sirka, $result->vyska, $result->nazov), $result->meno);
-            $objects[] = $object;
-        }
-        return $objects;
+        return $this->resultsetToModel($results, self::REKLAMA);
     }
 
     /**
@@ -283,15 +226,10 @@ class Database
      */
     public function getReklamaByPK($id)
     {
-        $query = "SELECT reklamy.*, velkosti.sirka, velkosti.vyska, velkosti.nazov
-            FROM reklamy JOIN velkosti ON (reklamy.velkost=velkosti.id)
-            WHERE reklamy.id=$id";
+        $query = $this->reklamyBaseSelect." WHERE reklamy.id=$id";
         /* @var $result mysqli_result */
         $result = $this->conn->query($query);
-        if (!$result || $result->num_rows != 1)
-            return null;
-        $object = $result->fetch_object();
-        return new Reklama($object->id, $object->user, new Velkost($object->velkost, $object->sirka, $object->vyska, $object->nazov), $object->meno);
+        return $this->resultsetToModel($result, self::REKLAMA, false);
     }
 
     /**
@@ -304,7 +242,7 @@ class Database
     public function getStatisticsForUser(User $user, Filter $filter, $countOnly = false)
     {
         if($user->kategoria!='zobra' && $user->kategoria!='inzer')
-            throw new Exception ('Zlá kategória používateľa');
+            throw new Exception ("Zlá kategória používateľa ($user->kategoria)");
 
         if ($user->kategoria == 'inzer')
         {
@@ -506,6 +444,47 @@ class Database
             return null;
         $object = $result->fetch_object();
         return new Zobrazenie($object->id, $object->cas, $object->zobra, $object->reklama, $object->inzer, $object->banner, $object->clicked);
+    }
+
+    /**
+     * pretransformuje MySQL resultset na objekty pozadovaneho typu
+     * @param mysqli_result $resultset result query na databazu
+     * @param int $model urcuje triedu modelu, na ktorej instancie sa ma previest resultset
+     * @param bool $toArray ak false vrati jediny objekt|null inak vracia pole objektov
+     */
+    private function resultsetToModel($resultset, $model, $toArray = true)
+    {
+        if(!$resultset)
+            throw new Exception("Databázová chyba: Prázdny resultset");
+        $objects = array();
+        while ($object = $resultset->fetch_object())
+        {
+            switch ($model)
+            {
+                case self::USER:
+                    $objects[] = new User($object->id, $object->login, $object->web, $object->kategoria);
+                    break;
+                case self::VELKOST:
+                    $objects[] = new Velkost($object->id, $object->sirka, $object->vyska, $object->nazov);
+                    break;
+                case self::KATEGORIA:
+                    $objects[] = new Kategoria($object->id, $object->nazov);
+                    break;
+                case self::BANNER:
+                    $objects[] = new Banner($object->id, $object->user, new Velkost($object->velkost, $object->sirka, $object->vyska, $object->nazov), $object->path);
+                    break;
+                case self::REKLAMA:
+                    $objects[] = new Reklama($object->id, $object->user, new Velkost($object->velkost, $object->sirka, $object->vyska, $object->nazov), $object->meno);
+                    break;
+                default :
+                    throw new Exception("Nepodporovaná trieda modelu");
+                    break;
+            }
+        }
+        if(!$toArray)
+            return count($objects)!=1?null:$objects[0];
+        else
+            return $objects;
     }
 }
 ?>

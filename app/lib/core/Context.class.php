@@ -1,7 +1,7 @@
 <?php
 /**
  * trieda reprezentuje kontext aktualnej poziadavky, singleton
- * 
+ *
  * @version    1.0
  * @package    AdIS
  * @subpackage core
@@ -15,19 +15,19 @@ class Context
      * @var Request
      */
     private $request = null;
-    
+
     /**
      * current response instance
      * @var Response
      */
     private $response = null;
-    
+
     /**
      * current database instance
      * @var Request
      */
     private $database = null;
-    
+
     /**
      * holds instance of this class
      * @var Context
@@ -36,7 +36,7 @@ class Context
 
     private function __construct()
     {
-        $this->request = new Request(isset($_SERVER['REDIRECT_URL'])?$_SERVER['REDIRECT_URL']:'/');
+        $this->request = new Request($_SERVER['REQUEST_URI']);
         $this->response = new Response('Ad-IS');
     }
 

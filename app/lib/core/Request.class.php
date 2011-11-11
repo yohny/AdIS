@@ -1,7 +1,7 @@
 <?php
 /**
  * trieda reprezentuje aktualnu poziadavku uzivatela (http request)
- * 
+ *
  * @version    1.0
  * @package    AdIS
  * @subpackage core
@@ -11,11 +11,11 @@
 class Request
 {
     /**
-     * adresa pozadovana uzivatelom (requested url)
+     * adresa pozadovana uzivatelom (request_uri) bez query stringu
      * @var string
      */
     private $uri = '';
-    
+
     /**
      * pole nazvov suborov alebo ciest (bez .php), ktore su bez layoutu (ajax)
      * !po mapingu na fyzicke cesty
@@ -25,7 +25,7 @@ class Request
         'checklogin',
         'chpas',
         'chweb');
-    
+
     /**
      * pole nazvov suborov alebo ciest (bez .php), ktore su pristupne bez lognutia
      * !po mapingu na fyzicke cesty!
@@ -39,19 +39,19 @@ class Request
         'klikerror',
         'prihlas',
         'registruj');
-    
+
     /**
      * flag urcujuci ci je potrebny layout
      * @var bool
      */
     public $hasTemplate = true;
-    
+
     /**
      * flag urcujuci ci pozadovany subor existuje
      * @var bool
      */
     public $fileExists = true;
-    
+
     /**
      * flag oznacujuci ci pozadovana stranka je pristuna verejne
      * alebo len prihlasenym userom
@@ -61,21 +61,19 @@ class Request
 
     /**
      * nastavi instancne premenne na zaklade spracovania parametra
-     * @param string $redir_url pozadovana adresa (url)
+     * @param string $req_url pozadovana adresa (url) aj s query stringom (= cast za '?')
      */
-    public function __construct($redir_url)
+    public function __construct($req_uri)
     {
-        //odstrani lomitko na zaciatku a pripadne .php na konci
-        //(lebo apache moze doplnat .php ak tym vznikne existujuci subor)
-        $this->uri = preg_replace(array("/^\//", "/\.php$/"), "", $redir_url);
-        if ($this->uri == '')//index
+        $this->uri = preg_replace("/\?.*$/", "", $req_uri); //odstrani query string
+        if ($this->uri == '/')//index
             $this->uri = TEMPLATES_DIR.'/content/about';
         else
         {
             //maping logickych url adries na fyzicke cesty (relativne voci index.php)
-            $this->uri = preg_replace("/^(\w+)$/", TEMPLATES_DIR."/content/$1", $this->uri);
-            $this->uri = preg_replace("/^action\/(\w+)$/", TEMPLATES_DIR."/../actions/$1", $this->uri);
-            $this->uri = preg_replace("/^ajax\/(\w+)$/", TEMPLATES_DIR."/../actions/ajax/$1", $this->uri);
+            $this->uri = preg_replace("/^\/(\w+)$/", TEMPLATES_DIR."/content/$1", $this->uri);
+            $this->uri = preg_replace("/^\/action\/(\w+)$/", TEMPLATES_DIR."/../actions/$1", $this->uri);
+            $this->uri = preg_replace("/^\/ajax\/(\w+)$/", TEMPLATES_DIR."/../actions/ajax/$1", $this->uri);
         }
 
         foreach ($this->withoutTemplate as $noTemp) //checking na tamplate

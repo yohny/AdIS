@@ -14,7 +14,8 @@ require_once '../app/lib/Autoloader.class.php';
 Autoloader::registerCore();
 Autoloader::registerModel();
 
-$file = '.'.$_SERVER['REDIRECT_URL'].'.php'; //REDIRECT_URL zacina s '/'
+$url = preg_replace("/\?.*$/", "", $_SERVER['REQUEST_URI']); //odstranenie query stringy
+$file = '.'.$url.'.php'; //REQUEST_URI zacina s '/'
 if(file_exists($file))
     require_once $file;
 else

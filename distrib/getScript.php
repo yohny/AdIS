@@ -31,7 +31,7 @@ try
     //zapise zobrazenie do DB
     $zobr = new Zobrazenie(null, null, $reklama->userId, $reklama->id, $banner->userId, $banner->id, null);
     $zobr->save($db);
-    $view = $db->conn->insert_id;
+    $view = $db->insert_id;
 }
 catch (Exception $ex)
 {

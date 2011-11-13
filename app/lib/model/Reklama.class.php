@@ -25,27 +25,27 @@ class Reklama extends BanRek
     public function save($kategorie)
     {
         $db = Context::getInstance()->getDatabase();
-        $db->conn->autocommit(false);
+        $db->autocommit(false);
         $query = "INSERT INTO reklamy VALUES(NULL, $this->userId, {$this->velkost->id}, '$this->name')";
-        if (!$db->conn->query($query))
+        if (!$db->query($query))
         {
-            $db->conn->rollback();
-            $db->conn->autocommit(true);
+            $db->rollback();
+            $db->autocommit(true);
             return false;
         }
-        $this->id = $db->conn->insert_id;
+        $this->id = $db->insert_id;
         foreach ($kategorie as $kat)
         {
             $query = "INSERT INTO kategoria_reklama VALUES (NULL, $kat, $this->id)";
-            if (!$db->conn->query($query))
+            if (!$db->query($query))
             {
-                $db->conn->rollback();
-                $db->conn->autocommit(true);
+                $db->rollback();
+                $db->autocommit(true);
                 return false;
             }
         }
-        $db->conn->commit();
-        $db->conn->autocommit(true);
+        $db->commit();
+        $db->autocommit(true);
         return true;
     }
 

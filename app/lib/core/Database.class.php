@@ -8,13 +8,8 @@
  * @author     Ján Neščivera <jan.nescivera@gmail.com>
  *
  */
-class Database
+class Database extends mysqli
 {
-    /**
-     * actual mysqli connection object
-     * @var mysqli
-     */
-    public $conn;
     private $userBaseSelect = "SELECT id, login, web, kategoria FROM users";
     private $velkostiBaseSelect = "SELECT * FROM velkosti";
     private $kategorieBaseSelect = "SELECT * FROM kategorie";
@@ -28,19 +23,15 @@ class Database
 
     public function __construct()
     {
-        $this->conn = @new mysqli(Config::getDbHost() , Config::getDbUser(), Config::getDbPassword(), Config::getDbName());
+        @parent::__construct(Config::getDbHost() , Config::getDbUser(), Config::getDbPassword(), Config::getDbName());
         if (mysqli_connect_errno())
             throw new Exception('Nepodarilo sa pripojiť na databázu!');
-        //mysql_query("SET CHARACTER SET utf8");
-        //mysql_query("SET NAMES 'utf8'")
-        //bool mysql_set_charset( string $charset [, resource $link_identifier]) - preferred way
-        //to change the charset. Using mysql_query() to execute SET NAMES .. (SET CHARACTER SET ..) is not recommended.
-        $this->conn->set_charset('utf8');
+        $this->set_charset('utf8');
     }
 
     public function __destruct()
     {
-        $this->conn->close();
+        $this->close();
     }
 
 
@@ -52,7 +43,7 @@ class Database
      */
     public function  getUserByCredentials($login, $password)
     {
-        if (!$stm = $this->conn->prepare($this->userBaseSelect." WHERE login=? AND heslo=MD5(?)"))
+        if (!$stm = $this->prepare($this->userBaseSelect." WHERE login=? AND heslo=MD5(?)"))
             return null;
         $stm->bind_param('ss', $login, $password);
         if (!$stm->execute())
@@ -75,7 +66,7 @@ class Database
     public function getUserByReferer($referer)
     {
         $referer = preg_replace('/^http:\/\/([^\/]+).*$/', '$1', $referer);
-        if (!$stm = $this->conn->prepare($this->userBaseSelect." WHERE web LIKE ? AND kategoria='zobra'"))
+        if (!$stm = $this->prepare($this->userBaseSelect." WHERE web LIKE ? AND kategoria='zobra'"))
             return null;
         $stm->bind_param('s', $referer);
         if (!$stm->execute())
@@ -97,7 +88,7 @@ class Database
     public function getUserByPK($id)
     {
         $query = $this->userBaseSelect." WHERE  id=$id";
-        $result = $this->conn->query($query);
+        $result = $this->query($query);
         return $this->resultsetToModel($result, self::USER, false);
     }
 
@@ -108,7 +99,7 @@ class Database
     public function getAllFromVelkosti()
     {
         $query = $this->velkostiBaseSelect." ORDER BY nazov";
-        $results = $this->conn->query($query);
+        $results = $this->query($query);
         return $this->resultsetToModel($results, self::VELKOST);
     }
 
@@ -120,7 +111,7 @@ class Database
     public function getVelkostByPK($id)
     {
         $query = $this->velkostiBaseSelect." WHERE id=$id";
-        $result = $this->conn->query($query);
+        $result = $this->query($query);
         return $this->resultsetToModel($result, self::VELKOST, false);
     }
 
@@ -131,7 +122,7 @@ class Database
     public function getAllFromKategorie()
     {
         $query = $this->kategorieBaseSelect." ORDER BY nazov";
-        $results = $this->conn->query($query);
+        $results = $this->query($query);
         return $this->resultsetToModel($results, self::KATEGORIA);
     }
 
@@ -143,7 +134,7 @@ class Database
     public function getAllFromBannery()
     {
         $query = $this->banneryBaseSelect." ORDER BY bannery.id";
-        $results = $this->conn->query($query);
+        $results = $this->query($query);
         return $this->resultsetToModel($results, self::BANNER);
     }
 
@@ -158,7 +149,7 @@ class Database
         if($user->kategoria!='inzer')
             throw new Exception ("Zlá kategória používateľa ($user->kategoria)");
         $query = $this->banneryBaseSelect." WHERE user=$user->id";
-        $results = $this->conn->query($query);
+        $results = $this->query($query);
         return $this->resultsetToModel($results, self::BANNER);
     }
 
@@ -170,7 +161,7 @@ class Database
     public function getBannerByPK($id)
     {
         $query = $this->banneryBaseSelect." WHERE bannery.id=$id";
-        $result = $this->conn->query($query);
+        $result = $this->query($query);
         return $this->resultsetToModel($result, self::BANNER, false);
     }
 
@@ -188,7 +179,7 @@ class Database
             WHERE bannery.velkost={$reklama->velkost->id}
             AND kategoria_banner.kategoria IN (SELECT kategoria FROM kategoria_reklama WHERE reklama=$reklama->id)
             ORDER BY RAND() LIMIT 1";
-        $result = $this->conn->query($query);
+        $result = $this->query($query);
         return $this->resultsetToModel($result, self::BANNER, false);
     }
 
@@ -200,7 +191,7 @@ class Database
     public function getAllFromReklamy()
     {
         $query = $this->reklamyBaseSelect." ORDER BY reklamy.id)";
-        $results = $this->conn->query($query);
+        $results = $this->query($query);
         return $this->resultsetToModel($results, self::REKLAMA);
     }
 
@@ -215,7 +206,7 @@ class Database
         if($user->kategoria!='zobra')
             throw new Exception ("Zlá kategória používateľa ($user->kategoria)");
         $query = $this->reklamyBaseSelect." WHERE user=$user->id";
-        $results = $this->conn->query($query);
+        $results = $this->query($query);
         return $this->resultsetToModel($results, self::REKLAMA);
     }
 
@@ -228,7 +219,7 @@ class Database
     {
         $query = $this->reklamyBaseSelect." WHERE reklamy.id=$id";
         /* @var $result mysqli_result */
-        $result = $this->conn->query($query);
+        $result = $this->query($query);
         return $this->resultsetToModel($result, self::REKLAMA, false);
     }
 
@@ -323,7 +314,7 @@ class Database
 
         if ($countOnly) //len pocet zaznamov
         {
-            $result = $this->conn->query($query);  /* @var $result mysqli_result */
+            $result = $this->query($query);  /* @var $result mysqli_result */
             $object = $result->fetch_object();
             return array('count' => $object->count, 'views' => $object->vsum, 'clicks' => $object->csum);
         }
@@ -332,7 +323,7 @@ class Database
         $query .= " ORDER BY cas DESC";
         $query .= " LIMIT " . ($filter->page - 1) * $filter->rowsPerPage . ", $filter->rowsPerPage";
 
-        $results = $this->conn->query($query);
+        $results = $this->query($query);
         $objects = array();
         while ($result = $results->fetch_object())
         {
@@ -409,14 +400,14 @@ class Database
         if ($countOnly) //len pocet zaznamov
         {
             $countQuery = preg_replace("/(select) (.*) (from $table)/i", "$1 COUNT(*) AS count $3", $query);  //non-case-sensitive /i, 'from kliky/zobrazenia' aby nenahradilo aj v subquery
-            $result = $this->conn->query($countQuery); /* @var $result mysqli_result */
+            $result = $this->query($countQuery); /* @var $result mysqli_result */
             return $result->fetch_object()->count;
         }
 
         $query .= " ORDER BY cas DESC";
         $query .= " LIMIT " . ($filter->page - 1) * $filter->rowsPerPage . ", $filter->rowsPerPage";
 
-        $results = $this->conn->query($query);
+        $results = $this->query($query);
         $objects = array();
         while ($result = $results->fetch_object())
         {
@@ -439,7 +430,7 @@ class Database
     {
         $query = "SELECT * FROM zobrazenia WHERE id=$id";
         /* @var $result mysqli_result */
-        $result = $this->conn->query($query);
+        $result = $this->query($query);
         if (!$result || $result->num_rows != 1)
             return null;
         $object = $result->fetch_object();

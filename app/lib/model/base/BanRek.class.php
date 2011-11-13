@@ -61,7 +61,7 @@ class BanRek
             $query = "SELECT kategorie.* FROM kategoria_$this->column JOIN kategorie ON (kategoria_$this->column.kategoria=kategorie.id)
             WHERE $this->column=$this->id ORDER BY kategorie.nazov ASC";
             /* @var $result mysqli_result */
-            $results = $db->conn->query($query);
+            $results = $db->query($query);
             while ($result = $results->fetch_object())
             {
                 $object = new Kategoria($result->id, $result->nazov);
@@ -77,16 +77,16 @@ class BanRek
             return false;
 
         $db = Context::getInstance()->getDatabase();
-        $db->conn->autocommit(false);
-        if (!$db->conn->query("DELETE FROM kategoria_$this->column WHERE $this->column=$this->id") ||
-                !$db->conn->query("DELETE FROM $this->table WHERE id=$this->id"))
+        $db->autocommit(false);
+        if (!$db->query("DELETE FROM kategoria_$this->column WHERE $this->column=$this->id") ||
+                !$db->query("DELETE FROM $this->table WHERE id=$this->id"))
         {
-            $db->conn->rollback();
-            $db->conn->autocommit(true);
+            $db->rollback();
+            $db->autocommit(true);
             return false;
         }
-        $db->conn->commit();
-        $db->conn->autocommit(true);
+        $db->commit();
+        $db->autocommit(true);
         return true;
     }
 }

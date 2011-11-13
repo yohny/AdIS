@@ -25,8 +25,6 @@ if (!$velkost)
 else
     $message = Banner::checkFile($_FILES['userfile'], $velkost);
 
-//TODO bannerov aj viac z jedneho typu? ma zmysel? - unikatne filename potom pomocou md5(timestamp)
-//!osetrit vyber banneru do reklamy (eliminovat viacero kandidatov od jedneho usera)
 if (!$message) //banner je OK
 {
     $uploadname = Banner::createFilename($_FILES['userfile']['name'], $velkost);

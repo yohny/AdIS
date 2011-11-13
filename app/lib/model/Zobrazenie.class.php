@@ -22,7 +22,7 @@ class Zobrazenie extends Event
     public function save(Database $db)
     {
         $query = "INSERT INTO zobrazenia VALUES(NULL, NOW(), $this->zobraId, $this->inzerId, $this->reklamaId, $this->bannerId, DEFAULT)";
-        return $db->conn->query($query);
+        return $db->query($query);
     }
 
     /**
@@ -41,7 +41,7 @@ class Zobrazenie extends Event
     public function setClicked(Database $db)
     {
         $query = "UPDATE zobrazenia SET clicked=1 WHERE id=$this->id";
-        if($ret = $db->conn->query($query))
+        if($ret = $db->query($query))
             $this->clicked = true;
         return $ret;
     }
@@ -53,7 +53,7 @@ class Zobrazenie extends Event
     public function delete(Database $db)
     {
         $query = "DELETE FROM zobrazenia WHERE id=$this->id";
-        return $db->conn->query($query);
+        return $db->query($query);
     }
 }
 ?>

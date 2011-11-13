@@ -1,4 +1,9 @@
 <?php
+/**
+ * @todo rafactor to trully use one front controller (at least for /distrib use this one too, form /img its optional)
+ * @todo add unit tests
+ */
+
 mb_internal_encoding("utf-8");
 
 require_once './app/lib/Autoloader.class.php';

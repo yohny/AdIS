@@ -10,26 +10,14 @@
  */
 
 if (Context::getInstance()->getUser()->kategoria != 'zobra')
-{
-    echo "Nepovolený prístup";
-    return;
-}
-if (!isset($_POST['meno']) ||
-    !isset($_POST['velkost']) ||
-    !isset($_POST['kategorie']) ||
-    !is_numeric($_POST['velkost']) ||
-    !isset($_POST['csrf_token']) ||
-    empty($_POST['meno']) ||
+    throw new Exception("Nepovolený prístup!");
+if (!isset($_POST['meno']) || !isset($_POST['velkost']) ||
+    !isset($_POST['kategorie']) || !is_numeric($_POST['velkost']) ||
+    !isset($_POST['csrf_token']) || empty($_POST['meno']) ||
     empty($_POST['kategorie']))
-{
-    echo "Neplatné údaje";
-    return;
-}
+    throw new Exception("Neplatné údaje!");
 if($_POST['csrf_token'] != Context::getInstance()->getCsrfToken())
-{
-    echo 'CSRF fail!';
-    return;
-}
+    throw new Exception("Chyba - CSRF!");
 
 $velkost = Context::getInstance()->getDatabase()->getVelkostByPK($_POST['velkost']);
 if (!$velkost)

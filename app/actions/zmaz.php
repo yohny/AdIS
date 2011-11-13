@@ -10,15 +10,9 @@
  */
 
 if (!isset($_POST['zmaz']) || !is_numeric($_POST['zmaz']) || !isset($_POST['csrf_token']))
-{
-    echo 'Neplatne data';
-    return;
-}
+    throw new Exception("Neplatné údaje!");
 if($_POST['csrf_token'] != Context::getInstance()->getCsrfToken())
-{
-    echo 'CSRF fail!';
-    return;
-}
+    throw new Exception("Chyba - CSRF!");
 
 if (Context::getInstance()->getUser()->kategoria == 'inzer') //maze banner
 {

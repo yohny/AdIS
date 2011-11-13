@@ -2,18 +2,11 @@
 Context::getInstance()->getResponse()->setHeading('štatistika');
 
 if (Context::getInstance()->getUser()->kategoria != 'admin')
-{
-    echo "Nepovolený prístup";
-    Context::getInstance()->getResponse()->error = true;
-    return;
-}
+    throw new Exception("Nepovolený prístup!");
 
 $filter = new Filter(Config::getStatRowsPerPage());
 if(!$filter->parse($_POST))
-{
-    Context::getInstance()->getResponse()->setFlash('Neplatné filtrovacie kritéria!');
-    return;
-}
+    throw new Exception("Neplatný filter!");
 
 $db = Context::getInstance()->getDatabase();
 $pocet = $db->getStatisticsForAdmin($filter, true);

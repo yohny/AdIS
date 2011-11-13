@@ -10,24 +10,18 @@
  */
 
 if(!isset($_POST['login']) || !isset($_POST['heslo']) || !isset($_POST['csrf_token']))
-{
-    echo 'nekompletne data';
-    return;
-}
+    throw new Exception("Nekompletné údaje!");
 if($_POST['csrf_token'] != Context::getInstance()->getCsrfToken())
-{
-    echo 'CSRF fail!';
-    return;
-}
+    throw new Exception("Chyba - CSRF!");
 
-$user =  Context::getInstance()->getDatabase()->getUserByCredentials( $_POST['login'], $_POST['heslo']);
+$user =  Context::getInstance()->getDatabase()->getUserByCredentials($_POST['login'], $_POST['heslo']);
 if ($user != null)
 {
     $_SESSION['user'] = $user;
     $message = "Úspešne ste sa prihlásili!";
 }
 else
-    $message = "Chyba pri prihlasovaní. / Neplatné prihlasovacie údaje!";
+    $message = "Chyba - neplatné prihlasovacie údaje!";
 
 Context::getInstance()->getResponse()->setFlash($message);
 Context::getInstance()->getResponse()->redirect = '/';

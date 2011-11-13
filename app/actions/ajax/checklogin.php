@@ -12,10 +12,7 @@
 Context::getInstance()->getResponse()->setHeaderContentType('text/plain');
 
 if (!isset($_GET['login']))
-{
-    echo 'Nekompletne data';
-    return;
-}
+    throw new Exception("Nekompletné údaje!");
 
 if (User::isLoginUnique($_GET['login']))
     echo "<span class='g'>Váš login je vporiadku.</span>";

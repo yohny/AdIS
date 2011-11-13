@@ -1,13 +1,16 @@
 <?php
 Context::getInstance()->getResponse()->setHeading('registrácia');
 
+if(Context::getInstance()->getUser())
+    throw new Exception("Už ste registrovaný!");
+
 if (isset($_SESSION['registrator']))
 {
     $tmpuser = $_SESSION['registrator'];
     session_unregister('registrator');
 }
 ?>
-<form name="reg_form" action="/action/registruj" method="POST">
+<form name="reg_form" action="/action/registruj" method="post">
     <table>
         <tr title="Login slúžiaci na prihlásenie do systému. Musí byť jedinečný.">
             <td>Login:</td>

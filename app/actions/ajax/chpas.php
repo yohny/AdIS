@@ -12,15 +12,9 @@
 Context::getInstance()->getResponse()->setHeaderContentType('application/json');
 
 if (!isset($_POST['old']) || !isset($_POST['new']) || !isset($_POST['csrf_token']))
-{
-    echo 'Nekompletne data';
-    return;
-}
+    throw new Exception("Nekompletné údaje!");
 if($_POST['csrf_token'] != Context::getInstance()->getCsrfToken())
-{
-    echo 'CSRF fail!';
-    return;
-}
+    throw new Exception("Chyba - CSRF!");
 
 if (Context::getInstance()->getUser()->setPassword($_POST['old'], $_POST['new']))
     $resp = array('success' => true, 'message' => 'Heslo zmenené.');

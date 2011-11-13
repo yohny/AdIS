@@ -1,11 +1,7 @@
 <?php
 Context::getInstance()->getResponse()->setHeading('bannery');
 if (Context::getInstance()->getUser()->kategoria != 'inzer')
-{
-    echo "Nepovolený prístup";
-    Context::getInstance()->getResponse()->error = true;
-    return;
-}
+    throw new Exception("Nepovolený prístup!");
 
 $db = Context::getInstance()->getDatabase();
 $bannery = $db->getBanneryByUser(Context::getInstance()->getUser());   //ziskanie bannerov pouzivatela

@@ -10,26 +10,14 @@
  */
 
 if(Context::getInstance()->getUser()->kategoria!='inzer')
-{
-    echo "Nepovolený prístup";
-    return;
-}
-if (!isset($_FILES['userfile']) ||
-    !isset($_POST['velkost']) ||
-    !isset($_POST['kategorie']) ||
-    !is_numeric($_POST['velkost']) ||
-    !isset($_POST['csrf_token']) ||
-    empty($_FILES['userfile']) ||
+    throw new Exception("Nepovolený prístup!");
+if (!isset($_FILES['userfile']) || !isset($_POST['velkost']) ||
+    !isset($_POST['kategorie']) || !is_numeric($_POST['velkost']) ||
+    !isset($_POST['csrf_token']) || empty($_FILES['userfile']) ||
     empty($_POST['kategorie']))
-{
-    echo "Neplatné údaje";
-    return;
-}
+    throw new Exception("Neplatné údaje!");
 if($_POST['csrf_token'] != Context::getInstance()->getCsrfToken())
-{
-    echo 'CSRF fail!';
-    return;
-}
+    throw new Exception("Chyba - CSRF!");
 
 $velkost = Context::getInstance()->getDatabase()->getVelkostByPK($_POST['velkost']);
 if (!$velkost)
@@ -37,7 +25,7 @@ if (!$velkost)
 else
     $message = Banner::checkFile($_FILES['userfile'], $velkost);
 
-//TODO bannerov aj viac jedneho typu? ma zmysel? - unikatne filename potom pomocou md5(timestamp)
+//TODO bannerov aj viac z jedneho typu? ma zmysel? - unikatne filename potom pomocou md5(timestamp)
 //!osetrit vyber banneru do reklamy (eliminovat viacero kandidatov od jedneho usera)
 if (!$message) //banner je OK
 {

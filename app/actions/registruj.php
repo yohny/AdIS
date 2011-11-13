@@ -10,22 +10,13 @@
  */
 
 if (!isset($_POST['user']) || !isset($_POST['csrf_token']))
-{
-    echo 'nekompletne data';
-    return;
-}
+    throw new Exception("Nekompletné údaje!");
 if($_POST['csrf_token'] != Context::getInstance()->getCsrfToken())
-{
-    echo 'CSRF fail!';
-    return;
-}
+    throw new Exception("Chyba - CSRF!");
 
 $user = $_POST['user'];
 if (!isset($user['login']) || !isset($user['heslo']) || !isset($user['web']) || !isset($user['skupina']) || !isset($user['captcha']))
-{
-    echo 'nekompletne data';
-    return;
-}
+    throw new Exception("Nekompletné registračné udaje!");
 
 Autoloader::registerCaptcha();
 $captcha = new Securimage();

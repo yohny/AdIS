@@ -10,15 +10,9 @@
  */
 
 if(!isset($_POST['action']) || !isset($_POST['csrf_token']))
-{
-    echo 'Nekompletne data';
-    return;
-}
+    throw new Exception("Nekompletné údaje!");
 if($_POST['csrf_token'] != Context::getInstance()->getCsrfToken())
-{
-    echo 'CSRF fail!';
-    return;
-}
+    throw new Exception("Chyba - CSRF!");
 
 if ($_POST['action'] == "logout")
 {

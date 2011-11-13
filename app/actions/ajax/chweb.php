@@ -12,15 +12,9 @@
 Context::getInstance()->getResponse()->setHeaderContentType('application/json');
 
 if (!isset($_POST['web']) || !isset($_POST['csrf_token']))
-{
-    echo 'Nekompletne data';
-    return;
-}
+    throw new Exception("Nekompletné údaje!");
 if($_POST['csrf_token'] != Context::getInstance()->getCsrfToken())
-{
-    echo 'CSRF fail!';
-    return;
-}
+    throw new Exception("Chyba - CSRF!");
 
 if (!User::validUrl($_POST['web']))
     $resp = array('success' => false, 'message' => 'Neplatná webová adresa!');

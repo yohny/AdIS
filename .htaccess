@@ -17,8 +17,8 @@
   RewriteEngine On
  #potrebne pre subdomenu adis.stkpo.sk
   RewriteBase /
- #testovanie
-  RewriteRule ^test/ - [L]
+ #testovanie a dokumentacia - nechat tak
+  RewriteRule ^(test|doc)/ - [L]
  #F = 403 Forbiden, app/ a upload/ su zakazane
   RewriteRule ^(app|upload)/ - [F]
  #requesty s priponou .js a .css - nechat tak

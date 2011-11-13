@@ -1,11 +1,7 @@
 <?php
 Context::getInstance()->getResponse()->setHeading('reklamy');
 if (Context::getInstance()->getUser()->kategoria != 'zobra')
-{
-    echo "Nepovolený prístup";
-    Context::getInstance()->getResponse()->error = true;
-    return;
-}
+    throw new Exception("Nepovolený prístup!");
 
 $db = Context::getInstance()->getDatabase();
 $reklamy = $db->getReklamyByUser(Context::getInstance()->getUser());   //ziskanie reklam pouzivatela

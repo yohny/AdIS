@@ -3,10 +3,7 @@ Context::getInstance()->getResponse()->setHeading('štatistika');
 
 $filter = new Filter(Config::getStatRowsPerPage());
 if(!$filter->parse($_POST))
-{
-    Context::getInstance()->getResponse()->setFlash('Neplatné filtrovacie kritéria!');
-    return;
-}
+    throw new Exception("Neplatný filter!");
 
 $user = Context::getInstance()->getUser();
 

@@ -1,4 +1,14 @@
 <?php
+/**
+ * obsah pre "statistika"
+ *
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage templates
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
+ */
+
+
 Context::getInstance()->getResponse()->setHeading('štatistika');
 
 $filter = new Filter(Config::getStatRowsPerPage());

@@ -1,4 +1,14 @@
 <?php
+/**
+ * obsah pre "reklamy"
+ *
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage templates
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
+ */
+
+
 Context::getInstance()->getResponse()->setHeading('reklamy');
 if (Context::getInstance()->getUser()->kategoria != 'zobra')
     throw new Exception("Nepovolený prístup!");

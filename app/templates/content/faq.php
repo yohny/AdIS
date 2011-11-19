@@ -1,4 +1,15 @@
-<?php Context::getInstance()->getResponse()->setHeading('faq'); ?>
+<?php
+/**
+ * obsah pre "faq"
+ *
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage templates
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
+ */
+
+Context::getInstance()->getResponse()->setHeading('faq');
+?>
 
 <h4 class="faq">Čo to je?</h4>
 <p>

@@ -1,4 +1,14 @@
 <?php
+/**
+ * obsah pre "chyba"
+ *
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage templates
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
+ */
+
+
 Context::getInstance()->getResponse()->setHeading('chyba');
 
 $h4 = 'Došlo k chybe na servri alebo stránka na ktorej ste klikli na

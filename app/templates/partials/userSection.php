@@ -1,4 +1,18 @@
-<?php if (Context::getInstance()->getUser()): ?>
+<?php
+/**
+ * vizualny komponent zapezpecujuci zobrazenie prihlasovacieho formulara alebo uzivatelskeho menu
+ *
+ * ak nie je ziadny prihlaseny pouzivatel, tak sa zobrazuje prihlasovaci formular,
+ * ak je prihlaseny tak sa zobrazuje prislusne pouzivatelske menu v zavislosti od kategorie
+ *
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage templates
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
+ *
+ */
+
+if (Context::getInstance()->getUser()): ?>
     <fieldset>
         <legend>Správa</legend>
         <a href="/profil">Profil</a>

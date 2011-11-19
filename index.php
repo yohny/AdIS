@@ -1,6 +1,13 @@
 <?php
 /**
+ * main front controller of AdIS application, app entry point
+ *
+ * @version    1.0
+ * @package    AdIS
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
+ *
  * @todo rafactor to trully use one front controller (at least for /distrib use this one too, form /img its optional)
+ * problem with image generation (in getBanner of /distrib and in /img)
  * @todo add unit tests
  */
 
@@ -30,17 +37,18 @@ elseif(!$request->isPublic && !Context::getInstance()->getUser())
 }
 else //vsetko ok
 {
+    ob_start();
     try
     {
-        ob_start();
         require_once $request->getUri();
-        Context::getInstance()->getResponse()->content = ob_get_clean();
+        Context::getInstance()->getResponse()->content = ob_get_contents();
     }
     catch(Exception $ex)
     {
         Context::getInstance()->getResponse()->content = $ex->getMessage();
         Context::getInstance()->getResponse()->error = true;
     }
+    ob_end_clean();
 }
 
 //posle header

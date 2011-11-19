@@ -1,4 +1,13 @@
 <?php
+/**
+ * obsah pre "bannery"
+ *
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage templates
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
+ */
+
 Context::getInstance()->getResponse()->setHeading('bannery');
 if (Context::getInstance()->getUser()->kategoria != 'inzer')
     throw new Exception("Nepovolený prístup!");

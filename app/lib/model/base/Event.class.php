@@ -1,7 +1,7 @@
 <?php
 /**
- * spoloscny predok pre klik a Zobrazenie
- * 
+ * spolocny predok pre triedy Klik a Zobrazenie
+ *
  * @version    1.0
  * @package    AdIS
  * @subpackage model

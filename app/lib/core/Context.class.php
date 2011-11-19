@@ -70,7 +70,7 @@ class Context
     }
 
     /**
-     * returns database object
+     * returns actual database object
      * @return Database
      */
     public function getDatabase()
@@ -94,7 +94,7 @@ class Context
     }
 
     /**
-     * vrati unikatny token na obranu formov proti CSRF
+     * vrati unikatny token na obranu formularov proti CSRF
      * @return string
      */
     public function getCsrfToken()

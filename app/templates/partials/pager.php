@@ -1,10 +1,18 @@
 <?php
 /**
- * pager potrebuje predtym ako je pouzity mat nastavene tieto premenne:
+ * vizualny komponent zapezpecujuci strankovanie
  *
+ * pager potrebuje predtym ako je pouzity mat nastavene tieto premenne:
  * @param $pages celkovy pocet stran
  * @param $aktPage aktualna strana
+ *
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage templates
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
+ *
  */
+
 if(!isset($pages) || !isset($aktPage))
 {
     echo "<b>PAGER: nenastavene premenne</b>";

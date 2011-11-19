@@ -1,7 +1,7 @@
 <?php
 /**
  * trieda reprezentujuca jeden zaznam z tabulky BANNERY
- * 
+ *
  * @version    1.0
  * @package    AdIS
  * @subpackage model
@@ -11,7 +11,7 @@
 class Banner extends BanRek
 {
     /**
-     * nazov suboru banneru (stlpec sa vola 'path')
+     * nazov suboru banneru (DB stlpec sa vola 'path')
      * @var string
      */
     public $filename;
@@ -62,7 +62,7 @@ class Banner extends BanRek
     }
 
     /**
-     * vrati image resourse s doplnenym watermarkom
+     * vrati image resource s doplnenym watermarkom
      * @return image resource
      */
     public function getImgWithWatermark()
@@ -79,7 +79,7 @@ class Banner extends BanRek
     }
 
     /**
-     * zo stringu vytvori platne meno suboru banneru
+     * zo stringu vytvori platne meno suboru
      * @param string $string
      * @return string
      */

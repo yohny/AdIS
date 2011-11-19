@@ -1,7 +1,7 @@
 <?php
 /**
- * spoloscny predok pre Banner a Reklama
- * 
+ * spolocny predok pre triedy Banner a Reklama
+ *
  * @version    1.0
  * @package    AdIS
  * @subpackage model

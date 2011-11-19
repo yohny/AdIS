@@ -1,3 +1,17 @@
+<?php
+/**
+ * vizualny komponent reprezentujuci volic intervalu datumov
+ *
+ * pager potrebuje predtym ako je pouzity mat nastavene tieto premenne:
+ * @param Filter $filter instancia filtra
+ *
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage templates
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
+ *
+ */
+?>
 <table style="width:100%">
     <tr>
         <td>

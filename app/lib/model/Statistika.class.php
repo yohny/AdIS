@@ -1,8 +1,9 @@
 <?php
 /**
  * reprezentuje jeden statisticky zaznam zobrazovany beznemu pouzivatelovi
- * ! nie 'admin', tym sa zobrazuju kliky resp zobrazenia !
- * 
+ *
+ * neplati pre kategoriu 'admin', tym sa zobrazuju priamo kliky resp zobrazenia, plati pre ostatnych
+ *
  * @version    1.0
  * @package    AdIS
  * @subpackage model

@@ -1,7 +1,7 @@
 <?php
 /**
  * filtrovacie kriteria pre zobrazenie statistiky
- * 
+ *
  * @version    1.0
  * @package    AdIS
  * @subpackage model
@@ -52,8 +52,8 @@ class Filter
 
     /**
      * ziska hodnoty filtra zo vstupneho pola
-     * @param array $filretData
-     * @return bool
+     * @param array $filterData filtrovacie kriteria z formulara
+     * @return bool true ak parsovanie bolo uspesne inak false
      */
     public function parse($filterData)
     {

@@ -1,7 +1,7 @@
 <?php
 /**
  * trieda reprezentujuca jeden zaznam z tabulky REKLAMY
- * 
+ *
  * @version    1.0
  * @package    AdIS
  * @subpackage model
@@ -11,7 +11,7 @@
 class Reklama extends BanRek
 {
     /**
-     * meno reklamy (stlpec v tabulke sa vola 'meno')
+     * meno reklamy (DB stlpec sa vola 'meno')
      * @var string
      */
     public $name;

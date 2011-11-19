@@ -1,4 +1,15 @@
-<?php Context::getInstance()->getResponse()->setHeading('o systéme'); ?>
+<?php
+/**
+ * obsah pre "o systeme"
+ *
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage templates
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
+ */
+
+Context::getInstance()->getResponse()->setHeading('o systéme');
+?>
 
 <p>IS umožňuje zaregistrovaným používateľom spravovať internetovú reklamu a prístup k hodnoteniu efektivity ich reklamnej kampane. </p>
 <h4>Do systému má prístup len obmedzená skupina osôb. Podmienkou pre získanie prístupu je registrácia. Používateľ sa môže zaregistrovať buď ako inzerent alebo ako zobrazovateľ. Na základe typu klienta sú mu následne sprístupnené rôzne možnosti systému.</h4>

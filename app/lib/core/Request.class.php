@@ -60,7 +60,7 @@ class Request
     public $isPublic = false;
 
     /**
-     * nastavi instancne premenne na zaklade spracovania parametra
+     * nastavi instancne premenne na zaklade spracovania request_uri
      * @param string $req_url pozadovana adresa (url) aj s query stringom (= cast za '?')
      */
     public function __construct($req_uri)

@@ -7,6 +7,11 @@
  * @subpackage distribution
  * @author     Ján Neščivera <jan.nescivera@gmail.com>
  *
+ * @todo daky tracking spravit (cookie tracking PK kliknutí) aby sa nejaký cas nedalo klikat na tu istu "konstalaciu"
+ * tj. nie len voted, ale aby tam bolo pole -
+ * id klikov za poslednych X sekund a na zaklade toho by sa povedalo ze nemoze klikat napr na danej stranke
+ * resp na dany banner aj na inych strankach
+ * alebo by v cookie stacili id zobrazovatelov a reklam
  */
 
 function customError($errno, $errstr) //error handler function
@@ -18,12 +23,6 @@ set_error_handler("customError");
 
 //v error handleri nepozna externe premenne - neda sa pouzit na mazanie
 //a ak je zadefinovany tak zbehne aj pre prikazy so @
-
-//TODO daky tracking spravit (cookie tracking PK kliknutí) aby sa
-//nejaký cas nedalo klikat na tu istu "konstalaciu" tj nie len voted, ale aby tam bolo pole
-//id klikov za poslednych X sekund a na zaklade toho by sa povedalo ze nemoze klikat napr na danej stranke
-//resp na dany banner aj na inych strankach
-//alebo by v cookie stacili id zobrazovatelov a reklam
 
 try
 {

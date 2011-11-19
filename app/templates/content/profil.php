@@ -1,4 +1,14 @@
 <?php
+/**
+ * obsah pre "profil"
+ *
+ * @version    1.0
+ * @package    AdIS
+ * @subpackage templates
+ * @author     Ján Neščivera <jan.nescivera@gmail.com>
+ */
+
+
 Context::getInstance()->getResponse()->setHeading('profil');
 ?>
 <form name="chpas_form" action="">

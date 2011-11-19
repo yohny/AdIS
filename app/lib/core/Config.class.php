@@ -2,8 +2,8 @@
 /**
  * trieda starajuca sa o konfiguraciu
  * poskytuje konfiguracne nastavenia aplikacie, ktore nacita z config.xml
- * @see config.xml
- * 
+ * @see /app/config.xml
+ *
  * @version    1.0
  * @package    AdIS
  * @subpackage core
@@ -17,37 +17,37 @@ class Config
      * @var Config
      */
     private static $instance = null;
-    
+
     /**
      * database host (server)
      * @var string
      */
     private $dbHost = '#host';
-    
+
     /**
      * database user
      * @var string
      */
     private $dbUser = '#user';
-    
+
     /**
      * database password
      * @var string
      */
     private $dbPassw = '#password';
-    
+
     /**
      * database name
      * @var string
      */
     private $dbName = '#name';
-    
+
     /**
      * number of rows showed per page in statistics listings
      * @var int
      */
     private $statRowsPerPage = 10;
-    
+
     /**
      * directory for banner upload
      * @var string
@@ -133,7 +133,7 @@ class Config
     /**
      * vrati pocet riadkov na stranu zobrazovanych v statistikach na zaklade nastavenia v config.xml
      * ak toto nastavenie v konfiguracnom subore nie je vrati '10'
-     * @return string
+     * @return int
      */
     public static function getStatRowsPerPage()
     {

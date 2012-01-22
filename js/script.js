@@ -176,13 +176,13 @@ function spracuj_chweb()
     var xmlhttp = GetXmlHttpObject();
     if (xmlhttp==null)
     {
-        alert ("Váš prehliadač nepodporuje XMLHTTP (AjaX)!");
+        alert("Váš prehliadač nepodporuje XMLHTTP (AjaX)!");
         return;
     }
     var url="/ajax/chweb";
     var params ="web="+encodeURIComponent(web)+"&csrf_token="+encodeURIComponent(csrf_token);
     params+="&sid="+Math.random();  //Adds a random number to prevent the server from using a cached file
-    xmlhttp.onreadystatechange=function() {
+    xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState==4)
         {
             var resp = eval('('+xmlhttp.responseText+')');
@@ -191,8 +191,9 @@ function spracuj_chweb()
                 document.getElementById('webTd').innerHTML = "http://"+web;
         }
     };
-    xmlhttp.open("POST",url,true);
+    xmlhttp.open("POST", url, true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     xmlhttp.send(params);
 }
 
@@ -230,22 +231,23 @@ function spracuj_chpas()
     var xmlhttp = GetXmlHttpObject();
     if (xmlhttp==null)
     {
-        alert ("Váš prehliadač nepodporuje XMLHTTP (AjaX)!");
+        alert("Váš prehliadač nepodporuje XMLHTTP (AjaX)!");
         return;
     }
     var url = "/ajax/chpas";
     var params = "old="+encodeURIComponent(old)+"&new="+encodeURIComponent(new1)+"&csrf_token="+encodeURIComponent(csrf_token);
     params += "&sid="+Math.random();  //Adds a random number to prevent the server from using a cached file
-    xmlhttp.onreadystatechange=function() {
+    xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState==4)
         {
             var resp = eval('('+xmlhttp.responseText+')');
             box_show(resp.success?okbox:errorbox,resp.message);
         }
     };
-    xmlhttp.open("POST",url,true);
+    xmlhttp.open("POST", url, true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");  //nutne lebo default je text/plain a to by nesiel POST
     //xmlhttp.setRequestHeader("Content-length", params.length); //doplni browser (aj encoding do content-type)
+    xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     xmlhttp.send(params);
 }
 
@@ -261,17 +263,18 @@ function overLogin(str)
     var xmlhttp = GetXmlHttpObject();
     if (xmlhttp==null)
     {
-        alert ("Váš prehliadač nepodporuje XMLHTTP (AjaX)!");
+        alert("Váš prehliadač nepodporuje XMLHTTP (AjaX)!");
         return;
     }
     var url = "ajax/checklogin";
     var params = "login="+encodeURIComponent(str);
     params += "&sid="+Math.random();  //Adds a random number to prevent the server from using a cached file
-    xmlhttp.onreadystatechange=function() {
+    xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState==4)
             document.getElementById("loginStatus").innerHTML=xmlhttp.responseText;
     };
-    xmlhttp.open("GET",url+'?'+params,true);
+    xmlhttp.open("GET",url+'?'+params, true);
+    xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
     xmlhttp.send(null);
 }
 
@@ -294,7 +297,7 @@ function show(co,a)
     {
         tr.style.display="table-row";
         a.innerHTML = "skry";
-        
+
     }
     else
     {

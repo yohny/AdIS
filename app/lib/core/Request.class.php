@@ -7,6 +7,7 @@
  * @subpackage core
  * @author     Ján Neščivera <jan.nescivera@gmail.com>
  *
+ * @todo improve uri parsing for template/notemplate decision based on processing script ditectory (path start like actions/), not path ending as it is now
  */
 class Request
 {
@@ -61,7 +62,7 @@ class Request
 
     /**
      * nastavi instancne premenne na zaklade spracovania request_uri
-     * @param string $req_url pozadovana adresa (url) aj s query stringom (= cast za '?')
+     * @param string $req_url pozadovana adresa (url) aj s query stringom
      */
     public function __construct($req_uri)
     {

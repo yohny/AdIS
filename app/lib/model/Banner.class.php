@@ -112,7 +112,7 @@ class Banner extends BanRek
             $message .= "Príliš dlhý názov súboru! (max. $maxNameLength znakov)<br>";
         //file['type'] vyhodnocuje len na zaklade pripony a nie na zaklade hlavicky suboru ako getimagesize
         $info = getimagesize($userfile['tmp_name']);
-        if ($info[2] != 1 && $info[2] != 2 && $info[2] != 3) //1=gif,2=jpg,3=png
+        if ($info[2] != IMAGETYPE_GIF && $info[2] != IMAGETYPE_JPEG && $info[2] != IMAGETYPE_PNG)
             $message .= "Nepodporovaný súbor! (iba .gif, .jpg, .png)<br>";
         if ($info[0] != $velkost->sirka || $info[1] != $velkost->vyska) //[0]-sirka,[1]-vyska
             $message .= "Nesprávne rozmery banneru! ($velkost->nazov je $velkost->sirka x $velkost->vyska)<br>";

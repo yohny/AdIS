@@ -6,8 +6,8 @@
         <meta name="generator" content="Netbeans IDE, www.netbeans.org">
         <meta name="description" content="reklamný systém">
         <meta name="keywords" content="internetová reklama, online reklama, reklama, ad-is, banner, ppc, is">
-        <meta name="copyright" content="Copyright (c) Jan Nescivera">
-        <meta name="author" content="Yohny - jan.nescivera@student.tuke.sk">
+        <meta name="copyright" content="Copyright (c) Ján Neščivera">
+        <meta name="author" content="Yohny - jan.nescivera@gmail.com">
         <meta name="content-language" content="sk">
         <link rel="shortcut icon" href="/img/favicon.ico">
         <link rel="stylesheet" type="text/css" href="/css/style_basic.css">

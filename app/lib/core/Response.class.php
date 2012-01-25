@@ -1,7 +1,7 @@
 <?php
 /**
  * trieda reprezentuje aktualnu odpoved uzivatelovi (http response)
- * 
+ *
  * @version    1.0
  * @package    AdIS
  * @subpackage core
@@ -11,50 +11,50 @@
 class Response
 {
     /**
-     * hodnota TITLT tagu
+     * hodnota TITLE tagu
      * @var string
      */
     private $title = 'Ad-IS';
-    
+
     /**
      * nadpis v main bloku (H3)
      * @var string
      */
     private $nadpis = 'Ad-IS';
-    
+
     /**
      * hodnota 'Content-type' atributu vratenej hlavicky
      * default 'text/html'
-     * @var string 
+     * @var string
      */
     private $headerContentType = 'text/html';
-    
+
     /**
      * kodovanie stranky odosielane v hlavicke
      * default 'utf-8'
      * @var string
      */
     private $encoding = 'utf-8';
-    
+
     /**
      * pole dodatocnych zdrojov (js, css) nalinkovanych na aktualny stranku
      * @var string array
      */
     private $resourcces = array();
-    
+
     /**
      * html obsah stranky (main bloku)
      * @var string
      */
     public $content;
-    
+
     /**
      * flag urcujuci ci stranka je chybova alebo ok
      * default: false
      * @var bool
      */
     public $error = false;
-    
+
     /**
      * ak stranka robi redirect tak obsahuje ciel redirectu
      * @var string

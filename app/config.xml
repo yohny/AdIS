@@ -6,28 +6,18 @@
     Author     : yohny
     Description:
         konfiguracny subor aplikacie:
-            nastavenia pripojenia na databazu
-            pocet riakov na stranu pre statistiky
-            adresar na upload bannerov (relativne voci index.php)
+            -nastavenia pripojenia na databazu
+            -pocet riakov na stranu pre statistiky
+            -adresar na upload bannerov (relativne voci index.php)
+            -maximalna velkost uploadovanych suborov (v Bytoch)
 -->
 
 <root>
-    <database_host>
-        localhost
-    </database_host>
-    <database_user>
-        root
-    </database_user>
-    <database_password>
-        Neslira11
-    </database_password>
-    <database_name>
-        adis
-    </database_name>
-    <stat_rows_per_page>
-        10
-    </stat_rows_per_page>
-    <upload_dir>
-        ./upload
-    </upload_dir>
+    <database_host>localhost</database_host>
+    <database_user>root</database_user>
+    <database_password>Neslira11</database_password>
+    <database_name>adis</database_name>
+    <stat_rows_per_page>10</stat_rows_per_page>
+    <upload_dir>./upload</upload_dir>
+    <upload_max_filesize>20000</upload_max_filesize>
 </root>

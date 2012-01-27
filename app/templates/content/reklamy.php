@@ -65,7 +65,7 @@ if(count($reklamy)==0): ?>
             </form>
         </td>
     </tr>
-    <tr <?php if($i%2==0) echo "class=\"dark\"";?> style="display:none;" id="tr<?php echo $reklama->id; ?>">
+    <tr <?php if($i%2==0) echo "class=\"dark\""; ?> style="display:none;" id="tr<?php echo $reklama->id; ?>">
         <td colspan="5">
             <p>Nasledujúci HTML kód vložte do vašej stránky (na miesto kde chcete mať reklamu):</p>
             <code>

@@ -54,6 +54,12 @@ class Config
      */
     private $uploadDir = './upload';
 
+    /**
+     * max allowed size of uploaded files (B)
+     * @var int
+     */
+    private $uploadSize = 20000;
+
 
     private function __construct()
     {
@@ -70,10 +76,12 @@ class Config
                 $this->dbPassw = trim($xml->database_password);
             if(isset($xml->database_name))
                 $this->dbName = trim($xml->database_name);
-            if(isset($xml->stat_rows_per_page) && is_numeric(trim($xml->stat_rows_per_page)) && intval(trim($xml->stat_rows_per_page), 10)>0)
-                $this->statRowsPerPage = trim($xml->stat_rows_per_page);
+            if(isset($xml->stat_rows_per_page) && is_numeric(trim($xml->stat_rows_per_page)) && intval($xml->stat_rows_per_page)>0)
+                $this->statRowsPerPage = intval($xml->stat_rows_per_page);
             if(isset($xml->upload_dir) && ($path = realpath(self::getBaseDir().DIRECTORY_SEPARATOR.trim($xml->upload_dir))))
                 $this->uploadDir = $path.DIRECTORY_SEPARATOR;
+            if(isset($xml->upload_max_filesize) && is_numeric(trim($xml->upload_max_filesize)))
+                $this->uploadSize = intval($xml->upload_max_filesize);
         }
         else
             throw new Exception('Nepodarilo sa načitať konfiguráciu!');
@@ -86,7 +94,7 @@ class Config
     private static function getInstance()
     {
         if(!self::$instance)
-            self::$instance = new Config();
+            self::$instance = new self();
         return self::$instance;
     }
 
@@ -148,6 +156,16 @@ class Config
     public static function getUploadDir()
     {
         return self::getInstance()->uploadDir;
+    }
+
+    /**
+     * vrati maximalnu povolenu velkost uploadovanych suborov v Bytoch na zaklade nastavenia v config.xml
+     * ak toto nastavenie v konfiguracnom subore nie je vrati 20000 (default)
+     * @return string
+     */
+    public static function getUploadSize()
+    {
+        return self::getInstance()->uploadSize;
     }
 
     /**

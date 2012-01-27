@@ -64,7 +64,7 @@ if(count($bannery)==0): ?>
             </form>
         </td>
     </tr>
-    <tr <?php if($i%2==0) echo "class=\"dark\"";?>  style="display:none;" id="tr<?php echo $banner->id; ?>">
+    <tr <?php if($i%2==0) echo "class=\"dark\""; ?>  style="display:none;" id="tr<?php echo $banner->id; ?>">
         <td colspan="5">
             <div style="max-height:200px;overflow: auto;">
             <img alt="banner" src="/img/banner?id=<?php echo $banner->id; ?>">
@@ -97,6 +97,8 @@ if(count($bannery)==0): ?>
                 Banner:
             </td>
             <td>
+                <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo Config::getUploadSize(); ?>">
+                <input type="hidden" name="APC_UPLOAD_PROGRESS" value="<?php echo uniqid(); ?>">
                 <input type="file" name="userfile">
             </td>
         </tr>

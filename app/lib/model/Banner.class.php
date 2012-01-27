@@ -103,10 +103,10 @@ class Banner extends BanRek
     public static function checkFile($userfile, Velkost $velkost)
     {
         $message = null;
-        if ($userfile['size'] == 0)
-            $message .= "Prázdny súbor!<br>";
-        if ($userfile['size'] > 20000) //limit 20KB
-            $message .= "Príliš veľký súbor! (max. 20KB)<br>";
+        if ($userfile['error'] != UPLOAD_ERR_OK)
+            $message .= "Chyba uploadu<br>";
+        if ($userfile['size'] > Config::getUploadSize())
+            $message .= "Príliš veľký súbor! (max. ".Config::getUploadSize()."B)<br>";
         $maxNameLength = 50 - strlen(Context::getInstance()->getUser()) - 2 - strlen($velkost->sirka . "x" . $velkost->vyska);
         if (strlen($userfile['name']) > $maxNameLength)
             $message .= "Príliš dlhý názov súboru! (max. $maxNameLength znakov)<br>";

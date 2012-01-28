@@ -441,9 +441,9 @@ class Database extends mysqli
      * pretransformuje MySQL resultset na objekty pozadovaneho typu
      * @param mysqli_result $resultset result query na databazu
      * @param int $model urcuje triedu modelu, na ktorej instancie sa ma previest resultset
-     * @param bool $toArray ak false vrati jediny objekt|null inak vracia pole objektov
+     * @param bool $asArray ak false vrati jediny objekt inak vracia pole objektov
      */
-    private function resultsetToModel($resultset, $model, $toArray = true)
+    private function resultsetToModel($resultset, $model, $asArray = true)
     {
         if(!$resultset)
             throw new Exception("Databázová chyba: Prázdny resultset");
@@ -472,7 +472,7 @@ class Database extends mysqli
                     break;
             }
         }
-        if(!$toArray)
+        if(!$asArray)
             return count($objects)!=1?null:$objects[0];
         else
             return $objects;

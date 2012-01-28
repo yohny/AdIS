@@ -99,13 +99,30 @@ class Banner extends BanRek
     /**
      * overi ci subor splna kriteria banneru
      * @param array $file
+     * @return string sprava s chybami uploadu/suboru, ak prazdna suor je ok
      */
     public static function checkFile($userfile, Velkost $velkost)
     {
         $message = null;
-        if ($userfile['error'] != UPLOAD_ERR_OK)
-            $message .= "Chyba uploadu<br>";
-        if ($userfile['size'] > Config::getUploadSize())
+        if ($userfile['error'] != UPLOAD_ERR_OK)//uploading zlyhal
+        {
+            switch($userfile['error'])
+            {
+                case UPLOAD_ERR_INI_SIZE:
+                case UPLOAD_ERR_FORM_SIZE:
+                    $message .= "Príliš veľký súbor! (max. ".Config::getUploadSize()."B)<br>";
+                    break;
+                case UPLOAD_ERR_NO_FILE:
+                    $message .= "Nezadaný žiaden súbor<br>";
+                    break;
+                default:
+                    $message .= "Uploadovanie zlyhalo<br>";
+                    break;
+            }
+            return $message;
+        }
+        //upload uspesny (subor v temp dir), overit vlastnosti suboru
+        if ($userfile['size'] > Config::getUploadSize()) //doublecheck - user mohol odstranit hidden field
             $message .= "Príliš veľký súbor! (max. ".Config::getUploadSize()."B)<br>";
         $maxNameLength = 50 - strlen(Context::getInstance()->getUser()) - 2 - strlen($velkost->sirka . "x" . $velkost->vyska);
         if (strlen($userfile['name']) > $maxNameLength)

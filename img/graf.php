@@ -27,21 +27,23 @@ $stats = $_SESSION['stats'];
 unset($_SESSION['stats']);
 
 $dates = array();$clicks = array();$views = array();
+
+/* @var $stat Statistika */
 foreach ($stats as $stat)
 {
-    $dates[] = date_format(new DateTime($stat->cas), 'd.m.Y');
+    $dates[] = $stat->den->format("d.m.Y");
     $clicks[] = $stat->kliky;
     $views[] = $stat->zobrazenia;
 }
 
 $myData = new pData();
 //kliky
-$myData->addPoints(array_reverse($clicks), "clicks");
+$myData->addPoints($clicks, "clicks");
 $myData->setSerieDescription("clicks", "Kliknutia");
 $myData->setSerieWeight('clicks', 1);
 $myData->setSerieOnAxis("clicks", 0);
 //zobrazenia
-$myData->addPoints(array_reverse($views), "views");
+$myData->addPoints($views, "views");
 $myData->setSerieDescription("views", "Zobrazenia");
 $myData->setSerieWeight('views', 1);
 $myData->setSerieOnAxis("views", 0);
@@ -50,7 +52,7 @@ $myData->setAxisPosition(0, AXIS_POSITION_LEFT);
 $myData->setAxisName(0, "Počet");
 $myData->setAxisUnit(0, "");
 //datumy
-$myData->addPoints(array_reverse($dates), "dates");
+$myData->addPoints($dates, "dates");
 $myData->setSerieDescription("dates", "Dátum");
 $myData->setAbscissa("dates");
 //farebna paleta

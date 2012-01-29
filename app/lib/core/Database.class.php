@@ -248,31 +248,19 @@ class Database extends mysqli
             $colname = "meno";
         }
 
-        $clicksSubQuery = "SELECT DATE(cas) AS cdate, COUNT(*) AS ccount, $banrek AS cbanrek
-            FROM kliky
-            WHERE $user->kategoria = $user->id
-            GROUP BY cdate,cbanrek";
-        $viewsSubQuery = "SELECT DATE(cas) AS vdate, COUNT(*) AS vcount, $banrek AS vbanrek
-            FROM zobrazenia
-            WHERE $user->kategoria = $user->id
-            GROUP BY vdate,vbanrek";
-        //treba aj groupby cbanrek/vbanrek lebo sa nasledne robi select podla id reklamy/banneru
-        //a keby toto nebolo tak by tam bolo len jedno id, ostatne by boli zgrupnute do datumu s tym id
+        $cond = "";//podmienka pri zvolenom banneri/reklame - default 'all' = ziadna podmienka
+        if ($filter->banner == 'del' || $filter->reklama == 'del') //len zmazane reklamy/bannery
+            $cond = " AND $banrek NOT IN (SELECT id FROM $table WHERE user=$user->id)";
+        elseif ($filter->banner != 'all' || $filter->reklama != 'all') //zvolena konkretna reklama/banner
+            $cond = " AND $banrek = " . ($user->kategoria == 'inzer' ? $filter->banner : $filter->reklama);
 
-
-        //namiesto COUNT(*) je COUNT(DISTINCT vdate) lebo grupuje aj podla vbanrek
-        //tj je viacero riadkov s rovnakym datumom len inym vbanrek, nas zaujima kolko datumov je
-        if ($countOnly)//cas je aj pri countonly lebo groupby cas by nezbehlo
-            $selectPart = "COUNT(DISTINCT vdate) AS count, SUM(vcount) AS vsum, SUM(ccount) AS csum";
-        else //tu sum je kvoli tomu aby ked sa robi groupby cas tak aby bolo spocitane
-            $selectPart = "vdate AS cas, vbanrek AS banrek, $table.$colname AS meno, SUM(vcount) AS vsum, SUM(ccount) AS csum";
-
-        $query = " SELECT $selectPart FROM
-            ($viewsSubQuery) AS wiews
+        $query = "SELECT day, IF(views.count IS NULL, 0, views.count) AS views, IF(clicks.count IS NULL, 0, clicks.count) AS clicks FROM days
             LEFT JOIN
-            ($clicksSubQuery) AS clicks
-            ON (cdate=vdate AND cbanrek=vbanrek)
-            LEFT JOIN $table ON ($table.id = vbanrek)";
+            (SELECT DATE(cas) AS den, COUNT(*) AS count FROM zobrazenia WHERE $user->kategoria = $user->id $cond GROUP BY den) views
+            ON (days.day=views.den)
+            LEFT JOIN
+            (SELECT DATE(cas) AS den, COUNT(*) AS count FROM kliky WHERE $user->kategoria = $user->id $cond GROUP BY den) clicks
+            ON (days.day=clicks.den)";
 
         if ($filter->date != 'all')
         {
@@ -295,43 +283,30 @@ class Database extends mysqli
                     break;
             }
             if ($filter->date != 'custom')
-                $query .= " WHERE vdate>='{$date->format('Y-m-d')}'";
+                $query .= " WHERE day>='{$date->format('Y-m-d')}'";
             else //custom
             {
                 $from = new DateTime($filter->odYear . '-' . $filter->odMonth . '-' . $filter->odDay);
                 $to = new DateTime($filter->doYear . '-' . $filter->doMonth . '-' . $filter->doDay);
-                $query .= " WHERE vdate BETWEEN '{$from->format('Y-m-d')}' AND '{$to->format('Y-m-d')}'";
+                $query .= " WHERE day BETWEEN '{$from->format('Y-m-d')}' AND '{$to->format('Y-m-d')}'";
             }
         }
-        else
-            $query .= " WHERE 1";
-
-        if ($filter->banner == 'del' || $filter->reklama == 'del') //zmazane reklamy/bannery
-            $query .= " AND vbanrek NOT IN (SELECT id FROM $table WHERE user=$user->id)";
-        elseif ($filter->banner != 'all' || $filter->reklama != 'all') //zvolena reklama/banner
-            $query .= " AND vbanrek=" . ($user->kategoria == 'inzer' ? $filter->banner : $filter->reklama);
-
 
         if ($countOnly) //len pocet zaznamov
         {
-            $result = $this->query($query);  /* @var $result mysqli_result */
+            $result = $this->query("SELECT COUNT(*) as count, SUM(views) AS views, SUM(clicks) AS clicks FROM ($query) stat");
+            /* @var $result mysqli_result */
             $object = $result->fetch_object();
-            return array('count' => $object->count, 'views' => $object->vsum, 'clicks' => $object->csum);
+            return array('count' => $object->count, 'views' => $object->views, 'clicks' => $object->clicks);
         }
 
-        $query .= " GROUP BY cas"; //spocita vsetky klik/zobr vramci dna lebo ma hore SUM a tu je groupby
-        $query .= " ORDER BY cas DESC";
+        $query .= " ORDER BY day DESC";
         $query .= " LIMIT " . ($filter->page - 1) * $filter->rowsPerPage . ", $filter->rowsPerPage";
-
         $results = $this->query($query);
         $objects = array();
         while ($result = $results->fetch_object())
         {
-            if($user->kategoria=='inzer')
-                $meno = preg_replace('/^(\w+_\d+x\d+_)/', '', $result->meno);
-            else
-                $meno = $result->meno;
-            $object = new Statistika($result->cas, $result->banrek, $meno, $result->vsum, $result->csum);
+            $object = new Statistika(new DateTime($result->day), $result->views, $result->clicks);
             $objects[] = $object;
         }
         return $objects;

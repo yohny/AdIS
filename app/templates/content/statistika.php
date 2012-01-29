@@ -121,7 +121,6 @@ nacitajGraf();
         <tr>
         <th>Por.</th>
         <th>Dátum</th>
-        <th><?php echo $user->kategoria=="inzer"?'Banner':'Reklama' ?></th>
         <th>Zobrazenia</th>
         <th>Kliky</th>
         <th>CTR</th>
@@ -137,23 +136,13 @@ nacitajGraf();
                 <?php echo $stat; ?>
             </td>
             <td>
-            <?php
-            if($user->kategoria=="inzer" && $filter->banner!='all')
-                echo $stat->meno?htmlspecialchars($stat->meno):"#zmazaný";
-            elseif($user->kategoria=="zobra" && $filter->reklama!='all')
-                echo $stat->meno?htmlspecialchars($stat->meno):"#zmazaná";
-            else
-                echo "#všetky"
-            ?>
+                <?php echo $stat->zobrazenia; ?>
             </td>
             <td>
-                <?php echo $stat->zobrazenia?$stat->zobrazenia:"0"; ?>
+                <?php echo $stat->kliky; ?>
             </td>
             <td>
-                <?php echo $stat->kliky?$stat->kliky:"0"; ?>
-            </td>
-            <td>
-                <?php echo $stat->zobrazenia?number_format($stat->kliky/$stat->zobrazenia*100, 2):'0.00'; ?>%
+                <?php echo $stat->zobrazenia!=0?number_format($stat->kliky/$stat->zobrazenia*100, 2):'0.00'; ?>%
             </td>
         </tr>
     <?php endforeach; ?>

@@ -190,7 +190,7 @@ class Database extends mysqli
      */
     public function getAllFromReklamy()
     {
-        $query = $this->reklamyBaseSelect." ORDER BY reklamy.id)";
+        $query = $this->reklamyBaseSelect." ORDER BY reklamy.id";
         $results = $this->query($query);
         return $this->resultsetToModel($results, self::REKLAMA);
     }

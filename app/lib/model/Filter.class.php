@@ -7,6 +7,7 @@
  * @subpackage model
  * @author     Ján Neščivera <jan.nescivera@gmail.com>
  *
+ * @todo rework filter to use DateTime for date/time storage; fix db->getstatistics and statistics templates accordingly
  */
 class Filter
 {
@@ -85,7 +86,7 @@ class Filter
                     || $filterData['odYear']<2010 || $filterData['odYear']>date('Y')
                     || $filterData['doYear']<2010 || $filterData['doYear']>date('Y'))
                         return false;
-                    //prerabka datumu - ak yada 31.2.2011 tak objekt sa vztvori ale datum bude 3.3.2011
+                    //prerabka datumu - ak zada 31.2.2011 tak objekt sa vytvori ale datum bude 3.3.2011
                     //a teda treba prepisat filter aby v UI bolo spravne
                     $from = new DateTime($filterData['odYear'] . '-' . $filterData['odMonth'] . '-' . $filterData['odDay']);
                     $to = new DateTime($filterData['doYear'] . '-' . $filterData['doMonth'] . '-' . $filterData['doDay']);

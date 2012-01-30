@@ -77,7 +77,8 @@ $pages = ceil($pocet/Config::getStatRowsPerPage());
             </td>
         </tr>
         <tr>
-            <td colspan="2">
+            <td>Druh</td>
+            <td>
                 <input type="radio" name="type" value="click" id="click" checked="checked" /><label for="click">Kliky</label>
                 <input type="radio" name="type" value="view" id ="view" <?php if($filter->type=='view') echo 'checked="checked"'; ?>/><label for="view">Zobrazenia</label>
             </td>

@@ -14,10 +14,18 @@
 <ul>
     <li>daky tracking spravit (cookie tracking PK kliknutí) aby sa nejaký cas nedalo klikat na tu istu &quot;konstalaciu&quot;  tj. nie len voted, ale aby tam bolo pole -  id klikov za poslednych X sekund a na zaklade toho by sa povedalo ze nemoze klikat napr na danej stranke  resp na dany banner aj na inych strankach  alebo by v cookie stacili id zobrazovatelov a reklam</li>
 </ul>
+<h3><a href="AdIS/model/Filter.html">Filter</a></h3>
+<ul>
+    <li>rework filter to use DateTime for date/time storage; fix db-&gt;getstatistics and statistics templates accordingly</li>
+</ul>
 <h3><a href="AdIS/_index.php.html">index.php</a></h3>
 <ul>
     <li>add unit tests</li>
     <li>rafactor to trully use one front controller (at least for /distrib use this one too, form /img its optional)  problem with image generation (in getBanner of /distrib and in /img)</li>
+</ul>
+<h3><a href="AdIS/core/Request.html">Request</a></h3>
+<ul>
+    <li>improve uri parsing for template/notemplate decision based on processing script ditectory (path start like actions/), not path ending as it is now</li>
 </ul>
 <h2>Securimage</h2>
 <h3><a href="Securimage/classes/Securimage.html#methodgenerateWAV">Securimage::generateWAV()</a></h3>
@@ -25,7 +33,7 @@
     <li>Add ability to merge 2 sound files together to have random background sounds</li>
 </ul>
 	<p class="notes" id="credit">
-		Documentation generated on Sat, 19 Nov 2011 15:06:59 +0100 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Mon, 30 Jan 2012 23:03:54 +0100 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</body>
 </html>

@@ -2,7 +2,7 @@
 /**
  * trieda reprezentujuca jeden zaznam z tabulky USERS (ciastocne),
  * v session reprezentuje aktualne prihlaseneho pouzivatela
- * 
+ *
  * @version    1.0
  * @package    AdIS
  * @subpackage model
@@ -21,20 +21,32 @@ class User
      * @var string
      */
     private $login;
-    //public $password;
+    //private $password;
     private $web;
     /**
      * kategoria pouzivatela: 'zobra', 'inzer' alebo 'admin'
      * @var string
      */
     public $kategoria;
+    /**
+     * cas registracie pouzivatela
+     * @var DateTime
+     */
+    public $regTime;
+    /**
+     * cas posledneho prihlasenia
+     * @var DateTime
+     */
+    public $loginTime;
 
-    public function __construct($id, $login, $web, $kategoria)
+    public function __construct($id, $login, $web, $kategoria, DateTime $registrationTime, DateTime $lastLoginTime)
     {
         $this->id = $id;
         $this->login = $login;
         $this->web = $web;
         $this->kategoria = $kategoria;
+        $this->regTime = $registrationTime;
+        $this->loginTime = $lastLoginTime;
     }
 
     public function setPassword($old, $new)
@@ -68,6 +80,13 @@ class User
             $this->web = $web;
         $stm->close();
         return $ret;
+    }
+
+    public function setLoginTimeNow()
+    {
+        $db = Context::getInstance()->getDatabase();
+        $query = "UPDATE users SET last_login=NOW() WHERE id=$this->id";
+        return $db->query($query);
     }
 
     public function getWeb()
@@ -120,7 +139,7 @@ class User
     public static function create($login, $password, $web, $group)
     {
         $db = Context::getInstance()->getDatabase();
-        if (!$stm = $db->prepare("INSERT INTO users VALUES(NULL, ?, MD5(?), ? , ?)"))
+        if (!$stm = $db->prepare("INSERT INTO users VALUES(NULL, ?, MD5(?), ? , ?, NOW(), NOW())"))
             return false;
         $stm->bind_param('ssss', $login, $password, $web, $group);
         $ret = $stm->execute();

@@ -18,6 +18,7 @@ $user =  Context::getInstance()->getDatabase()->getUserByCredentials($_POST['log
 if ($user != null)
 {
     $_SESSION['user'] = $user;
+    $user->setLoginTimeNow();
     $message = "Úspešne ste sa prihlásili!";
 }
 else

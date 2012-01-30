@@ -1,13 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.7deb3build0.10.10.1
+-- version 3.4.5deb1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 18, 2011 at 04:30 PM
--- Server version: 5.1.49
--- PHP Version: 5.3.3-1ubuntu9.3
+-- Generation Time: Jan 30, 2012 at 10:34 PM
+-- Server version: 5.1.58
+-- PHP Version: 5.3.6-13ubuntu3.3
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `adis`
@@ -28,6 +35,17 @@ CREATE TABLE IF NOT EXISTS `bannery` (
   KEY `user_fk` (`user`),
   KEY `velkost_fk` (`velkost`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci AUTO_INCREMENT=22 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `days`
+--
+
+CREATE TABLE IF NOT EXISTS `days` (
+  `day` date NOT NULL,
+  PRIMARY KEY (`day`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci COMMENT='event generated days';
 
 -- --------------------------------------------------------
 
@@ -85,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `kliky` (
   `reklama` int(11) NOT NULL,
   `banner` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci AUTO_INCREMENT=213 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci AUTO_INCREMENT=234 ;
 
 -- --------------------------------------------------------
 
@@ -114,7 +132,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   `login` varchar(10) COLLATE utf8_slovak_ci NOT NULL,
   `heslo` varchar(50) COLLATE utf8_slovak_ci NOT NULL,
   `web` varchar(30) COLLATE utf8_slovak_ci NOT NULL,
-  `kategoria` enum('inzer','zobra','admin') COLLATE utf8_slovak_ci DEFAULT NULL,
+  `kategoria` enum('inzer','zobra','admin') COLLATE utf8_slovak_ci NOT NULL,
+  `registered` datetime NOT NULL,
+  `last_login` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `login` (`login`),
   UNIQUE KEY `web` (`web`)
@@ -149,7 +169,7 @@ CREATE TABLE IF NOT EXISTS `zobrazenia` (
   `banner` int(11) NOT NULL,
   `clicked` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3567 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4496 ;
 
 --
 -- Constraints for dumped tables
@@ -182,3 +202,15 @@ ALTER TABLE `kategoria_reklama`
 ALTER TABLE `reklamy`
   ADD CONSTRAINT `user_fk2` FOREIGN KEY (`user`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `velkost_fk2` FOREIGN KEY (`velkost`) REFERENCES `velkosti` (`id`);
+
+DELIMITER $$
+--
+-- Events
+--
+CREATE EVENT `days_generator` ON SCHEDULE EVERY 1 DAY STARTS '2010-01-01 00:00:00' ON COMPLETION PRESERVE ENABLE COMMENT 'Event denne generujuci dni do tabulky days' DO INSERT INTO days VALUES (NOW())$$
+
+DELIMITER ;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

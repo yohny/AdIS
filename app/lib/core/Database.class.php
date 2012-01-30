@@ -10,7 +10,7 @@
  */
 class Database extends mysqli
 {
-    private $userBaseSelect = "SELECT id, login, web, kategoria FROM users";
+    private $userBaseSelect = "SELECT id, login, web, kategoria, registered, last_login FROM users";
     private $velkostiBaseSelect = "SELECT * FROM velkosti";
     private $kategorieBaseSelect = "SELECT * FROM kategorie";
     private $banneryBaseSelect = "SELECT bannery.*, sirka, vyska, nazov FROM bannery JOIN velkosti ON (bannery.velkost=velkosti.id)";
@@ -48,11 +48,11 @@ class Database extends mysqli
         $stm->bind_param('ss', $login, $password);
         if (!$stm->execute())
             return null;
-        $stm->bind_result($id, $login, $web, $kateg);
+        $stm->bind_result($id, $login, $web, $kateg, $regTime, $loginTime);
         $ret = $stm->fetch();
         $stm->close();
         if ($ret)
-            return new User($id, $login, $web, $kateg);
+            return new User($id, $login, $web, $kateg, new DateTime($regTime), new DateTime($loginTime));
         else
             return null;
     }
@@ -71,11 +71,11 @@ class Database extends mysqli
         $stm->bind_param('s', $referer);
         if (!$stm->execute())
             return null;
-        $stm->bind_result($id, $login, $web, $kateg);
+        $stm->bind_result($id, $login, $web, $kateg, $regTime, $loginTime);
         $ret = $stm->fetch();
         $stm->close();
         if ($ret)
-            return new User($id, $login, $web, $kateg);
+            return new User($id, $login, $web, $kateg, new DateTime($regTime), new DateTime($loginTime));
         else
             return null;
     }
@@ -254,7 +254,7 @@ class Database extends mysqli
         elseif ($filter->banner != 'all' || $filter->reklama != 'all') //zvolena konkretna reklama/banner
             $cond = " AND $banrek = " . ($user->kategoria == 'inzer' ? $filter->banner : $filter->reklama);
 
-        $query = "SELECT day, IF(views.count IS NULL, 0, views.count) AS views, IF(clicks.count IS NULL, 0, clicks.count) AS clicks FROM days
+        $query = "SELECT day, IFNULL(views.count, 0) AS views, IFNULL(clicks.count, 0) AS clicks FROM days
             LEFT JOIN
             (SELECT DATE(cas) AS den, COUNT(*) AS count FROM zobrazenia WHERE $user->kategoria = $user->id $cond GROUP BY den) views
             ON (days.day=views.den)
@@ -428,7 +428,7 @@ class Database extends mysqli
             switch ($model)
             {
                 case self::USER:
-                    $objects[] = new User($object->id, $object->login, $object->web, $object->kategoria);
+                    $objects[] = new User($object->id, $object->login, $object->web, $object->kategoria, new DateTime($object->registered), new DateTime($object->last_login));
                     break;
                 case self::VELKOST:
                     $objects[] = new Velkost($object->id, $object->sirka, $object->vyska, $object->nazov);

@@ -27,6 +27,8 @@ class Database extends mysqli
         if (mysqli_connect_errno())
             throw new Exception('Nepodarilo sa pripojiť na databázu!');
         $this->set_charset('utf8');
+        $now = new DateTime();
+        $this->query("SET time_zone = '{$now->format('P')}'");
     }
 
     public function __destruct()
@@ -260,7 +262,8 @@ class Database extends mysqli
             ON (days.day=views.den)
             LEFT JOIN
             (SELECT DATE(cas) AS den, COUNT(*) AS count FROM kliky WHERE $user->kategoria = $user->id $cond GROUP BY den) clicks
-            ON (days.day=clicks.den)";
+            ON (days.day=clicks.den)
+            WHERE 1"; //aby som nemusel riesit ci davat AND pri dalsich podmienkach, toto vzdy plati
 
         if ($filter->date != 'all')
         {
@@ -283,14 +286,15 @@ class Database extends mysqli
                     break;
             }
             if ($filter->date != 'custom')
-                $query .= " WHERE day>='{$date->format('Y-m-d')}'";
+                $query .= " AND day>='{$date->format('Y-m-d')}'";
             else //custom
             {
                 $from = new DateTime($filter->odYear . '-' . $filter->odMonth . '-' . $filter->odDay);
                 $to = new DateTime($filter->doYear . '-' . $filter->doMonth . '-' . $filter->doDay);
-                $query .= " WHERE day BETWEEN '{$from->format('Y-m-d')}' AND '{$to->format('Y-m-d')}'";
+                $query .= " AND day BETWEEN '{$from->format('Y-m-d')}' AND '{$to->format('Y-m-d')}'";
             }
         }
+        $query .= " AND day>='{$user->regTime->format('Y-m-d')}'";//len od datumu registracie zobrazuj statistiky
 
         if ($countOnly) //len pocet zaznamov
         {
@@ -418,7 +422,7 @@ class Database extends mysqli
      * @param int $model urcuje triedu modelu, na ktorej instancie sa ma previest resultset
      * @param bool $asArray ak false vrati jediny objekt inak vracia pole objektov
      */
-    private function resultsetToModel($resultset, $model, $asArray = true)
+    private function resultsetToModel(mysqli_result $resultset, $model, $asArray = true)
     {
         if(!$resultset)
             throw new Exception("Databázová chyba: Prázdny resultset");

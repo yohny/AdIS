@@ -10,6 +10,8 @@
  */
 
 mb_internal_encoding("utf-8");
+date_default_timezone_set('Europe/Bratislava');
+
 require_once '../app/lib/Autoloader.class.php';
 Autoloader::registerCaptcha();
 

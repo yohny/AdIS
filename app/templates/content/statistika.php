@@ -14,6 +14,8 @@ Context::getInstance()->getResponse()->setHeading('štatistika');
 $filter = new Filter(Config::getStatRowsPerPage());
 if(!$filter->parse($_POST))
     throw new Exception("Neplatný filter!");
+//vo filtri - prerabka datumu - ak zada 31.2.2011 tak objekt sa vytvori ale datum bude 3.3.2011
+//a teda treba prepisat UI aby odzrkadlovalo tuto zmenu!
 
 $user = Context::getInstance()->getUser();
 

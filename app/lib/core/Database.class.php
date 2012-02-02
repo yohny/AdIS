@@ -263,7 +263,7 @@ class Database extends mysqli
             LEFT JOIN
             (SELECT DATE(cas) AS den, COUNT(*) AS count FROM kliky WHERE $user->kategoria = $user->id $cond GROUP BY den) clicks
             ON (days.day=clicks.den)
-            WHERE 1"; //aby som nemusel riesit ci davat AND pri dalsich podmienkach, toto vzdy plati
+            WHERE day>='{$user->regTime->format('Y-m-d')}'"; //len od datumu registracie
 
         if ($filter->date != 'all')
         {
@@ -288,13 +288,8 @@ class Database extends mysqli
             if ($filter->date != 'custom')
                 $query .= " AND day>='{$date->format('Y-m-d')}'";
             else //custom
-            {
-                $from = new DateTime($filter->odYear . '-' . $filter->odMonth . '-' . $filter->odDay);
-                $to = new DateTime($filter->doYear . '-' . $filter->doMonth . '-' . $filter->doDay);
-                $query .= " AND day BETWEEN '{$from->format('Y-m-d')}' AND '{$to->format('Y-m-d')}'";
-            }
+                $query .= " AND day BETWEEN '{$filter->from->format('Y-m-d')}' AND '{$filter->to->format('Y-m-d')}'";
         }
-        $query .= " AND day>='{$user->regTime->format('Y-m-d')}'";//len od datumu registracie zobrazuj statistiky
 
         if ($countOnly) //len pocet zaznamov
         {
@@ -305,7 +300,7 @@ class Database extends mysqli
         }
 
         $query .= " ORDER BY day DESC";
-        $query .= " LIMIT " . ($filter->page - 1) * $filter->rowsPerPage . ", $filter->rowsPerPage";
+        $query .= " LIMIT " . ($filter->page - 1) * Config::getStatRowsPerPage() . ", " . Config::getStatRowsPerPage();
         $results = $this->query($query);
         $objects = array();
         while ($result = $results->fetch_object())
@@ -359,11 +354,7 @@ class Database extends mysqli
             if ($filter->date != 'custom')
                 $query .= " AND DATE(cas)>='{$date->format('Y-m-d')}'";
             else //custom
-            {
-                $from = new DateTime($filter->odYear . '-' . $filter->odMonth . '-' . $filter->odDay);
-                $to = new DateTime($filter->doYear . '-' . $filter->doMonth . '-' . $filter->doDay);
-                $query .= " AND DATE(cas) BETWEEN '{$from->format('Y-m-d')}' AND '{$to->format('Y-m-d')}'";
-            }
+                $query .= " AND DATE(cas) BETWEEN '{$filter->from->format('Y-m-d')}' AND '{$filter->to->format('Y-m-d')}'";
         }
 
         if ($filter->banner == 'del')
@@ -384,7 +375,7 @@ class Database extends mysqli
         }
 
         $query .= " ORDER BY cas DESC";
-        $query .= " LIMIT " . ($filter->page - 1) * $filter->rowsPerPage . ", $filter->rowsPerPage";
+        $query .= " LIMIT " . ($filter->page - 1) * Config::getStatRowsPerPage() . ", " . $filter->rowsPerPage;
 
         $results = $this->query($query);
         $objects = array();

@@ -110,31 +110,31 @@ class Banner extends BanRek
             {
                 case UPLOAD_ERR_INI_SIZE:
                 case UPLOAD_ERR_FORM_SIZE:
-                    $message .= "Príliš veľký súbor! (max. ".Config::getUploadSize()."B)<br>";
+                    $message .= "Príliš veľký súbor! (max. ".Config::getUploadSize()."B)<br/>";
                     break;
                 case UPLOAD_ERR_NO_FILE:
-                    $message .= "Nezadaný žiaden súbor<br>";
+                    $message .= "Nezadaný žiaden súbor<br/>";
                     break;
                 default:
-                    $message .= "Uploadovanie zlyhalo<br>";
+                    $message .= "Uploadovanie zlyhalo<br/>";
                     break;
             }
             return $message;
         }
         //upload uspesny (subor v temp dir), overit vlastnosti suboru
         if ($userfile['size'] > Config::getUploadSize()) //doublecheck - user mohol odstranit hidden field
-            $message .= "Príliš veľký súbor! (max. ".Config::getUploadSize()."B)<br>";
+            $message .= "Príliš veľký súbor! (max. ".Config::getUploadSize()."B)<br/>";
         $maxNameLength = 50 - strlen(Context::getInstance()->getUser()) - 2 - strlen($velkost->sirka . "x" . $velkost->vyska);
         if (strlen($userfile['name']) > $maxNameLength)
-            $message .= "Príliš dlhý názov súboru! (max. $maxNameLength znakov)<br>";
+            $message .= "Príliš dlhý názov súboru! (max. $maxNameLength znakov)<br/>";
         //file['type'] vyhodnocuje len na zaklade pripony a nie na zaklade hlavicky suboru ako getimagesize
         $info = getimagesize($userfile['tmp_name']);
         if ($info[2] != IMAGETYPE_GIF && $info[2] != IMAGETYPE_JPEG && $info[2] != IMAGETYPE_PNG)
-            $message .= "Nepodporovaný súbor! (iba .gif, .jpg, .png)<br>";
+            $message .= "Nepodporovaný súbor! (iba .gif, .jpg, .png)<br/>";
         if ($info[0] != $velkost->sirka || $info[1] != $velkost->vyska) //[0]-sirka,[1]-vyska
-            $message .= "Nesprávne rozmery banneru! ($velkost->nazov je $velkost->sirka x $velkost->vyska)<br>";
+            $message .= "Nesprávne rozmery banneru! ($velkost->nazov je $velkost->sirka x $velkost->vyska)<br/>";
         if (Context::getInstance()->getUser()->hasBannerOfSize($velkost))
-            $message .= "Už máte banner typu $velkost->nazov!<br>";
+            $message .= "Už máte banner typu $velkost->nazov!<br/>";
         return $message;
     }
 }

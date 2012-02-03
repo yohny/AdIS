@@ -26,10 +26,10 @@ class Filter
         'custom' => 'vlastné obdobie');
 
     /**
-     *
-     * @param int $rowsPerPage pocet riadkov na stranu, nutne kvoli query LIMIT
+     * objekt reprezentujuci pouzivatelske filtrovacie kriteria
+     * @param array $postData vstup od pouzivatela
      */
-    public function __construct()
+    public function __construct($postData)
     {
         $this->date = 'today';
         $this->from = Context::getInstance()->getUser()->regTime;
@@ -38,6 +38,8 @@ class Filter
         $this->banner = 'all';
         $this->reklama = 'all';
         $this->type = 'click';
+        if(!$this->parse($postData))
+            throw new Exception("Neplatný filter!");
     }
 
     /**
@@ -45,7 +47,7 @@ class Filter
      * @param array $filterData filtrovacie kriteria z formulara
      * @return bool true ak parsovanie bolo uspesne inak false
      */
-    public function parse($filterData)
+    private function parse($filterData)
     {
         if (isset($filterData['page']))
         {

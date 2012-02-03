@@ -59,9 +59,9 @@ if(count($reklamy)==0): ?>
         </td>
         <td>
             <form method="post" action="/action/zmaz">
-                <input type="hidden" name="zmaz" value="<?php echo $reklama->id;?>">
-                <input type="hidden" name="csrf_token" value="<?php echo Context::getInstance()->getCsrfToken(); ?>">
-                <input type="button" value="Zmaž" onclick="if(confirm('Naozaj odstrániť?')) this.form.submit();">
+                <input type="hidden" name="zmaz" value="<?php echo $reklama->id;?>" />
+                <input type="hidden" name="csrf_token" value="<?php echo Context::getInstance()->getCsrfToken(); ?>" />
+                <input type="button" value="Zmaž" onclick="if(confirm('Naozaj odstrániť?')) this.form.submit();" />
             </form>
         </td>
     </tr>
@@ -69,10 +69,10 @@ if(count($reklamy)==0): ?>
         <td colspan="5">
             <p>Nasledujúci HTML kód vložte do vašej stránky (na miesto kde chcete mať reklamu):</p>
             <code>
-&lt;script language="javascript" type="text/javascript" charset="utf-8"&gt;<br>
-var adisRekl = <?php echo $reklama->id; ?>;<br>
-var adisRand = Math.random();<br>
-document.write(unescape("%3Cscript type=\"text\/javascript\" language=\"javascript\" charset=\"utf-8\" src=\"http:\/\/<?php echo $_SERVER["HTTP_HOST"]; ?>\/getScript?rekl="+adisRekl+"&amp;amp;rand="+adisRand+"\"%3E%3C\/script%3E"));<br>
+&lt;script language="javascript" type="text/javascript" charset="utf-8"&gt;<br/>
+var adisRekl = <?php echo $reklama->id; ?>;<br/>
+var adisRand = Math.random();<br/>
+document.write(unescape("%3Cscript type=\"text\/javascript\" language=\"javascript\" charset=\"utf-8\" src=\"http:\/\/<?php echo $_SERVER["HTTP_HOST"]; ?>\/getScript?rekl="+adisRekl+"&amp;amp;rand="+adisRand+"\"%3E%3C\/script%3E"));<br/>
 &lt;/script&gt;
             </code>
         </td>
@@ -82,7 +82,7 @@ document.write(unescape("%3Cscript type=\"text\/javascript\" language=\"javascri
 </table>
 <?php endif; ?>
 
-<hr>
+<hr/>
 <h4>Pridanie novej reklamy:</h4>
 <form name="add_form" action="/action/pridajReklamu" method="post" enctype="multipart/form-data">
     <table cellspacing="5" style="text-align:left;">
@@ -103,7 +103,7 @@ document.write(unescape("%3Cscript type=\"text\/javascript\" language=\"javascri
                 Názov (popis):
             </td>
             <td>
-                <input type="text" name="meno" maxlength="50">
+                <input type="text" name="meno" maxlength="50" />
             </td>
         </tr>
         <tr title="Kategórie reklám (bannerov), ktoré chcete v tejto reklamnej jednotke zobrazovať.">
@@ -121,7 +121,7 @@ document.write(unescape("%3Cscript type=\"text\/javascript\" language=\"javascri
         <tr>
             <td></td>
             <td>
-                <input type="button" value="Uložiť" onClick="spracuj_add()">
+                <input type="button" value="Uložiť" onclick="spracuj_add()" />
             </td>
         </tr>
         <tr>
@@ -130,5 +130,5 @@ document.write(unescape("%3Cscript type=\"text\/javascript\" language=\"javascri
             </td>
         </tr>
     </table>
-    <input type="hidden" name="csrf_token" value="<?php echo Context::getInstance()->getCsrfToken(); ?>">
+    <input type="hidden" name="csrf_token" value="<?php echo Context::getInstance()->getCsrfToken(); ?>" />
 </form>

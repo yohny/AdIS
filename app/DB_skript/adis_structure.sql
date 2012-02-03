@@ -3,22 +3,38 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 30, 2012 at 10:34 PM
+-- Generation Time: Feb 03, 2012 at 09:58 PM
 -- Server version: 5.1.58
 -- PHP Version: 5.3.6-13ubuntu3.3
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
 --
 -- Database: `adis`
 --
+
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `generate_days`()
+LABEL: BEGIN
+declare datum date default null;
+select max(day) + interval 1 day from days into datum;
+if (datum is null) then
+ select min(date(registered)) from users into datum;
+end if;
+if (datum is null) then
+  LEAVE LABEL;
+end if;
+while (datum<=now()) do
+ insert into days values (datum);
+ set datum = datum + interval 1 day;
+end while;
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -35,6 +51,14 @@ CREATE TABLE IF NOT EXISTS `bannery` (
   KEY `user_fk` (`user`),
   KEY `velkost_fk` (`velkost`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci AUTO_INCREMENT=22 ;
+
+--
+-- RELATIONS FOR TABLE `bannery`:
+--   `user`
+--       `users` -> `id`
+--   `velkost`
+--       `velkosti` -> `id`
+--
 
 -- --------------------------------------------------------
 
@@ -62,6 +86,14 @@ CREATE TABLE IF NOT EXISTS `kategoria_banner` (
   KEY `banner_fk` (`banner`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci AUTO_INCREMENT=91 ;
 
+--
+-- RELATIONS FOR TABLE `kategoria_banner`:
+--   `banner`
+--       `bannery` -> `id`
+--   `kategoria`
+--       `kategorie` -> `id`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -76,6 +108,14 @@ CREATE TABLE IF NOT EXISTS `kategoria_reklama` (
   KEY `kategoria_fk2` (`kategoria`),
   KEY `reklama_fk` (`reklama`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci AUTO_INCREMENT=28 ;
+
+--
+-- RELATIONS FOR TABLE `kategoria_reklama`:
+--   `kategoria`
+--       `kategorie` -> `id`
+--   `reklama`
+--       `reklamy` -> `id`
+--
 
 -- --------------------------------------------------------
 
@@ -121,6 +161,14 @@ CREATE TABLE IF NOT EXISTS `reklamy` (
   KEY `velkost_fk2` (`velkost`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci AUTO_INCREMENT=6 ;
 
+--
+-- RELATIONS FOR TABLE `reklamy`:
+--   `user`
+--       `users` -> `id`
+--   `velkost`
+--       `velkosti` -> `id`
+--
+
 -- --------------------------------------------------------
 
 --
@@ -134,11 +182,11 @@ CREATE TABLE IF NOT EXISTS `users` (
   `web` varchar(30) COLLATE utf8_slovak_ci NOT NULL,
   `kategoria` enum('inzer','zobra','admin') COLLATE utf8_slovak_ci NOT NULL,
   `registered` datetime NOT NULL,
-  `last_login` datetime NOT NULL,
+  `last_login` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `login` (`login`),
   UNIQUE KEY `web` (`web`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_slovak_ci AUTO_INCREMENT=11 ;
 
 -- --------------------------------------------------------
 
@@ -169,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `zobrazenia` (
   `banner` int(11) NOT NULL,
   `clicked` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4496 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4498 ;
 
 --
 -- Constraints for dumped tables
@@ -207,10 +255,6 @@ DELIMITER $$
 --
 -- Events
 --
-CREATE EVENT `days_generator` ON SCHEDULE EVERY 1 DAY STARTS '2010-01-01 00:00:00' ON COMPLETION PRESERVE ENABLE COMMENT 'Event denne generujuci dni do tabulky days' DO INSERT INTO days VALUES (NOW())$$
+CREATE EVENT `days_generator` ON SCHEDULE EVERY 1 DAY STARTS '2012-01-01 00:00:00' ON COMPLETION PRESERVE ENABLE COMMENT 'Event denne generujuci dni do tabulky days' DO INSERT INTO days VALUES (NOW())$$
 
 DELIMITER ;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

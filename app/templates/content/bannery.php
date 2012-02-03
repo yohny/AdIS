@@ -58,16 +58,16 @@ if(count($bannery)==0): ?>
         </td>
         <td>
             <form method="post" action="/action/zmaz">
-                <input type="hidden" name="zmaz" value="<?php echo $banner->id; ?>">
-                <input type="hidden" name="csrf_token" value="<?php echo Context::getInstance()->getCsrfToken(); ?>">
-                <input type="button" value="Zmaž" onclick="if(confirm('Naozaj odstrániť?')) this.form.submit();">
+                <input type="hidden" name="zmaz" value="<?php echo $banner->id; ?>" />
+                <input type="hidden" name="csrf_token" value="<?php echo Context::getInstance()->getCsrfToken(); ?>" />
+                <input type="button" value="Zmaž" onclick="if(confirm('Naozaj odstrániť?')) this.form.submit();" />
             </form>
         </td>
     </tr>
     <tr <?php if($i%2==0) echo "class=\"dark\""; ?>  style="display:none;" id="tr<?php echo $banner->id; ?>">
         <td colspan="5">
             <div style="max-height:200px;overflow: auto;">
-            <img alt="banner" src="/img/banner?id=<?php echo $banner->id; ?>">
+            <img alt="banner" src="/img/banner?id=<?php echo $banner->id; ?>" />
             </div>
         </td>
     </tr>
@@ -76,7 +76,7 @@ if(count($bannery)==0): ?>
 </table>
 <?php endif; ?>
 
-<hr>
+<hr/>
 <h4>Pridanie nového banneru:</h4>
 <form name="upl_form" action="/action/pridajBanner" method="post" enctype="multipart/form-data">
     <table cellspacing="5" style="text-align:left;">
@@ -97,9 +97,9 @@ if(count($bannery)==0): ?>
                 Banner:
             </td>
             <td>
-                <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo Config::getUploadSize(); ?>">
-                <input type="hidden" name="APC_UPLOAD_PROGRESS" value="<?php echo uniqid(); ?>">
-                <input type="file" name="userfile">
+                <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo Config::getUploadSize(); ?>" />
+                <input type="hidden" name="APC_UPLOAD_PROGRESS" value="<?php echo uniqid(); ?>" />
+                <input type="file" name="userfile" />
             </td>
         </tr>
         <tr title="Kategórie, do ktorých spadá Vaša stránka (prezentovaná týmto bannerom).">
@@ -117,7 +117,7 @@ if(count($bannery)==0): ?>
         <tr>
             <td></td>
             <td>
-                <input type="button" value="Uložiť" onClick="spracuj_upl()">
+                <input type="button" value="Uložiť" onclick="spracuj_upl()" />
             </td>
         </tr>
         <tr>
@@ -126,5 +126,5 @@ if(count($bannery)==0): ?>
             </td>
         </tr>
     </table>
-    <input type="hidden" name="csrf_token" value="<?php echo Context::getInstance()->getCsrfToken(); ?>">
+    <input type="hidden" name="csrf_token" value="<?php echo Context::getInstance()->getCsrfToken(); ?>" />
 </form>

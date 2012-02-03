@@ -139,7 +139,7 @@ class User
     public static function create($login, $password, $web, $group)
     {
         $db = Context::getInstance()->getDatabase();
-        if (!$stm = $db->prepare("INSERT INTO users VALUES(NULL, ?, MD5(?), ? , ?, NOW(), NOW())"))
+        if (!$stm = $db->prepare("INSERT INTO users VALUES(NULL, ?, MD5(?), ? , ?, NOW(), DEFAULT)"))
             return false;
         $stm->bind_param('ssss', $login, $password, $web, $group);
         $ret = $stm->execute();
@@ -219,19 +219,19 @@ class User
         $message = '';
         //login
         if (!preg_match('/^[a-zA-Z\d]{4,10}$/', $input['login']))
-            $message = "Neplatný login!(len 4 až 10 znakov: a-z, A-Z, 0-9)<br>";
+            $message = "Neplatný login!(len 4 až 10 znakov: a-z, A-Z, 0-9)<br/>";
         elseif (!self::isLoginUnique($input['login']))
-            $message .= "Váš login NIE JE unikátny, zvoľte iný.<br>";
+            $message .= "Váš login NIE JE unikátny, zvoľte iný.<br/>";
         //heslo
         if ($input['heslo'] != $input['heslo2'])
-            $message .= "Nezhodujúce sa heslá!<br>";
+            $message .= "Nezhodujúce sa heslá!<br/>";
         elseif(!preg_match('/^[^\'\"]{4,10}$/', $input['heslo']))
-            $message .= "Neplatné heslo! (nesmie obsahovať &#039; ani &quot;)<br>";
+            $message .= "Neplatné heslo! (nesmie obsahovať &#039; ani &quot;)<br/>";
         //web
         if (!self::validUrl($input['web']))
-            $message .= "Neplatná webová adresa!<br>";
+            $message .= "Neplatná webová adresa!<br/>";
         elseif(!self::isWebUnique($input['web']))
-            $message .= "Tento web už bol zaregistrovaný.<br>";
+            $message .= "Tento web už bol zaregistrovaný.<br/>";
 
         return $message;
     }

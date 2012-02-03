@@ -24,7 +24,7 @@ class Database extends mysqli
     public function __construct()
     {
         @parent::__construct(Config::getDbHost() , Config::getDbUser(), Config::getDbPassword(), Config::getDbName());
-        if (mysqli_connect_errno())
+        if ($this->connect_error)
             throw new Exception('Nepodarilo sa pripojiť na databázu!');
         $this->set_charset('utf8');
         $now = new DateTime();
@@ -273,16 +273,13 @@ class Database extends mysqli
                 case 'today':
                     break;
                 case 'week':
-                    //$date->sub(new DateInterval('P7D'));
-                    $date->modify('-7 days');
+                    $date->sub(new DateInterval('P7D'));
                     break;
                 case 'month':
-                    //$date->sub(new DateInterval('P1M'));
-                    $date->modify('-1 month');
+                    $date->sub(new DateInterval('P1M'));
                     break;
                 case 'year':
-                    //$date->sub(new DateInterval('P1Y'));
-                    $date->modify('-1 year');
+                    $date->sub(new DateInterval('P1Y'));
                     break;
             }
             if ($filter->date != 'custom')
@@ -339,16 +336,13 @@ class Database extends mysqli
                 case 'today':
                     break;
                 case 'week':
-                    //$date->sub(new DateInterval('P7D'));
-                    $date->modify('-7 days');
+                    $date->sub(new DateInterval('P7D'));
                     break;
                 case 'month':
-                    //$date->sub(new DateInterval('P1M'));
-                    $date->modify('-1 month');
+                    $date->sub(new DateInterval('P1M'));
                     break;
                 case 'year':
-                    //$date->sub(new DateInterval('P1Y'));
-                    $date->modify('-1 year');
+                    $date->sub(new DateInterval('P1Y'));
                     break;
             }
             if ($filter->date != 'custom')
@@ -375,7 +369,7 @@ class Database extends mysqli
         }
 
         $query .= " ORDER BY cas DESC";
-        $query .= " LIMIT " . ($filter->page - 1) * Config::getStatRowsPerPage() . ", " . $filter->rowsPerPage;
+        $query .= " LIMIT " . ($filter->page - 1) * Config::getStatRowsPerPage() . ", " . Config::getStatRowsPerPage();
 
         $results = $this->query($query);
         $objects = array();

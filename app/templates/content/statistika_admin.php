@@ -14,9 +14,7 @@ Context::getInstance()->getResponse()->setHeading('štatistika');
 if (Context::getInstance()->getUser()->kategoria != 'admin')
     throw new Exception("Nepovolený prístup!");
 
-$filter = new Filter(Config::getStatRowsPerPage());
-if(!$filter->parse($_POST))
-    throw new Exception("Neplatný filter!");
+$filter = new Filter($_POST);
 
 $db = Context::getInstance()->getDatabase();
 $pocet = $db->getStatisticsForAdmin($filter, true);
@@ -30,7 +28,7 @@ $pages = ceil($pocet/Config::getStatRowsPerPage());
 ?>
 <h4>Filter</h4>
 <form name="filter" action="" method="post">
-    <input type="hidden" name="page" value="1"/>
+    <input type="hidden" name="page" value="1" />
     <table>
         <tr>
             <td>Obdobie:</td>
@@ -96,7 +94,7 @@ $pages = ceil($pocet/Config::getStatRowsPerPage());
     </table>
 </form>
 
-<hr>
+<hr/>
 <h4>Počet: <span class="g" style="font-size:16px;"><?php echo $pocet; ?></span></h4>
 <?php if(count($events)==0): ?>
 <h4 class="r">Žiadne dáta!</h4>

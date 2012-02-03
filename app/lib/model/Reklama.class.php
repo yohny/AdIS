@@ -63,9 +63,9 @@ class Reklama extends BanRek
     {
         $message = null;
         if (strlen($meno) > 50)
-            $message .= "Príliš dlhý názov! (max. 50 znakov)<br>";
+            $message .= "Príliš dlhý názov! (max. 50 znakov)<br/>";
         if (Context::getInstance()->getUser()->hasReklamaOfSize($velkost))
-            $message .= "Už máte reklamu typu $velkost->nazov!<br>";
+            $message .= "Už máte reklamu typu $velkost->nazov!<br/>";
         return $message;
     }
 }

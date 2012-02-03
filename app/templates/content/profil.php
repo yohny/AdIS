@@ -20,16 +20,16 @@ Context::getInstance()->getResponse()->setHeading('profil');
             <td colspan="3">
                 <table style="width: 100%;">
                     <tr>
-                        <td>Staré heslo:</td><td><input type="password" name="old" maxlength="10"></td>
+                        <td>Staré heslo:</td><td><input type="password" name="old" maxlength="10" /></td>
                     </tr>
                     <tr>
-                        <td>Nové heslo:</td><td><input type="password" name="new1" maxlength="10"></td>
+                        <td>Nové heslo:</td><td><input type="password" name="new1" maxlength="10" /></td>
                     </tr>
                     <tr>
-                        <td>Nové heslo:</td><td><input type="password" name="new2" maxlength="10"></td>
+                        <td>Nové heslo:</td><td><input type="password" name="new2" maxlength="10" /></td>
                     </tr>
                     <tr>
-                        <td></td><td><input type="button" value="OK" onClick="spracuj_chpas()"></td>
+                        <td></td><td><input type="button" value="OK" onclick="spracuj_chpas()" /></td>
                     </tr>
                     <tr>
                         <td colspan="2"><div id="chpas_errbox" class="errbox"></div><div id="chpas_okbox" class="okbox"></div></td>
@@ -38,7 +38,7 @@ Context::getInstance()->getResponse()->setHeading('profil');
             </td>
         </tr>
     </table>
-    <input type="hidden" name="csrf_token" value="<?php echo Context::getInstance()->getCsrfToken(); ?>">
+    <input type="hidden" name="csrf_token" value="<?php echo Context::getInstance()->getCsrfToken(); ?>" />
 </form>
 
 <?php if (Context::getInstance()->getUser()->kategoria != 'admin'): ?>
@@ -54,13 +54,13 @@ Context::getInstance()->getResponse()->setHeading('profil');
                         <td>Nová adresa:</td>
                         <td>
                             <table style="width: 100%;border-collapse: collapse;"><tr>
-                            <td style="width: 32px;"><input type="text" value="http://" readonly="readonly" style="border-right-style: none;" onclick="this.form['web'].focus()"></td>
-                            <td><input type="text" name="web" maxlength="30" style="border-left-style: none;"></td>
+                            <td style="width: 32px;"><input type="text" value="http://" readonly="readonly" style="border-right-style: none;" onclick="this.form['web'].focus()" /></td>
+                            <td><input type="text" name="web" maxlength="30" style="border-left-style: none;" /></td>
                             </tr></table>
                         </td>
                     </tr>
                     <tr>
-                        <td></td><td><input type="button" value="OK" onClick="spracuj_chweb()"></td>
+                        <td></td><td><input type="button" value="OK" onclick="spracuj_chweb()" /></td>
                     </tr>
                     <tr>
                         <td colspan="2"><div id="chweb_errbox" class="errbox"></div><div id="chweb_okbox" class="okbox"></div></td>
@@ -69,6 +69,6 @@ Context::getInstance()->getResponse()->setHeading('profil');
             </td>
         </tr>
     </table>
-    <input type="hidden" name="csrf_token" value="<?php echo Context::getInstance()->getCsrfToken(); ?>">
+    <input type="hidden" name="csrf_token" value="<?php echo Context::getInstance()->getCsrfToken(); ?>" />
 </form>
 <?php endif; ?>

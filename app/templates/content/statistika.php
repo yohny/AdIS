@@ -10,13 +10,7 @@
 
 
 Context::getInstance()->getResponse()->setHeading('štatistika');
-
-$filter = new Filter(Config::getStatRowsPerPage());
-if(!$filter->parse($_POST))
-    throw new Exception("Neplatný filter!");
-//vo filtri - prerabka datumu - ak zada 31.2.2011 tak objekt sa vytvori ale datum bude 3.3.2011
-//a teda treba prepisat UI aby odzrkadlovalo tuto zmenu!
-
+$filter = new Filter($_POST);
 $user = Context::getInstance()->getUser();
 
 $db = Context::getInstance()->getDatabase();
@@ -35,7 +29,7 @@ $pages = ceil($counts['count']/Config::getStatRowsPerPage());
 ?>
 <h4>Filter</h4>
 <form name="filter" action="" method="post">
-    <input type="hidden" name="page" value="1"/>
+    <input type="hidden" name="page" value="1" />
     <table>
         <tr>
             <td>Obdobie:</td>
@@ -87,7 +81,7 @@ $pages = ceil($counts['count']/Config::getStatRowsPerPage());
         <tr>
             <td></td>
             <td>
-                <input type="button" onclick="spracuj_filter()" value="Filtruj">
+                <input type="button" onclick="spracuj_filter()" value="Filtruj" />
             </td>
         </tr>
         <tr>
@@ -97,7 +91,7 @@ $pages = ceil($counts['count']/Config::getStatRowsPerPage());
     </table>
 </form>
 
-<hr>
+<hr/>
 <h4>Graf</h4>
 <?php if(count($stats)==0): ?>
 <h4 class="r">Žiadne dáta!</h4>
@@ -109,7 +103,7 @@ nacitajGraf();
 </script>
 <?php endif; ?>
 
-<hr>
+<hr/>
 <h4>
     Zobrazení: <span class="g" style="font-size:16px;margin-right: 10px;"><?php echo $counts['views']?$counts['views']:'0'; ?></span>
     Kliknutí: <span class="g" style="font-size:16px;margin-right: 10px;"><?php echo $counts['clicks']?$counts['clicks']:'0'; ?></span>

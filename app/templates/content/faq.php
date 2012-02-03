@@ -13,7 +13,7 @@ Context::getInstance()->getResponse()->setHeading('faq');
 
 <h4 class="faq">Čo to je?</h4>
 <p>
-Tento IS umožňuje zaregistrovaným používateľom spravovať internetovú reklamu a prístup k hodnoteniu efektivity ich reklamnej kampane.<br>
+Tento IS umožňuje zaregistrovaným používateľom spravovať internetovú reklamu a prístup k hodnoteniu efektivity ich reklamnej kampane.<br/>
 Systém umožňuje pridávať a meniť reklamné bannery a zabepečuje ich distribúciu príslušným vebovým stránkam.
 </p>
 
@@ -30,6 +30,6 @@ Limit na veľkosť súboru je <span class="g">20KB</span>. Povolené formáty s�
 
 <h4 class="faq">Aký je rozdiel medzi inzerentom a zobrazovateľom?</h4>
 <p>
-<span class="g">Inzerenti</span> sú tvorení tími, ktorí zadávajú reklamu a platia za jej publikovanienie  Po prihlásení do systému ako inzerent má používateľ možnosť uploadu svojho reklamného banneru na server a má k dispozícii informáciu o počte kliknití na jeho reklamu.<br>
+<span class="g">Inzerenti</span> sú tvorení tími, ktorí zadávajú reklamu a platia za jej publikovanienie  Po prihlásení do systému ako inzerent má používateľ možnosť uploadu svojho reklamného banneru na server a má k dispozícii informáciu o počte kliknití na jeho reklamu.<br/>
 <span class="g">Zobrazovatelia</span> plnia funkciu poskytovateľov reklamného priestoru a reklamné bannery zobrazujú na svojích webových stránkach. Každý používateľ z tejto kategórie má k dipozícii vygenerovaný HTML kód, ktorý po vložení do stránky zobrazovateľa zabezpečí stiahnutie reklamného banneru a jeho zobrazenie na stránke.
 </p>

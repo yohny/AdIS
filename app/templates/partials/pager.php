@@ -11,7 +11,6 @@
  * @subpackage templates
  * @author     Ján Neščivera <jan.nescivera@gmail.com>
  *
- * @todo turn into object
  */
 
 if(!isset($pages) || !isset($aktPage))

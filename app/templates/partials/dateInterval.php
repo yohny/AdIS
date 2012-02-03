@@ -10,7 +10,6 @@
  * @subpackage templates
  * @author     Ján Neščivera <jan.nescivera@gmail.com>
  *
- * @todo turn into object
  */
 
 if(!isset($filter) || !($filter instanceof Filter))

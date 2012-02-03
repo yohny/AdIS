@@ -1,19 +1,20 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="sk" lang="sk">
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <title><?php echo Context::getInstance()->getResponse()->getTitle(); ?></title>
-        <meta name="generator" content="Netbeans IDE, www.netbeans.org">
-        <meta name="description" content="reklamný systém">
-        <meta name="keywords" content="internetová reklama, online reklama, reklama, ad-is, banner, ppc, is">
-        <meta name="copyright" content="Copyright (c) Ján Neščivera">
-        <meta name="author" content="Yohny - jan.nescivera@gmail.com">
-        <meta name="content-language" content="sk">
-        <link rel="shortcut icon" href="/img/favicon.ico">
-        <link rel="stylesheet" type="text/css" href="/css/style_basic.css">
-        <link rel="stylesheet" type="text/css" href="/css/style_green.css">
-        <link rel="stylesheet" type="text/css" href="/css/style_orange.css">
-        <link rel="stylesheet" type="text/css" href="/css/style_blue.css">
+        <meta name="generator" content="Netbeans IDE, www.netbeans.org" />
+        <meta name="description" content="reklamný systém" />
+        <meta name="keywords" content="internetová reklama, online reklama, reklama, ad-is, banner, ppc, is" />
+        <meta name="copyright" content="Copyright (c) Ján Neščivera" />
+        <meta name="author" content="Yohny - jan.nescivera@gmail.com" />
+        <meta name="content-language" content="sk" />
+        <link rel="shortcut icon" href="/img/favicon.ico" />
+        <link rel="stylesheet" type="text/css" href="/css/style_basic.css" />
+        <link rel="stylesheet" type="text/css" href="/css/style_green.css" />
+        <link rel="stylesheet" type="text/css" href="/css/style_orange.css" />
+        <link rel="stylesheet" type="text/css" href="/css/style_blue.css" />
         <script language="javascript" type="text/javascript" src="/js/script.js"></script>
         <?php foreach (Context::getInstance()->getResponse()->getResources() as $resource) echo $resource . "\n"; ?>
     </head>
@@ -61,23 +62,23 @@
                     <p class="r">dôležitý oznam</p>
                     <p>
                         <a href="http://validator.w3.org/check?uri=referer">
-                            <img src="/img/valid-html401.png" alt="val_html">
+                            <img src="/img/valid-xhtml10.png" alt="val_xhtml" />
                         </a>
                     </p>
                     <p>
                         <a href="http://jigsaw.w3.org/css-validator/check/referer">
-                            <img src="/img/vcss.gif" alt="val_css">
+                            <img src="/img/vcss.gif" alt="val_css" />
                         </a>
                     </p>
                     <p>
                         schéma:
-                        <img id="img1" src="/img/sch1.png" onClick="set_scheme(1)" alt="s1">
-                        <img id="img2" src="/img/sch2.png" onClick="set_scheme(2)" alt="s2">
-                        <img id="img3" src="/img/sch3.png" onClick="set_scheme(3)" alt="s3">
+                        <img id="img1" src="/img/sch1.png" onclick="set_scheme(1)" alt="s1" />
+                        <img id="img2" src="/img/sch2.png" onclick="set_scheme(2)" alt="s2" />
+                        <img id="img3" src="/img/sch3.png" onclick="set_scheme(3)" alt="s3" />
                     </p>
                     <script language="javascript" type="text/javascript">set_scheme(schema);</script>
                 </div>
-                <a href="mailto:jan.nescivera@student.tuke.sk" id="ja" title="admin&amp;webmaster">&lt;Yohny&gt;</a>
+                <a href="mailto:jan.nescivera@gmail.com" id="ja" title="admin&amp;webmaster">&lt;Yohny&gt;</a>
             </div><!-- end div#left --><div id="main">
                 <div class="top_left corner"></div>
                 <div class="top_right corner"></div>
@@ -102,7 +103,7 @@
                     <?php echo Context::getInstance()->getResponse(); ?>
                 </div>
                 <?php } else echo Context::getInstance()->getResponse(); ?>
-                <hr>
+                <hr/>
             </div><!-- end div#main -->
         </div><!-- end div#container -->
     </body>

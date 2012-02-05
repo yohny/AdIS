@@ -21,10 +21,12 @@ Autoloader::registerModel();
 session_name('adis_session');
 session_start();
 
-define('TEMPLATES_DIR', Config::getBaseDir().'/app/templates/');
-$request = Context::getInstance()->getRequest();
+define('BASE_DIR',__DIR__);
+define('ACTIONS_DIR', BASE_DIR.'/app/actions');
+define('TEMPLATES_DIR', BASE_DIR.'/app/templates');
 
-if (!$request->fileExists)
+$request = Context::getInstance()->getRequest();
+if (!$request->getUri())
 {
     header("HTTP/1.1 404 Not Found");
     Context::getInstance()->getResponse()->content = "{$_SERVER['REQUEST_URI']} nenájdené!";

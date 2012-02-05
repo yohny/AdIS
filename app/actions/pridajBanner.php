@@ -28,7 +28,7 @@ else
 if (!$message) //banner je OK
 {
     $uploadname = Banner::createFilename($_FILES['userfile']['name'], $velkost);
-    if (is_uploaded_file($_FILES['userfile']['tmp_name']) && move_uploaded_file($_FILES['userfile']['tmp_name'], Config::getUploadDir().$uploadname))
+    if (is_uploaded_file($_FILES['userfile']['tmp_name']) && move_uploaded_file($_FILES['userfile']['tmp_name'], Config::getUploadDir().DIRECTORY_SEPARATOR.$uploadname))
     {
         $banner = new Banner(null, Context::getInstance()->getUser()->id, $velkost, $uploadname);
         if ($banner->save($_POST['kategorie']))
@@ -36,7 +36,7 @@ if (!$message) //banner je OK
         else
         {
             $message = "Nepodarilo sa uložiť banner.";
-            unlink(Config::getUploadDir().$uploadname);
+            unlink(Config::getUploadDir().DIRECTORY_SEPARATOR.$uploadname);
         }
     }
     else

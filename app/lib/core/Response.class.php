@@ -27,7 +27,7 @@ class Response
      * default 'text/html'
      * @var string
      */
-    private $headerContentType = 'text/html';
+    private $headerContentType = 'application/xhtml+xml';
 
     /**
      * kodovanie stranky odosielane v hlavicke

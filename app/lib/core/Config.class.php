@@ -78,8 +78,8 @@ class Config
                 $this->dbName = trim($xml->database_name);
             if(isset($xml->stat_rows_per_page) && is_numeric(trim($xml->stat_rows_per_page)) && intval($xml->stat_rows_per_page)>0)
                 $this->statRowsPerPage = intval($xml->stat_rows_per_page);
-            if(isset($xml->upload_dir) && ($path = realpath(self::getBaseDir().DIRECTORY_SEPARATOR.trim($xml->upload_dir))))
-                $this->uploadDir = $path.DIRECTORY_SEPARATOR;
+            if(isset($xml->upload_dir) && ($path = realpath(BASE_DIR.DIRECTORY_SEPARATOR.trim($xml->upload_dir,DIRECTORY_SEPARATOR))))
+                $this->uploadDir = $path;
             if(isset($xml->upload_max_filesize) && is_numeric(trim($xml->upload_max_filesize)))
                 $this->uploadSize = intval($xml->upload_max_filesize);
         }
@@ -149,7 +149,7 @@ class Config
     }
 
     /**
-     * vrati adresar na upload bannerov (absolutna cesta) na zaklade nastavenia v config.xml s '/' na konci
+     * vrati adresar na upload bannerov (absolutna cesta) na zaklade nastavenia v config.xml
      * ak toto nastavenie v konfiguracnom subore nie je vrati cestu do adresara upload/ (default)
      * @return string
      */
@@ -166,15 +166,6 @@ class Config
     public static function getUploadSize()
     {
         return self::getInstance()->uploadSize;
-    }
-
-    /**
-     * vrati korenovy adresar - s index.php (absolutna cesta) bez '/' na konci
-     * @return string
-     */
-    public static function getBaseDir()
-    {
-        return realpath(dirname(__FILE__).'/../../../');
     }
 }
 ?>

@@ -16,6 +16,8 @@ require_once '../app/lib/Autoloader.class.php';
 Autoloader::registerCore();
 Autoloader::registerModel();
 
+define('BASE_DIR',__DIR__."/..");
+
 session_name('adis_session');
 session_start();
 

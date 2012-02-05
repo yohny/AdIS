@@ -16,6 +16,8 @@ require_once '../app/lib/Autoloader.class.php';
 Autoloader::registerCore();
 Autoloader::registerModel();
 
+define('BASE_DIR',__DIR__."/..");
+
 $url = preg_replace("/\?.*$/", "", $_SERVER['REQUEST_URI']); //odstranenie query stringy
 $file = '.'.$url.'.php'; //REQUEST_URI zacina s '/'
 if(file_exists($file))

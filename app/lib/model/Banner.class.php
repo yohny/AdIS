@@ -51,7 +51,7 @@ class Banner extends BanRek
 
     public function delete()
     {
-        if (!unlink(Config::getUploadDir() . $this->filename))
+        if (!unlink(Config::getUploadDir().DIRECTORY_SEPARATOR. $this->filename))
             return false;
         return parent::delete();
     }
@@ -67,13 +67,13 @@ class Banner extends BanRek
      */
     public function getImgWithWatermark()
     {
-        if (!$fileContent = @file_get_contents(Config::getUploadDir() . $this->filename))
+        if (!$fileContent = @file_get_contents(Config::getUploadDir() .DIRECTORY_SEPARATOR. $this->filename))
             return null;
         $img = imagecreatefromstring($fileContent);
         $watermark = imagecreate(imagesx($img), 15);
         imagecolorallocate($watermark, 0, 0, 0); //black - first color becomes background
         $white = imagecolorallocate($watermark, 255, 255, 255);
-        if(@imagettftext($watermark, 10, 0, imagesx($img) - 40, 12, $white, Config::getBaseDir().'/img/Ubuntu-B.ttf', 'Ad-IS'))
+        if(@imagettftext($watermark, 10, 0, imagesx($img) - 40, 12, $white, BASE_DIR.'/img/Ubuntu-B.ttf', 'Ad-IS'))
             imagecopymerge($img, $watermark, 0, imagesy($img) - imagesy($watermark), 0, 0, imagesx($watermark), imagesy($watermark), 50);
         return $img;
     }

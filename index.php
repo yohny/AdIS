@@ -6,8 +6,10 @@
  * @package    AdIS
  * @author     Ján Neščivera <jan.nescivera@gmail.com>
  *
- * @todo rafactor to trully use one front controller (at least for /distrib use this one too, form /img its optional)
- * problem with image generation (in getBanner of /distrib and in /img)
+ * @todo rafactor to trully use one front controller
+ *   for /distrib - session shoudnt be used on distrib (called from remote sites),
+ *    simplified logic, no 'context', no layout - self standing module/app - separate controller
+ *   for /img  - this could work (problems with image generation ?)
  * @todo add unit tests
  */
 

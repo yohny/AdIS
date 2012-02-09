@@ -253,7 +253,9 @@ function spracuj_chpas()
 
 function overLogin(str)
 {
-    document.getElementById("loginStatus").innerHTML="Overujem..."
+    var loginStatus =  document.getElementById("loginStatus");
+    loginStatus.className = "";
+    loginStatus.innerHTML="Overujem...";
 
     if (!(/^[a-zA-Z\d]{4,10}$/).test(str))
     {
@@ -271,7 +273,11 @@ function overLogin(str)
     params += "&sid="+Math.random();  //Adds a random number to prevent the server from using a cached file
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState==4)
-            document.getElementById("loginStatus").innerHTML=xmlhttp.responseText;
+        {
+            var resp = eval('('+xmlhttp.responseText+')');
+            loginStatus.className = resp.success?"g":"r";
+            loginStatus.innerHTML = resp.message;
+        }
     };
     xmlhttp.open("GET",url+'?'+params, true);
     xmlhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");

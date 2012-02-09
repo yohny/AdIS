@@ -9,13 +9,15 @@
  *
  */
 
-Context::getInstance()->getResponse()->setHeaderContentType('text/plain');
+Context::getInstance()->getResponse()->setHeaderContentType('application/json');
 
 if (!isset($_GET['login']))
     throw new Exception("Nekompletné údaje!");
 
 if (User::isLoginUnique($_GET['login']))
-    echo "<span class='g'>Váš login je vporiadku.</span>";
+    $resp = array('success' => true, 'message' => 'Váš login je vporiadku.');
 else
-    echo "<span class='r'>Neplatný login! Zvoľte iný.</span>";
+    $resp = array('success' => false, 'message' => 'Neplatný login! Zvoľte iný.');
+
+echo json_encode($resp);
 ?>

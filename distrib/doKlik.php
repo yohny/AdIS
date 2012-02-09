@@ -7,16 +7,11 @@
  * @subpackage distribution
  * @author     Ján Neščivera <jan.nescivera@gmail.com>
  *
- * @todo daky tracking spravit (cookie tracking PK kliknutí) aby sa nejaký cas nedalo klikat na tu istu "konstalaciu"
- * tj. nie len voted, ale aby tam bolo pole -
- * id klikov za poslednych X sekund a na zaklade toho by sa povedalo ze nemoze klikat napr na danej stranke
- * resp na dany banner aj na inych strankach
- * alebo by v cookie stacili id zobrazovatelov a reklam
  */
 
 function customError($errno, $errstr) //error handler function
 {
-    header("Location: http://{$_SERVER["HTTP_HOST"]}/klikerror?msg=$errstr");
+    header("Location: http://{$_SERVER["HTTP_HOST"]}/klikerror?msg=".urlencode($errstr));
     exit();
 }
 set_error_handler("customError");
@@ -47,10 +42,10 @@ try
         $klik->save($db);
     }
     //NOTE pocet zobrazeni s 'clicked' nie je ten isty ako pocet kliknuti, lebo k nastaveniu
-    //clicked dojde vzdy aj ked sa nezapise klik (kvoli cookie)
+    //clicked dojde vzdy - aj ked sa nezapocita klik (kvoli cookie)
     if (!$zobrazenie->isClicked())
         $zobrazenie->setClicked($db);
-//    else                  //bez erroru nemusi vediet o tom user, staci ze sa nezapocita (osetrene vyssie)
+//    else     //bez erroru nemusi vediet o tom user, staci ze sa nezarata klik (osetrene vyssie)
 //        trigger_error("Opakovane klikanie");
 }
 catch (Exception $ex)

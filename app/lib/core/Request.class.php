@@ -59,7 +59,10 @@ class Request
         $this->uri = preg_replace("/^\/$/", TEMPLATES_DIR."/content/about", $this->uri);
 
         if (preg_match("/^".preg_quote(ACTIONS_DIR,"/")."/", $this->uri))//ak to je 'akcia'
+        {
             $this->hasTemplate = false;
+            Context::getInstance()->getResponse()->setHeaderContentType("text/plain");//defaultny typ pre akcie
+        }
 
         foreach ($this->public as $pub) //checking na public
         {

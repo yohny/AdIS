@@ -36,8 +36,6 @@ class Context
 
     private function __construct()
     {
-        $this->request = new Request($_SERVER['REQUEST_URI']);
-        $this->response = new Response('Ad-IS');
     }
 
     /**
@@ -47,25 +45,29 @@ class Context
     public static function getInstance()
     {
         if(!self::$instance)
-            self::$instance = new Context();
+            self::$instance = new self();
         return self::$instance;
     }
 
     /**
-     * returns actual request object
+     * returns current request object
      * @return Request
      */
     public function getRequest()
     {
+        if(!$this->request)
+            $this->request = new Request($_SERVER['REQUEST_URI']);
         return $this->request;
     }
 
     /**
-     * returns actual response object
+     * returns current response object
      * @return Response
      */
     public function getResponse()
     {
+        if(!$this->response)
+            $this->response = new Response("AdIS");
         return $this->response;
     }
 

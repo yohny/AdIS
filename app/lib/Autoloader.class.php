@@ -10,13 +10,6 @@
 class Autoloader
 {
     /**
-     * adresar obsahujuci triedy a kniznice
-     * musi byt absolutna cesta lebo loaduje niekedy voci index.php inokedy voci /img alebo /distrib
-     * @var string
-     */
-    private $baseDir = null;
-
-    /**
      * holds instance of this class
      * @var Autoloader
      */
@@ -24,9 +17,8 @@ class Autoloader
 
     private function __construct()
     {
-        $this->baseDir = dirname(__FILE__);
-        spl_autoload_register(null,false);//reset autoloaderov
-        spl_autoload_extensions('.class.php, .php');//pripony
+        spl_autoload_register(null,false); //reset autoloaderov
+        spl_autoload_extensions('.class.php');
     }
 
     /**
@@ -42,12 +34,12 @@ class Autoloader
 
     /**
      * includes class file, or fails with FALSE
-     * @param string $path relative path from baseDir (/classes)
+     * @param string $path relative path from Autoloader directory
      * @return bool
      */
     private function loadClass($path)
     {
-        if(file_exists($this->baseDir.DIRECTORY_SEPARATOR.$path))
+        if(file_exists(__DIR__.DIRECTORY_SEPARATOR.$path))
             require_once $path;
         else
             return false;

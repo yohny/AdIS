@@ -17,7 +17,6 @@ class Autoloader
 
     private function __construct()
     {
-        spl_autoload_register(null,false); //reset autoloaderov
         spl_autoload_extensions('.class.php');
     }
 

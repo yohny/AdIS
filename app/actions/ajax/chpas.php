@@ -11,7 +11,7 @@
 
 Context::getInstance()->getResponse()->setHeaderContentType('application/json');
 
-if (!isset($_POST['old']) || !isset($_POST['new']) || !isset($_POST['csrf_token']))
+if (!isset($_POST['old'], $_POST['new'], $_POST['csrf_token']))
     throw new Exception("Nekompletné údaje!");
 if($_POST['csrf_token'] != Context::getInstance()->getCsrfToken())
     throw new Exception("Chyba - CSRF!");

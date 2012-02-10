@@ -9,7 +9,7 @@
  *
  */
 
-if (!isset($_POST['zmaz']) || !is_numeric($_POST['zmaz']) || !isset($_POST['csrf_token']))
+if (!isset($_POST['zmaz'], $_POST['csrf_token']) || !is_numeric($_POST['zmaz']))
     throw new Exception("Neplatné údaje!");
 if($_POST['csrf_token'] != Context::getInstance()->getCsrfToken())
     throw new Exception("Chyba - CSRF!");

@@ -19,7 +19,7 @@ Autoloader::registerPChart();
 session_name('adis_session');
 session_start();
 
-if (!isset($_SESSION['user']) || !isset($_SESSION['stats']))
+if (!isset($_SESSION['user'], $_SESSION['stats']))
 {
     header("HTTP/1.1 403 Forbidden");
     exit();

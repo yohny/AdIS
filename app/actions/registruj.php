@@ -9,13 +9,13 @@
  *
  */
 
-if (!isset($_POST['user']) || !isset($_POST['csrf_token']))
+if (!isset($_POST['user'], $_POST['csrf_token']))
     throw new Exception("Nekompletné údaje!");
 if($_POST['csrf_token'] != Context::getInstance()->getCsrfToken())
     throw new Exception("Chyba - CSRF!");
 
 $user = $_POST['user'];
-if (!isset($user['login']) || !isset($user['heslo']) || !isset($user['web']) || !isset($user['skupina']) || !isset($user['captcha']))
+if (!isset($user['login'], $user['heslo'], $user['web'], $user['skupina'], $user['captcha']))
     throw new Exception("Nekompletné registračné udaje!");
 
 Autoloader::registerCaptcha();

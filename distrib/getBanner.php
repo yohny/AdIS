@@ -9,7 +9,7 @@
  *
  */
 
-if (!isset($_GET['id']) || !is_numeric($_GET['id']) || !isset($_GET['view']) || !is_numeric($_GET['view']))
+if (!isset($_GET['id'], $_GET['view']) || !is_numeric($_GET['id']) || !is_numeric($_GET['view']))
 {
     header("HTTP/1.1 403 Zle parametre");
     exit();
@@ -26,7 +26,7 @@ try
     }
     if (!$zobrazenie = $db->getZobrazenieByPK($_GET['view']))
     {
-        header("HTTP/1.1 403 Neexistujuce");
+        header("HTTP/1.1 403 Neexist. zobr.");
         exit();
     }
     if ($zobrazenie->bannerId != $_GET['id'] || $zobrazenie->zobraId != $user->id || $zobrazenie->isClicked())

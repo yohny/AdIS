@@ -9,7 +9,7 @@
  *
  */
 
-if(!isset($_POST['login']) || !isset($_POST['heslo']) || !isset($_POST['csrf_token']))
+if(!isset($_POST['login'], $_POST['heslo'], $_POST['csrf_token']))
     throw new Exception("Nekompletné údaje!");
 if($_POST['csrf_token'] != Context::getInstance()->getCsrfToken())
     throw new Exception("Chyba - CSRF!");

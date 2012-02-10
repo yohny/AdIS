@@ -9,19 +9,13 @@
  *
  */
 
-mb_internal_encoding("utf-8");
-date_default_timezone_set('Europe/Bratislava');
-
 require_once '../app/lib/Autoloader.class.php';
 Autoloader::registerCore();
 Autoloader::registerModel();
 
 define('BASE_DIR',__DIR__."/..");
 
-session_name('adis_session');
-session_start();
-
-if (!isset($_SESSION['user']) || !isset($_GET['id']) || !is_numeric($_GET['id']))
+if (!isset($_GET['id']) || !is_numeric($_GET['id']))
 {
     header("HTTP/1.1 403 Forbidden");
     exit();
@@ -32,12 +26,7 @@ try
     $db = new Database();
     if(!$banner = $db->getBannerByPK($_GET['id']))
     {
-        header("HTTP/1.1 404 No banner");
-        exit();
-    }
-    if($banner->userId != $_SESSION['user']->id)
-    {
-        header("HTTP/1.1 403 Wrong user");
+        header("HTTP/1.1 404 Not Found");
         exit();
     }
 }

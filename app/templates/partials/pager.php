@@ -13,7 +13,7 @@
  *
  */
 
-if(!isset($pages) || !isset($aktPage))
+if(!isset($pages, $aktPage))
 {
     echo "<b>PAGER: nenastavene premenne</b>";
     return;

@@ -67,7 +67,7 @@ class Banner extends BanRek
      */
     public function getImgWithWatermark()
     {
-        if (!$fileContent = @file_get_contents(Config::getUploadDir() .DIRECTORY_SEPARATOR. $this->filename))
+        if (!$fileContent = @file_get_contents(Config::getUploadDir().DIRECTORY_SEPARATOR.$this->filename))
             return null;
         $img = imagecreatefromstring($fileContent);
         $watermark = imagecreate(imagesx($img), 15);

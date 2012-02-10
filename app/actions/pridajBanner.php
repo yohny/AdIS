@@ -11,10 +11,8 @@
 
 if(Context::getInstance()->getUser()->kategoria!='inzer')
     throw new Exception("Nepovolený prístup!");
-if (!isset($_FILES['userfile']) || !isset($_POST['velkost']) ||
-    !isset($_POST['kategorie']) || !is_numeric($_POST['velkost']) ||
-    !isset($_POST['csrf_token']) || empty($_FILES['userfile']) ||
-    empty($_POST['kategorie']))
+if (!isset($_FILES['userfile'], $_POST['velkost'], $_POST['kategorie'], $_POST['csrf_token'])
+    || !is_numeric($_POST['velkost']) || empty($_FILES['userfile']) || empty($_POST['kategorie']))
     throw new Exception("Neplatné údaje!");
 if($_POST['csrf_token'] != Context::getInstance()->getCsrfToken())
     throw new Exception("Chyba - CSRF!");

@@ -38,8 +38,8 @@ class Autoloader
      */
     private function loadClass($path)
     {
-        if(file_exists(__DIR__.DIRECTORY_SEPARATOR.$path))
-            require_once $path;
+        if(is_readable(__DIR__.DIRECTORY_SEPARATOR.$path))
+            require $path;
         else
             return false;
     }

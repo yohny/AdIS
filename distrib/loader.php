@@ -20,8 +20,8 @@ define('BASE_DIR',__DIR__."/..");
 
 $url = preg_replace("/\?.*$/", "", $_SERVER['REQUEST_URI']); //odstranenie query stringy
 $file = '.'.$url.'.php'; //REQUEST_URI zacina s '/'
-if(file_exists($file))
-    require_once $file;
+if(is_readable($file))
+    require $file;
 else
     header("HTTP/1.1 404 Not Found");
 ?>

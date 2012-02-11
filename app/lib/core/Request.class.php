@@ -74,7 +74,8 @@ class Request
             }
         }
 
-        $this->uri = realpath($this->uri.'.php');
+        $this->uri .= ".php";
+        $this->uri = is_readable($this->uri)?realpath($this->uri):null;
     }
 
     public function getUri()

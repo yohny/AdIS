@@ -1,7 +1,7 @@
 <?php
 /**
  * trieda reprezentujuca zaznam z tabulky ZOBRAZENIA
- * 
+ *
  * @version    1.0
  * @package    AdIS
  * @subpackage model
@@ -10,9 +10,9 @@
  */
 class Zobrazenie extends Event
 {
-    private $clicked = false;
+    private $clicked;
 
-    public function __construct($id, $cas, $zobraId, $reklamaId, $inzerId, $bannerId, $clicked)
+    public function __construct($id, DateTime $cas, $zobraId, $reklamaId, $inzerId, $bannerId, $clicked = false)
     {
         parent::__construct($id, $cas, $zobraId, $reklamaId, $inzerId, $bannerId);
         $this->clicked = $clicked;
@@ -21,7 +21,7 @@ class Zobrazenie extends Event
 
     public function save(Database $db)
     {
-        $query = "INSERT INTO zobrazenia VALUES(NULL, NOW(), $this->zobraId, $this->inzerId, $this->reklamaId, $this->bannerId, DEFAULT)";
+        $query = "INSERT INTO zobrazenia VALUES(NULL, NOW(), $this->zobraId, $this->inzerId, $this->reklamaId, $this->bannerId, 0)";
         return $db->query($query);
     }
 

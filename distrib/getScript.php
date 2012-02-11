@@ -29,7 +29,7 @@ try
     if (!$banner = $db->getRandBannerForReklama($reklama))
         exit("//chyba získavania banneru");
     //zapise zobrazenie do DB
-    $zobr = new Zobrazenie(null, null, $reklama->userId, $reklama->id, $banner->userId, $banner->id, null);
+    $zobr = new Zobrazenie(null, new DateTime(), $reklama->userId, $reklama->id, $banner->userId, $banner->id);
     $zobr->save($db);
     $view = $db->insert_id;
 }

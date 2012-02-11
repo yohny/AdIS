@@ -21,7 +21,7 @@ class Event
     public $bannerId;
     public $bannerFilename;
 
-    public function __construct($id, $cas, $zobraId, $reklamaId, $inzerId, $bannerId)
+    public function __construct($id, DateTime $cas, $zobraId, $reklamaId, $inzerId, $bannerId)
     {
         $this->id = $id;
         $this->cas = $cas;
@@ -38,13 +38,7 @@ class Event
 
     public function __toString()
     {
-        $dateTime = new DateTime($this->cas);
-        if(setlocale(LC_ALL, "sk_SK.utf8"))
-            return strftime('%A %e. %B %Y %H:%M:%S', $dateTime->format('U'));
-        elseif(setlocale(LC_ALL, "sk_SK")) //iso-8859-2
-            return iconv('iso-8859-2', 'utf-8', strftime('%A %e. %B %Y %H:%M:%S', $dateTime->format('U')));
-        else
-            return $dateTime->format('d.m.Y H:i:s');
+        return $this->cas->format('d.m.Y H:i:s');
     }
 }
 ?>

@@ -375,7 +375,7 @@ class Database extends mysqli
         $objects = array();
         while ($result = $results->fetch_object())
         {
-            $object = new Event($result->id, $result->cas,$result->zobra, $result->reklama, $result->inzer, $result->banner);
+            $object = new Event($result->id, new DateTime($result->cas), $result->zobra, $result->reklama, $result->inzer, $result->banner);
             $object->zobraLogin = $result->zobra_login;
             $object->reklamaName = $result->meno;
             $object->inzerLogin = $result->inzer_login;
@@ -398,7 +398,7 @@ class Database extends mysqli
         if (!$result || $result->num_rows != 1)
             return null;
         $object = $result->fetch_object();
-        return new Zobrazenie($object->id, $object->cas, $object->zobra, $object->reklama, $object->inzer, $object->banner, $object->clicked);
+        return new Zobrazenie($object->id, new DateTime($object->cas), $object->zobra, $object->reklama, $object->inzer, $object->banner, $object->clicked);
     }
 
     /**

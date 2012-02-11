@@ -38,7 +38,7 @@ try
     if (!isset($_COOKIE['voted']) && !$zobrazenie->isClicked())
     {
         setcookie("voted", "voted", time() + 10);  //platnost cookie 10 sek
-        $klik = new Klik(null, null, $_GET['zobra'], $_GET['rekl'], $_GET['inzer'], $_GET['bann']);
+        $klik = new Klik(null, new DateTime(), $_GET['zobra'], $_GET['rekl'], $_GET['inzer'], $_GET['bann']);
         $klik->save($db);
     }
     //NOTE pocet zobrazeni s 'clicked' nie je ten isty ako pocet kliknuti, lebo k nastaveniu

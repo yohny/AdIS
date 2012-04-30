@@ -1,8 +1,8 @@
 <?php
 /**
  * trieda starajuca sa o konfiguraciu
- * poskytuje konfiguracne nastavenia aplikacie, ktore nacita z config.xml
- * @see /app/config.xml
+ * poskytuje konfiguracne nastavenia aplikacie, ktore nacita z config.ini
+ * @see /app/config.ini
  *
  * @version    1.0
  * @package    AdIS
@@ -22,25 +22,25 @@ class Config
      * database host (server)
      * @var string
      */
-    private $dbHost = '#host';
+    private $dbHost;
 
     /**
      * database user
      * @var string
      */
-    private $dbUser = '#user';
+    private $dbUser;
 
     /**
      * database password
      * @var string
      */
-    private $dbPassw = '#password';
+    private $dbPassw;
 
     /**
      * database name
      * @var string
      */
-    private $dbName = '#name';
+    private $dbName;
 
     /**
      * number of rows showed per page in statistics listings
@@ -52,36 +52,39 @@ class Config
      * directory for banner upload
      * @var string
      */
-    private $uploadDir = './upload';
+    private $uploadDir;
 
     /**
      * max allowed size of uploaded files (B)
      * @var int
      */
-    private $uploadSize = 20000;
+    private $uploadSize;
 
 
     private function __construct()
     {
-        libxml_use_internal_errors(); //aby parser neohlasoval chyby XML dokumentu
-
-        //musi byt absolutna lebo niekedy cita konfig voci index.php, inokedy voci /img alebo /distrib
-        if($xml = @simplexml_load_file(realpath(dirname(__FILE__).'/../../config.xml')))
+        if($config = parse_ini_file(BASE_DIR."/app/config.ini", true))
         {
-            if(isset($xml->database_host))
-                $this->dbHost = trim($xml->database_host);
-            if(isset($xml->database_user))
-                $this->dbUser = trim($xml->database_user);
-            if(isset($xml->database_password))
-                $this->dbPassw = trim($xml->database_password);
-            if(isset($xml->database_name))
-                $this->dbName = trim($xml->database_name);
-            if(isset($xml->stat_rows_per_page) && is_numeric(trim($xml->stat_rows_per_page)) && intval($xml->stat_rows_per_page)>0)
-                $this->statRowsPerPage = intval($xml->stat_rows_per_page);
-            if(isset($xml->upload_dir) && ($path = realpath(BASE_DIR.DIRECTORY_SEPARATOR.trim($xml->upload_dir,DIRECTORY_SEPARATOR))))
-                $this->uploadDir = $path;
-            if(isset($xml->upload_max_filesize) && is_numeric(trim($xml->upload_max_filesize)))
-                $this->uploadSize = intval($xml->upload_max_filesize);
+            if(key_exists("database", $config))
+            {
+                $this->dbHost = $config["database"]["server"];
+                $this->dbName = $config["database"]["name"];
+                $this->dbUser = $config["database"]["user"];
+                $this->dbPassw = $config["database"]["password"];
+            }
+            else
+                throw new Exception("Chýbajúce nastavenia databázy!");
+            if(key_exists("view", $config))
+            {
+                $this->statRowsPerPage = intval($config["view"]["statistics_rows"]);
+            }
+            if(key_exists("upload", $config))
+            {
+                $this->uploadDir = $config["upload"]["directory"];
+                $this->uploadSize = intval($config["upload"]["max_size"]);
+            }
+            else
+                throw new Exception("Chýbajúce nastavenia uploadu!");
         }
         else
             throw new Exception('Nepodarilo sa načitať konfiguráciu!');

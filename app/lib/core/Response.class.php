@@ -24,20 +24,18 @@ class Response
 
     /**
      * hodnota 'Content-type' atributu vratenej hlavicky
-     * default 'text/html'
      * @var string
      */
     private $headerContentType = 'application/xhtml+xml';
 
     /**
      * kodovanie stranky odosielane v hlavicke
-     * default 'utf-8'
      * @var string
      */
     private $encoding = 'utf-8';
 
     /**
-     * pole dodatocnych zdrojov (js, css) nalinkovanych na aktualny stranku
+     * pole dodatocnych zdrojov (js, css) nalinkovanych na aktualnu stranku
      * @var string array
      */
     private $resourcces = array();
@@ -50,7 +48,6 @@ class Response
 
     /**
      * flag urcujuci ci stranka je chybova alebo ok
-     * default: false
      * @var bool
      */
     public $error = false;

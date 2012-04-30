@@ -35,7 +35,7 @@ class UserTest extends PHPUnit_Framework_TestCase
     protected function tearDown()
     {
         $this->db->query("DELETE FROM users WHERE id = {$this->object->id}");
-        //$this->db->close(); //netreba PHPUnit vola destructor objektov a v nom ztvaram connection
+        //$this->db->close(); //netreba PHPUnit vola destructor objektov a v nom zatvaram connection
     }
 
     /**

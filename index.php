@@ -31,7 +31,7 @@ if (!$request->getUri())
 }
 elseif(!$request->isPublic && !Context::getInstance()->getUser())
 {
-    header("HTTP/1.1 401 Not authorized");
+    header("HTTP/1.1 401 Unauthorized");
     Context::getInstance()->getResponse()->content = "Nepovolený pristup!";
     Context::getInstance()->getResponse()->error = true;
 }
@@ -45,6 +45,7 @@ else //vsetko ok
     }
     catch(Exception $ex)
     {
+        header("HTTP/1.1 500 Internal Server Error");
         Context::getInstance()->getResponse()->content = $ex->getMessage();
         Context::getInstance()->getResponse()->error = true;
     }

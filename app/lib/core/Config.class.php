@@ -80,7 +80,7 @@ class Config
             }
             if(key_exists("upload", $config))
             {
-                $this->uploadDir = $config["upload"]["directory"];
+                $this->uploadDir = realpath(BASE_DIR.DIRECTORY_SEPARATOR.$config["upload"]["directory"]);
                 $this->uploadSize = intval($config["upload"]["max_size"]);
             }
             else

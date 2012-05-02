@@ -18,7 +18,7 @@ class Request
     private $uri = null;
 
     /**
-     * pole nazvov ckriptov (bez .php), ktore su pristupne bez prihlasenia
+     * pole nazvov skriptov (bez .php), ktore su pristupne bez prihlasenia
      * !po mapingu na fyzicke cesty!
      * @var string
      */
@@ -50,7 +50,7 @@ class Request
      */
     public function __construct($req_uri)
     {
-        $this->uri = preg_replace("/\?.*$/", "", $req_uri); //odstrani query string
+        $this->uri = parse_url($req_uri, PHP_URL_PATH);
 
         //maping logickych url adries na fyzicke cesty
         $this->uri = preg_replace("/^\/action\/(\w+)$/", ACTIONS_DIR."/$1", $this->uri);

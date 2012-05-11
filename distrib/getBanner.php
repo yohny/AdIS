@@ -9,7 +9,7 @@
  *
  */
 
-if (!isset($_GET['id'], $_GET['view']) || !is_numeric($_GET['id']) || !is_numeric($_GET['view']))
+if (!isset($_GET['id'], $_GET['view']) || !ctype_digit($_GET['id']) || !ctype_digit($_GET['view']))
 {
     header("HTTP/1.1 403 Zle parametre");
     exit();

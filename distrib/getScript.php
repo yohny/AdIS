@@ -11,7 +11,7 @@
 
 header('Content-type: application/javascript; charset=UTF-8');
 
-if (!isset($_GET['rekl']) || !is_numeric($_GET['rekl']))
+if (!isset($_GET['rekl']) || !ctype_digit($_GET['rekl']))
     exit("//neplatný/chýbajúci parameter");
 
 try

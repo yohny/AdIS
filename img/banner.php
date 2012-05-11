@@ -15,7 +15,7 @@ Autoloader::registerModel();
 
 define('BASE_DIR',__DIR__."/..");
 
-if (!isset($_GET['id']) || !is_numeric($_GET['id']))
+if (!isset($_GET['id']) || !ctype_digit($_GET['id']))
 {
     header("HTTP/1.1 403 Forbidden");
     exit();

@@ -51,7 +51,7 @@ class Filter
     {
         if (isset($filterData['page']))
         {
-            if (!is_numeric($filterData['page']))
+            if (!ctype_digit($filterData['page']))
                 return false;
             else
                 $this->page = intval($filterData['page']);
@@ -76,14 +76,14 @@ class Filter
         }
         if (isset($filterData['bann']))
         {
-            if(!is_numeric($filterData['bann']) && $filterData['bann']!='all' && $filterData['bann']!='del')
+            if(!ctype_digit($filterData['bann']) && $filterData['bann']!='all' && $filterData['bann']!='del')
                 return false;
             else
                 $this->banner = $filterData['bann'];
         }
         if (isset($filterData['rekl']))
         {
-            if(!is_numeric($filterData['rekl']) && $filterData['rekl']!='all' && $filterData['rekl']!='del')
+            if(!ctype_digit($filterData['rekl']) && $filterData['rekl']!='all' && $filterData['rekl']!='del')
                 return false;
             else
                 $this->reklama = $filterData['rekl'];

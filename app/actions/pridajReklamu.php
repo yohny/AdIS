@@ -9,7 +9,7 @@
  *
  */
 
-if (Context::getInstance()->getUser()->kategoria != 'zobra')
+if (Context::getInstance()->getUser()->kategoria != User::ROLE_ZOBRA)
     throw new Exception("Nepovolený prístup!");
 if (!isset($_POST['meno'], $_POST['velkost'], $_POST['kategorie'], $_POST['csrf_token'])
     || !ctype_digit($_POST['velkost']) || empty($_POST['meno']) || empty($_POST['kategorie']))

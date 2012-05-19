@@ -11,6 +11,10 @@
  */
 class User
 {
+    const ROLE_INZER = "inzer";
+    const ROLE_ZOBRA = "zobra";
+    const ROLE_ADMIN = "admin";
+
     /**
      * primarny kluc
      * @var int
@@ -32,12 +36,12 @@ class User
      * cas registracie pouzivatela
      * @var DateTime
      */
-    public $regTime;
+    private $regTime;
     /**
      * cas posledneho prihlasenia
      * @var DateTime
      */
-    public $loginTime;
+    private $loginTime;
 
     public function __construct($id, $login, $web, $kategoria, DateTime $registrationTime, DateTime $lastLoginTime)
     {
@@ -98,6 +102,17 @@ class User
     {
         return $this->login;
     }
+
+    public function getRegistrationTime()
+    {
+        return $this->regTime;
+    }
+
+    public function getLastLoginTime()
+    {
+        return $this->loginTime;
+    }
+
 
     public function hasReklamaOfSize(Velkost $velkost)
     {
@@ -232,6 +247,9 @@ class User
             $message .= "Neplatná webová adresa!<br/>";
         elseif(!self::isWebUnique($input['web']))
             $message .= "Tento web už bol zaregistrovaný.<br/>";
+        //kategoria
+        if(!in_array($input['skupina'], array(User::ROLE_INZER, User::ROLE_ZOBRA)))
+            $message .= "Neplatná použivateľská skupina.<br/>";
 
         return $message;
     }

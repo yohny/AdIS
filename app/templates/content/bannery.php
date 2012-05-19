@@ -9,7 +9,7 @@
  */
 
 Context::getInstance()->getResponse()->setHeading('bannery');
-if (Context::getInstance()->getUser()->kategoria != 'inzer')
+if (Context::getInstance()->getUser()->kategoria != User::ROLE_INZER)
     throw new Exception("Nepovolený prístup!");
 
 $db = Context::getInstance()->getDatabase();

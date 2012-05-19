@@ -11,7 +11,7 @@
 
 Context::getInstance()->getResponse()->setHeading('štatistika');
 
-if (Context::getInstance()->getUser()->kategoria != 'admin')
+if (Context::getInstance()->getUser()->kategoria != User::ROLE_ADMIN)
     throw new Exception("Nepovolený prístup!");
 
 $filter = new Filter($_POST);
@@ -118,7 +118,7 @@ $pages = ceil($pocet/Config::getStatRowsPerPage());
                 <?php echo ($filter->page-1)*Config::getStatRowsPerPage()+$i; ?>.
             </td>
             <td>
-                <?php echo $event; ?>
+                <?php echo $event->cas->format('d.m.Y H:i:s'); ?>
             </td>
             <td>
                 <?php echo ($event->zobraLogin?htmlspecialchars($event->zobraLogin):"#zmazaný")." ($event->zobraId)"; ?>

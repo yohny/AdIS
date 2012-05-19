@@ -6,7 +6,7 @@
 body {
     margin: 0px;
     padding: 0px;
-    color: white; 
+    color: white;
     counter-reset: faq;
 }
 #container, #top, #menu, #nove, #main {
@@ -79,7 +79,7 @@ input, textarea, select  {
     margin: 0;
     padding: 1px;
 }
-code 
+code
 {
     border: 1px solid black;
     display: block;
@@ -187,7 +187,8 @@ a:hover {
 }
 #main > form > table
 {
-    border-spacing: 4px;
+    width: 100%;
+    border-spacing: 5px;
 }
 #main > form > table td
 {

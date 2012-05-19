@@ -10,7 +10,7 @@
 
 
 Context::getInstance()->getResponse()->setHeading('reklamy');
-if (Context::getInstance()->getUser()->kategoria != 'zobra')
+if (Context::getInstance()->getUser()->kategoria != User::ROLE_ZOBRA)
     throw new Exception("Nepovolený prístup!");
 
 $db = Context::getInstance()->getDatabase();

@@ -11,10 +11,19 @@
 
 Context::getInstance()->getResponse()->setHeading('profil');
 ?>
-<form name="chpas_form" action="">
-    <table cellspacing="5" style="text-align:left;width:300px;">
+<table cellspacing="5" style="margin: 0 auto; width: 300px; border-spacing: 5px;">
         <tr>
-            <td width="80">Heslo:</td><td width="110"><span class="g">**********</span></td><td width="30"><a href="#" onclick="show('pas',this);return false;">zmeň</a></td>
+            <td width="80">Registrácia</td><td><span class="g"><?php echo Context::getInstance()->getUser()->getRegistrationTime()->format('d.m.Y H:i:s'); ?></span></td>
+        </tr>
+        <tr>
+            <td width="80">Posledné prihlásenie</td><td><span class="g"><?php echo Context::getInstance()->getUser()->getLastLoginTime()->format('d.m.Y H:i:s'); ?></span></td>
+        </tr>
+</table>
+
+<form name="chpas_form" action="">
+    <table>
+        <tr>
+            <td width="80">Heslo:</td><td><span class="g">**********</span></td><td width="30"><a href="#" onclick="show('pas',this);return false;">zmeň</a></td>
         </tr>
         <tr id="pas" style="display:none;">
             <td colspan="3">
@@ -41,11 +50,11 @@ Context::getInstance()->getResponse()->setHeading('profil');
     <input type="hidden" name="csrf_token" value="<?php echo Context::getInstance()->getCsrfToken(); ?>" />
 </form>
 
-<?php if (Context::getInstance()->getUser()->kategoria != 'admin'): ?>
+<?php if (Context::getInstance()->getUser()->kategoria != User::ROLE_ADMIN): ?>
 <form name="chweb_form" action="">
-    <table cellspacing="5" style="text-align:left;width:300px;">
+    <table cellspacing="5">
         <tr>
-            <td width="80">WWW adresa:</td><td width="110"><span class="g" id="webTd"><?php echo "http://".Context::getInstance()->getUser()->getWeb(); ?></span></td><td width="30"><a href="#" onclick="show('web',this);return false;">zmeň</a></td>
+            <td width="80">WWW adresa:</td><td><span class="g" id="webTd"><?php echo "http://".Context::getInstance()->getUser()->getWeb(); ?></span></td><td width="30"><a href="#" onclick="show('web',this);return false;">zmeň</a></td>
         </tr>
         <tr id="web" style="display:none;">
             <td colspan="3">

@@ -16,9 +16,9 @@ $user = Context::getInstance()->getUser();
 $db = Context::getInstance()->getDatabase();
 $counts = $db->getStatisticsForUser($user, $filter, true);
 $stats = $db->getStatisticsForUser($user, $filter);
-if($user->kategoria=='inzer')
+if($user->kategoria == User::ROLE_INZER)
    $bannery = $db->getBanneryByUser($user);
-if($user->kategoria=='zobra')
+if($user->kategoria == User::ROLE_ZOBRA)
    $reklamy = $db->getReklamyByUser($user);
 
 //pre graf
@@ -47,7 +47,7 @@ $pages = ceil($counts['count']/Config::getStatRowsPerPage());
                 <?php require_once TEMPLATES_DIR.'/partials/dateInterval.php'; ?>
             </td>
         </tr>
-        <?php if($user->kategoria=="inzer"): ?>
+        <?php if($user->kategoria == User::ROLE_INZER): ?>
         <tr>
             <td>Banner</td>
             <td>
@@ -62,7 +62,7 @@ $pages = ceil($counts['count']/Config::getStatRowsPerPage());
                 </select>
             </td>
         </tr>
-        <?php endif; if($user->kategoria=="zobra"): ?>
+        <?php endif; if($user->kategoria == User::ROLE_ZOBRA): ?>
         <tr>
             <td>Reklama</td>
             <td>
@@ -129,7 +129,7 @@ nacitajGraf();
                 <?php echo ($filter->page-1)*Config::getStatRowsPerPage()+$i; ?>.
             </td>
             <td>
-                <?php echo $stat; ?>
+                <?php echo $stat->den->format('d.m.Y'); ?>
             </td>
             <td>
                 <?php echo $stat->zobrazenia; ?>

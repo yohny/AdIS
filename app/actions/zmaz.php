@@ -14,14 +14,14 @@ if (!isset($_POST['zmaz'], $_POST['csrf_token']) || !ctype_digit($_POST['zmaz'])
 if($_POST['csrf_token'] != Context::getInstance()->getCsrfToken())
     throw new Exception("Chyba - CSRF!");
 
-if (Context::getInstance()->getUser()->kategoria == 'inzer') //maze banner
+if (Context::getInstance()->getUser()->kategoria == User::ROLE_INZER) //maze banner
 {
     $object = Context::getInstance()->getDatabase()->getBannerByPK($_POST['zmaz']);
     $notAllowedMsg = 'Nemôžete zmazať tento banner!';
     $okMsg = "Banner '$object' zmazaný!";
     $failMsg = "Banner '$object' sa nepodarilo zmazať!";
 }
-elseif (Context::getInstance()->getUser()->kategoria == 'zobra') //maze reklamu
+elseif (Context::getInstance()->getUser()->kategoria == User::ROLE_ZOBRA) //maze reklamu
 {
     $object = Context::getInstance()->getDatabase()->getReklamaByPK($_POST['zmaz']);
     $notAllowedMsg = 'Nemôžete zmazať túto reklamu!';
@@ -40,5 +40,5 @@ else
     $message = $object->delete()?$okMsg:$failMsg;
 
 Context::getInstance()->getResponse()->setFlash($message);
-Context::getInstance()->getResponse()->redirect = Context::getInstance()->getUser()->kategoria == 'inzer'?'/bannery':'/reklamy';
+Context::getInstance()->getResponse()->redirect = Context::getInstance()->getUser()->kategoria == User::ROLE_INZER?'/bannery':'/reklamy';
 ?>

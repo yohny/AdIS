@@ -263,7 +263,7 @@ class Database extends mysqli
             LEFT JOIN
             (SELECT DATE(cas) AS den, COUNT(*) AS count FROM kliky WHERE $user->kategoria = $user->id $cond GROUP BY den) clicks
             ON (days.day=clicks.den)
-            WHERE day>='{$user->regTime->format('Y-m-d')}'"; //len od datumu registracie
+            WHERE day>='{$user->getRegistrationTime()->format('Y-m-d')}'"; //len od datumu registracie
 
         if ($filter->date != 'all')
         {

@@ -32,7 +32,7 @@ class Filter
     public function __construct($postData)
     {
         $this->date = 'today';
-        $this->from = Context::getInstance()->getUser()->regTime;
+        $this->from = Context::getInstance()->getUser()->getRegistrationTime();
         $this->to = new DateTime();
         $this->page = 1;
         $this->banner = 'all';

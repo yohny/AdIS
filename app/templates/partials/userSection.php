@@ -17,15 +17,15 @@ if (Context::getInstance()->getUser()): ?>
         <legend>Správa</legend>
         <a href="/profil">Profil</a>
     <?php
-    if (Context::getInstance()->getUser()->kategoria == "inzer")
+    if (Context::getInstance()->getUser()->kategoria == User::ROLE_INZER)
         echo "
             <a href=\"/bannery\">Bannery</a>
             <a href=\"/statistika\">Štatistika</a>";
-    elseif (Context::getInstance()->getUser()->kategoria == "zobra")
+    elseif (Context::getInstance()->getUser()->kategoria == User::ROLE_ZOBRA)
         echo "
             <a href=\"/reklamy\">Reklamy</a>
             <a href=\"/statistika\">Štatistika</a>";
-    elseif (Context::getInstance()->getUser()->kategoria == "admin")
+    elseif (Context::getInstance()->getUser()->kategoria == User::ROLE_ADMIN)
         echo "
             <a href=\"/statistika_admin\">Štatistika</a>
             <a href=\"javascript: void(0);\"><span class=\"r\">ADMIN</span></a>";

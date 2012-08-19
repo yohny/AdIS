@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.7.0" />
+
+	<title>Class Securimage_Color | AdIS</title>
+
+	<script type="text/javascript" src="resources/combined.js?2398159053"></script>
+	<script type="text/javascript" src="elementlist.js?2778027830"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?1567499433" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Packages</h3>
+			<ul>
+				<li><a href="package-AdIS.html">AdIS<span></span></a>
+						<ul>
+				<li><a href="package-AdIS.core.html">core</a>
+						</li>
+				<li><a href="package-AdIS.distribution.html">distribution</a>
+						</li>
+				<li><a href="package-AdIS.model.html">model</a>
+						</li>
+				<li><a href="package-AdIS.UnitTests.html">UnitTests</a>
+						</li>
+							</ul></li>
+				<li><a href="package-pChart.html">pChart<span></span></a>
+						<ul>
+				<li><a href="package-pChart.classes.html">classes</a>
+						</li>
+							</ul></li>
+				<li><a href="package-PHP.html">PHP</a>
+						</li>
+				<li class="active"><a href="package-Securimage.html">Securimage<span></span></a>
+						<ul>
+				<li class="active"><a href="package-Securimage.classes.html">classes</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Securimage.html">Securimage</a></li>
+				<li class="active"><a href="class-Securimage_Color.html">Securimage_Color</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="package-Securimage.classes.html" title="Summary of Securimage\classes"><span>Package</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Securimage_Color</h1>
+
+
+	<div class="description">
+	
+<p>Color object for Securimage CAPTCHA</p>
+
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		<b>Package:</b> <a href="package-Securimage.html">Securimage</a>\<a href="package-Securimage.classes.html">classes</a><br />
+
+				<b>Copyright:</b>
+				2011 Drew Phillips<br />
+				<b>Author:</b>
+				Drew Phillips &lt;<a
+href="mailto:drew&#64;drew-phillips.com">drew&#64;<!---->drew-phillips.com</a>&gt;<br />
+				<b>Version:</b>
+				3.0<br />
+				<b>Since:</b>
+				2.0<br />
+		<b>Located at</b> <a href="source-class-Securimage_Color.html#1341" title="Go to source code">app/lib/external/captcha/Securimage.class.php</a><br />
+	</div>
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Securimage_Color.html#1356" title="Go to source code">__construct</a>( <span>string <var>$color</var> = <span class="php-quote">'#ffffff'</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Create a new Securimage_Color object.<br />
+Constructor expects 1 or 3 arguments.<br />
+When passing a single argument, specify the color using HTML hex format,<br />
+when passing 3 arguments, specify each RGB component (from 0-255)
+individually.<br />
+$color = new Securimage_Color('#0080FF') or<br />
+$color = new Securimage_Color(0, 128, 255)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a new Securimage_Color object.<br />
+Constructor expects 1 or 3 arguments.<br />
+When passing a single argument, specify the color using HTML hex format,<br />
+when passing 3 arguments, specify each RGB component (from 0-255)
+individually.<br />
+$color = new Securimage_Color('#0080FF') or<br />
+$color = new Securimage_Color(0, 128, 255)</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$color</var></dt>
+					<dd><code>string</code></dd>
+				</dl></div>
+
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Exception.html">Exception</a></code></code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="constructRGB" id="_constructRGB">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_constructRGB">#</a>
+		<code><a href="source-class-Securimage_Color.html#1397" title="Go to source code">constructRGB</a>( <span>integer <var>$red</var></span>, <span>integer <var>$green</var></span>, <span>integer <var>$blue</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Construct from an rgb triplet</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Construct from an rgb triplet</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$red</var></dt>
+					<dd><code>integer</code><br> The red component, 0-255</dd>
+					<dt><var>$green</var></dt>
+					<dd><code>integer</code><br> The green component, 0-255</dd>
+					<dt><var>$blue</var></dt>
+					<dd><code>integer</code><br> The blue component, 0-255</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="constructHTML" id="_constructHTML">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_constructHTML">#</a>
+		<code><a href="source-class-Securimage_Color.html#1417" title="Go to source code">constructHTML</a>( <span>string <var>$color</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Construct from an html hex color code</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Construct from an html hex color code</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$color</var></dt>
+					<dd><code>string</code></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="r" id="$r">
+
+		<td class="attributes"><code>
+			public 
+			
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Securimage_Color.html#1352" title="Go to source code"><var>$r</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$r" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="g" id="$g">
+
+		<td class="attributes"><code>
+			public 
+			
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Securimage_Color.html#1353" title="Go to source code"><var>$g</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$g" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="b" id="$b">
+
+		<td class="attributes"><code>
+			public 
+			
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Securimage_Color.html#1354" title="Go to source code"><var>$b</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$b" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+</div>
+
+	<div id="footer">
+		AdIS API documentation generated by <a href="http://apigen.org">ApiGen 2.7.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

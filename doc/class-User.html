@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.7.0" />
+
+	<title>Class User | AdIS</title>
+
+	<script type="text/javascript" src="resources/combined.js?2398159053"></script>
+	<script type="text/javascript" src="elementlist.js?2778027830"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?1567499433" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Packages</h3>
+			<ul>
+				<li class="active"><a href="package-AdIS.html">AdIS<span></span></a>
+						<ul>
+				<li><a href="package-AdIS.core.html">core</a>
+						</li>
+				<li><a href="package-AdIS.distribution.html">distribution</a>
+						</li>
+				<li class="active"><a href="package-AdIS.model.html">model</a>
+						</li>
+				<li><a href="package-AdIS.UnitTests.html">UnitTests</a>
+						</li>
+							</ul></li>
+				<li><a href="package-pChart.html">pChart<span></span></a>
+						<ul>
+				<li><a href="package-pChart.classes.html">classes</a>
+						</li>
+							</ul></li>
+				<li><a href="package-PHP.html">PHP</a>
+						</li>
+				<li><a href="package-Securimage.html">Securimage<span></span></a>
+						<ul>
+				<li><a href="package-Securimage.classes.html">classes</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Banner.html">Banner</a></li>
+				<li><a href="class-BanRek.html">BanRek</a></li>
+				<li><a href="class-Event.html">Event</a></li>
+				<li><a href="class-Filter.html">Filter</a></li>
+				<li><a href="class-Kategoria.html">Kategoria</a></li>
+				<li><a href="class-Klik.html">Klik</a></li>
+				<li><a href="class-Reklama.html">Reklama</a></li>
+				<li><a href="class-Statistika.html">Statistika</a></li>
+				<li class="active"><a href="class-User.html">User</a></li>
+				<li><a href="class-Velkost.html">Velkost</a></li>
+				<li><a href="class-Zobrazenie.html">Zobrazenie</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="package-AdIS.model.html" title="Summary of AdIS\model"><span>Package</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class User</h1>
+
+
+	<div class="description">
+	
+<p>trieda reprezentujuca jeden zaznam z tabulky USERS (ciastocne), v session
+reprezentuje aktualne prihlaseneho pouzivatela</p>
+
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		<b>Package:</b> <a href="package-AdIS.html">AdIS</a>\<a href="package-AdIS.model.html">model</a><br />
+
+				<b>Author:</b>
+				Ján Neščivera &lt;<a
+href="mailto:jan.nescivera&#64;gmail.com">jan.nescivera&#64;<!---->gmail.com</a>&gt;<br />
+				<b>Version:</b>
+				1.0<br />
+		<b>Located at</b> <a href="source-class-User.html#2" title="Go to source code">app/lib/model/User.class.php</a><br />
+	</div>
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-User.html#46" title="Go to source code">__construct</a>( <span> <var>$id</var></span>, <span> <var>$login</var></span>, <span> <var>$web</var></span>, <span> <var>$kategoria</var></span>, <span><code><a href="class-DateTime.html">DateTime</a></code> <var>$registrationTime</var></span>, <span><code><a href="class-DateTime.html">DateTime</a></code> <var>$lastLoginTime</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setPassword" id="_setPassword">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setPassword">#</a>
+		<code><a href="source-class-User.html#56" title="Go to source code">setPassword</a>( <span> <var>$old</var></span>, <span> <var>$new</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setWeb" id="_setWeb">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setWeb">#</a>
+		<code><a href="source-class-User.html#77" title="Go to source code">setWeb</a>( <span> <var>$web</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setLoginTimeNow" id="_setLoginTimeNow">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setLoginTimeNow">#</a>
+		<code><a href="source-class-User.html#89" title="Go to source code">setLoginTimeNow</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getWeb" id="_getWeb">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getWeb">#</a>
+		<code><a href="source-class-User.html#96" title="Go to source code">getWeb</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getLogin" id="_getLogin">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getLogin">#</a>
+		<code><a href="source-class-User.html#101" title="Go to source code">getLogin</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getRegistrationTime" id="_getRegistrationTime">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getRegistrationTime">#</a>
+		<code><a href="source-class-User.html#106" title="Go to source code">getRegistrationTime</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getLastLoginTime" id="_getLastLoginTime">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getLastLoginTime">#</a>
+		<code><a href="source-class-User.html#111" title="Go to source code">getLastLoginTime</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="hasReklamaOfSize" id="_hasReklamaOfSize">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_hasReklamaOfSize">#</a>
+		<code><a href="source-class-User.html#117" title="Go to source code">hasReklamaOfSize</a>( <span><code><a href="class-Velkost.html">Velkost</a></code> <var>$velkost</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="hasBannerOfSize" id="_hasBannerOfSize">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_hasBannerOfSize">#</a>
+		<code><a href="source-class-User.html#129" title="Go to source code">hasBannerOfSize</a>( <span><code><a href="class-Velkost.html">Velkost</a></code> <var>$velkost</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__toString" id="___toString">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___toString">#</a>
+		<code><a href="source-class-User.html#141" title="Go to source code">__toString</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="create" id="_create">
+
+		<td class="attributes"><code>
+			 public static
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_create">#</a>
+		<code><a href="source-class-User.html#146" title="Go to source code">create</a>( <span>string <var>$login</var></span>, <span>string <var>$password</var></span>, <span>string <var>$web</var></span>, <span>string <var>$group</var></span> )</code>
+
+		<div class="description short">
+			
+<p>vytvori noveho pouzivatela v DB</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>vytvori noveho pouzivatela v DB</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$login</var></dt>
+					<dd><code>string</code></dd>
+					<dt><var>$password</var></dt>
+					<dd><code>string</code></dd>
+					<dt><var>$web</var></dt>
+					<dd><code>string</code></dd>
+					<dt><var>$group</var></dt>
+					<dd><code>string</code><br> 'inze' | 'zobra' | 'admin'</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isLoginUnique" id="_isLoginUnique">
+
+		<td class="attributes"><code>
+			 public static
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isLoginUnique">#</a>
+		<code><a href="source-class-User.html#165" title="Go to source code">isLoginUnique</a>( <span>string <var>$login</var></span> )</code>
+
+		<div class="description short">
+			
+<p>overi ci sa dany login uz nepouziva</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>overi ci sa dany login uz nepouziva</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$login</var></dt>
+					<dd><code>string</code></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isWebUnique" id="_isWebUnique">
+
+		<td class="attributes"><code>
+			 public static
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isWebUnique">#</a>
+		<code><a href="source-class-User.html#191" title="Go to source code">isWebUnique</a>( <span>string <var>$web</var></span> )</code>
+
+		<div class="description short">
+			
+<p>overi ci sa dany web uz nepouziva</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>overi ci sa dany web uz nepouziva</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$web</var></dt>
+					<dd><code>string</code></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="validUrl" id="_validUrl">
+
+		<td class="attributes"><code>
+			 public static
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_validUrl">#</a>
+		<code><a href="source-class-User.html#214" title="Go to source code">validUrl</a>( <span>string <var>$url</var></span> )</code>
+
+		<div class="description short">
+			
+<p>overi platnost url</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>overi platnost url</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$url</var></dt>
+					<dd><code>string</code></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="validateInput" id="_validateInput">
+
+		<td class="attributes"><code>
+			 public static
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_validateInput">#</a>
+		<code><a href="source-class-User.html#227" title="Go to source code">validateInput</a>( <span>array <var>$input</var></span> )</code>
+
+		<div class="description short">
+			
+<p>validates form input</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>validates form input</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$input</var></dt>
+					<dd><code>array</code></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>validation output message, empty if valid<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+	<table class="summary" id="constants">
+	<caption>Constants summary</caption>
+	<tr data-order="ROLE_INZER" id="ROLE_INZER">
+
+		<td class="attributes"><code>
+			string
+		</code></td>
+		<td class="name"><code>
+				<a href="source-class-User.html#14" title="Go to source code"><b>ROLE_INZER</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">&quot;inzer&quot;</span></code></td>
+		<td class="description"><div>
+			<a href="#ROLE_INZER" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ROLE_ZOBRA" id="ROLE_ZOBRA">
+
+		<td class="attributes"><code>
+			string
+		</code></td>
+		<td class="name"><code>
+				<a href="source-class-User.html#15" title="Go to source code"><b>ROLE_ZOBRA</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">&quot;zobra&quot;</span></code></td>
+		<td class="description"><div>
+			<a href="#ROLE_ZOBRA" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ROLE_ADMIN" id="ROLE_ADMIN">
+
+		<td class="attributes"><code>
+			string
+		</code></td>
+		<td class="name"><code>
+				<a href="source-class-User.html#16" title="Go to source code"><b>ROLE_ADMIN</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">&quot;admin&quot;</span></code></td>
+		<td class="description"><div>
+			<a href="#ROLE_ADMIN" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="id" id="$id">
+
+		<td class="attributes"><code>
+			public 
+			integer
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-User.html#18" title="Go to source code"><var>$id</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$id" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>primarny kluc</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>primarny kluc</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="kategoria" id="$kategoria">
+
+		<td class="attributes"><code>
+			public 
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-User.html#30" title="Go to source code"><var>$kategoria</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$kategoria" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>kategoria pouzivatela: 'zobra', 'inzer' alebo 'admin'</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>kategoria pouzivatela: 'zobra', 'inzer' alebo 'admin'</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+</div>
+
+	<div id="footer">
+		AdIS API documentation generated by <a href="http://apigen.org">ApiGen 2.7.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

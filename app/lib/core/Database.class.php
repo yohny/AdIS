@@ -1,6 +1,6 @@
 <?php
 /**
- * trieda reprezentujuca databazu
+ * trieda reprezentujuca databazu a zabezpecujuca mapping zaznamov na objekty
  *
  * @version    1.0
  * @package    AdIS
@@ -21,6 +21,11 @@ class Database extends mysqli
     const BANNER = 4;
     const REKLAMA = 5;
 
+    /**
+     * vytvori pripojenie na databazu pouzitim udajov z config.ini
+     * @see config.ini
+     * @throws Exception zabalena chyba napojenia na databazu
+     */
     public function __construct()
     {
         @parent::__construct(Config::getDbHost() , Config::getDbUser(), Config::getDbPassword(), Config::getDbName());
@@ -39,9 +44,9 @@ class Database extends mysqli
 
     /**
      * vrati objekt pouzivatela na zaklade prihlasovacich udajov
-     * @param string $login
-     * @param string $password
-     * @return User
+     * @param string $login login
+     * @param string $password heslo
+     * @return User pouzivatel s danymi prihlasovacimi udajmi alebo null (nenajdeny)
      */
     public function  getUserByCredentials($login, $password)
     {
@@ -60,10 +65,10 @@ class Database extends mysqli
     }
 
     /**
-     * vrati objekt pouzivatela (zobra) na zaklade ulr adresy
+     * vrati objekt pouzivatela (zobra) na zaklade ulr adresy (pouzivatelsky web)
      * !prehladava len ZOBRAZOVATELOV!
      * @param string $referer url adresa
-     * @return User
+     * @return User pouzivatel s danou URL ako webom alebo null
      */
     public function getUserByReferer($referer)
     {
@@ -85,7 +90,7 @@ class Database extends mysqli
     /**
      * vrati pouzivatela na zaklade primarneho kluca
      * @param int $id primarny kluc
-     * @return User
+     * @return User pouzivatel s danym primarnym klucom
      */
     public function getUserByPK($id)
     {
@@ -108,7 +113,7 @@ class Database extends mysqli
     /**
      * vrati velkost na zaklade primarneho kluca
      * @param int $id primarny kluc
-     * @return Velkost
+     * @return Velkost objekt s danym primarnym klucom
      */
     public function getVelkostByPK($id)
     {
@@ -129,8 +134,7 @@ class Database extends mysqli
     }
 
     /**
-     * vrati vsetky bannery
-     *
+     * vrati vsetky zaznamy z tabulky BANNERY
      * @return Banner array
      */
     public function getAllFromBannery()
@@ -142,8 +146,7 @@ class Database extends mysqli
 
     /**
      * vrati vsetky bannery daneho pouzivatela
-     *
-     * @param User $user
+     * @param User $user pouzivatel ktoreho bannery chceme vratit
      * @return Banner array
      */
     public function getBanneryByUser(User $user)
@@ -158,7 +161,7 @@ class Database extends mysqli
     /**
      * vrati banner na zaklade primarneho kluca
      * @param int $id primarny kluc
-     * @return Banner
+     * @return Banner objekt s danym primarnym klucom
      */
     public function getBannerByPK($id)
     {
@@ -168,9 +171,9 @@ class Database extends mysqli
     }
 
     /**
-     * vrati nahodny banner splnajuci kriteria na zobrazenie v danej reklame
+     * vrati nahodny banner splnajuci kriteria na zobrazenie v danej reklamnej jednotke
      * @param Reklama $reklama reklamna jednotka, pre ktoru treba vybrat banner
-     * @return Banner
+     * @return Banner banner vyhovujuci kriteriam reklamnej jednotky
      */
     public function getRandBannerForReklama(Reklama $reklama)
     {
@@ -186,8 +189,7 @@ class Database extends mysqli
     }
 
     /**
-     * vrati vsetky reklamy
-     *
+     * vrati vsetky zaznamy z tabulky REKLAMY
      * @return Reklama array
      */
     public function getAllFromReklamy()
@@ -199,8 +201,7 @@ class Database extends mysqli
 
     /**
      * vrati vsetky reklamy daneho pouzivatela,
-     *
-     * @param User $user
+     * @param User $user pouzivatel ktoreho reklamy chceme vratit
      * @return Reklama array
      */
     public function getReklamyByUser(User $user)
@@ -215,7 +216,7 @@ class Database extends mysqli
     /**
      * vrati reklamu na zaklade primarneho kluca
      * @param int $id primarny kluc
-     * @return Reklama
+     * @return Reklama objekt s danym primarnym klucom
      */
     public function getReklamaByPK($id)
     {
@@ -229,7 +230,7 @@ class Database extends mysqli
      * varti statistiky pre daneho pouzivatela a kriteria
      * @param User $user pouzivatel, pre  ktoreho sa vytiahnu statistiky
      * @param Filter $filter specifikuje vyberove kriteria
-     * @param type $countOnly ak true vrati len pocet
+     * @param type $countOnly ak true vrati len pocet inak statisticke objekty
      * @return Statistika|int ak $countOnly je true vrati pocet, inak pole statistik
      */
     public function getStatisticsForUser(User $user, Filter $filter, $countOnly = false)
@@ -388,7 +389,7 @@ class Database extends mysqli
     /**
      * vrati zobrazenie na zaklade primarneho kluca
      * @param int $id primarny kluc
-     * @return Zobrazenie
+     * @return Zobrazenie objekt s danym primarnym klucom
      */
     public function getZobrazenieByPK($id)
     {
@@ -402,10 +403,11 @@ class Database extends mysqli
     }
 
     /**
-     * pretransformuje MySQL resultset na objekty pozadovaneho typu
+     * pretransformuje MySQLi resultset na objekty pozadovaneho typu
      * @param mysqli_result $resultset result query na databazu
      * @param int $model urcuje triedu modelu, na ktorej instancie sa ma previest resultset
      * @param bool $asArray ak false vrati jediny objekt inak vracia pole objektov
+     * @return User|Velkost|Kategoria|Reklama|Banner array
      */
     private function resultsetToModel(mysqli_result $resultset, $model, $asArray = true)
     {

@@ -2,13 +2,13 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="generator" content="ApiGen 2.7.0" />
+	<meta name="generator" content="ApiGen 2.8.0" />
 
 	<title>Class Securimage | AdIS</title>
 
-	<script type="text/javascript" src="resources/combined.js?2398159053"></script>
+	<script type="text/javascript" src="resources/combined.js?394153670"></script>
 	<script type="text/javascript" src="elementlist.js?2778027830"></script>
-	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?1567499433" />
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
 
@@ -130,8 +130,9 @@
 href="mailto:drew&#64;drew-phillips.com">drew&#64;<!---->drew-phillips.com</a>&gt;<br />
 				<b>Version:</b>
 				3.0<br />
-		<b>Located at</b> <a href="source-class-Securimage.html#113" title="Go to source code">app/lib/external/captcha/Securimage.class.php</a><br />
+		<b>Located at</b> <a href="source-class-Securimage.html#113-1338" title="Go to source code">app/lib/external/captcha/Securimage.class.php</a><br />
 	</div>
+
 
 
 	<table class="summary" id="methods">
@@ -147,7 +148,7 @@ href="mailto:drew&#64;drew-phillips.com">drew&#64;<!---->drew-phillips.com</a>&g
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Securimage.html#348" title="Go to source code">__construct</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+		<code><a href="source-class-Securimage.html#348-417" title="Go to source code">__construct</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 		<div class="description short">
 			
@@ -168,7 +169,7 @@ entry</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$options</var></dt>
-					<dd><code>array</code><br>&lt;code&gt; $options = array( 'text_color' =&gt; new
+					<dd><code>array</code><br>$options &lt;code&gt; $options = array( 'text_color' =&gt; new
 Securimage_Color('#013020'), 'code_length' =&gt; 5, 'num_lines' =&gt; 5,
 'noise_level' =&gt; 3, 'font_file' =&gt; Securimage::getPath() . '/custom.ttf'
 ); $img = new Securimage($options); &lt;/code&gt;</dd>
@@ -192,7 +193,7 @@ Securimage_Color('#013020'), 'code_length' =&gt; 5, 'num_lines' =&gt; 5,
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getPath">#</a>
-		<code><a href="source-class-Securimage.html#419" title="Go to source code">getPath</a>( )</code>
+		<code><a href="source-class-Securimage.html#419-426" title="Go to source code">getPath</a>( )</code>
 
 		<div class="description short">
 			
@@ -229,7 +230,7 @@ Securimage_Color('#013020'), 'code_length' =&gt; 5, 'num_lines' =&gt; 5,
 
 		<td class="name"><div>
 		<a class="anchor" href="#_show">#</a>
-		<code><a href="source-class-Securimage.html#428" title="Go to source code">show</a>( <span>string <var>$background_image</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-Securimage.html#428-448" title="Go to source code">show</a>( <span>string <var>$background_image</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			
@@ -246,9 +247,10 @@ Securimage_Color('#013020'), 'code_length' =&gt; 5, 'num_lines' =&gt; 5,
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$background_image</var></dt>
-					<dd><code>string</code><br> The path to the background image to use &lt;code&gt; $img = new Securimage();
-$img-&gt;code_length = 6; $img-&gt;num_lines = 5; $img-&gt;noise_level = 5;
-$img-&gt;show(); // sends the image to browser exit; &lt;/code&gt;</dd>
+					<dd><code>string</code><br>$background_image The path to the background image to use &lt;code&gt; $img =
+new Securimage(); $img-&gt;code_length = 6; $img-&gt;num_lines = 5;
+$img-&gt;noise_level = 5; $img-&gt;show(); // sends the image to browser exit;
+&lt;/code&gt;</dd>
 				</dl></div>
 
 
@@ -269,7 +271,7 @@ $img-&gt;show(); // sends the image to browser exit; &lt;/code&gt;</dd>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_check">#</a>
-		<code><a href="source-class-Securimage.html#450" title="Go to source code">check</a>( <span>string <var>$code</var></span> )</code>
+		<code><a href="source-class-Securimage.html#450-468" title="Go to source code">check</a>( <span>string <var>$code</var></span> )</code>
 
 		<div class="description short">
 			
@@ -286,7 +288,7 @@ $img-&gt;show(); // sends the image to browser exit; &lt;/code&gt;</dd>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$code</var></dt>
-					<dd><code>string</code><br> The captcha code to check &lt;code&gt; $code = $_POST['code']; $img = new
+					<dd><code>string</code><br>$code The captcha code to check &lt;code&gt; $code = $_POST['code']; $img = new
 Securimage(); if ($img-&gt;check($code) == true) { $captcha_valid = true; } else
 { $captcha_valid = false; } &lt;/code&gt;</dd>
 				</dl></div>
@@ -309,7 +311,7 @@ Securimage(); if ($img-&gt;check($code) == true) { $captcha_valid = true; } else
 
 		<td class="name"><div>
 		<a class="anchor" href="#_outputAudioFile">#</a>
-		<code><a href="source-class-Securimage.html#470" title="Go to source code">outputAudioFile</a>( )</code>
+		<code><a href="source-class-Securimage.html#470-495" title="Go to source code">outputAudioFile</a>( )</code>
 
 		<div class="description short">
 			
@@ -352,7 +354,7 @@ class="php-keyword1">exit</span>;
 
 		<td class="name"><div>
 		<a class="anchor" href="#_doImage">#</a>
-		<code><a href="source-class-Securimage.html#497" title="Go to source code">doImage</a>( )</code>
+		<code><a href="source-class-Securimage.html#497-537" title="Go to source code">doImage</a>( )</code>
 
 		<div class="description short">
 			
@@ -387,7 +389,7 @@ and serving it</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_allocateColors">#</a>
-		<code><a href="source-class-Securimage.html#539" title="Go to source code">allocateColors</a>( )</code>
+		<code><a href="source-class-Securimage.html#539-588" title="Go to source code">allocateColors</a>( )</code>
 
 		<div class="description short">
 			
@@ -420,7 +422,7 @@ and serving it</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_setBackground">#</a>
-		<code><a href="source-class-Securimage.html#590" title="Go to source code">setBackground</a>( )</code>
+		<code><a href="source-class-Securimage.html#590-636" title="Go to source code">setBackground</a>( )</code>
 
 		<div class="description short">
 			
@@ -453,7 +455,7 @@ and serving it</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getBackgroundFromDirectory">#</a>
-		<code><a href="source-class-Securimage.html#638" title="Go to source code">getBackgroundFromDirectory</a>( )</code>
+		<code><a href="source-class-Securimage.html#638-658" title="Go to source code">getBackgroundFromDirectory</a>( )</code>
 
 		<div class="description short">
 			
@@ -486,7 +488,7 @@ and serving it</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_createCode">#</a>
-		<code><a href="source-class-Securimage.html#660" title="Go to source code">createCode</a>( )</code>
+		<code><a href="source-class-Securimage.html#660-702" title="Go to source code">createCode</a>( )</code>
 
 		<div class="description short">
 			
@@ -519,7 +521,7 @@ and serving it</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_drawWord">#</a>
-		<code><a href="source-class-Securimage.html#704" title="Go to source code">drawWord</a>( )</code>
+		<code><a href="source-class-Securimage.html#704-740" title="Go to source code">drawWord</a>( )</code>
 
 		<div class="description short">
 			
@@ -552,7 +554,7 @@ and serving it</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_distortedCopy">#</a>
-		<code><a href="source-class-Securimage.html#742" title="Go to source code">distortedCopy</a>( )</code>
+		<code><a href="source-class-Securimage.html#742-791" title="Go to source code">distortedCopy</a>( )</code>
 
 		<div class="description short">
 			
@@ -585,7 +587,7 @@ and serving it</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_drawLines">#</a>
-		<code><a href="source-class-Securimage.html#793" title="Go to source code">drawLines</a>( )</code>
+		<code><a href="source-class-Securimage.html#793-828" title="Go to source code">drawLines</a>( )</code>
 
 		<div class="description short">
 			
@@ -618,7 +620,7 @@ and serving it</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_drawNoise">#</a>
-		<code><a href="source-class-Securimage.html#830" title="Go to source code">drawNoise</a>( )</code>
+		<code><a href="source-class-Securimage.html#830-867" title="Go to source code">drawNoise</a>( )</code>
 
 		<div class="description short">
 			
@@ -651,7 +653,7 @@ and serving it</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_addSignature">#</a>
-		<code><a href="source-class-Securimage.html#869" title="Go to source code">addSignature</a>( )</code>
+		<code><a href="source-class-Securimage.html#869-880" title="Go to source code">addSignature</a>( )</code>
 
 		<div class="description short">
 			
@@ -684,7 +686,7 @@ and serving it</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_output">#</a>
-		<code><a href="source-class-Securimage.html#882" title="Go to source code">output</a>( )</code>
+		<code><a href="source-class-Securimage.html#882-910" title="Go to source code">output</a>( )</code>
 
 		<div class="description short">
 			
@@ -719,7 +721,7 @@ browser</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getAudibleCode">#</a>
-		<code><a href="source-class-Securimage.html#912" title="Go to source code">getAudibleCode</a>( <span>string <var>$format</var> = <span class="php-quote">'wav'</span></span> )</code>
+		<code><a href="source-class-Securimage.html#912-939" title="Go to source code">getAudibleCode</a>( <span>string <var>$format</var> = <span class="php-quote">'wav'</span></span> )</code>
 
 		<div class="description short">
 			
@@ -738,7 +740,7 @@ code</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$format</var></dt>
-					<dd><code>string</code><br> WAV only</dd>
+					<dd><code>string</code><br>$format WAV only</dd>
 				</dl></div>
 
 
@@ -759,7 +761,7 @@ code</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_readCodeFromFile">#</a>
-		<code><a href="source-class-Securimage.html#941" title="Go to source code">readCodeFromFile</a>( )</code>
+		<code><a href="source-class-Securimage.html#941-967" title="Go to source code">readCodeFromFile</a>( )</code>
 
 		<div class="description short">
 			
@@ -792,7 +794,7 @@ code</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_generateCode">#</a>
-		<code><a href="source-class-Securimage.html#969" title="Go to source code">generateCode</a>( )</code>
+		<code><a href="source-class-Securimage.html#969-983" title="Go to source code">generateCode</a>( )</code>
 
 		<div class="description short">
 			
@@ -825,7 +827,7 @@ code</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_validate">#</a>
-		<code><a href="source-class-Securimage.html#985" title="Go to source code">validate</a>( )</code>
+		<code><a href="source-class-Securimage.html#985-1014" title="Go to source code">validate</a>( )</code>
 
 		<div class="description short">
 			
@@ -862,7 +864,7 @@ entered correctly to prevent re-use</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getCode">#</a>
-		<code><a href="source-class-Securimage.html#1016" title="Go to source code">getCode</a>( )</code>
+		<code><a href="source-class-Securimage.html#1016-1036" title="Go to source code">getCode</a>( )</code>
 
 		<div class="description short">
 			
@@ -897,7 +899,7 @@ yet, an empty string is returned</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_saveData">#</a>
-		<code><a href="source-class-Securimage.html#1038" title="Go to source code">saveData</a>( )</code>
+		<code><a href="source-class-Securimage.html#1038-1047" title="Go to source code">saveData</a>( )</code>
 
 		<div class="description short">
 			
@@ -930,7 +932,7 @@ yet, an empty string is returned</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_saveCodeToDatabase">#</a>
-		<code><a href="source-class-Securimage.html#1049" title="Go to source code">saveCodeToDatabase</a>( )</code>
+		<code><a href="source-class-Securimage.html#1049-1068" title="Go to source code">saveCodeToDatabase</a>( )</code>
 
 		<div class="description short">
 			
@@ -963,7 +965,7 @@ yet, an empty string is returned</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_openDatabase">#</a>
-		<code><a href="source-class-Securimage.html#1070" title="Go to source code">openDatabase</a>( )</code>
+		<code><a href="source-class-Securimage.html#1070-1091" title="Go to source code">openDatabase</a>( )</code>
 
 		<div class="description short">
 			
@@ -996,7 +998,7 @@ yet, an empty string is returned</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getCodeFromDatabase">#</a>
-		<code><a href="source-class-Securimage.html#1093" title="Go to source code">getCodeFromDatabase</a>( )</code>
+		<code><a href="source-class-Securimage.html#1093-1114" title="Go to source code">getCodeFromDatabase</a>( )</code>
 
 		<div class="description short">
 			
@@ -1029,7 +1031,7 @@ yet, an empty string is returned</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_clearCodeFromDatabase">#</a>
-		<code><a href="source-class-Securimage.html#1116" title="Go to source code">clearCodeFromDatabase</a>( )</code>
+		<code><a href="source-class-Securimage.html#1116-1127" title="Go to source code">clearCodeFromDatabase</a>( )</code>
 
 		<div class="description short">
 			
@@ -1062,7 +1064,7 @@ yet, an empty string is returned</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_purgeOldCodesFromDatabase">#</a>
-		<code><a href="source-class-Securimage.html#1129" title="Go to source code">purgeOldCodesFromDatabase</a>( )</code>
+		<code><a href="source-class-Securimage.html#1129-1140" title="Go to source code">purgeOldCodesFromDatabase</a>( )</code>
 
 		<div class="description short">
 			
@@ -1095,7 +1097,7 @@ yet, an empty string is returned</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_isCodeExpired">#</a>
-		<code><a href="source-class-Securimage.html#1142" title="Go to source code">isCodeExpired</a>( <span>unknown_type <var>$creation_time</var></span> )</code>
+		<code><a href="source-class-Securimage.html#1142-1157" title="Go to source code">isCodeExpired</a>( <span>unknown_type <var>$creation_time</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1112,7 +1114,7 @@ yet, an empty string is returned</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$creation_time</var></dt>
-					<dd><code>unknown_type</code></dd>
+					<dd><code>unknown_type</code><br>$creation_time</dd>
 				</dl></div>
 
 
@@ -1133,7 +1135,7 @@ yet, an empty string is returned</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_generateWAV">#</a>
-		<code><a href="source-class-Securimage.html#1170" title="Go to source code">generateWAV</a>( <span>array <var>$letters</var></span> )</code>
+		<code><a href="source-class-Securimage.html#1170-1266" title="Go to source code">generateWAV</a>( <span>array <var>$letters</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1150,7 +1152,7 @@ yet, an empty string is returned</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$letters</var></dt>
-					<dd><code>array</code></dd>
+					<dd><code>array</code><br>$letters</dd>
 				</dl></div>
 
 				<h4>Returns</h4>
@@ -1179,7 +1181,7 @@ yet, an empty string is returned</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_scrambleAudioData">#</a>
-		<code><a href="source-class-Securimage.html#1268" title="Go to source code">scrambleAudioData</a>( <span>string <var>&amp; $data</var></span>, <span>string <var>$format</var></span> )</code>
+		<code><a href="source-class-Securimage.html#1268-1300" title="Go to source code">scrambleAudioData</a>( <span>string <var>&amp; $data</var></span>, <span>string <var>$format</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1196,9 +1198,9 @@ yet, an empty string is returned</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$data</var></dt>
-					<dd><code>string</code><br> The binary audio file data</dd>
+					<dd><code>string</code><br>$data The binary audio file data</dd>
 					<dt><var>$format</var></dt>
-					<dd><code>string</code><br> The format of the sound file (wav only)</dd>
+					<dd><code>string</code><br>$format The format of the sound file (wav only)</dd>
 				</dl></div>
 
 
@@ -1219,7 +1221,7 @@ yet, an empty string is returned</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_audioError">#</a>
-		<code><a href="source-class-Securimage.html#1302" title="Go to source code">audioError</a>( )</code>
+		<code><a href="source-class-Securimage.html#1302-1310" title="Go to source code">audioError</a>( )</code>
 
 		<div class="description short">
 			
@@ -1256,7 +1258,7 @@ yet, an empty string is returned</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_frand">#</a>
-		<code><a href="source-class-Securimage.html#1312" title="Go to source code">frand</a>( )</code>
+		<code><a href="source-class-Securimage.html#1312-1315" title="Go to source code">frand</a>( )</code>
 
 		<div class="description short">
 			
@@ -1285,7 +1287,7 @@ yet, an empty string is returned</p>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_initColor">#</a>
-		<code><a href="source-class-Securimage.html#1317" title="Go to source code">initColor</a>( <span>string <var>$color</var></span>, <span><code><a href="class-Securimage_Color.html">Securimage_Color</a></code> <var>$default</var></span> )</code>
+		<code><a href="source-class-Securimage.html#1317-1337" title="Go to source code">initColor</a>( <span>string <var>$color</var></span>, <span><code><a href="class-Securimage_Color.html">Securimage_Color</a></code> <var>$default</var></span> )</code>
 
 		<div class="description short">
 			
@@ -1302,9 +1304,9 @@ yet, an empty string is returned</p>
 				<h4>Parameters</h4>
 				<div class="list"><dl>
 					<dt><var>$color</var></dt>
-					<dd><code>string</code></dd>
+					<dd><code>string</code><br>$color</dd>
 					<dt><var>$default</var></dt>
-					<dd><code><code><a href="class-Securimage_Color.html">Securimage_Color</a></code></code><br> The defalt color to use if $color is invalid</dd>
+					<dd><code><code><a href="class-Securimage_Color.html">Securimage_Color</a></code></code><br>$default The defalt color to use if $color is invalid</dd>
 				</dl></div>
 
 
@@ -1319,15 +1321,17 @@ yet, an empty string is returned</p>
 
 
 
+
+
+
+
 	<table class="summary" id="constants">
 	<caption>Constants summary</caption>
 	<tr data-order="SI_IMAGE_JPEG" id="SI_IMAGE_JPEG">
 
-		<td class="attributes"><code>
-			integer
-		</code></td>
+		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-Securimage.html#128" title="Go to source code"><b>SI_IMAGE_JPEG</b></a>
+				<a href="source-class-Securimage.html#128-132" title="Go to source code"><b>SI_IMAGE_JPEG</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">1</span></code></td>
 		<td class="description"><div>
@@ -1349,11 +1353,9 @@ yet, an empty string is returned</p>
 	</tr>
 	<tr data-order="SI_IMAGE_PNG" id="SI_IMAGE_PNG">
 
-		<td class="attributes"><code>
-			integer
-		</code></td>
+		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-Securimage.html#133" title="Go to source code"><b>SI_IMAGE_PNG</b></a>
+				<a href="source-class-Securimage.html#133-137" title="Go to source code"><b>SI_IMAGE_PNG</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">2</span></code></td>
 		<td class="description"><div>
@@ -1375,11 +1377,9 @@ yet, an empty string is returned</p>
 	</tr>
 	<tr data-order="SI_IMAGE_GIF" id="SI_IMAGE_GIF">
 
-		<td class="attributes"><code>
-			integer
-		</code></td>
+		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-Securimage.html#138" title="Go to source code"><b>SI_IMAGE_GIF</b></a>
+				<a href="source-class-Securimage.html#138-142" title="Go to source code"><b>SI_IMAGE_GIF</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">3</span></code></td>
 		<td class="description"><div>
@@ -1401,11 +1401,9 @@ yet, an empty string is returned</p>
 	</tr>
 	<tr data-order="SI_CAPTCHA_STRING" id="SI_CAPTCHA_STRING">
 
-		<td class="attributes"><code>
-			integer
-		</code></td>
+		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-Securimage.html#144" title="Go to source code"><b>SI_CAPTCHA_STRING</b></a>
+				<a href="source-class-Securimage.html#144-148" title="Go to source code"><b>SI_CAPTCHA_STRING</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">0</span></code></td>
 		<td class="description"><div>
@@ -1427,11 +1425,9 @@ yet, an empty string is returned</p>
 	</tr>
 	<tr data-order="SI_CAPTCHA_MATHEMATIC" id="SI_CAPTCHA_MATHEMATIC">
 
-		<td class="attributes"><code>
-			integer
-		</code></td>
+		<td class="attributes"><code>integer</code></td>
 		<td class="name"><code>
-				<a href="source-class-Securimage.html#149" title="Go to source code"><b>SI_CAPTCHA_MATHEMATIC</b></a>
+				<a href="source-class-Securimage.html#149-153" title="Go to source code"><b>SI_CAPTCHA_MATHEMATIC</b></a>
 		</code></td>
 		<td class="value"><code><span class="php-num">1</span></code></td>
 		<td class="description"><div>
@@ -1455,17 +1451,17 @@ yet, an empty string is returned</p>
 
 
 
+
 	<table class="summary" id="properties">
 	<caption>Properties summary</caption>
 	<tr data-order="image_width" id="$image_width">
-
 		<td class="attributes"><code>
-			public 
+			public  
 			integer
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Securimage.html#155" title="Go to source code"><var>$image_width</var></a>
+				<a href="source-class-Securimage.html#155-159" title="Go to source code"><var>$image_width</var></a>
 		</td>
 		<td class="value"><code><span class="php-num">215</span></code></td>
 		<td class="description"><div>
@@ -1486,14 +1482,13 @@ yet, an empty string is returned</p>
 		</div></td>
 	</tr>
 	<tr data-order="image_height" id="$image_height">
-
 		<td class="attributes"><code>
-			public 
+			public  
 			integer
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Securimage.html#160" title="Go to source code"><var>$image_height</var></a>
+				<a href="source-class-Securimage.html#160-164" title="Go to source code"><var>$image_height</var></a>
 		</td>
 		<td class="value"><code><span class="php-num">80</span></code></td>
 		<td class="description"><div>
@@ -1514,14 +1509,13 @@ yet, an empty string is returned</p>
 		</div></td>
 	</tr>
 	<tr data-order="image_type" id="$image_type">
-
 		<td class="attributes"><code>
-			public 
+			public  
 			integer
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Securimage.html#165" title="Go to source code"><var>$image_type</var></a>
+				<a href="source-class-Securimage.html#165-169" title="Go to source code"><var>$image_type</var></a>
 		</td>
 		<td class="value"><code><code><a href="class-Securimage.html#SI_IMAGE_PNG">Securimage::<b>SI_IMAGE_PNG</b></a></code></code></td>
 		<td class="description"><div>
@@ -1542,14 +1536,13 @@ yet, an empty string is returned</p>
 		</div></td>
 	</tr>
 	<tr data-order="image_bg_color" id="$image_bg_color">
-
 		<td class="attributes"><code>
-			public 
+			public  
 			<code><a href="class-Securimage_Color.html">Securimage_Color</a></code>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Securimage.html#171" title="Go to source code"><var>$image_bg_color</var></a>
+				<a href="source-class-Securimage.html#171-175" title="Go to source code"><var>$image_bg_color</var></a>
 		</td>
 		<td class="value"><code><span class="php-quote">'#ffffff'</span></code></td>
 		<td class="description"><div>
@@ -1570,14 +1563,13 @@ yet, an empty string is returned</p>
 		</div></td>
 	</tr>
 	<tr data-order="text_color" id="$text_color">
-
 		<td class="attributes"><code>
-			public 
+			public  
 			<code><a href="class-Securimage_Color.html">Securimage_Color</a></code>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Securimage.html#176" title="Go to source code"><var>$text_color</var></a>
+				<a href="source-class-Securimage.html#176-180" title="Go to source code"><var>$text_color</var></a>
 		</td>
 		<td class="value"><code><span class="php-quote">'#707070'</span></code></td>
 		<td class="description"><div>
@@ -1598,14 +1590,13 @@ yet, an empty string is returned</p>
 		</div></td>
 	</tr>
 	<tr data-order="line_color" id="$line_color">
-
 		<td class="attributes"><code>
-			public 
+			public  
 			<code><a href="class-Securimage_Color.html">Securimage_Color</a></code>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Securimage.html#181" title="Go to source code"><var>$line_color</var></a>
+				<a href="source-class-Securimage.html#181-185" title="Go to source code"><var>$line_color</var></a>
 		</td>
 		<td class="value"><code><span class="php-quote">'#707070'</span></code></td>
 		<td class="description"><div>
@@ -1626,14 +1617,13 @@ yet, an empty string is returned</p>
 		</div></td>
 	</tr>
 	<tr data-order="noise_color" id="$noise_color">
-
 		<td class="attributes"><code>
-			public 
+			public  
 			<code><a href="class-Securimage_Color.html">Securimage_Color</a></code>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Securimage.html#186" title="Go to source code"><var>$noise_color</var></a>
+				<a href="source-class-Securimage.html#186-190" title="Go to source code"><var>$noise_color</var></a>
 		</td>
 		<td class="value"><code><span class="php-quote">'#707070'</span></code></td>
 		<td class="description"><div>
@@ -1654,14 +1644,13 @@ yet, an empty string is returned</p>
 		</div></td>
 	</tr>
 	<tr data-order="text_transparency_percentage" id="$text_transparency_percentage">
-
 		<td class="attributes"><code>
-			public 
+			public  
 			integer
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Securimage.html#192" title="Go to source code"><var>$text_transparency_percentage</var></a>
+				<a href="source-class-Securimage.html#192-196" title="Go to source code"><var>$text_transparency_percentage</var></a>
 		</td>
 		<td class="value"><code><span class="php-num">50</span></code></td>
 		<td class="description"><div>
@@ -1682,14 +1671,13 @@ yet, an empty string is returned</p>
 		</div></td>
 	</tr>
 	<tr data-order="use_transparent_text" id="$use_transparent_text">
-
 		<td class="attributes"><code>
-			public 
+			public  
 			boolean
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Securimage.html#197" title="Go to source code"><var>$use_transparent_text</var></a>
+				<a href="source-class-Securimage.html#197-201" title="Go to source code"><var>$use_transparent_text</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">false</span></code></td>
 		<td class="description"><div>
@@ -1712,14 +1700,13 @@ yet, an empty string is returned</p>
 		</div></td>
 	</tr>
 	<tr data-order="code_length" id="$code_length">
-
 		<td class="attributes"><code>
-			public 
+			public  
 			integer
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Securimage.html#203" title="Go to source code"><var>$code_length</var></a>
+				<a href="source-class-Securimage.html#203-207" title="Go to source code"><var>$code_length</var></a>
 		</td>
 		<td class="value"><code><span class="php-num">6</span></code></td>
 		<td class="description"><div>
@@ -1740,14 +1727,13 @@ yet, an empty string is returned</p>
 		</div></td>
 	</tr>
 	<tr data-order="case_sensitive" id="$case_sensitive">
-
 		<td class="attributes"><code>
-			public 
+			public  
 			boolean
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Securimage.html#208" title="Go to source code"><var>$case_sensitive</var></a>
+				<a href="source-class-Securimage.html#208-212" title="Go to source code"><var>$case_sensitive</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">false</span></code></td>
 		<td class="description"><div>
@@ -1770,14 +1756,13 @@ maximum protection)</p>
 		</div></td>
 	</tr>
 	<tr data-order="charset" id="$charset">
-
 		<td class="attributes"><code>
-			public 
+			public  
 			string
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Securimage.html#213" title="Go to source code"><var>$charset</var></a>
+				<a href="source-class-Securimage.html#213-217" title="Go to source code"><var>$charset</var></a>
 		</td>
 		<td class="value"><code><span class="php-quote">'ABCDEFGHKLMNPRSTUVWYZabcdefghklmnprstuvwyz23456789'</span></code></td>
 		<td class="description"><div>
@@ -1798,14 +1783,13 @@ maximum protection)</p>
 		</div></td>
 	</tr>
 	<tr data-order="expiry_time" id="$expiry_time">
-
 		<td class="attributes"><code>
-			public 
+			public  
 			unknown_type
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Securimage.html#218" title="Go to source code"><var>$expiry_time</var></a>
+				<a href="source-class-Securimage.html#218-222" title="Go to source code"><var>$expiry_time</var></a>
 		</td>
 		<td class="value"><code><span class="php-num">900</span></code></td>
 		<td class="description"><div>
@@ -1828,14 +1812,13 @@ accepted</p>
 		</div></td>
 	</tr>
 	<tr data-order="session_name" id="$session_name">
-
 		<td class="attributes"><code>
-			public 
+			public  
 			string
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Securimage.html#224" title="Go to source code"><var>$session_name</var></a>
+				<a href="source-class-Securimage.html#224-229" title="Go to source code"><var>$session_name</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">null</span></code></td>
 		<td class="description"><div>
@@ -1860,14 +1843,13 @@ used by all securimage scripts</p>
 		</div></td>
 	</tr>
 	<tr data-order="use_wordlist" id="$use_wordlist">
-
 		<td class="attributes"><code>
-			public 
+			public  
 			boolean
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Securimage.html#231" title="Go to source code"><var>$use_wordlist</var></a>
+				<a href="source-class-Securimage.html#231-235" title="Go to source code"><var>$use_wordlist</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">false</span></code></td>
 		<td class="description"><div>
@@ -1888,14 +1870,13 @@ used by all securimage scripts</p>
 		</div></td>
 	</tr>
 	<tr data-order="perturbation" id="$perturbation">
-
 		<td class="attributes"><code>
-			public 
+			public  
 			float
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Securimage.html#237" title="Go to source code"><var>$perturbation</var></a>
+				<a href="source-class-Securimage.html#237-241" title="Go to source code"><var>$perturbation</var></a>
 		</td>
 		<td class="value"><code><span class="php-num">0.75</span></code></td>
 		<td class="description"><div>
@@ -1916,14 +1897,13 @@ used by all securimage scripts</p>
 		</div></td>
 	</tr>
 	<tr data-order="num_lines" id="$num_lines">
-
 		<td class="attributes"><code>
-			public 
+			public  
 			integer
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Securimage.html#242" title="Go to source code"><var>$num_lines</var></a>
+				<a href="source-class-Securimage.html#242-246" title="Go to source code"><var>$num_lines</var></a>
 		</td>
 		<td class="value"><code><span class="php-num">8</span></code></td>
 		<td class="description"><div>
@@ -1944,14 +1924,13 @@ used by all securimage scripts</p>
 		</div></td>
 	</tr>
 	<tr data-order="noise_level" id="$noise_level">
-
 		<td class="attributes"><code>
-			public 
+			public  
 			integer
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Securimage.html#247" title="Go to source code"><var>$noise_level</var></a>
+				<a href="source-class-Securimage.html#247-251" title="Go to source code"><var>$noise_level</var></a>
 		</td>
 		<td class="value"><code><span class="php-num">0</span></code></td>
 		<td class="description"><div>
@@ -1972,14 +1951,13 @@ used by all securimage scripts</p>
 		</div></td>
 	</tr>
 	<tr data-order="image_signature" id="$image_signature">
-
 		<td class="attributes"><code>
-			public 
+			public  
 			string
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Securimage.html#253" title="Go to source code"><var>$image_signature</var></a>
+				<a href="source-class-Securimage.html#253-257" title="Go to source code"><var>$image_signature</var></a>
 		</td>
 		<td class="value"><code><span class="php-quote">''</span></code></td>
 		<td class="description"><div>
@@ -2000,14 +1978,13 @@ used by all securimage scripts</p>
 		</div></td>
 	</tr>
 	<tr data-order="signature_color" id="$signature_color">
-
 		<td class="attributes"><code>
-			public 
+			public  
 			<code><a href="class-Securimage_Color.html">Securimage_Color</a></code>
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Securimage.html#258" title="Go to source code"><var>$signature_color</var></a>
+				<a href="source-class-Securimage.html#258-262" title="Go to source code"><var>$signature_color</var></a>
 		</td>
 		<td class="value"><code><span class="php-quote">'#707070'</span></code></td>
 		<td class="description"><div>
@@ -2028,14 +2005,13 @@ used by all securimage scripts</p>
 		</div></td>
 	</tr>
 	<tr data-order="signature_font" id="$signature_font">
-
 		<td class="attributes"><code>
-			public 
+			public  
 			string
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Securimage.html#263" title="Go to source code"><var>$signature_font</var></a>
+				<a href="source-class-Securimage.html#263-267" title="Go to source code"><var>$signature_font</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -2058,14 +2034,13 @@ $ttf_file (AHGBold.ttf)</p>
 		</div></td>
 	</tr>
 	<tr data-order="use_sqlite_db" id="$use_sqlite_db">
-
 		<td class="attributes"><code>
-			public 
+			public  
 			boolean
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Securimage.html#269" title="Go to source code"><var>$use_sqlite_db</var></a>
+				<a href="source-class-Securimage.html#269-273" title="Go to source code"><var>$use_sqlite_db</var></a>
 		</td>
 		<td class="value"><code><span class="php-keyword1">false</span></code></td>
 		<td class="description"><div>
@@ -2088,14 +2063,13 @@ cookies)</p>
 		</div></td>
 	</tr>
 	<tr data-order="captcha_type" id="$captcha_type">
-
 		<td class="attributes"><code>
-			public 
+			public  
 			integer
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Securimage.html#275" title="Go to source code"><var>$captcha_type</var></a>
+				<a href="source-class-Securimage.html#275-280" title="Go to source code"><var>$captcha_type</var></a>
 		</td>
 		<td class="value"><code><code><a href="class-Securimage.html#SI_CAPTCHA_STRING">Securimage::<b>SI_CAPTCHA_STRING</b></a></code></code></td>
 		<td class="description"><div>
@@ -2118,14 +2092,13 @@ Securimage::SI_CAPTCHA_STRING or Securimage::SI_CAPTCHA_MATHEMATIC</p>
 		</div></td>
 	</tr>
 	<tr data-order="namespace" id="$namespace">
-
 		<td class="attributes"><code>
-			public 
+			public  
 			string
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Securimage.html#282" title="Go to source code"><var>$namespace</var></a>
+				<a href="source-class-Securimage.html#282-297" title="Go to source code"><var>$namespace</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -2148,14 +2121,13 @@ blank if you do not use multiple forms on one page</p>
 		</div></td>
 	</tr>
 	<tr data-order="ttf_file" id="$ttf_file">
-
 		<td class="attributes"><code>
-			public 
+			public  
 			string
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Securimage.html#299" title="Go to source code"><var>$ttf_file</var></a>
+				<a href="source-class-Securimage.html#299-303" title="Go to source code"><var>$ttf_file</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -2178,14 +2150,13 @@ AHGBold.ttf</p>
 		</div></td>
 	</tr>
 	<tr data-order="wordlist_file" id="$wordlist_file">
-
 		<td class="attributes"><code>
-			public 
+			public  
 			string
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Securimage.html#304" title="Go to source code"><var>$wordlist_file</var></a>
+				<a href="source-class-Securimage.html#304-308" title="Go to source code"><var>$wordlist_file</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -2208,14 +2179,13 @@ words/words.txt</p>
 		</div></td>
 	</tr>
 	<tr data-order="background_directory" id="$background_directory">
-
 		<td class="attributes"><code>
-			public 
+			public  
 			string
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Securimage.html#309" title="Go to source code"><var>$background_directory</var></a>
+				<a href="source-class-Securimage.html#309-313" title="Go to source code"><var>$background_directory</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -2238,14 +2208,13 @@ be chosen from this folder</p>
 		</div></td>
 	</tr>
 	<tr data-order="sqlite_database" id="$sqlite_database">
-
 		<td class="attributes"><code>
-			public 
+			public  
 			string
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Securimage.html#314" title="Go to source code"><var>$sqlite_database</var></a>
+				<a href="source-class-Securimage.html#314-318" title="Go to source code"><var>$sqlite_database</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -2268,14 +2237,13 @@ should be chmod 666</p>
 		</div></td>
 	</tr>
 	<tr data-order="audio_path" id="$audio_path">
-
 		<td class="attributes"><code>
-			public 
+			public  
 			string
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Securimage.html#319" title="Go to source code"><var>$audio_path</var></a>
+				<a href="source-class-Securimage.html#319-326" title="Go to source code"><var>$audio_path</var></a>
 		</td>
 		<td class="value"><code></code></td>
 		<td class="description"><div>
@@ -2298,10 +2266,9 @@ securimage_play.php</p>
 		</div></td>
 	</tr>
 	<tr data-order="im" id="$im">
-
 		<td class="attributes"><code>
-			protected 
-			
+			protected  
+			mixed
 		</code></td>
 
 		<td class="name">
@@ -2322,10 +2289,9 @@ securimage_play.php</p>
 		</div></td>
 	</tr>
 	<tr data-order="tmpimg" id="$tmpimg">
-
 		<td class="attributes"><code>
-			protected 
-			
+			protected  
+			mixed
 		</code></td>
 
 		<td class="name">
@@ -2346,10 +2312,9 @@ securimage_play.php</p>
 		</div></td>
 	</tr>
 	<tr data-order="bgimg" id="$bgimg">
-
 		<td class="attributes"><code>
-			protected 
-			
+			protected  
+			mixed
 		</code></td>
 
 		<td class="name">
@@ -2370,9 +2335,8 @@ securimage_play.php</p>
 		</div></td>
 	</tr>
 	<tr data-order="iscale" id="$iscale">
-
 		<td class="attributes"><code>
-			protected 
+			protected  
 			integer
 		</code></td>
 
@@ -2394,10 +2358,9 @@ securimage_play.php</p>
 		</div></td>
 	</tr>
 	<tr data-order="securimage_path" id="$securimage_path">
-
 		<td class="attributes"><code>
-			protected 
-			
+			protected  
+			mixed
 		</code></td>
 
 		<td class="name">
@@ -2418,10 +2381,9 @@ securimage_play.php</p>
 		</div></td>
 	</tr>
 	<tr data-order="code" id="$code">
-
 		<td class="attributes"><code>
-			protected 
-			
+			protected  
+			mixed
 		</code></td>
 
 		<td class="name">
@@ -2442,10 +2404,9 @@ securimage_play.php</p>
 		</div></td>
 	</tr>
 	<tr data-order="code_display" id="$code_display">
-
 		<td class="attributes"><code>
-			protected 
-			
+			protected  
+			mixed
 		</code></td>
 
 		<td class="name">
@@ -2466,10 +2427,9 @@ securimage_play.php</p>
 		</div></td>
 	</tr>
 	<tr data-order="captcha_code" id="$captcha_code">
-
 		<td class="attributes"><code>
-			protected 
-			
+			protected  
+			mixed
 		</code></td>
 
 		<td class="name">
@@ -2490,10 +2450,9 @@ securimage_play.php</p>
 		</div></td>
 	</tr>
 	<tr data-order="sqlite_handle" id="$sqlite_handle">
-
 		<td class="attributes"><code>
-			protected 
-			
+			protected  
+			mixed
 		</code></td>
 
 		<td class="name">
@@ -2514,10 +2473,9 @@ securimage_play.php</p>
 		</div></td>
 	</tr>
 	<tr data-order="gdbgcolor" id="$gdbgcolor">
-
 		<td class="attributes"><code>
-			protected 
-			
+			protected  
+			mixed
 		</code></td>
 
 		<td class="name">
@@ -2538,10 +2496,9 @@ securimage_play.php</p>
 		</div></td>
 	</tr>
 	<tr data-order="gdtextcolor" id="$gdtextcolor">
-
 		<td class="attributes"><code>
-			protected 
-			
+			protected  
+			mixed
 		</code></td>
 
 		<td class="name">
@@ -2562,10 +2519,9 @@ securimage_play.php</p>
 		</div></td>
 	</tr>
 	<tr data-order="gdlinecolor" id="$gdlinecolor">
-
 		<td class="attributes"><code>
-			protected 
-			
+			protected  
+			mixed
 		</code></td>
 
 		<td class="name">
@@ -2586,10 +2542,9 @@ securimage_play.php</p>
 		</div></td>
 	</tr>
 	<tr data-order="gdsignaturecolor" id="$gdsignaturecolor">
-
 		<td class="attributes"><code>
-			protected 
-			
+			protected  
+			mixed
 		</code></td>
 
 		<td class="name">
@@ -2613,10 +2568,13 @@ securimage_play.php</p>
 
 
 
+
+
+
 </div>
 
 	<div id="footer">
-		AdIS API documentation generated by <a href="http://apigen.org">ApiGen 2.7.0</a>
+		AdIS API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
 	</div>
 </div>
 </div>

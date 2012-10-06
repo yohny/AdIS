@@ -10,7 +10,7 @@
 
 
 Context::getInstance()->getResponse()->setHeading('štatistika');
-$filter = new Filter($_POST);
+$filter = new Filter($_GET);
 $user = Context::getInstance()->getUser();
 
 $db = Context::getInstance()->getDatabase();
@@ -28,7 +28,7 @@ $aktPage = $filter->page;
 $pages = ceil($counts['count']/Config::getStatRowsPerPage());
 ?>
 <h4>Filter</h4>
-<form name="filter" action="" method="post">
+<form name="filter" action="" method="get">
     <input type="hidden" name="page" value="1" />
     <table>
         <tr>

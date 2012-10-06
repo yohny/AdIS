@@ -14,7 +14,7 @@ Context::getInstance()->getResponse()->setHeading('štatistika');
 if (Context::getInstance()->getUser()->kategoria != User::ROLE_ADMIN)
     throw new Exception("Nepovolený prístup!");
 
-$filter = new Filter($_POST);
+$filter = new Filter($_GET);
 
 $db = Context::getInstance()->getDatabase();
 $pocet = $db->getStatisticsForAdmin($filter, true);
@@ -27,7 +27,7 @@ $aktPage = $filter->page;
 $pages = ceil($pocet/Config::getStatRowsPerPage());
 ?>
 <h4>Filter</h4>
-<form name="filter" action="" method="post">
+<form name="filter" action="" method="get">
     <input type="hidden" name="page" value="1" />
     <table>
         <tr>

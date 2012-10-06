@@ -227,10 +227,10 @@ class Database extends mysqli
     }
 
     /**
-     * varti statistiky pre daneho pouzivatela a kriteria
+     * vrati statistiky pre daneho pouzivatela a kriteria
      * @param User $user pouzivatel, pre  ktoreho sa vytiahnu statistiky
      * @param Filter $filter specifikuje vyberove kriteria
-     * @param type $countOnly ak true vrati len pocet inak statisticke objekty
+     * @param type $countOnly ak true vrati len pocet zaznamov inak vrati statisticke objekty
      * @return Statistika|int ak $countOnly je true vrati pocet, inak pole statistik
      */
     public function getStatisticsForUser(User $user, Filter $filter, $countOnly = false)

@@ -67,10 +67,10 @@ class Response
      * nastavi nadpis a upravi title okna
      * @param string $title
      */
-    public function setHeading($title)
+    public function setHeading($heading)
     {
-        $this->title .= ' > '.$title;
-        $this->nadpis = $title;
+        $this->title .= ' > '.$heading;
+        $this->nadpis = $heading;
     }
 
     public function getHeading()

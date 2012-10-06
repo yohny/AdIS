@@ -29,7 +29,7 @@ class Filter
      * objekt reprezentujuci pouzivatelske filtrovacie kriteria
      * @param array $postData vstup od pouzivatela
      */
-    public function __construct($postData)
+    public function __construct($requestData)
     {
         $this->date = 'today';
         $this->from = Context::getInstance()->getUser()->getRegistrationTime();
@@ -38,7 +38,7 @@ class Filter
         $this->banner = 'all';
         $this->reklama = 'all';
         $this->type = 'click';
-        if(!$this->parse($postData))
+        if(!$this->parse($requestData))
             throw new Exception("Neplatný filter!");
     }
 
@@ -69,7 +69,6 @@ class Filter
                     $this->from = new DateTime($filterData['odYear'] . '-' . $filterData['odMonth'] . '-' . $filterData['odDay']);
                     $this->to = new DateTime($filterData['doYear'] . '-' . $filterData['doMonth'] . '-' . $filterData['doDay']);
                 } catch(Exception $ex) {
-                    echo "huha";
                     return  false;
                 }
             }

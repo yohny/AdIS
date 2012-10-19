@@ -16,6 +16,7 @@ Autoloader::registerCore();
 Autoloader::registerModel();
 
 session_name('adis_session');
+session_set_cookie_params(5*60, "/", "", false, true);//lifetime doesn't get updated per request!!
 session_start();
 
 define('BASE_DIR',__DIR__);

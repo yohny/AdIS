@@ -18,6 +18,7 @@ Autoloader::registerCaptcha();
 define('BASE_DIR',__DIR__."/..");
 
 session_name('adis_session');
+session_set_cookie_params(0, "/", "", false, true);
 session_start();
 
 $img = new Securimage();

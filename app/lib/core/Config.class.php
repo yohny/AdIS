@@ -60,6 +60,12 @@ class Config
      */
     private $uploadSize;
 
+    /**
+     * max allowed inactivity timeframe, when exceeded user is logged out automatically ()in sec
+     * @var int
+     */
+    private $inactivityLimit = 100;
+
 
     private function __construct()
     {
@@ -85,6 +91,10 @@ class Config
             }
             else
                 throw new Exception("Chýbajúce nastavenia uploadu!");
+            if(key_exists("session", $config))
+            {
+                $this->inactivityLimit = intval($config["session"]["inactivityLimit"]);
+            }
         }
         else
             throw new Exception('Nepodarilo sa načitať konfiguráciu!');
@@ -102,7 +112,7 @@ class Config
     }
 
     /**
-     * vrati host na ktorom bezi DB na zaklade nastavenia v config.xml
+     * vrati host na ktorom bezi DB na zaklade nastavenia v config.ini
      * ak toto nastavenie v konfiguracnom subore nie je vrati '#host'
      * @return string
      */
@@ -112,7 +122,7 @@ class Config
     }
 
     /**
-     * vrati pouzivatelske meno pre pristup do DB na zaklade nastavenia v config.xml
+     * vrati pouzivatelske meno pre pristup do DB na zaklade nastavenia v config.ini
      * ak toto nastavenie v konfiguracnom subore nie je vrati '#user'
      * @return string
      */
@@ -122,7 +132,7 @@ class Config
     }
 
     /**
-     * vrati pouzivatelske heslo pre pristup do DB na zaklade nastavenia v config.xml
+     * vrati pouzivatelske heslo pre pristup do DB na zaklade nastavenia v config.ini
      * ak toto nastavenie v konfiguracnom subore nie je vrati '#password'
      * @return string
      */
@@ -132,7 +142,7 @@ class Config
     }
 
     /**
-     * vrati meno DB na zaklade nastavenia v config.xml
+     * vrati meno DB na zaklade nastavenia v config.ini
      * ak toto nastavenie v konfiguracnom subore nie je vrati '#user'
      * @return string
      */
@@ -142,7 +152,7 @@ class Config
     }
 
     /**
-     * vrati pocet riadkov na stranu zobrazovanych v statistikach na zaklade nastavenia v config.xml
+     * vrati pocet riadkov na stranu zobrazovanych v statistikach na zaklade nastavenia v config.ini
      * ak toto nastavenie v konfiguracnom subore nie je vrati '10'
      * @return int
      */
@@ -152,7 +162,7 @@ class Config
     }
 
     /**
-     * vrati adresar na upload bannerov (absolutna cesta) na zaklade nastavenia v config.xml
+     * vrati adresar na upload bannerov (absolutna cesta) na zaklade nastavenia v config.ini
      * ak toto nastavenie v konfiguracnom subore nie je vrati cestu do adresara upload/ (default)
      * @return string
      */
@@ -162,13 +172,23 @@ class Config
     }
 
     /**
-     * vrati maximalnu povolenu velkost uploadovanych suborov v Bytoch na zaklade nastavenia v config.xml
+     * vrati maximalnu povolenu velkost uploadovanych suborov v Bytoch na zaklade nastavenia v config.ini
      * ak toto nastavenie v konfiguracnom subore nie je vrati 20000 (default)
-     * @return string
+     * @return int
      */
     public static function getUploadSize()
     {
         return self::getInstance()->uploadSize;
+    }
+
+    /**
+     * vrati maximalnu povolenu dobu neaktivity pouzivatela (v sekundach) z config.ini
+     * ak toto nastavenie v konfiguracnom subore nie je vrati 100 (default)
+     * @return int
+     */
+    public static function getInactivityLimit()
+    {
+        return self::getInstance()->inactivityLimit;
     }
 }
 ?>

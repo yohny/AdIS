@@ -17,7 +17,7 @@ if($_POST['csrf_token'] != Context::getInstance()->getCsrfToken())
 if ($_POST['action'] == "logout")
 {
     session_unset();
-    //session_destroy(); -nemoze potom nastavit flash
+    session_regenerate_id();
     $message = "Boli ste odhlásený.";
 }
 else

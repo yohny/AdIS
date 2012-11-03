@@ -82,5 +82,21 @@ class Request
     {
         return $this->uri;
     }
+
+    /**
+     * pre prihlasenych pouzivatelov vrati true ak request prisiel po dlhsej dobe
+     * ako je povolena inaktivita, inak vracia false
+     * @return bool true if expired, false otherweise
+     */
+    public function isExpired()
+    {
+        if(Context::getInstance()->getUser())
+        {
+            if(Context::getInstance()->getUser()->getLastRequestTime() + Config::getInactivityLimit() < $_SERVER['REQUEST_TIME'])
+                return true;
+            Context::getInstance()->getUser()->setLastRequestTime($_SERVER['REQUEST_TIME']);
+        }
+        return false;
+    }
 }
 ?>

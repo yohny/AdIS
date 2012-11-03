@@ -42,6 +42,11 @@ class User
      * @var DateTime
      */
     private $loginTime;
+    /**
+     * last request timestamp
+     * @var int
+     */
+    private $lastRequestTime;
 
     public function __construct($id, $login, $web, $kategoria, DateTime $registrationTime, DateTime $lastLoginTime)
     {
@@ -51,6 +56,7 @@ class User
         $this->kategoria = $kategoria;
         $this->regTime = $registrationTime;
         $this->loginTime = $lastLoginTime;
+        $this->lastRequestTime = $_SERVER["REQUEST_TIME"];
     }
 
     public function setPassword($old, $new)
@@ -113,6 +119,15 @@ class User
         return $this->loginTime;
     }
 
+    public function setLastRequestTime($timestamp)
+    {
+        $this->lastRequestTime = $timestamp;
+    }
+
+    public function getLastRequestTime()
+    {
+        return $this->lastRequestTime;
+    }
 
     public function hasReklamaOfSize(Velkost $velkost)
     {

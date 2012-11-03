@@ -17,6 +17,7 @@ Autoloader::registerModel();
 Autoloader::registerPChart();
 
 session_name('adis_session');
+session_set_cookie_params(0, "/", "", false, true);
 session_start();
 
 if (!isset($_SESSION['user'], $_SESSION['stats']))

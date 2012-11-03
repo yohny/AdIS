@@ -16,7 +16,7 @@ Autoloader::registerCore();
 Autoloader::registerModel();
 
 session_name('adis_session');
-session_set_cookie_params(5*60, "/", "", false, true);//lifetime doesn't get updated per request!!
+session_set_cookie_params(0, "/", "", false, true);
 session_start();
 
 define('BASE_DIR',__DIR__);
@@ -34,6 +34,14 @@ elseif(!$request->isPublic && !Context::getInstance()->getUser())
 {
     header("HTTP/1.1 401 Unauthorized");
     Context::getInstance()->getResponse()->content = "Nepovolený pristup!";
+    Context::getInstance()->getResponse()->error = true;
+}
+elseif($request->isExpired())
+{
+    //header("HTTP/1.1 408 Request Timeout"); ///rpoduces error in browser
+    session_unset();
+    session_regenerate_id();
+    Context::getInstance()->getResponse()->content = "Boli ste odhlásený kvôli neaktivite vyše ".Config::getInactivityLimit()." sekúnd!";
     Context::getInstance()->getResponse()->error = true;
 }
 else //vsetko ok

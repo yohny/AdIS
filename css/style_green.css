@@ -1,7 +1,7 @@
-body {
+html {
     background-color: rgb(204,255,204);
 }
-#container {
+body {
     border-color: green;
 }
 #top, #menu, #nove, #main {
@@ -81,7 +81,7 @@ a {
 {
     background-image: url('/img/corner_green.png');
 }
-#container > div.corner
+body > div.corner
 {
     background-image: url('/img/corner_green_cont.png');
     background-color: rgb(204,255,204);

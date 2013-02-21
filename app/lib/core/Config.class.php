@@ -46,7 +46,7 @@ class Config
      * number of rows showed per page in statistics listings
      * @var int
      */
-    private $statRowsPerPage = 10;
+    private $statRowsPerPage;
 
     /**
      * directory for banner upload
@@ -61,7 +61,7 @@ class Config
     private $uploadSize;
 
     /**
-     * max allowed inactivity timeframe, when exceeded user is logged out automatically ()in sec
+     * max allowed inactivity time, when exceeded user is logged out automatically (in sec)
      * @var int
      */
     private $inactivityLimit = 100;
@@ -113,8 +113,8 @@ class Config
 
     /**
      * vrati host na ktorom bezi DB na zaklade nastavenia v config.ini
-     * ak toto nastavenie v konfiguracnom subore nie je vrati '#host'
-     * @return string
+     * ak toto nastavenie v konfiguracnom subore nie je vrati NULL
+     * @return string|NULL
      */
     public static function getDbHost()
     {
@@ -123,8 +123,8 @@ class Config
 
     /**
      * vrati pouzivatelske meno pre pristup do DB na zaklade nastavenia v config.ini
-     * ak toto nastavenie v konfiguracnom subore nie je vrati '#user'
-     * @return string
+     * ak toto nastavenie v konfiguracnom subore nie je vrati NULL
+     * @return string|NULL
      */
     public static function getDbUser()
     {
@@ -133,8 +133,8 @@ class Config
 
     /**
      * vrati pouzivatelske heslo pre pristup do DB na zaklade nastavenia v config.ini
-     * ak toto nastavenie v konfiguracnom subore nie je vrati '#password'
-     * @return string
+     * ak toto nastavenie v konfiguracnom subore nie je vrati NULL
+     * @return string|NULL
      */
     public static function getDbPassword()
     {
@@ -143,8 +143,8 @@ class Config
 
     /**
      * vrati meno DB na zaklade nastavenia v config.ini
-     * ak toto nastavenie v konfiguracnom subore nie je vrati '#user'
-     * @return string
+     * ak toto nastavenie v konfiguracnom subore nie je vrati NULL
+     * @return string|NULL
      */
     public static function getDbName()
     {
@@ -153,7 +153,7 @@ class Config
 
     /**
      * vrati pocet riadkov na stranu zobrazovanych v statistikach na zaklade nastavenia v config.ini
-     * ak toto nastavenie v konfiguracnom subore nie je vrati '10'
+     * ak toto nastavenie v konfiguracnom subore nie je vrati 0
      * @return int
      */
     public static function getStatRowsPerPage()
@@ -163,7 +163,7 @@ class Config
 
     /**
      * vrati adresar na upload bannerov (absolutna cesta) na zaklade nastavenia v config.ini
-     * ak toto nastavenie v konfiguracnom subore nie je vrati cestu do adresara upload/ (default)
+     * ak toto nastavenie v konfiguracnom subore nie je vrati cestu do korenoveho adresara
      * @return string
      */
     public static function getUploadDir()
@@ -173,7 +173,7 @@ class Config
 
     /**
      * vrati maximalnu povolenu velkost uploadovanych suborov v Bytoch na zaklade nastavenia v config.ini
-     * ak toto nastavenie v konfiguracnom subore nie je vrati 20000 (default)
+     * ak toto nastavenie v konfiguracnom subore nie je vrati 0
      * @return int
      */
     public static function getUploadSize()
@@ -183,7 +183,7 @@ class Config
 
     /**
      * vrati maximalnu povolenu dobu neaktivity pouzivatela (v sekundach) z config.ini
-     * ak toto nastavenie v konfiguracnom subore nie je vrati 100 (default)
+     * ak toto nastavenie v konfiguracnom subore nie je vrati 0
      * @return int
      */
     public static function getInactivityLimit()

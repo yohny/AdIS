@@ -39,7 +39,7 @@ class UserTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers {className}::{origMethodName}
+     * @covers User::setPassword
      */
     public function testSetPassword()
     {
@@ -48,7 +48,7 @@ class UserTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers {className}::{origMethodName}
+     * @covers User::setWeb
      */
     public function testSetWeb()
     {
@@ -59,7 +59,7 @@ class UserTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers {className}::{origMethodName}
+     * @covers User::setLoginTimeNow
      */
     public function testSetLoginTimeNow()
     {
@@ -69,7 +69,7 @@ class UserTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers {className}::{origMethodName}
+     * @covers User::getWeb
      */
     public function testGetWeb()
     {
@@ -77,7 +77,7 @@ class UserTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers {className}::{origMethodName}
+     * @covers User::getLogin
      */
     public function testGetLogin()
     {
@@ -85,7 +85,7 @@ class UserTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers {className}::{origMethodName}
+     * @covers User::hasReklamaOfSize
      */
     public function testHasReklamaOfSize()
     {
@@ -96,7 +96,7 @@ class UserTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers {className}::{origMethodName}
+     * @covers User::hasBannerOfSize
      */
     public function testHasBannerOfSize()
     {
@@ -107,7 +107,7 @@ class UserTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers {className}::{origMethodName}
+     * @covers User::__toString
      */
     public function test__toString()
     {
@@ -116,7 +116,7 @@ class UserTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers {className}::{origMethodName}
+     * @covers User::isLoginUnique
      */
     public function testIsLoginUnique()
     {
@@ -124,7 +124,7 @@ class UserTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers {className}::{origMethodName}
+     * @covers User::isWebUnique
      */
     public function testIsWebUnique()
     {
@@ -132,7 +132,7 @@ class UserTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers {className}::{origMethodName}
+     * @covers User::validUrl
      */
     public function testValidUrl()
     {
@@ -146,7 +146,7 @@ class UserTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers {className}::{origMethodName}
+     * @covers User::validateInput
      */
     public function testValidateInput()
     {
@@ -154,6 +154,17 @@ class UserTest extends PHPUnit_Framework_TestCase
         $this->markTestIncomplete(
                 'This test has not been implemented yet.'
         );
+    }
+
+    /**
+     * @covers User::setLastRequestTime
+     * @covers User::getLastRequestTime
+     */
+    public function testRequestTime()
+    {
+        $time = time();
+        $this->object->setLastRequestTime($time);
+        $this->assertEquals($time, $this->object->getLastRequestTime());
     }
 }
 ?>

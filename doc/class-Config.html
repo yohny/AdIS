@@ -145,7 +145,7 @@ href="mailto:jan.nescivera&#64;gmail.com">jan.nescivera&#64;<!---->gmail.com</a>
 
 		<td class="attributes"><code>
 			 public static
-			string
+			string|null
 			
 			</code>
 		</td>
@@ -157,21 +157,21 @@ href="mailto:jan.nescivera&#64;gmail.com">jan.nescivera&#64;<!---->gmail.com</a>
 		<div class="description short">
 			
 <p>vrati host na ktorom bezi DB na zaklade nastavenia v config.ini ak toto
-nastavenie v konfiguracnom subore nie je vrati '#host'</p>
+nastavenie v konfiguracnom subore nie je vrati NULL</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
 <p>vrati host na ktorom bezi DB na zaklade nastavenia v config.ini ak toto
-nastavenie v konfiguracnom subore nie je vrati '#host'</p>
+nastavenie v konfiguracnom subore nie je vrati NULL</p>
 
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string</code><br />
+					<code>string|null</code><br />
 				</div>
 
 
@@ -184,7 +184,7 @@ nastavenie v konfiguracnom subore nie je vrati '#host'</p>
 
 		<td class="attributes"><code>
 			 public static
-			string
+			string|null
 			
 			</code>
 		</td>
@@ -196,21 +196,21 @@ nastavenie v konfiguracnom subore nie je vrati '#host'</p>
 		<div class="description short">
 			
 <p>vrati pouzivatelske meno pre pristup do DB na zaklade nastavenia v config.ini
-ak toto nastavenie v konfiguracnom subore nie je vrati '#user'</p>
+ak toto nastavenie v konfiguracnom subore nie je vrati NULL</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
 <p>vrati pouzivatelske meno pre pristup do DB na zaklade nastavenia v config.ini
-ak toto nastavenie v konfiguracnom subore nie je vrati '#user'</p>
+ak toto nastavenie v konfiguracnom subore nie je vrati NULL</p>
 
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string</code><br />
+					<code>string|null</code><br />
 				</div>
 
 
@@ -223,7 +223,7 @@ ak toto nastavenie v konfiguracnom subore nie je vrati '#user'</p>
 
 		<td class="attributes"><code>
 			 public static
-			string
+			string|null
 			
 			</code>
 		</td>
@@ -235,23 +235,21 @@ ak toto nastavenie v konfiguracnom subore nie je vrati '#user'</p>
 		<div class="description short">
 			
 <p>vrati pouzivatelske heslo pre pristup do DB na zaklade nastavenia v
-config.ini ak toto nastavenie v konfiguracnom subore nie je vrati
-'#password'</p>
+config.ini ak toto nastavenie v konfiguracnom subore nie je vrati NULL</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
 <p>vrati pouzivatelske heslo pre pristup do DB na zaklade nastavenia v
-config.ini ak toto nastavenie v konfiguracnom subore nie je vrati
-'#password'</p>
+config.ini ak toto nastavenie v konfiguracnom subore nie je vrati NULL</p>
 
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string</code><br />
+					<code>string|null</code><br />
 				</div>
 
 
@@ -264,7 +262,7 @@ config.ini ak toto nastavenie v konfiguracnom subore nie je vrati
 
 		<td class="attributes"><code>
 			 public static
-			string
+			string|null
 			
 			</code>
 		</td>
@@ -276,21 +274,21 @@ config.ini ak toto nastavenie v konfiguracnom subore nie je vrati
 		<div class="description short">
 			
 <p>vrati meno DB na zaklade nastavenia v config.ini ak toto nastavenie v
-konfiguracnom subore nie je vrati '#user'</p>
+konfiguracnom subore nie je vrati NULL</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
 <p>vrati meno DB na zaklade nastavenia v config.ini ak toto nastavenie v
-konfiguracnom subore nie je vrati '#user'</p>
+konfiguracnom subore nie je vrati NULL</p>
 
 
 
 
 				<h4>Returns</h4>
 				<div class="list">
-					<code>string</code><br />
+					<code>string|null</code><br />
 				</div>
 
 
@@ -316,7 +314,7 @@ konfiguracnom subore nie je vrati '#user'</p>
 			
 <p>vrati pocet riadkov na stranu zobrazovanych v statistikach na zaklade
 nastavenia v config.ini ak toto nastavenie v konfiguracnom subore nie je vrati
-'10'</p>
+0</p>
 
 		</div>
 
@@ -324,7 +322,7 @@ nastavenia v config.ini ak toto nastavenie v konfiguracnom subore nie je vrati
 			
 <p>vrati pocet riadkov na stranu zobrazovanych v statistikach na zaklade
 nastavenia v config.ini ak toto nastavenie v konfiguracnom subore nie je vrati
-'10'</p>
+0</p>
 
 
 
@@ -357,7 +355,7 @@ nastavenia v config.ini ak toto nastavenie v konfiguracnom subore nie je vrati
 			
 <p>vrati adresar na upload bannerov (absolutna cesta) na zaklade nastavenia v
 config.ini ak toto nastavenie v konfiguracnom subore nie je vrati cestu do
-adresara upload/ (default)</p>
+korenoveho adresara</p>
 
 		</div>
 
@@ -365,7 +363,7 @@ adresara upload/ (default)</p>
 			
 <p>vrati adresar na upload bannerov (absolutna cesta) na zaklade nastavenia v
 config.ini ak toto nastavenie v konfiguracnom subore nie je vrati cestu do
-adresara upload/ (default)</p>
+korenoveho adresara</p>
 
 
 
@@ -398,7 +396,7 @@ adresara upload/ (default)</p>
 			
 <p>vrati maximalnu povolenu velkost uploadovanych suborov v Bytoch na zaklade
 nastavenia v config.ini ak toto nastavenie v konfiguracnom subore nie je vrati
-20000 (default)</p>
+0</p>
 
 		</div>
 
@@ -406,7 +404,7 @@ nastavenia v config.ini ak toto nastavenie v konfiguracnom subore nie je vrati
 			
 <p>vrati maximalnu povolenu velkost uploadovanych suborov v Bytoch na zaklade
 nastavenia v config.ini ak toto nastavenie v konfiguracnom subore nie je vrati
-20000 (default)</p>
+0</p>
 
 
 
@@ -438,16 +436,14 @@ nastavenia v config.ini ak toto nastavenie v konfiguracnom subore nie je vrati
 		<div class="description short">
 			
 <p>vrati maximalnu povolenu dobu neaktivity pouzivatela (v sekundach) z
-config.ini ak toto nastavenie v konfiguracnom subore nie je vrati 100
-(default)</p>
+config.ini ak toto nastavenie v konfiguracnom subore nie je vrati 0</p>
 
 		</div>
 
 		<div class="description detailed hidden">
 			
 <p>vrati maximalnu povolenu dobu neaktivity pouzivatela (v sekundach) z
-config.ini ak toto nastavenie v konfiguracnom subore nie je vrati 100
-(default)</p>
+config.ini ak toto nastavenie v konfiguracnom subore nie je vrati 0</p>
 
 
 

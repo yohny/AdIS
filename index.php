@@ -38,7 +38,7 @@ elseif(!$request->isPublic && !Context::getInstance()->getUser())
 }
 elseif($request->isExpired())
 {
-    //header("HTTP/1.1 408 Request Timeout"); ///rpoduces error in browser
+    //header("HTTP/1.1 408 Request Timeout"); ///produces error in browser
     session_unset();
     session_regenerate_id();
     Context::getInstance()->getResponse()->content = "Boli ste odhlásený kvôli neaktivite vyše ".Config::getInactivityLimit()." sekúnd!";

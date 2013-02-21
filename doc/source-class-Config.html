@@ -152,7 +152,7 @@
 </span></span><span id="46" class="l"><a class="l" href="#46"> 46: </a><span class="php-comment">     * number of rows showed per page in statistics listings
 </span></span><span id="47" class="l"><a class="l" href="#47"> 47: </a><span class="php-comment">     * @var int
 </span></span><span id="48" class="l"><a class="l" href="#48"> 48: </a><span class="php-comment">     */</span>
-</span><span id="49" class="l"><a class="l" href="#49"> 49: </a>    <span class="php-keyword1">private</span> <span class="php-var"><a id="$statRowsPerPage" href="#$statRowsPerPage">$statRowsPerPage</a></span> = <span class="php-num">10</span>;
+</span><span id="49" class="l"><a class="l" href="#49"> 49: </a>    <span class="php-keyword1">private</span> <span class="php-var"><a id="$statRowsPerPage" href="#$statRowsPerPage">$statRowsPerPage</a></span>;
 </span><span id="50" class="l"><a class="l" href="#50"> 50: </a>
 </span><span id="51" class="l"><a class="l" href="#51"> 51: </a>    <span class="php-comment">/**
 </span></span><span id="52" class="l"><a class="l" href="#52"> 52: </a><span class="php-comment">     * directory for banner upload
@@ -167,7 +167,7 @@
 </span><span id="61" class="l"><a class="l" href="#61"> 61: </a>    <span class="php-keyword1">private</span> <span class="php-var"><a id="$uploadSize" href="#$uploadSize">$uploadSize</a></span>;
 </span><span id="62" class="l"><a class="l" href="#62"> 62: </a>
 </span><span id="63" class="l"><a class="l" href="#63"> 63: </a>    <span class="php-comment">/**
-</span></span><span id="64" class="l"><a class="l" href="#64"> 64: </a><span class="php-comment">     * max allowed inactivity timeframe, when exceeded user is logged out automatically ()in sec
+</span></span><span id="64" class="l"><a class="l" href="#64"> 64: </a><span class="php-comment">     * max allowed inactivity time, when exceeded user is logged out automatically (in sec)
 </span></span><span id="65" class="l"><a class="l" href="#65"> 65: </a><span class="php-comment">     * @var int
 </span></span><span id="66" class="l"><a class="l" href="#66"> 66: </a><span class="php-comment">     */</span>
 </span><span id="67" class="l"><a class="l" href="#67"> 67: </a>    <span class="php-keyword1">private</span> <span class="php-var"><a id="$inactivityLimit" href="#$inactivityLimit">$inactivityLimit</a></span> = <span class="php-num">100</span>;
@@ -219,8 +219,8 @@
 </span><span id="113" class="l"><a class="l" href="#113">113: </a>
 </span><span id="114" class="l"><a class="l" href="#114">114: </a>    <span class="php-comment">/**
 </span></span><span id="115" class="l"><a class="l" href="#115">115: </a><span class="php-comment">     * vrati host na ktorom bezi DB na zaklade nastavenia v config.ini
-</span></span><span id="116" class="l"><a class="l" href="#116">116: </a><span class="php-comment">     * ak toto nastavenie v konfiguracnom subore nie je vrati '#host'
-</span></span><span id="117" class="l"><a class="l" href="#117">117: </a><span class="php-comment">     * @return string
+</span></span><span id="116" class="l"><a class="l" href="#116">116: </a><span class="php-comment">     * ak toto nastavenie v konfiguracnom subore nie je vrati NULL
+</span></span><span id="117" class="l"><a class="l" href="#117">117: </a><span class="php-comment">     * @return string|NULL
 </span></span><span id="118" class="l"><a class="l" href="#118">118: </a><span class="php-comment">     */</span>
 </span><span id="119" class="l"><a class="l" href="#119">119: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> <a id="_getDbHost" href="#_getDbHost">getDbHost</a>()
 </span><span id="120" class="l"><a class="l" href="#120">120: </a>    {
@@ -229,8 +229,8 @@
 </span><span id="123" class="l"><a class="l" href="#123">123: </a>
 </span><span id="124" class="l"><a class="l" href="#124">124: </a>    <span class="php-comment">/**
 </span></span><span id="125" class="l"><a class="l" href="#125">125: </a><span class="php-comment">     * vrati pouzivatelske meno pre pristup do DB na zaklade nastavenia v config.ini
-</span></span><span id="126" class="l"><a class="l" href="#126">126: </a><span class="php-comment">     * ak toto nastavenie v konfiguracnom subore nie je vrati '#user'
-</span></span><span id="127" class="l"><a class="l" href="#127">127: </a><span class="php-comment">     * @return string
+</span></span><span id="126" class="l"><a class="l" href="#126">126: </a><span class="php-comment">     * ak toto nastavenie v konfiguracnom subore nie je vrati NULL
+</span></span><span id="127" class="l"><a class="l" href="#127">127: </a><span class="php-comment">     * @return string|NULL
 </span></span><span id="128" class="l"><a class="l" href="#128">128: </a><span class="php-comment">     */</span>
 </span><span id="129" class="l"><a class="l" href="#129">129: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> <a id="_getDbUser" href="#_getDbUser">getDbUser</a>()
 </span><span id="130" class="l"><a class="l" href="#130">130: </a>    {
@@ -239,8 +239,8 @@
 </span><span id="133" class="l"><a class="l" href="#133">133: </a>
 </span><span id="134" class="l"><a class="l" href="#134">134: </a>    <span class="php-comment">/**
 </span></span><span id="135" class="l"><a class="l" href="#135">135: </a><span class="php-comment">     * vrati pouzivatelske heslo pre pristup do DB na zaklade nastavenia v config.ini
-</span></span><span id="136" class="l"><a class="l" href="#136">136: </a><span class="php-comment">     * ak toto nastavenie v konfiguracnom subore nie je vrati '#password'
-</span></span><span id="137" class="l"><a class="l" href="#137">137: </a><span class="php-comment">     * @return string
+</span></span><span id="136" class="l"><a class="l" href="#136">136: </a><span class="php-comment">     * ak toto nastavenie v konfiguracnom subore nie je vrati NULL
+</span></span><span id="137" class="l"><a class="l" href="#137">137: </a><span class="php-comment">     * @return string|NULL
 </span></span><span id="138" class="l"><a class="l" href="#138">138: </a><span class="php-comment">     */</span>
 </span><span id="139" class="l"><a class="l" href="#139">139: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> <a id="_getDbPassword" href="#_getDbPassword">getDbPassword</a>()
 </span><span id="140" class="l"><a class="l" href="#140">140: </a>    {
@@ -249,8 +249,8 @@
 </span><span id="143" class="l"><a class="l" href="#143">143: </a>
 </span><span id="144" class="l"><a class="l" href="#144">144: </a>    <span class="php-comment">/**
 </span></span><span id="145" class="l"><a class="l" href="#145">145: </a><span class="php-comment">     * vrati meno DB na zaklade nastavenia v config.ini
-</span></span><span id="146" class="l"><a class="l" href="#146">146: </a><span class="php-comment">     * ak toto nastavenie v konfiguracnom subore nie je vrati '#user'
-</span></span><span id="147" class="l"><a class="l" href="#147">147: </a><span class="php-comment">     * @return string
+</span></span><span id="146" class="l"><a class="l" href="#146">146: </a><span class="php-comment">     * ak toto nastavenie v konfiguracnom subore nie je vrati NULL
+</span></span><span id="147" class="l"><a class="l" href="#147">147: </a><span class="php-comment">     * @return string|NULL
 </span></span><span id="148" class="l"><a class="l" href="#148">148: </a><span class="php-comment">     */</span>
 </span><span id="149" class="l"><a class="l" href="#149">149: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> <a id="_getDbName" href="#_getDbName">getDbName</a>()
 </span><span id="150" class="l"><a class="l" href="#150">150: </a>    {
@@ -259,7 +259,7 @@
 </span><span id="153" class="l"><a class="l" href="#153">153: </a>
 </span><span id="154" class="l"><a class="l" href="#154">154: </a>    <span class="php-comment">/**
 </span></span><span id="155" class="l"><a class="l" href="#155">155: </a><span class="php-comment">     * vrati pocet riadkov na stranu zobrazovanych v statistikach na zaklade nastavenia v config.ini
-</span></span><span id="156" class="l"><a class="l" href="#156">156: </a><span class="php-comment">     * ak toto nastavenie v konfiguracnom subore nie je vrati '10'
+</span></span><span id="156" class="l"><a class="l" href="#156">156: </a><span class="php-comment">     * ak toto nastavenie v konfiguracnom subore nie je vrati 0
 </span></span><span id="157" class="l"><a class="l" href="#157">157: </a><span class="php-comment">     * @return int
 </span></span><span id="158" class="l"><a class="l" href="#158">158: </a><span class="php-comment">     */</span>
 </span><span id="159" class="l"><a class="l" href="#159">159: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> <a id="_getStatRowsPerPage" href="#_getStatRowsPerPage">getStatRowsPerPage</a>()
@@ -269,7 +269,7 @@
 </span><span id="163" class="l"><a class="l" href="#163">163: </a>
 </span><span id="164" class="l"><a class="l" href="#164">164: </a>    <span class="php-comment">/**
 </span></span><span id="165" class="l"><a class="l" href="#165">165: </a><span class="php-comment">     * vrati adresar na upload bannerov (absolutna cesta) na zaklade nastavenia v config.ini
-</span></span><span id="166" class="l"><a class="l" href="#166">166: </a><span class="php-comment">     * ak toto nastavenie v konfiguracnom subore nie je vrati cestu do adresara upload/ (default)
+</span></span><span id="166" class="l"><a class="l" href="#166">166: </a><span class="php-comment">     * ak toto nastavenie v konfiguracnom subore nie je vrati cestu do korenoveho adresara
 </span></span><span id="167" class="l"><a class="l" href="#167">167: </a><span class="php-comment">     * @return string
 </span></span><span id="168" class="l"><a class="l" href="#168">168: </a><span class="php-comment">     */</span>
 </span><span id="169" class="l"><a class="l" href="#169">169: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> <a id="_getUploadDir" href="#_getUploadDir">getUploadDir</a>()
@@ -279,7 +279,7 @@
 </span><span id="173" class="l"><a class="l" href="#173">173: </a>
 </span><span id="174" class="l"><a class="l" href="#174">174: </a>    <span class="php-comment">/**
 </span></span><span id="175" class="l"><a class="l" href="#175">175: </a><span class="php-comment">     * vrati maximalnu povolenu velkost uploadovanych suborov v Bytoch na zaklade nastavenia v config.ini
-</span></span><span id="176" class="l"><a class="l" href="#176">176: </a><span class="php-comment">     * ak toto nastavenie v konfiguracnom subore nie je vrati 20000 (default)
+</span></span><span id="176" class="l"><a class="l" href="#176">176: </a><span class="php-comment">     * ak toto nastavenie v konfiguracnom subore nie je vrati 0
 </span></span><span id="177" class="l"><a class="l" href="#177">177: </a><span class="php-comment">     * @return int
 </span></span><span id="178" class="l"><a class="l" href="#178">178: </a><span class="php-comment">     */</span>
 </span><span id="179" class="l"><a class="l" href="#179">179: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> <a id="_getUploadSize" href="#_getUploadSize">getUploadSize</a>()
@@ -289,7 +289,7 @@
 </span><span id="183" class="l"><a class="l" href="#183">183: </a>
 </span><span id="184" class="l"><a class="l" href="#184">184: </a>    <span class="php-comment">/**
 </span></span><span id="185" class="l"><a class="l" href="#185">185: </a><span class="php-comment">     * vrati maximalnu povolenu dobu neaktivity pouzivatela (v sekundach) z config.ini
-</span></span><span id="186" class="l"><a class="l" href="#186">186: </a><span class="php-comment">     * ak toto nastavenie v konfiguracnom subore nie je vrati 100 (default)
+</span></span><span id="186" class="l"><a class="l" href="#186">186: </a><span class="php-comment">     * ak toto nastavenie v konfiguracnom subore nie je vrati 0
 </span></span><span id="187" class="l"><a class="l" href="#187">187: </a><span class="php-comment">     * @return int
 </span></span><span id="188" class="l"><a class="l" href="#188">188: </a><span class="php-comment">     */</span>
 </span><span id="189" class="l"><a class="l" href="#189">189: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> <a id="_getInactivityLimit" href="#_getInactivityLimit">getInactivityLimit</a>()

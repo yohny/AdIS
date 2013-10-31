@@ -324,13 +324,15 @@ function show2(co)
 
 function nacitajGraf()
 {
-    var place = document.getElementById('graf');
+    var place = document.getElementById('graf_placeholder');
     //place.innerHTML = 'loading...';
     var img = document.createElement('img');
+    img.setAttribute("id", "graf");
     img.onload = function(){
         img.alt = 'graf';
         place.removeChild(place.childNodes[0]);
         place.appendChild(this);
+        addImage("graf", "graf_imageMap", "/img/graf?&imageMap");
     };
     img.onerror = function(){
         place.innerHTML = 'Chyba!';

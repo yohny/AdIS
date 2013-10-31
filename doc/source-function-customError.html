@@ -139,23 +139,25 @@
 </span><span id="37" class="l"><a class="l" href="#37">37: </a><span class="php-comment">//samotny klik</span>
 </span><span id="38" class="l"><a class="l" href="#38">38: </a>    <span class="php-keyword1">if</span> (!<span class="php-keyword1">isset</span>(<span class="php-var">$_COOKIE</span>[<span class="php-quote">'voted'</span>]) &amp;&amp; !<span class="php-var">$zobrazenie</span>-&gt;isClicked())
 </span><span id="39" class="l"><a class="l" href="#39">39: </a>    {
-</span><span id="40" class="l"><a class="l" href="#40">40: </a>        <span class="php-keyword2">setcookie</span>(<span class="php-quote">&quot;voted&quot;</span>, <span class="php-quote">&quot;voted&quot;</span>, <span class="php-keyword2">time</span>() + <span class="php-num">10</span>);  <span class="php-comment">//platnost cookie 10 sek</span>
-</span><span id="41" class="l"><a class="l" href="#41">41: </a>        <span class="php-var">$klik</span> = <span class="php-keyword1">new</span> Klik(<span class="php-keyword1">null</span>, <span class="php-keyword1">new</span> DateTime(), <span class="php-var">$_GET</span>[<span class="php-quote">'zobra'</span>], <span class="php-var">$_GET</span>[<span class="php-quote">'rekl'</span>], <span class="php-var">$_GET</span>[<span class="php-quote">'inzer'</span>], <span class="php-var">$_GET</span>[<span class="php-quote">'bann'</span>]);
-</span><span id="42" class="l"><a class="l" href="#42">42: </a>        <span class="php-var">$klik</span>-&gt;save(<span class="php-var">$db</span>);
-</span><span id="43" class="l"><a class="l" href="#43">43: </a>    }
-</span><span id="44" class="l"><a class="l" href="#44">44: </a>    <span class="php-comment">//NOTE pocet zobrazeni s 'clicked' nie je ten isty ako pocet kliknuti, lebo k nastaveniu</span>
-</span><span id="45" class="l"><a class="l" href="#45">45: </a>    <span class="php-comment">//clicked dojde vzdy - aj ked sa nezapocita klik (kvoli cookie)</span>
-</span><span id="46" class="l"><a class="l" href="#46">46: </a>    <span class="php-keyword1">if</span> (!<span class="php-var">$zobrazenie</span>-&gt;isClicked())
-</span><span id="47" class="l"><a class="l" href="#47">47: </a>        <span class="php-var">$zobrazenie</span>-&gt;setClicked(<span class="php-var">$db</span>);
-</span><span id="48" class="l"><a class="l" href="#48">48: </a><span class="php-comment">//    else     //bez erroru nemusi vediet o tom user, staci ze sa nezarata klik (osetrene vyssie)</span>
-</span><span id="49" class="l"><a class="l" href="#49">49: </a><span class="php-comment">//        trigger_error(&quot;Opakovane klikanie&quot;);</span>
-</span><span id="50" class="l"><a class="l" href="#50">50: </a>}
-</span><span id="51" class="l"><a class="l" href="#51">51: </a><span class="php-keyword1">catch</span> (Exception <span class="php-var">$ex</span>)
-</span><span id="52" class="l"><a class="l" href="#52">52: </a>{
-</span><span id="53" class="l"><a class="l" href="#53">53: </a>    <span class="php-keyword2">trigger_error</span>(<span class="php-var">$ex</span>-&gt;getMessage());
-</span><span id="54" class="l"><a class="l" href="#54">54: </a>}
-</span><span id="55" class="l"><a class="l" href="#55">55: </a><span class="php-keyword2">header</span>(<span class="php-quote">&quot;Location: http://</span><span class="php-var">{$inzer-&gt;getWeb()}</span><span class="php-quote">&quot;</span>);
-</span><span id="56" class="l"><a class="l" href="#56">56: </a></span><span class="xlang">?&gt;</span></code></pre>
+</span><span id="40" class="l"><a class="l" href="#40">40: </a>        <span class="php-comment">//FIXME pri nastavovani cookie sa spoliehame na to, ze cas brovsra je in sync so servrom, co nemusi by pravda</span>
+</span><span id="41" class="l"><a class="l" href="#41">41: </a>        <span class="php-comment">// lepsie by bolo nechat cookie zit 'navzdy' a do nej si zapisat timestamp a ten porovnavat</span>
+</span><span id="42" class="l"><a class="l" href="#42">42: </a>        <span class="php-keyword2">setcookie</span>(<span class="php-quote">&quot;voted&quot;</span>, <span class="php-quote">&quot;voted&quot;</span>, <span class="php-keyword2">time</span>() + <span class="php-num">10</span>);  <span class="php-comment">//platnost cookie 10 sek</span>
+</span><span id="43" class="l"><a class="l" href="#43">43: </a>        <span class="php-var">$klik</span> = <span class="php-keyword1">new</span> Klik(<span class="php-keyword1">null</span>, <span class="php-keyword1">new</span> DateTime(), <span class="php-var">$_GET</span>[<span class="php-quote">'zobra'</span>], <span class="php-var">$_GET</span>[<span class="php-quote">'rekl'</span>], <span class="php-var">$_GET</span>[<span class="php-quote">'inzer'</span>], <span class="php-var">$_GET</span>[<span class="php-quote">'bann'</span>]);
+</span><span id="44" class="l"><a class="l" href="#44">44: </a>        <span class="php-var">$klik</span>-&gt;save(<span class="php-var">$db</span>);
+</span><span id="45" class="l"><a class="l" href="#45">45: </a>    }
+</span><span id="46" class="l"><a class="l" href="#46">46: </a>    <span class="php-comment">//NOTE pocet zobrazeni s 'clicked' nie je ten isty ako pocet kliknuti, lebo k nastaveniu</span>
+</span><span id="47" class="l"><a class="l" href="#47">47: </a>    <span class="php-comment">//clicked dojde vzdy - aj ked sa nezapocita klik (kvoli cookie)</span>
+</span><span id="48" class="l"><a class="l" href="#48">48: </a>    <span class="php-keyword1">if</span> (!<span class="php-var">$zobrazenie</span>-&gt;isClicked())
+</span><span id="49" class="l"><a class="l" href="#49">49: </a>        <span class="php-var">$zobrazenie</span>-&gt;setClicked(<span class="php-var">$db</span>);
+</span><span id="50" class="l"><a class="l" href="#50">50: </a><span class="php-comment">//    else     //bez erroru nemusi vediet o tom user, staci ze sa nezarata klik (osetrene vyssie)</span>
+</span><span id="51" class="l"><a class="l" href="#51">51: </a><span class="php-comment">//        trigger_error(&quot;Opakovane klikanie&quot;);</span>
+</span><span id="52" class="l"><a class="l" href="#52">52: </a>}
+</span><span id="53" class="l"><a class="l" href="#53">53: </a><span class="php-keyword1">catch</span> (Exception <span class="php-var">$ex</span>)
+</span><span id="54" class="l"><a class="l" href="#54">54: </a>{
+</span><span id="55" class="l"><a class="l" href="#55">55: </a>    <span class="php-keyword2">trigger_error</span>(<span class="php-var">$ex</span>-&gt;getMessage());
+</span><span id="56" class="l"><a class="l" href="#56">56: </a>}
+</span><span id="57" class="l"><a class="l" href="#57">57: </a><span class="php-keyword2">header</span>(<span class="php-quote">&quot;Location: http://</span><span class="php-var">{$inzer-&gt;getWeb()}</span><span class="php-quote">&quot;</span>);
+</span><span id="58" class="l"><a class="l" href="#58">58: </a></span><span class="xlang">?&gt;</span></code></pre>
 
 	<div id="footer">
 		AdIS API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>

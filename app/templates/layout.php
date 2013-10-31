@@ -1,34 +1,23 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="sk" lang="sk">
+<!DOCTYPE html>
+<html lang="sk">
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta charset="utf-8" />
         <title><?php echo Context::getInstance()->getResponse()->getTitle(); ?></title>
         <meta name="generator" content="Netbeans IDE, www.netbeans.org" />
-        <meta name="description" content="reklamný systém" />
+        <meta name="description" content="AdIS - reklamný systém" />
         <meta name="keywords" content="internetová reklama, online reklama, reklama, ad-is, banner, ppc, is" />
-        <meta name="copyright" content="Copyright (c) Ján Neščivera" />
+        <meta name="application-name" content="AdIS" />
         <meta name="author" content="Yohny - jan.nescivera@gmail.com" />
-        <meta name="content-language" content="sk" />
         <link rel="shortcut icon" href="/img/favicon.ico" />
         <link rel="stylesheet" type="text/css" href="/css/style_basic.css" />
         <link rel="stylesheet" type="text/css" href="/css/style_green.css" />
         <link rel="stylesheet" type="text/css" href="/css/style_orange.css" />
         <link rel="stylesheet" type="text/css" href="/css/style_blue.css" />
-        <script language="javascript" type="text/javascript" src="/js/script.js"></script>
+        <script type="text/javascript" src="/js/script.js"></script>
         <?php foreach (Context::getInstance()->getResponse()->getResources() as $resource) echo $resource . "\n"; ?>
     </head>
     <body>
-        <div class="top_left corner"></div>
-        <div class="top_right corner"></div>
-        <div class="bottom_left corner"></div>
-        <div class="bottom_right corner"></div>
-
         <div id="top">
-            <div class="top_left corner"></div>
-            <div class="top_right corner"></div>
-            <div class="bottom_left corner"></div>
-            <div class="bottom_right corner"></div>
             <h1 class="above">Ad-IS</h1>
             <h1 class="below">Ad-IS</h1>
             <h2>Reklamný systém</h2>
@@ -36,10 +25,6 @@
 
         <div id="left">
             <div id="menu">
-                <div class="top_left corner"></div>
-                <div class="top_right corner"></div>
-                <div class="bottom_left corner"></div>
-                <div class="bottom_right corner"></div>
                 <h3>menu</h3>
 
                 <fieldset>
@@ -52,10 +37,6 @@
             </div>
 
             <div id="nove">
-                <div class="top_left corner"></div>
-                <div class="top_right corner"></div>
-                <div class="bottom_left corner"></div>
-                <div class="bottom_right corner"></div>
                 <h3>info</h3>
                 <p class="g">bežný oznam</p>
                 <p class="r">dôležitý oznam</p>
@@ -75,30 +56,18 @@
                     <img id="img2" src="/img/sch2.png" onclick="set_scheme(2)" alt="s2" />
                     <img id="img3" src="/img/sch3.png" onclick="set_scheme(3)" alt="s3" />
                 </p>
-                <script language="javascript" type="text/javascript">set_scheme(schema);</script>
+                <script type="text/javascript">set_scheme(schema);</script>
             </div>
             <a href="mailto:jan.nescivera@gmail.com" id="ja" title="admin&amp;webmaster">&lt;Yohny&gt; &copy; <?php echo date('Y'); ?></a>
         </div><!-- end div#left --><div id="main">
-            <div class="top_left corner"></div>
-            <div class="top_right corner"></div>
-            <div class="bottom_left corner"></div>
-            <div class="bottom_right corner"></div>
             <h3><?php echo Context::getInstance()->getResponse()->getHeading(); ?></h3>
             <?php if($flash=Context::getInstance()->getResponse()->getFlash()): ?>
             <div class="flash">
-                <div class="top_left corner"></div>
-                <div class="top_right corner"></div>
-                <div class="bottom_left corner"></div>
-                <div class="bottom_right corner"></div>
                 <?php echo $flash; ?>
             </div>
             <?php endif; ?>
             <?php if(Context::getInstance()->getResponse()->error){ ?>
             <div class="error">
-                <div class="top_left corner"></div>
-                <div class="top_right corner"></div>
-                <div class="bottom_left corner"></div>
-                <div class="bottom_right corner"></div>
                 <?php echo Context::getInstance()->getResponse(); ?>
             </div>
             <?php } else echo Context::getInstance()->getResponse(); ?>

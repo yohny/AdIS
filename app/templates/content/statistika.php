@@ -10,6 +10,7 @@
 
 
 Context::getInstance()->getResponse()->setHeading('štatistika');
+Context::getInstance()->getResponse()->addResource("<script type=\"text/javascript\" src=\"/js/imagemap.js\"></script>");
 $filter = new Filter($_GET);
 $user = Context::getInstance()->getUser();
 
@@ -28,7 +29,7 @@ $aktPage = $filter->page;
 $pages = ceil($counts['count']/Config::getStatRowsPerPage());
 ?>
 <h4>Filter</h4>
-<form name="filter" action="" method="get">
+<form name="filter" action="#" method="get">
     <input type="hidden" name="page" value="1" />
     <table>
         <tr>
@@ -96,9 +97,11 @@ $pages = ceil($counts['count']/Config::getStatRowsPerPage());
 <?php if(count($stats)==0): ?>
 <h4 class="r">Žiadne dáta!</h4>
 <?php else: ?>
-<div id="graf">nahrávam...</div>
+<div id="graf_placeholder"><span style="position: relative; top: 100px;font-size: 16px; font-weight: bolder;">nahrávam...</span>
+    <div id="testDiv" style="display: inline-block; position: absolute; opacity: 0;" ></div>
+</div>
 <?php include TEMPLATES_DIR.'/partials/pager.php'; ?>
-<script type="text/javascript" language="javascript">
+<script type="text/javascript">
 nacitajGraf();
 </script>
 <?php endif; ?>

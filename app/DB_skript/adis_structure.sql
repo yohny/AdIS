@@ -255,6 +255,6 @@ DELIMITER $$
 --
 -- Events
 --
-CREATE EVENT `days_generator` ON SCHEDULE EVERY 1 DAY STARTS '2012-01-01 00:00:00' ON COMPLETION PRESERVE ENABLE COMMENT 'Event denne generujuci dni do tabulky days' DO INSERT INTO days VALUES (NOW())$$
+CREATE EVENT `days_generator` ON SCHEDULE EVERY 1 DAY STARTS '2012-01-01 00:00:01' ON COMPLETION PRESERVE ENABLE COMMENT 'Event denne generujuci dni do tabulky days' DO INSERT INTO days VALUES (NOW())$$
 
 DELIMITER ;

@@ -37,6 +37,8 @@ try
 //samotny klik
     if (!isset($_COOKIE['voted']) && !$zobrazenie->isClicked())
     {
+        //FIXME pri nastavovani cookie sa spoliehame na to, ze cas brovsra je in sync so servrom, co nemusi by pravda
+        // lepsie by bolo nechat cookie zit 'navzdy' a do nej si zapisat timestamp a ten porovnavat
         setcookie("voted", "voted", time() + 10);  //platnost cookie 10 sek
         $klik = new Klik(null, new DateTime(), $_GET['zobra'], $_GET['rekl'], $_GET['inzer'], $_GET['bann']);
         $klik->save($db);

@@ -26,7 +26,7 @@ class Response
      * hodnota 'Content-type' atributu vratenej hlavicky
      * @var string
      */
-    private $headerContentType = 'application/xhtml+xml';
+    private $headerContentType = 'text/html';
 
     /**
      * kodovanie stranky odosielane v hlavicke

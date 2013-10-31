@@ -1,17 +1,18 @@
 html {
     margin: 0;
     padding: 0;
-}
-* {
-    font-family: Arial, Helvetica, Sans-serif; /* firefox a ... ignoruje font-size a family pre inputy */
+    font-family: Arial, Helvetica, Sans-serif;
     font-size: 12px;
 }
 body, #top, #menu, #nove, #main {
-    position:relative;
     border-width: 2px;
     border-style: solid;
     padding: 20px;
     margin: 5px;
+    border-radius: 16px;
+}
+#top {
+    position: relative;
 }
 body {
     color: white;
@@ -48,8 +49,7 @@ ul {
     list-style-type: square;
 }
 #ja {
-    position: relative;
-    left: 5px;
+    margin: 5px;
     text-decoration: none;
     font-variant: small-caps;
 }
@@ -73,6 +73,8 @@ ul {
     color: green;
 }
 input, textarea, select  {
+    font-family: inherit;/* firefox a ... defaultne nededia font-size a family pre inputy */
+    font-size: inherit;
     border-width: 1px;
     border-style: solid;
     background-color: white;
@@ -86,7 +88,7 @@ code
     background: white;
     padding: 10px;
 }
-input[type='text'],input[type='password'], textarea, select
+input[type='text'], input[type='password'], textarea, select
 {
     width: 100%;
 }
@@ -97,10 +99,6 @@ a:hover {
     color: red;
 }
 /*------------------------------------ top ------------------------------------*/
-#top{
-    /*background-image: url('../img/top.jpg');
-    background-repeat: no-repeat;*/
-}
 #top h1 {
     letter-spacing: 10px;
     padding: 0;
@@ -255,10 +253,7 @@ a:hover {
     color: black;
     background: white url('/img/bulb.png') no-repeat 20px;
 }
-div.flash > div.corner
-{
-   background-image: url('/img/corner_flash.png');
-}
+
 #main div.error{
     border: 2px solid red;
     color: red;
@@ -266,52 +261,12 @@ div.flash > div.corner
     font-weight: bold;
     background: white url('/img/error.gif') no-repeat 20px;
 }
-div.error > div.corner
+#main div#graf_placeholder
 {
-   background-image: url('/img/corner_error.png');
-}
-#main div#graf
-{
-    line-height: 250px;
-    vertical-align: middle;
     text-align: center;
     width: 710px;
     height: 250px;
-    font-size: 16px;
-    font-weight: bolder;
     padding: 0;
     margin: 0 auto;
     position: relative;
-}
-/*-------------------------------- oble rohy ----------------------------------*/
-div.corner
-{
-    background-color: white;
-    width:16px;
-    height:16px;
-    position:absolute;
-}
-div.top_left
-{
-    top:-2px;
-    left:-2px;
-    background-position: 0px 0px;
-}
-div.top_right
-{
-    top:-2px;
-    right:-2px;
-    background-position: -16px 0px;
-}
-div.bottom_left
-{
-    bottom:-2px;
-    left:-2px;
-    background-position: 0px -16px;
-}
-div.bottom_right
-{
-    bottom:-2px;
-    right:-2px;
-    background-position: -16px -16px;
 }

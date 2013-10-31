@@ -76,17 +76,3 @@ a {
 #main table.data tbody tr.dark, #main table.pager td.dark {
     background-color: rgb(255,244,128);
 }
-/*-------------------------------- oble rohy ----------------------------------*/
-#top > div.corner, #menu > div.corner, #nove > div.corner, #main > div.corner
-{
-    background-image: url('/img/corner_orange.png');
-}
-body > div.corner
-{
-    background-image: url('/img/corner_orange_cont.png');
-    background-color: rgb(255,255,153);
-}
-div.flash > div.corner, div.error > div.corner
-{
-   background-color: rgb(235,202,122);
-}

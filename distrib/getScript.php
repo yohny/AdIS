@@ -43,6 +43,13 @@ catch (Exception $ex)
 //<a href="..." ping="...">   - PING not supported by browsers (Firefox only?)
 
 //variable scope separation - http://www.howtocreate.co.uk/tutorials/javascript/functions uplne dole
+
+// iny pristup - rozsirit tabulku Zobrazenia (premenovat ju na session?) - pridat timestamp stlpce VIEWED a CLICKED, zrusit tabilku kliky
+// prvotny zaznam by sa vytvaral tu (ako aj teraz), viewed a clicked by boli null
+// v getBanner.php by sa do viewed ulozil aktualny timestamp - az vtedy by sa zapocitalo zobrazenie
+// v doClick.php by sa do clicked ulozil aktualny timestamp - zapocital by sa klik
+// identifikacia zaznamu medzi jednotlivymi krokmi pomocov [view] (ako aj teraz)
+
 ?>
 (function () {
     var container_id = 1;

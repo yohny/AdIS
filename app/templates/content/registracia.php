@@ -17,7 +17,7 @@ if(Context::getInstance()->getUser())
 if (isset($_SESSION['registrator']))
 {
     $tmpuser = $_SESSION['registrator'];
-    session_unregister('registrator');
+    unset($_SESSION['registrator']);
 }
 ?>
 <form name="reg_form" action="/action/registruj" method="post">

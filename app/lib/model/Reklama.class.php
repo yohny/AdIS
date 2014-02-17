@@ -22,7 +22,7 @@ class Reklama extends BanRek
         $this->name = $name;
     }
 
-    public function save($kategorie)
+    public function save(array $kategorie)
     {
         $db = Context::getInstance()->getDatabase();
         $db->autocommit(false);

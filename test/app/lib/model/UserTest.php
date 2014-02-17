@@ -24,7 +24,7 @@ class UserTest extends PHPUnit_Framework_TestCase
     protected function setUp()
     {
         User::create("test", "testPassw", "www.test.sk", "zobra");
-        $this->db = new Database();
+        $this->db = Context::getInstance()->getDatabase();
         $this->object = $this->db->getUserByCredentials("test","testPassw");
     }
 
@@ -34,8 +34,8 @@ class UserTest extends PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-        $this->db->query("DELETE FROM users WHERE id = {$this->object->id}");
-        //$this->db->close(); //netreba PHPUnit vola destructor objektov a v nom zatvaram connection
+		if($this->db != null)//connection might have been unsuccessfull
+			$this->db->query("DELETE FROM users WHERE id = {$this->object->id}");
     }
 
     /**
@@ -65,7 +65,7 @@ class UserTest extends PHPUnit_Framework_TestCase
     {
         $this->object->setLoginTimeNow();
         $user = $this->db->getUserByPK($this->object->id);
-        $this->assertAttributeEquals(new DateTime(), "loginTime", $user);//depends on speed of record retrieval?
+        $this->assertEquals((new DateTime())->getTimestamp(), $user->getLastLoginTime()->getTimestamp(), 'unexpected time difference', 1);
     }
 
     /**

@@ -30,7 +30,9 @@ class Database extends mysqli
     {
         @parent::__construct(Config::getDbHost() , Config::getDbUser(), Config::getDbPassword(), Config::getDbName());
         if ($this->connect_error)
-            throw new Exception('Nepodarilo sa pripojiť na databázu!');
+            throw new Exception('Nepodarilo sa pripojiť na databázu: '.$this->connect_error );
+		$driver = new mysqli_driver();
+		$driver->report_mode = MYSQLI_REPORT_ERROR|MYSQLI_REPORT_STRICT;//mysqli will throw exceptions on error
         $this->set_charset('utf8');
         $now = new DateTime();
         $this->query("SET time_zone = '{$now->format('P')}'");
@@ -435,7 +437,6 @@ class Database extends mysqli
                     break;
                 default :
                     throw new Exception("Nepodporovaná trieda modelu");
-                    break;
             }
         }
         if(!$asArray)

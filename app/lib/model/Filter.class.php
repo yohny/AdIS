@@ -29,7 +29,7 @@ class Filter
      * objekt reprezentujuci pouzivatelske filtrovacie kriteria
      * @param array $postData vstup od pouzivatela
      */
-    public function __construct($requestData)
+    public function __construct(array $requestData)
     {
         $this->date = 'today';
         $this->from = Context::getInstance()->getUser()->getRegistrationTime();
@@ -47,7 +47,7 @@ class Filter
      * @param array $filterData filtrovacie kriteria z formulara
      * @return bool true ak parsovanie bolo uspesne inak false
      */
-    private function parse($filterData)
+    private function parse(array $filterData)
     {
         if (isset($filterData['page']))
         {

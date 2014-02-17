@@ -22,7 +22,7 @@ class Banner extends BanRek
         $this->filename = $filename;
     }
 
-    public function save($kategorie)
+    public function save(array $kategorie)
     {
         $db = Context::getInstance()->getDatabase();
         $db->autocommit(false);

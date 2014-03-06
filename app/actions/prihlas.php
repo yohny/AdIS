@@ -19,7 +19,12 @@ if ($user != null)
 {
     $_SESSION['user'] = $user;
     $user->setLoginTimeNow();
-    $message = "Úspešne ste sa prihlásili!";
+	if($_POST['neodhlasovat'] === "neodhlasovat")
+	{
+		$user->requestsExpire = false;
+		setcookie('neodhlasovat', $user->id.'|'.md5($user->getLogin()), time()+10*24*3600, '/', null, false, true);
+	}
+	$message = "Úspešne ste sa prihlásili!";
 }
 else
     $message = "Chyba - neplatné prihlasovacie údaje!";

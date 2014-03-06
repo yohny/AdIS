@@ -23,6 +23,16 @@ define('BASE_DIR',__DIR__);
 define('ACTIONS_DIR', BASE_DIR.'/app/actions');
 define('TEMPLATES_DIR', BASE_DIR.'/app/templates');
 
+//try autologin first
+if(isset($_COOKIE['neodhlasovat']))
+{
+	setcookie('neodhlasovat', $_COOKIE['neodhlasovat'], time()+10*24*3600, '/', null, false, true);//extend cookie validity
+	if(!Context::getInstance()->getUser())
+	{
+		User::autoLogin($_COOKIE['neodhlasovat']);
+	}
+}
+
 $request = Context::getInstance()->getRequest();
 if (!$request->getUri())
 {
@@ -32,15 +42,16 @@ if (!$request->getUri())
 }
 elseif(!$request->isPublic && !Context::getInstance()->getUser())
 {
-    header("HTTP/1.1 401 Unauthorized");
-    Context::getInstance()->getResponse()->content = "Nepovolený pristup!";
-    Context::getInstance()->getResponse()->error = true;
+	header("HTTP/1.1 401 Unauthorized");
+	Context::getInstance()->getResponse()->content = "Nepovolený pristup!";
+	Context::getInstance()->getResponse()->error = true;
 }
 elseif($request->isExpired())
 {
     //header("HTTP/1.1 408 Request Timeout"); ///produces error in browser
-    session_unset();
+	session_unset();
     session_regenerate_id();
+	setcookie ('neodhlasovat', '', 1, '/', null, false, true);
     Context::getInstance()->getResponse()->content = "Boli ste odhlásený kvôli neaktivite vyše ".Config::getInactivityLimit()." sekúnd!";
     Context::getInstance()->getResponse()->error = true;
 }

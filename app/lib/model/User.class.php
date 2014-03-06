@@ -47,6 +47,12 @@ class User
      * @var int
      */
     private $lastRequestTime;
+	/**
+	 * indicates whether user reuests expire
+	 * causes logout when inactive longer then allowed
+	 * @var bool
+	 */
+	public $requestsExpire = true;
 
     public function __construct($id, $login, $web, $kategoria, DateTime $registrationTime, DateTime $lastLoginTime)
     {
@@ -268,5 +274,33 @@ class User
 
         return $message;
     }
+	
+	/**
+	 * pokusi sa prihlasit usera uvedeneho v cookie
+	 * @param string $cookie
+	 * @return bool true ak bol prihlaseny, inak false
+	 */
+	public static function autoLogin($cookie)
+	{
+		$parts = explode('|', $cookie);
+		if(count($parts) != 2)
+			return false;
+		
+		$id = intval($parts[0]);
+		if($id == 0)
+			return false;
+		
+		$user = Context::getInstance()->getDatabase()->getUserByPK($id);
+		if(!$user)
+			return false;
+		
+		if(md5($user->getLogin()) != $parts[1])
+			return false;
+		
+		$_SESSION['user'] = $user;
+		$user->setLoginTimeNow();
+		$user->requestsExpire = false;
+		return true;
+	}
 }
 ?>

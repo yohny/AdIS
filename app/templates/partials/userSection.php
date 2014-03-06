@@ -28,21 +28,46 @@ if (Context::getInstance()->getUser()): ?>
 <?php endif; ?>
 </fieldset>
 <h3>používateľ</h3>
-<span style="font-variant: small-caps;font-weight: bolder;"><?php echo $_SESSION['user']; ?></span>
+<span style="font-variant: small-caps;font-weight: bolder;"><?= $_SESSION['user']; ?></span>
 <form style="display: inline-block" method="post" action="/action/odhlas">
     <a style="margin-left:10px;" href="#" onclick="this.parentNode.submit();return false;">(Odhlásiť)</a>
     <input type="hidden" name="action" value="logout" />
-    <input type="hidden" name="csrf_token" value="<?php echo Context::getInstance()->getCsrfToken(); ?>" />
+    <input type="hidden" name="csrf_token" value="<?= Context::getInstance()->getCsrfToken(); ?>" />
 </form>
 <?php else: ?>
 <h3>používateľ</h3>
 <form name="log_form" action="/action/prihlas" method="post">
     <table>
-        <tr><td>Login<br/><input type="text" name="login" maxlength="10" /></td></tr>
-        <tr><td>Heslo<br/><input type="password" name="heslo" maxlength="10" /></td></tr>
-        <tr><td><input type="button" value="Prihlásiť" onclick="spracuj_log()" /><a style="margin-left:10px;" href="/registracia">Registruj</a></td></tr>
-        <tr><td><div id="log_errbox" class="errbox"></div></td></tr>
+        <tr>
+			<td>
+				<label>Login<br/>
+					<input type="text" name="login" maxlength="10" />
+				</label>
+			</td>
+		</tr>
+        <tr>
+			<td>
+				<label>Heslo<br/>
+					<input type="password" name="heslo" maxlength="10" />
+				</label>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label><input style="vertical-align: bottom;" type="checkbox" name="neodhlasovat" value="neodhlasovat" /> Neodhlasovať</label>
+			</td>
+		</tr>
+        <tr>
+			<td>
+				<input type="button" value="Prihlásiť" onclick="spracuj_log()" />
+			</td>
+		</tr>
+        <tr>
+			<td>
+				<div id="log_errbox" class="errbox"></div>
+			</td>
+		</tr>
     </table>
-    <input type="hidden" name="csrf_token" value="<?php echo Context::getInstance()->getCsrfToken(); ?>" />
+    <input type="hidden" name="csrf_token" value="<?= Context::getInstance()->getCsrfToken(); ?>" />
 </form>
 <?php endif; ?>

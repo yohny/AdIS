@@ -90,11 +90,12 @@ class Request
      */
     public function isExpired()
     {
-        if(Context::getInstance()->getUser())
+		$user = Context::getInstance()->getUser();
+        if($user && $user->requestsExpire)
         {
-            if(Context::getInstance()->getUser()->getLastRequestTime() + Config::getInactivityLimit() < $_SERVER['REQUEST_TIME'])
+            if($user->getLastRequestTime() + Config::getInactivityLimit() < $_SERVER['REQUEST_TIME'])
                 return true;
-            Context::getInstance()->getUser()->setLastRequestTime($_SERVER['REQUEST_TIME']);
+            $user->setLastRequestTime($_SERVER['REQUEST_TIME']);
         }
         return false;
     }

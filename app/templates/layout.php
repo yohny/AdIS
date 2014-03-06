@@ -2,7 +2,7 @@
 <html lang="sk">
     <head>
         <meta charset="utf-8" />
-        <title><?php echo Context::getInstance()->getResponse()->getTitle(); ?></title>
+        <title><?= Context::getInstance()->getResponse()->getTitle(); ?></title>
         <meta name="generator" content="Netbeans IDE, www.netbeans.org" />
         <meta name="description" content="AdIS - reklamný systém" />
         <meta name="keywords" content="internetová reklama, online reklama, reklama, ad-is, banner, ppc, is" />
@@ -31,6 +31,7 @@
                     <legend>Ad-IS</legend>
                     <a href="/about">O systéme</a>
                     <a href="/faq">FAQ</a>
+					<a href="/registracia">Registrácia</a>
                 </fieldset>
 
                 <?php require_once TEMPLATES_DIR.'/partials/userSection.php'; ?>
@@ -60,15 +61,15 @@
             </div>
             <a href="mailto:jan.nescivera@gmail.com" id="ja" title="admin&amp;webmaster">&lt;Yohny&gt; &copy; <?php echo date('Y'); ?></a>
         </div><!-- end div#left --><div id="main">
-            <h3><?php echo Context::getInstance()->getResponse()->getHeading(); ?></h3>
+            <h3><?= Context::getInstance()->getResponse()->getHeading(); ?></h3>
             <?php if($flash=Context::getInstance()->getResponse()->getFlash()): ?>
             <div class="flash">
-                <?php echo $flash; ?>
+                <?= $flash; ?>
             </div>
             <?php endif; ?>
             <?php if(Context::getInstance()->getResponse()->error){ ?>
             <div class="error">
-                <?php echo Context::getInstance()->getResponse(); ?>
+                <?= Context::getInstance()->getResponse(); ?>
             </div>
             <?php } else echo Context::getInstance()->getResponse(); ?>
             <hr/>

@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="generator" content="ApiGen 2.8.0">
 
-	<title>Class Autoloader | AdIS</title>
+	<title>Interface DateTimeInterface | AdIS</title>
 
 	<script type="text/javascript" src="resources/combined.js?394153670"></script>
 	<script type="text/javascript" src="elementlist.js?461419524"></script>
@@ -21,7 +21,7 @@
 		<div id="groups">
 			<h3>Packages</h3>
 			<ul>
-				<li class="active"><a href="package-AdIS.html">AdIS<span></span></a>
+				<li><a href="package-AdIS.html">AdIS<span></span></a>
 						<ul>
 				<li><a href="package-AdIS.core.html">core</a>
 						</li>
@@ -37,7 +37,7 @@
 				<li><a href="package-pChart.classes.html">classes</a>
 						</li>
 							</ul></li>
-				<li><a href="package-PHP.html">PHP</a>
+				<li class="active"><a href="package-PHP.html">PHP</a>
 						</li>
 				<li><a href="package-Securimage.html">Securimage<span></span></a>
 						<ul>
@@ -53,11 +53,20 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li class="active"><a href="class-Autoloader.html">Autoloader</a></li>
+				<li><a href="class-DateTime.html">DateTime</a></li>
+				<li><a href="class-mysqli.html">mysqli</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li class="active"><a href="class-DateTimeInterface.html">DateTimeInterface</a></li>
 			</ul>
 
 
-
+			<h3>Exceptions</h3>
+			<ul>
+				<li><a href="class-Exception.html">Exception</a></li>
+			</ul>
 
 
 		</div>
@@ -81,7 +90,7 @@
 				<a href="index.html" title="Overview"><span>Overview</span></a>
 			</li>
 			<li>
-				<a href="package-AdIS.html" title="Summary of AdIS"><span>Package</span></a>
+				<a href="package-PHP.html" title="Summary of PHP"><span>Package</span></a>
 			</li>
 			<li class="active">
 <span>Class</span>			</li>
@@ -99,64 +108,54 @@
 	</div>
 
 <div id="content" class="class">
-	<h1>Class Autoloader</h1>
+	<h1>Interface DateTimeInterface</h1>
 
 
-	<div class="description">
-	
-<p>trieda zabezpecujuca autoloading tried aplikacie, singleton</p>
 
+
+
+
+
+	<div>
+		<h4>Direct known implementers</h4>
+			<a href="class-DateTime.html">DateTime</a>
 	</div>
-
-
-
-
-
 
 
 
 
 	<div class="info">
 		
+		<b>PHP Extension:</b> <a href="http://php.net/manual/book.datetime.php" title="Go to PHP documentation">Date</a><br>
 		
 		
-		<b>Package:</b> <a href="package-AdIS.html">AdIS</a><br>
 
-				<b>Author:</b>
-				Ján Neščivera &lt;<a
-href="mailto:jan.nescivera&#64;gmail.com">jan.nescivera&#64;<!-- -->gmail.com</a>&gt;<br>
-				<b>Version:</b>
-				1.0<br>
-		<b>Located at</b> <a href="source-class-Autoloader.html#2-125" title="Go to source code">app/lib/Autoloader.class.php</a><br>
+		<b>Documented at</b> <a href="http://php.net/manual/class.datetimeinterface.php" title="Go to PHP documentation">php.net</a><br>
 	</div>
 
 
 
 	<table class="summary" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="registerAll" id="_registerAll">
+	<tr data-order="format" id="_format">
 
 		<td class="attributes"><code>
-			 public static
+			 public 
 			
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_registerAll">#</a>
-		<code><a href="source-class-Autoloader.html#47-56" title="Go to source code">registerAll</a>( )</code>
+		<a class="anchor" href="#_format">#</a>
+		<code><a href="http://php.net/manual/datetimeinterface.format.php" title="Go to PHP documentation">format</a>( <span>mixed <var>$format</var></span> )</code>
 
 		<div class="description short">
 			
-<p>registers all classes and libraries</p>
-
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>registers all classes and libraries</p>
-
 
 
 
@@ -167,29 +166,25 @@ href="mailto:jan.nescivera&#64;gmail.com">jan.nescivera&#64;<!-- -->gmail.com</a
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="registerCore" id="_registerCore">
+	<tr data-order="getTimezone" id="_getTimezone">
 
 		<td class="attributes"><code>
-			 public static
+			 public 
 			
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_registerCore">#</a>
-		<code><a href="source-class-Autoloader.html#58-66" title="Go to source code">registerCore</a>( )</code>
+		<a class="anchor" href="#_getTimezone">#</a>
+		<code><a href="http://php.net/manual/datetimeinterface.gettimezone.php" title="Go to PHP documentation">getTimezone</a>( )</code>
 
 		<div class="description short">
 			
-<p>registers autoload function for Core classes</p>
-
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>registers autoload function for Core classes</p>
-
 
 
 
@@ -200,29 +195,25 @@ href="mailto:jan.nescivera&#64;gmail.com">jan.nescivera&#64;<!-- -->gmail.com</a
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="registerModel" id="_registerModel">
+	<tr data-order="getOffset" id="_getOffset">
 
 		<td class="attributes"><code>
-			 public static
+			 public 
 			
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_registerModel">#</a>
-		<code><a href="source-class-Autoloader.html#73-84" title="Go to source code">registerModel</a>( )</code>
+		<a class="anchor" href="#_getOffset">#</a>
+		<code><a href="http://php.net/manual/datetimeinterface.getoffset.php" title="Go to PHP documentation">getOffset</a>( )</code>
 
 		<div class="description short">
 			
-<p>registers autoload function for Model classes</p>
-
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>registers autoload function for Model classes</p>
-
 
 
 
@@ -233,29 +224,25 @@ href="mailto:jan.nescivera&#64;gmail.com">jan.nescivera&#64;<!-- -->gmail.com</a
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="registerCaptcha" id="_registerCaptcha">
+	<tr data-order="getTimestamp" id="_getTimestamp">
 
 		<td class="attributes"><code>
-			 public static
+			 public 
 			
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_registerCaptcha">#</a>
-		<code><a href="source-class-Autoloader.html#96-104" title="Go to source code">registerCaptcha</a>( )</code>
+		<a class="anchor" href="#_getTimestamp">#</a>
+		<code><a href="http://php.net/manual/datetimeinterface.gettimestamp.php" title="Go to PHP documentation">getTimestamp</a>( )</code>
 
 		<div class="description short">
 			
-<p>registers autoload function for Captcha classes</p>
-
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>registers autoload function for Captcha classes</p>
-
 
 
 
@@ -266,29 +253,54 @@ href="mailto:jan.nescivera&#64;gmail.com">jan.nescivera&#64;<!-- -->gmail.com</a
 		</div>
 		</div></td>
 	</tr>
-	<tr data-order="registerPChart" id="_registerPChart">
+	<tr data-order="diff" id="_diff">
 
 		<td class="attributes"><code>
-			 public static
+			 public 
 			
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_registerPChart">#</a>
-		<code><a href="source-class-Autoloader.html#111-119" title="Go to source code">registerPChart</a>( )</code>
+		<a class="anchor" href="#_diff">#</a>
+		<code><a href="http://php.net/manual/datetimeinterface.diff.php" title="Go to PHP documentation">diff</a>( <span>mixed <var>$object</var></span>, <span>mixed <var>$absolute</var></span> )</code>
 
 		<div class="description short">
 			
-<p>registers autoload function for pChart classes</p>
-
 		</div>
 
 		<div class="description detailed hidden">
 			
-<p>registers autoload function for pChart classes</p>
 
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__wakeup" id="___wakeup">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___wakeup">#</a>
+		<code><a href="http://php.net/manual/datetimeinterface.wakeup.php" title="Go to PHP documentation">__wakeup</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
 
 
 

@@ -18,7 +18,8 @@ if ($_POST['action'] == "logout")
 {
     session_unset();
     session_regenerate_id();
-    $message = "Boli ste odhlásený.";
+	setcookie('neodhlasovat', '', 1, '/', null, false, true);
+	$message = "Boli ste odhlásený.";
 }
 else
     $message = "Chybná požiadavka";

@@ -57,7 +57,6 @@
                     <img id="img2" src="/img/sch2.png" onclick="set_scheme(2)" alt="s2" />
                     <img id="img3" src="/img/sch3.png" onclick="set_scheme(3)" alt="s3" />
                 </p>
-                <script type="text/javascript">set_scheme(schema);</script>
             </div>
             <a href="mailto:jan.nescivera@gmail.com" id="ja" title="admin&amp;webmaster">&lt;Yohny&gt; &copy; <?php echo date('Y'); ?></a>
         </div><!-- end div#left --><div id="main">

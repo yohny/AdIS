@@ -2,6 +2,10 @@ var schema = 1;
 if(document.cookie.indexOf("schema")!=-1)
     schema = parseInt(document.cookie.charAt(document.cookie.indexOf("schema")+7), 10);
 
+window.onload = function() {
+	set_scheme(schema);
+};
+
 function set_scheme(c)
 {
     if(c>3 || c<1 || isNaN(c)) c=1; //len 3 platne schemy su

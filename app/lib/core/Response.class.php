@@ -75,12 +75,12 @@ class Response
 
     public function getHeading()
     {
-        return $this->nadpis;
+        return htmlspecialchars($this->nadpis);
     }
 
     public function getTitle()
     {
-        return $this->title;
+        return htmlspecialchars($this->title);
     }
 
     public function addResource($resource)
@@ -108,7 +108,7 @@ class Response
         {
             $resp = $_SESSION['flash'];
             unset($_SESSION['flash']);
-            return $resp;
+            return htmlspecialchars($resp);
         }
         else
             return null;

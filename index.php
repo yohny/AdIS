@@ -77,7 +77,7 @@ header("Content-type: ".Context::getInstance()->getResponse()->getHeaderContentT
 
 //redirect sa nastavuje az na konci, tj ak bola chyba nebude nastaveny
 if(Context::getInstance()->getResponse()->redirect)
-    header("Location: ".Context::getInstance()->getResponse()->redirect);
+    header("Location: ".Context::getInstance()->getResponse()->redirect, true, 303); //according to w3c, 303 is the correct redirect status code (php's default is 302)
 elseif(!$request->hasTemplate)
     echo Context::getInstance()->getResponse();
 else

@@ -108,7 +108,7 @@ class Response
         {
             $resp = $_SESSION['flash'];
             unset($_SESSION['flash']);
-            return htmlspecialchars($resp);
+            return $resp;
         }
         else
             return null;

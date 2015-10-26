@@ -13,12 +13,14 @@ SET time_zone = "+00:00";
 --
 -- Database: `adis`
 --
+CREATE DATABASE IF NOT EXISTS `adis` DEFAULT CHARACTER SET utf8 COLLATE utf8_slovak_ci;
+USE `adis`;
 
 DELIMITER $$
 --
 -- Procedures
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `generate_days`()
+CREATE PROCEDURE `generate_days`()
 LABEL: BEGIN
 declare datum date default null;
 select max(day) + interval 1 day from days into datum;

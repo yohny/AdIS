@@ -2,4 +2,6 @@ language: php
 php:
   - 5.5
   - hhvm
+before_script:
+  - mysql -uroot < app/DB_skript/adis_structure.sql
 script: phpunit --bootstrap test/bootstrap.php --colors --verbose --debug test

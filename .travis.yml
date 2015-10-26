@@ -1,5 +1,5 @@
 language: php
-hp:
+php:
   - 5.5
   - hhvm
 script: phpunit --bootstrap test/bootstrap.php --colors --verbose --debug test
